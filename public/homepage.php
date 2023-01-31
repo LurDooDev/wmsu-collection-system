@@ -25,7 +25,7 @@
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <style>
@@ -246,43 +246,43 @@
         <b class="b4">College of Engineering</b>
       </div>
       <div class="linkedin4">
-        <img class="bar-icon1" alt="" src="public/bar.svg" /><img class="progress-icon4" alt="" src="public/progress4.svg"/>
+        <img class="bar-icon1" alt="" src="public/bar.svg" /><img class="progress-icon4" alt="" src="../images/progress4.svg"/>
         <b class="b4">College of Forestry and Environmental Studies</b>
       </div>
       <div class="linkedin5">
-        <img class="bar-icon1" alt="" src="public/bar.svg"/><img class="progress-icon5" alt="" src="public/progress5.svg"/>
+        <img class="bar-icon1" alt="" src="public/bar.svg"/><img class="progress-icon5" alt="" src="../images/progress5.svg"/>
         <b class="b4">College of Home Economics</b>
       </div>
       <div class="linkedin6">
-        <img class="bar-icon1" alt="" src="public/bar.svg"/><img class="progress-icon6" alt="" src="public/progress6.svg"/>
+        <img class="bar-icon1" alt="" src="public/bar.svg"/><img class="progress-icon6" alt="" src="../images/progress6.svg"/>
       <b class="b4">College of Law</b>
       </div>
       <div class="linkedin7">
-        <img class="bar-icon1" alt="" src="public/bar.svg"/><img class="progress-icon7" alt=""src="public/progress7.svg"/>
+        <img class="bar-icon1" alt="" src="public/bar.svg"/><img class="progress-icon7" alt=""src="../images/progress7.svg"/>
         <b class="b4">College of Liberal Arts</b>
       </div>
       <div class="linkedin8">
-        <img class="bar-icon1" alt="" src="public/bar.svg"/><img class="progress-icon8" alt=""src="public/progress8.svg"/>
+        <img class="bar-icon1" alt="" src="public/bar.svg"/><img class="progress-icon8" alt=""src="../images/progress8.svg"/>
         <b class="b4">College of Nursing</b>
       </div>
       <div class="linkedin9">
-        <img class="bar-icon1" alt="" src="public/bar.svg"/><img class="progress-icon9" alt="" src="public/progress9.svg"/>
+        <img class="bar-icon1" alt="" src="public/bar.svg"/><img class="progress-icon9" alt="" src="../images/progress9.svg"/>
         <b class="b4">College of Public Administration and Development Studies</b>
       </div>
       <div class="linkedin10">
-        <img class="bar-icon1" alt="" src="public/bar.svg" /><img class="progress-icon10" alt=""src="public/progress10.svg"/>
+        <img class="bar-icon1" alt="" src="public/bar.svg" /><img class="progress-icon10" alt=""src="../images/progress10.svg"/>
           <b class="b4">College of Sports Science and Physical Education</b>
       </div>
       <div class="linkedin11">
-        <img class="bar-icon1" alt="" src="public/bar.svg" /><img class="progress-icon11" alt="" src="public/progress11.svg"/>
+        <img class="bar-icon1" alt="" src="public/bar.svg" /><img class="progress-icon11" alt="" src="../images/progress11.svg"/>
           <b class="b4">College of Science and Mathematics</b>
       </div>
       <div class="linkedin12">
-        <img class="bar-icon1" alt="" src="public/bar.svg" /><img class="progress-icon12" alt="" src="public/progress12.svg"/>
+        <img class="bar-icon1" alt="" src="public/bar.svg" /><img class="progress-icon12" alt="" src="../images/progress12.svg"/>
           <b class="b4">College of Social Work and Community Development</b>
       </div>
       <div class="linkedin13">
-        <img class="bar-icon13" alt="" src="public/bar.svg"/><img class="progress-icon13" alt="" src="public/progress13.svg"/>
+        <img class="bar-icon13" alt="" src="../images/bar.svg"/><img class="progress-icon13" alt="" src="../images/progress13.svg"/>
           <b class="b40"><p class="college-of-teacher">College of Teacher Education</p></b>
       </div>
       <div class="linkedin14">
