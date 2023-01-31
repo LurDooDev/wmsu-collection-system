@@ -1,5 +1,6 @@
 <?php
     require_once '../classes/database.class.php';
+    session_start();
     //prevent horny people
     if (!isset($_SESSION['logged-in']) || $_SESSION['logged-in'] == false) {
         // Redirect the user to the login page if they are not logged in

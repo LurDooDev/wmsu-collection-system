@@ -1,7 +1,6 @@
 <?php
 require_once "database.class.php";
 // session start since gagamitin ko yung mga session ng login. for authorization.
-session_start();
 
 
 class Login extends Database{
@@ -36,10 +35,8 @@ class Login extends Database{
             if($result){
                 //if password equals to password sa db then return true.
                 if($this->password == $result['password']){
+                session_start();
                 $_SESSION['logged-in'] = $result['user_id'];
-                $_SESSION['role_name'] = $result['role_name'];
-                $_SESSION['fullname'] = $result['first_name'] . ' ' . $result['last_name'];
-                $_SESSION['college_name'] = $result['college_description'];
                     return true;
                 }
             }

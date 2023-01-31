@@ -1,0 +1,41 @@
+:root {
+    /* fonts */
+    --font-poppins: Poppins;
+    --font-rajdhani: Rajdhani;
+  
+    /* font sizes */
+    --font-size-base: 13px;
+    --font-size-lg: 14px;
+    --font-size-xl: 16px;
+    --font-size-2xl: 20px;
+    --font-size-3xl: 21px;
+    --font-size-4xl: 24px;
+    --font-size-5xl: 25px;
+    --font-size-6xl: 30px;
+    --font-size-7xl: 32px;
+    --font-size-8xl: 40px;
+  
+    /* Colors */
+    --color-black: #000;
+    --color-white: #fff;
+    --color-gray-100: #eaf2ff;
+    --color-gray-200: #ebf2f7;
+    --color-gray-300: #ebebeb;
+    --color-gray-400: #707070;
+    --color-gray-500: #52575d;
+    --color-gray-600: #225794;
+    --color-gray-700: #333;
+    --color-gray-800: rgba(195, 195, 195, 0.33);
+    --color-gray-900: rgba(235, 235, 235, 0.6);
+    --color-teal: #064420;
+    --color-brown: #ad2020;
+    --color-green: #20ad5b;
+  
+    /* border radiuses */
+    --br-xs: 18px;
+    --br-sm: 20px;
+    --br-md: 37px;
+    --br-lg: 41px;
+    --br-xl: 48px;
+  }
+  
