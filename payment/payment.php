@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -79,9 +83,9 @@
             .container .content .content-2 .transactions{
               min-height: 50vh;
               flex: 5;
-              background: #FFFF
+              background: #FFFF;
               margin: 0 25px 25px 25px;
-              box-shadow: 0 4px 8px 0 rgb(210 223 232);, 0 6px 20pxrgb(210 223 232);}
+              box-shadow: 0 4px 8px 0 rgb(210 223 232), 0 6px 20pxrgb(210 223 232);}
 
         .page-loading {
           position: fixed;
@@ -159,6 +163,7 @@
             transform: rotate(360deg);
           }
         }
+    }
       </style>
       <script>
         let mode = window.localStorage.getItem('mode'),
@@ -243,4 +248,6 @@
       <div class="php-200002">Php 200.00</div>
       <div class="php-200002">Php 200.00</div>
   
+
+      </body>
 </html>
