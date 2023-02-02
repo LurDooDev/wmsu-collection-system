@@ -216,7 +216,7 @@
         <img src="images/logo.jpg" width="150"  alt="CCS COLLECTION FEE">
       </div>
       <a class="active" href="#home">Dashboard</a>
-      <a href="payments.html">Fees</a>
+      <a href="../payment/payment.php">Fees</a>
       <a href="#remit-records">Remit Records</a>
       <a href="#colleges">Colleges</a>
       <a href="#funds">Funds</a>

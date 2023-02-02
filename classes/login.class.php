@@ -1,7 +1,5 @@
 <?php
 require_once "database.class.php";
-// session start since gagamitin ko yung mga session ng login. for authorization.
-
 
 class Login extends Database{
     // Store input
