@@ -1,6 +1,8 @@
 <?php
 require_once "database.class.php";
 
+//This is unofficial and unfinished.
+//will wait muna sa final confirmation ng erd about sa flow ng payment para mapicture out ko ano ba talaga.
 class Payment extends Database{
     // Store input
     private $student_id;

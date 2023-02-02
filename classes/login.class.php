@@ -1,6 +1,7 @@
 <?php
 require_once "database.class.php";
 
+//I probably will come back here but for now oks na to.
 class Login extends Database{
     // Store input
     private $username;
