@@ -37,7 +37,6 @@
                 <a href="#" class="#" id='a_logout'>
                     Logout</a>
             </div>
-        </div>
         <!-- /#sidebar-wrapper -->
 
    <!-- Page Content -->
