@@ -55,7 +55,7 @@
   font-size: 1.2rem;
 }
 
-#sidebar-wrapper .list-group {
+#sidebar-wrapper .darna {
   width: 15rem;
   hover
 }
@@ -72,12 +72,12 @@
   cursor: pointer;
 }
 
-.list-group-item {
+.darna {
   border: none;
   padding: 20px 30px;
 }
 
-.list-group-item.active {
+.darna.active {
   background-color: black;
   color: white;
 }
