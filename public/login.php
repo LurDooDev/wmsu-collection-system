@@ -1,17 +1,33 @@
 <?php
 	require_once '../classes/database.class.php';
-	require_once '../classes/login.class.php';
+	require_once '../classes/users.class.php';
+
+	session_start();
 	
-	if(isset($_POST['username']) && isset($_POST['password'])){
-		//sanitize stripgs remove yung html tags and trim sa whitespace and yung isa self explanatory na beshies
-		$username = htmlspecialchars(strip_tags(trim($_POST['username'])));
-		$password = htmlspecialchars(strip_tags(trim($_POST['password'])));
-	
-		$login = new Login($username, $password);
-		if($login->checkCredentials()){
-			header("location: ../public/homepage.php");
-		}
-			$errorMessage = "Access denied. Incorrect username or password.";
+		$users_obj = new Users();
+		if(isset($_POST['username']) && isset($_POST['password'])){
+		  //Sanitizing the inputs of the users. Mandatory to prevent injections!
+		  $users_obj->username = htmlentities($_POST['username']);
+		  $users_obj->password = htmlentities($_POST['password']);
+		  if($users_obj->log_in()){
+			  $users = $users_obj->get_account_info();
+			  foreach($users as $row){
+				  $_SESSION['logged_id'] = $row['id'];
+				  $_SESSION['fullname'] = 'Pogi';
+				  $_SESSION['user_type'] = $row['type'];
+				  //display the appropriate dashboard page for user
+				  if($row['type'] == 'admin'){
+					  header('location: ../admin/dashboard.php');
+				  }else if($row['type'] == 'officer'){
+					  header('location: ../usermanagement/usermanagement.php');
+				  }else if($row['type'] == 'collector'){
+					  header('location: ../collector/collector.php');
+				  }
+			  }
+		  }else{
+			  //set the error message if account is invalid
+			  $error = 'Invalid email/password. Try again.';
+		  }
 		}
 ?>
 

@@ -1,5 +1,5 @@
 <?php
-    //start session
+    //start session begin here
     session_start();
 
     //check if user is login already otherwise send to login page
