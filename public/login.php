@@ -12,14 +12,14 @@
 		  if($users_obj->log_in()){
 			  $users = $users_obj->get_account_info();
 			  foreach($users as $row){
-				  $_SESSION['logged_id'] = $row['id'];
+				  $_SESSION['logged_id'] = $row['user_id'];
 				  $_SESSION['fullname'] = 'Pogi';
-				  $_SESSION['user_type'] = $row['type'];
+				  $_SESSION['user_type'] = $row['user_type'];
 				  //display the appropriate dashboard page for user
 				  if($row['type'] == 'admin'){
-					  header('location: ../admin/dashboard.php');
-				  }else if($row['type'] == 'officer'){
 					  header('location: ../usermanagement/usermanagement.php');
+				  }else if($row['type'] == 'officer'){
+					  header('location: ../public/logout.php');
 				  }else if($row['type'] == 'collector'){
 					  header('location: ../collector/collector.php');
 				  }

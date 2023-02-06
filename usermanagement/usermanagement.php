@@ -1,11 +1,10 @@
 <?php
     require_once '../classes/database.class.php';
+    require_once '../classes/users.class.php';
     session_start();
     //prevent horny people
-    if (!isset($_SESSION['logged-in']) || $_SESSION['logged-in'] == false) {
-        // Redirect the user to the login page if they are not logged in
-        header('Location: login.php');
-        exit;
+    if (!isset($_SESSION['logged_id'])){
+        header('location: ../public/logout.php');
     }
 ?>
 
@@ -30,21 +29,16 @@
     </thead>
     <tbody>
         <?php
-        $database = new Database;
-        $conn = $database->connect();
-        $stmt = $conn->prepare("SELECT wmsu_users.*, colleges.college_name AS college_name, roles.role_name AS role_name, students.first_name AS first_name, students.last_name AS last_name FROM wmsu_users 
-                                LEFT JOIN colleges ON wmsu_users.college_id = colleges.college_id
-                                LEFT JOIN roles ON wmsu_users.role_id = roles.role_id 
-                                LEFT JOIN students ON wmsu_users.student_id = students.student_id");
-        $stmt->execute();
-        $results = $stmt->fetchAll();
+        $users = new Users();
+        $data = $users->get_all_users();
         
-        foreach($results as $row) {
+        foreach($data as $user) {
         ?>
         <tr>
-            <td><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></td>
-            <td><?php echo $row['role_name']; ?></td>
-            <td><?php echo $row['college_name']; ?></td>
+            <td><?php echo $user['user_id']; ?></td>
+            <td><?php echo $user['user_name']; ?></td>
+            <td><?php echo $user['user_email']; ?></td>
+            <td><?php echo $user['type']; ?></td>
             <td>
                 <a href="#">Edit</a>
                 <a href="#">Delete</a>

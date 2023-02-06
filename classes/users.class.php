@@ -79,6 +79,22 @@ class Users{
         return $data;
     }
 
+    function get_all_users(){
+        // SQL statement to retrieve all users
+        $sql = "SELECT * FROM users;";
+    
+        // Prepare the SQL statement for execution
+        $query=$this->db->connect()->prepare($sql);
+    
+        // Execute the SQL statement
+        if($query->execute()){
+            // Fetch the data
+            $data = $query->fetchAll();
+        }
+        // Return the data
+        return $data;
+    }
+
 }
 
 ?>
