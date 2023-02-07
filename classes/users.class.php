@@ -47,7 +47,7 @@ class Users{
     }
 
     // Method to retrieve the user's account information
-    function get_account_info($id=0){
+    function get_users_info($id=0){
         // Check if the id parameter was provided
         if($id == 0){
             // SQL statement to retrieve the user with the matching username and password

@@ -10,7 +10,7 @@
 		  $users_obj->username = htmlentities($_POST['username']);
 		  $users_obj->password = htmlentities($_POST['password']);
 		  if($users_obj->log_in()){
-			  $users = $users_obj->get_account_info();
+			  $users = $users_obj->get_users_info();
 			  foreach($users as $row){
 				  $_SESSION['logged_id'] = $row['user_id'];
 				  $_SESSION['fullname'] = 'Pogi';
