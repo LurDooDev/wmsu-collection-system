@@ -14,27 +14,19 @@
 
       <body>
       <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
         <div class="bg-white" id="sidebar-wrapper">
             <img src="../login/images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
-            <div class="darna my-3">
-                <a href="#" class="active">
-                    Dashboard</a>
-                <a href="#" class="#">
-                    Fees</a>
-                <a href="#" class="#">
-                    Remit Records</a>
-                <a href="#" class="# ">
-                    Colleges</a>
-                <a href="#" class="#"> 
-                    Funds</a>
-                <a href="#" class="#"> 
-                     Financial Report</a>
-                <a href="#" class="#">
-                     Audit Log</a> 
-                     <a href="#" class="#"> 
-                     Admin Settings</a>
-                <a href="#" class="#" id='a_logout'>
-                    Logout</a>
+            <div class="list-group list-group-flush my-3">
+                <a href="#" class="list-group-item list-group-item-action bg-hover second-text active">Dashboard</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Fees</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Remit Records</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Colleges</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Funds</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Financial Report</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Audit Log</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Admin Settings</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover text-danger fw-bold">Logout</a>
             </div>
         </div>
   <div id="page-content-wrapper">
@@ -44,11 +36,15 @@
             <h2 class="fs-2 m-0">Dashboard</h2>
         </div>
     </nav>
-  <div class="graphBox">
-    <div class="box">
-    <canvas id="myChart"></canvas>
-    </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="../js/chart.js"></script>
-
+        
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+            <script>
+                var el = document.getElementById("wrapper");
+                var toggleButton = document.getElementById("menu-toggle");
+        
+                toggleButton.onclick = function () {
+                    el.classList.toggle("toggled");
+                };
+            </script>
+        </body>
