@@ -10,7 +10,7 @@
         header('location: public/payment.php');
     }
     else{
-        header('location: public/login.php');
+        header('location: login/login.php');
     }
 
 ?>
