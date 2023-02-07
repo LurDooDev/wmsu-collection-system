@@ -1,0 +1,154 @@
+*{
+  font-family: 'Poppins', sans-serif;
+
+}
+:root {
+  --main-bg-color: #009d63;
+  --main-text-color: #009d63;
+  --second-text-color: #bbbec5;
+  --second-bg-color: #c1efde;
+}
+
+.primary-text {
+  color: var(--main-text-color);
+}
+
+.second-text {
+  color: var(--second-text-color);
+}
+
+.primary-bg {
+  background-color: var(--main-bg-color);
+}
+
+.secondary-bg {
+  background-color: var(--second-bg-color);
+}
+
+.rounded-full {
+  border-radius: 100%;
+}
+
+#wrapper {
+  overflow-x: hidden;
+  background-image: linear-gradient(
+    to right,
+    #baf3d7,
+    #c2f5de,
+    #cbf7e4,
+    #d4f8ea,
+    #ddfaef
+  );
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin 0.25s ease-out;
+  -moz-transition: margin 0.25s ease-out;
+  -o-transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .darna {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+#menu-toggle {
+  cursor: pointer;
+}
+
+.darna {
+  border: none;
+  padding: 20px 0px;
+}
+.darna.active {
+  background-color: black;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+  .topnav input[type=text] {
+    padding: 6px;
+    margin-top: 55px;
+    margin-right: 150px;
+    border: none;
+    font-size: 17px;
+  }
+  .col-md-3{
+    flex: 0 auto;
+    width: 100%;
+  }
+  button, input, optgroup, select, textarea{
+    margin-bottom: 12px;
+  }
+  .darna a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+ .darna a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+  .darna a {
+    display: block;
+    color: black;
+    padding: 15px;
+    text-decoration: none;
+  }
+}
+#a_logout{
+
+  width: -1px;
+  position: fixed;
+  padding: 15px 93px;
+  bottom: 0;
+}
+.fa-align::before{
+  content: "\f036";
+}
+
+.graphBox{
+position: relative;
+width:100%;
+padding: 20px;
+display: grid;
+grid-template-columns: 1fr;
+grid-gap: 30px;
+min-height: 200px;
+}
+.graphBox .box
+{
+position: relative;
+background: #FFF;
+padding: 303px;
+width: 50%;
+box-shadow: 0 7px 25px rgba(0,0,0,0.40);
+border-radius: 20px;
+margin-left: 1;
+}
