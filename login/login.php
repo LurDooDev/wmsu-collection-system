@@ -1,3 +1,36 @@
+<?php
+	require_once '../classes/database.class.php';
+	require_once '../classes/users.class.php';
+
+	session_start();
+	
+		$users_obj = new Users();
+		if(isset($_POST['username']) && isset($_POST['password'])){
+		  //Sanitizing the inputs of the users. Mandatory to prevent injections!
+		  $users_obj->username = htmlentities($_POST['username']);
+		  $users_obj->password = htmlentities($_POST['password']);
+		  if($users_obj->log_in()){
+			  $users = $users_obj->get_account_info();
+			  foreach($users as $row){
+				  $_SESSION['logged_id'] = $row['user_id'];
+				  $_SESSION['fullname'] = 'Pogi';
+				  $_SESSION['user_type'] = $row['user_type'];
+				  //display the appropriate dashboard page for user
+				  if($row['type'] == 'admin'){
+					  header('location: ../usermanagement/usermanagement.php');
+				  }else if($row['type'] == 'officer'){
+					  header('location: ../public/logout.php');
+				  }else if($row['type'] == 'collector'){
+					  header('location: ../collector/collector.php');
+				  }
+			  }
+		  }else{
+			  //set the error message if account is invalid
+			  $error = 'Invalid email/password. Try again.';
+		  }
+		}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +54,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-85 p-b-20">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" action="login.php" method="post">
 					<span class="login100-form-title p-b-70">
 					</span>
 					<span class="login100-form-avatar">
@@ -34,13 +67,13 @@
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
-						<input class="input100" type="password" name="pass">
+						<input class="input100" type="password" name="password">
 						<span class="focus-input100" data-placeholder="Password"></span>
 					</div>
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							<a href="../admin/dashboard.php">Login</a>
+						<input class="button" type="submit" value="Login" name="login" tabindex="3">
 						</button>
 					</div>
 						</li>
