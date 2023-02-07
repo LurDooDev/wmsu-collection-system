@@ -6,8 +6,7 @@
     if (!isset($_SESSION['logged_id'])){
         header('location: ../public/logout.php');
     }
-
-    require_once '../includes/sidebar.php'
+    
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +18,20 @@
     <title>Document</title>
 </head>
 <body>
+<div class="bg-white" id="sidebar-wrapper">
+            <img src="../login/images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
+            <div class="list-group list-group-flush my-3">
+                <a href="#" class="list-group-item list-group-item-action bg-hover second-text active">Dashboard</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Fees</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Remit Records</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Colleges</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Funds</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Financial Report</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Audit Log</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Admin Settings</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover text-danger fw-bold">Logout</a>
+            </div>
+        </div>
     <!--testing-->
 <table border="1">
     <thead>

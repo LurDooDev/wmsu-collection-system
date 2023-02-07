@@ -29,6 +29,7 @@
                 <a href="#" class="list-group-item list-group-item-action bg-hover text-danger fw-bold">Logout</a>
             </div>
         </div>
+      </div>
   <div id="page-content-wrapper">
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
