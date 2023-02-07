@@ -90,6 +90,12 @@ input {
 	border: none;
 }
 
+/*--INPUT SUBMIT--*/
+button, input {
+  background: none;
+
+}
+
 textarea {
   outline: none;
   border: none;
