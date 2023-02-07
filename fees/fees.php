@@ -16,8 +16,8 @@
     //$page_title = 'CCS COLLECTION | Show Fees';
     //$Fees = 'active';
 
-    //require_once '../includes/header.php';
-   // require_once '../includes/sidebar.php';
+    require_once '../includes/header.php';
+    require_once '../includes/sidebar.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,10 +28,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" /><link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="../css/fees.css">
+<link rel="stylesheet" href="fees.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -62,38 +60,6 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<div class="d-flex" id="wrapper">
-        <!-- Sidebar -->
-        <div class="bg-white" id="sidebar-wrapper">
-            <img src="../login/images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
-            <div class="darna my-3">
-                <a href="#" class="#">
-                    Dashboard</a>
-                <a href="#" class="active">
-                    Fees</a>
-                <a href="#" class="#">
-                    Remit Records</a>
-                <a href="#" class="# ">
-                    Colleges</a>
-                <a href="#" class="#"> 
-                    Funds</a>
-                <a href="#" class="#"> 
-                     Financial Report</a>
-                <a href="#" class="#">
-                     Audit Log</a> 
-                     <a href="#" class="#"> 
-                     Admin Settings</a>
-                <a href="#" class="#" id='a_logout'>
-                    Logout</a>
-            </div>
-        </div>
-		<div id="page-content-wrapper">
-    <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
-        <div class="d-flex align-items-center">
-            <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0">Fees</h2>
-        </div>
-    </nav>
 <div class="container-xl">
 	<div class="table-responsive">
 		<div class="table-wrapper">
@@ -103,7 +69,7 @@ $(document).ready(function(){
 						<h2>Fees</h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Fees</span></a>					
+						<a href="#addFeesModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Fees</span></a>					
 					</div>
 				</div>
 			</div>
@@ -136,8 +102,8 @@ $(document).ready(function(){
 						<td>1st Semester</td>
 						<td>Php 200.00</td>
 						<td>
-							<a href="" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							<a href="#editFeesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
 				</tbody>
@@ -157,7 +123,7 @@ $(document).ready(function(){
 		</div>
 	</div>        
 </div>
-<div id="" class="modal fade">
+<div id="addFeesModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form>
@@ -172,11 +138,11 @@ $(document).ready(function(){
 					</div>
 					<div class="form-group">
 						<label>Description</label>
-						<input type="email" class="form-control" required>
+						<input type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
 						<label>Duration</label>
-						<textarea class="form-control" required></textarea>
+						<input type ="number" class="form-control" required>
 					</div>
 					<div class="form-group">
 						<label>Amount</label>
@@ -191,7 +157,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
-<div id="" class="modal fade">
+<div id="editFeesModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form>
@@ -206,7 +172,7 @@ $(document).ready(function(){
 					</div>
 					<div class="form-group">
 						<label>Description</label>
-						<input type="email" class="form-control" required>
+						<input type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
 						<label>Duration</label>
@@ -225,7 +191,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 
-<div id="" class="modal fade">
+	<div id="deleteFeesModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form>
@@ -235,6 +201,7 @@ $(document).ready(function(){
 				</div>
 				<div class="modal-body">
 					<p>Are you sure you want to delete these Records?</p>
+					<p class="text-warning"><small>This action cannot be undone.</small></p>
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -246,3 +213,4 @@ $(document).ready(function(){
 </div>
 </body>
 </html>
+

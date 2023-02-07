@@ -10,14 +10,14 @@
 		  $users_obj->username = htmlentities($_POST['username']);
 		  $users_obj->password = htmlentities($_POST['password']);
 		  if($users_obj->log_in()){
-			  $users = $users_obj->get_account_info();
+			  $users = $users_obj->get_users_info();
 			  foreach($users as $row){
 				  $_SESSION['logged_id'] = $row['user_id'];
 				  $_SESSION['fullname'] = 'Pogi';
 				  $_SESSION['user_type'] = $row['user_type'];
 				  //display the appropriate dashboard page for user
 				  if($row['type'] == 'admin'){
-					  header('location: ../usermanagement/TESTusermanagement.php');
+					  header('location: ../fees/fees.php');
 				  }else if($row['type'] == 'officer'){
 					  header('location: ../public/logout.php');
 				  }else if($row['type'] == 'collector'){
@@ -26,7 +26,7 @@
 			  }
 		  }else{
 			  //set the error message if account is invalid
-			  $error = 'Invalid email/password. Try again.';
+			  $error = 'Invalid username/password. Try again.';
 		  }
 		}
 ?>
@@ -60,7 +60,11 @@
 					<span class="login100-form-avatar">
 						<img src="../images/logo.jpg" alt="logo">
 					</span>
-
+					<?php
+                    if(isset($error)){
+                         echo '<div id="error-message">'.$error.'</div>';
+                    	}
+                    ?>
 					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
 						<input class="input100" type="text" name="username">
 						<span class="focus-input100" data-placeholder="Username"></span>
@@ -84,6 +88,13 @@
 	</div>
 
 	<div id="dropDownSelect1"></div>
+
+	<!--Backend for error time-->
+	<script>
+  setTimeout(function() {
+    $("#error-message").hide();
+ 	 }, 3000); // 3 seconds
+	</script>
 
 	<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 	<script src="../vendor/animsition/js/animsition.min.js"></script>

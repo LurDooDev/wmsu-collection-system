@@ -6,6 +6,8 @@
     if (!isset($_SESSION['logged_id'])){
         header('location: ../public/logout.php');
     }
+
+    require_once '../includes/sidebar.php'
 ?>
 
 <!DOCTYPE html>
