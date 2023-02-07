@@ -17,7 +17,7 @@
 				  $_SESSION['user_type'] = $row['user_type'];
 				  //display the appropriate dashboard page for user
 				  if($row['type'] == 'admin'){
-					  header('location: ../usermanagement/usermanagement.php');
+					  header('location: ../usermanagement/TESTusermanagement.php');
 				  }else if($row['type'] == 'officer'){
 					  header('location: ../public/logout.php');
 				  }else if($row['type'] == 'collector'){
