@@ -18,18 +18,17 @@
         <div class="bg-white" id="sidebar-wrapper">
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
             <div class="list-group list-group-flush my-3">
-                <a href="#" class="list-group-item list-group-item-action bg-hover second-text active">Dashboard</a>
-                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Fees</a>
-                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Remit Records</a>
-                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Colleges</a>
-                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Funds</a>
-                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Financial Report</a>
-                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Audit Log</a>
-                <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Admin Settings</a>
-                <a href="#" class="list-group-item list-group-item-action bg-hover text-danger fw-bold">Logout</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover first-text active">Dashboard</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover first-text fw">Fees</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover first-text fw">Remit Records</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover first-text fw">Colleges</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover first-text fw">Funds</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover first-text fw">Financial Report</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover first-text fw">Audit Log</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover first-text fw">Admin Settings</a>
+                <a href="#" class="list-group-item list-group-item-action bg-hover text-danger fw">Logout</a>
             </div>
         </div>
-      </div>
   <div id="page-content-wrapper">
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
@@ -38,8 +37,8 @@
         </div>
     </nav>
   </div>
-        
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+        </body>       
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
             <script>
                 var el = document.getElementById("wrapper");
                 var toggleButton = document.getElementById("menu-toggle");
@@ -48,4 +47,3 @@
                     el.classList.toggle("toggled");
                 };
             </script>
-        </body>
