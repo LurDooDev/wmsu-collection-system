@@ -16,7 +16,7 @@
       <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div class="bg-white" id="sidebar-wrapper">
-            <img src="../login/images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
+            <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
             <div class="list-group list-group-flush my-3">
                 <a href="#" class="list-group-item list-group-item-action bg-hover second-text active">Dashboard</a>
                 <a href="#" class="list-group-item list-group-item-action bg-hover second-text fw-bold">Fees</a>
