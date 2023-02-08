@@ -16,72 +16,49 @@
     //$page_title = 'CCS COLLECTION | Show Fees';
     //$Fees = 'active';
 
-//     require_once '../includes/header.php';
+     require_once '../includes/header.php';
 //     require_once '../includes/sidebar.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="../css/fees.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
-<title>Fees</title>
-<script>
-$(document).ready(function(){
-	// Activate tooltip
-	$('[data-toggle="tooltip"]').tooltip();
-	
-	// Select/Deselect checkboxes
-	var checkbox = $('table tbody input[type="checkbox"]');
-	$("#selectAll").click(function(){
-		if(this.checked){
-			checkbox.each(function(){
-				this.checked = true;                        
-			});
-		} else{
-			checkbox.each(function(){
-				this.checked = false;                        
-			});
-		} 
-	});
-	checkbox.click(function(){
-		if(!this.checked){
-			$("#selectAll").prop("checked", false);
-		}
-	});
-});
-</script>
-</head>
-<body>
+<!doctype html>
+<html lang="en" class="no-js">
+  <html>
+    <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--- links for bootstrap and css  --->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/fees.css" />
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
+    <title>Wmsu Collection System</title>
+    </head>
+
+      <body>
       <div class="d-flex" id="wrapper">
         <!-- Sidebar with bootstrap -->
         <div class="bg-white" id="sidebar-wrapper">
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
             <div class="list-group list-group-flush my-3">
-			<div class="list-group list-group-flush my-3">
-                <a href="../admin/dashboard.php" class="list-group-item list-group-item-action bg-hover first-text active">Dashboard</a>
-                <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw">Fees</a>
+                <a href="../admin/dashboard.php" class="list-group-item list-group-item-action bg-hover first-text fw">Dashboard</a>
+                <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text active">Fees</a>
                 <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw">Remit Records</a>
                 <a href="../college/college.php" class="list-group-item list-group-item-action bg-hover first-text fw">Colleges</a>
                 <a href="../funds/funds.php" class="list-group-item list-group-item-action bg-hover first-text fw">Funds</a>
                 <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw">Financial Report</a>
                 <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw">Audit Log</a>
                 <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw">Admin Settings</a>
-                <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover text-danger fw">Logout</a>
+                <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover first-text fw">Logout</a>
             </div>
         </div>
-	<div class="table-responsive">
+		<div class="table-responsive">
 	<div id="page-content-wrapper">
 <!-- Dashboard hamburger      -->
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
