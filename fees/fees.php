@@ -16,8 +16,8 @@
     //$page_title = 'CCS COLLECTION | Show Fees';
     //$Fees = 'active';
 
-    require_once '../includes/header.php';
-    require_once '../includes/sidebar.php';
+//     require_once '../includes/header.php';
+//     require_once '../includes/sidebar.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
