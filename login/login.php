@@ -77,7 +77,7 @@
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-						<input class="button" type="submit" value="Login" name="login" tabindex="3">
+						<input style="color:white" class="button" type="submit" value="Login" name="login" tabindex="3">
 						</button>
 					</div>
 						</li>
