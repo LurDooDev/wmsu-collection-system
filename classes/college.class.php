@@ -55,7 +55,7 @@ class College {
         $sql = "DELETE FROM colleges WHERE college_id=:college_id";
 
         $query=$this->db->connect()->prepare($sql);
-        $query->bindParam(':college_id', $this->collegeCode);
+        $query->bindParam(':college_id', $this->collegeID);
 
         if($query->execute()){
             return true;

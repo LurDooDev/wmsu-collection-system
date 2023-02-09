@@ -4,7 +4,7 @@
     
     if (isset($_POST['action']) && $_POST['action'] == 'delete') {
         $college = new College();
-        $college->collegeCode = $_POST['college_id'];
+        $college->collegeID = $_POST['college_id'];
             if($college->delete()){
                 header('location: college.php');
             }
