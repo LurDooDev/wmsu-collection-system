@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 06, 2023 at 06:05 PM
+-- Generation Time: Feb 10, 2023 at 12:18 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -20,6 +20,65 @@ SET time_zone = "+00:00";
 --
 -- Database: `wmsucollection`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `colleges`
+--
+
+CREATE TABLE `colleges` (
+  `college_id` int(11) NOT NULL,
+  `college_name` varchar(100) NOT NULL,
+  `college_code` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `colleges`
+--
+
+INSERT INTO `colleges` (`college_id`, `college_name`, `college_code`) VALUES
+(1, 'College of Computing Studies', 'CCS'),
+(3, 'College of Engineering', 'COE'),
+(4, 'College of Liberal Arts', 'CLA'),
+(5, 'College of Architecture', 'CA'),
+(6, 'College of Asian and Islamic Studies', 'CAIS');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fees`
+--
+
+CREATE TABLE `fees` (
+  `fee_id` int(11) NOT NULL,
+  `fee_type` varchar(100) NOT NULL,
+  `fee_amount` decimal(10,2) NOT NULL,
+  `fee_description` varchar(100) NOT NULL,
+  `fee_due_date` date NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `fees`
+--
+
+INSERT INTO `fees` (`fee_id`, `fee_type`, `fee_amount`, `fee_description`, `fee_due_date`, `created_at`, `updated_at`) VALUES
+(1, 'University', '200.00', 'Mandatory University Fees', '2023-05-15', '2023-02-09 22:08:43', '2023-02-09 22:08:43'),
+(2, 'University', '200.00', 'Donation', '2023-04-20', '2023-02-09 22:23:56', '2023-02-09 22:23:56');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `officer`
+--
+
+CREATE TABLE `officer` (
+  `officer_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `officer_type` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -49,6 +108,27 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_password`, `user_email`, `typ
 --
 
 --
+-- Indexes for table `colleges`
+--
+ALTER TABLE `colleges`
+  ADD PRIMARY KEY (`college_id`),
+  ADD KEY `college_code` (`college_code`),
+  ADD KEY `college_name` (`college_name`);
+
+--
+-- Indexes for table `fees`
+--
+ALTER TABLE `fees`
+  ADD PRIMARY KEY (`fee_id`);
+
+--
+-- Indexes for table `officer`
+--
+ALTER TABLE `officer`
+  ADD PRIMARY KEY (`officer_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -60,10 +140,38 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `colleges`
+--
+ALTER TABLE `colleges`
+  MODIFY `college_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `fees`
+--
+ALTER TABLE `fees`
+  MODIFY `fee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `officer`
+--
+ALTER TABLE `officer`
+  MODIFY `officer_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `officer`
+--
+ALTER TABLE `officer`
+  ADD CONSTRAINT `officer_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
