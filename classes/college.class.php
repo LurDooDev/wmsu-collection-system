@@ -50,6 +50,7 @@ class College {
         }	
     }
 
+
     function delete(){
         $sql = "DELETE FROM colleges WHERE college_id=:college_id";
 

@@ -1,23 +1,14 @@
 <?php
 
-    //resume session here to fetch session values
-    //session_start();
-    /*
-        if user is not login then redirect to login page,
-        this is to prevent users from accessing pages that requires
-        authentication such as the dashboard
-    */
-   // if (!isset($_SESSION['logged-in'])){
-        //header('location: ../login/login.php');
-   // }
-    //if the above code is false then html below will be displayed
+    // resume session here to fetch session values
+    session_start();
 
-   // require_once '../tools/variables.php';
-    //$page_title = 'CCS COLLECTION | Show Fees';
-    //$Fees = 'active';
-
-     require_once '../includes/header.php';
-//     require_once '../includes/sidebar.php';
+	//prevent horny people
+    if (!isset($_SESSION['logged_id'])){
+        header('location: ../public/logout.php');
+    }
+	require_once '../classes/database.class.php';
+	require_once '../classes/fee.class.php';
 ?>
 <!doctype html>
 <html lang="en" class="no-js">
@@ -74,64 +65,53 @@
 					</div>
 					<div class="col-sm-6">
 						<a href="#addFeesModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a>
-						<a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+						<!-- <a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
 					</div>
 				</div>
 			</div>
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th>
+						<!-- <th>
 							<span class="custom-checkbox">
 								<input type="checkbox" id="selectAll">
 								<label for="selectAll"></label>
 							</span>
-						</th>
-						</th>
+						</th> -->
+					
 						<th>Type of Fee</th>
 						<th>Description</th>
-						<th>Duration</th>
 						<th>Amount</th>
+						<th>Duration</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
+				<?php
+					$fee = new Fee();
+					$data = $fee->show();
+				foreach($data as $fee) {
+        ?>
 					<tr>
-						<td>
+						<!-- <td>
 							<span class="custom-checkbox">
 								<input type="checkbox" id="checkbox1" name="options[]" value="1">
 								<label for="checkbox1"></label>
 							</span>
-						</td>
-						<td>CSC</td>
-						<td>CSC-College Student Council</td>
-						<td>1st Semester</td>
-						<td>Php 200.00</td>
+						</td> -->
+						<td><?php echo $fee['fee_type']; ?></td>
+						<td><?php echo $fee['fee_description']; ?></td>
+						<td><?php echo $fee['fee_amount']; ?></td>
+						<td><?php echo $fee['fee_due_date']; ?></td>
 						<td>
 							<a href="#editFeesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox2" name="options[]" value="1">
-								<label for="checkbox2"></label>
-							</span>
-						</td>
-						<td>CSC</td>
-						<td>CSC-College Student Council</td>
-						<td>1st Semester</td>
-						<td>Php 200.00</td>
-						<td>
-							<a href="#editFeesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					
+					<?php } ?>
 				</tbody>
 			</table>
-			<div class="clearfix">
+			<!-- <div class="clearfix">
 				<div class="hint-text">Showing <b>1</b> out of <b>25</b> entries</div>
 				<ul class="pagination">
 					<li class="page-item disabled"><a href="#">Previous</a></li>
@@ -142,39 +122,40 @@
 					<li class="page-item"><a href="#" class="page-link">5</a></li>
 					<li class="page-item"><a href="#" class="page-link">Next</a></li>
 				</ul>
-			</div>
+			</div> -->
 		</div>
 	</div>        
 </div>
-<!-- Edit Modal HTML -->
+<!-- Add Modal HTML -->
 <div id="addFeesModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form action="addfees.php" method="POST">
 				<div class="modal-header">						
 					<h4 class="modal-title">Add Fees</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
 					<div class="form-group">
-						<label>Type of Fee</label>
-						<input type="text" class="form-control" required>
+						<label for="feeType">Type of Fee</label>
+						<input type="text" name="feeType" id="feeType" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>Description</label>
-						<input type="text" class="form-control" required>
+						<label for="feeDescription">Description</label>
+						<input type="text" name="feeDescription" id="feeDescription" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>Duration</label>
-						<input type="text" class="form-control" required>
+						<label for="feeDueDate">Duration</label>
+						<input type="date" name="feeDueDate" id="feeDueDate" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>Amount</label>
-						<input type="number" class="form-control" required>
+						<label for="feeAmount">Amount</label>
+						<input type="number" name="feeAmount" id="feeAmount" class="form-control" required>
 					</div>					
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="hidden" name="action" value="add">
 					<input type="submit" class="btn btn-success" value="Add">
 				</div>
 			</form>
