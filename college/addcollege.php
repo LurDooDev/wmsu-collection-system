@@ -4,8 +4,8 @@
     
     if (isset($_POST['action']) && $_POST['action'] == 'add') {
         $college = new College();
-        $college->collegeCode = $_POST['collegeCode'];
-        $college->collegeName = $_POST['collegeName'];
+        $college->collegeCode = htmlspecialchars($_POST['collegeCode']);
+        $college->collegeName = htmlspecialchars($_POST['collegeName']);
     
         if ($college->add()) {
             header('location: college.php');
