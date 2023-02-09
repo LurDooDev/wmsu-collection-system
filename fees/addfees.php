@@ -10,7 +10,7 @@
         $fee->feeDueDate = $_POST['feeDueDate'];
     
         if ($fee->add()) {
-            header('location: fee.php');
+            header('location: fees.php');
         } else {
             echo 'Failed to add fee';
         }
