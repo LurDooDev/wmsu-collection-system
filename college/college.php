@@ -1,23 +1,16 @@
 <?php
 
-    //resume session here to fetch session values
-    //session_start();
-    /*
-        if user is not login then redirect to login page,
-        this is to prevent users from accessing pages that requires
-        authentication such as the dashboard
-    */
-   // if (!isset($_SESSION['logged-in'])){
-        //header('location: ../login/login.php');
-   // }
-    //if the above code is false then html below will be displayed
+    // resume session here to fetch session values
+    session_start();
 
-   // require_once '../tools/variables.php';
-    //$page_title = 'CCS COLLECTION | Show college';
-    //$college = 'active';
+	//prevent horny people
+    if (!isset($_SESSION['logged_id'])){
+        header('location: ../public/logout.php');
+    }
+	require_once '../classes/database.class.php';
+	require_once '../classes/college.class.php';
 
-//     require_once '../includes/header.php';
-//     require_once '../includes/sidebar.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,288 +89,54 @@ $(document).ready(function(){
 					</div>
 					<div class="col-sm-6">
 						<a href="#addCollegesModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New College</span></a>
-						<a href="#deleteCollegesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+						<!-- <a href="#deleteCollegesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
 					</div>
 				</div>
 			</div>
+
+
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
 						<th>
-							<span class="custom-checkbox">
+							<!-- <span class="custom-checkbox">
 								<input type="checkbox" id="selectAll">
 								<label for="selectAll"></label>
-							</span>
+							</span> -->
 						</th>
 						</th>
 						<th>ID</th>
 						<th>College Code</th>
 						<th>Description</th>
-						<th>Mayor</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
+					<?php
+					$college = new College();
+					$data = $college->show();
+				foreach($data as $college) {
+        ?>
 					<tr>
 						<td>
-							<span class="custom-checkbox">
+							<!-- <span class="custom-checkbox">
 								<input type="checkbox" id="checkbox1" name="options[]" value="1">
 								<label for="checkbox1"></label>
-							</span>
+							</span> -->
 						</td>
-						<td>1</td>
-						<td>CCS</td>
-						<td>Colleges of Computing Studies</td>
-						<td>Joy Cubile</td>
+						<td><?php echo $college['college_id']; ?></td>
+						<td><?php echo $college['college_code']; ?></td>
+						<td><?php echo $college['college_name']; ?></td>
 						<td>
 							<a href="#editCollegesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 							<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
-					</tr>
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox2" name="options[]" value="1">
-								<label for="checkbox2"></label>
-							</span>
-						</td>
-						<td>2</td>
-						<td>CA</td>
-						<td>College of Architecture</td>
-						<td>Mayor 2</td>
-						<td>
-							<a href="#editCollegesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox3" name="options[]" value="1">
-								<label for="checkbox3"></label>
-							</span>
-						</td>
-						<td>3</td>
-						<td>CAIS</td>
-						<td>College of Asian and Islamic Studies</td>
-						<td>Mayor 3</td>
-						<td>
-							<a href="#editCollegesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox4" name="options[]" value="1">
-								<label for="checkbox4"></label>
-							</span>
-						</td>
-						<td>4</td>
-						<td>COA</td>
-						<td>College of Agriculture</td>
-						<td>Mayor 4</td>
+		</tr>
+		<?php } ?>
 
-						<td>
-							<a href="#editCollegesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-							</span>
-						</td>
-						<td>5</td>
-						<td>CCJE</td>
-						<td>College of Criminal Justice Education</td>
-						<td>Mayor 5</td>
-						<td>
-							<a href="#editCollegesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr> 
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-							</span>
-						</td>
-						<td>6</td>
-						<td>COE</td>
-						<td>College of Engineering</td>
-						<td>Mayor 6</td>
-						<td>
-							<a href="#editCollegesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr> 		
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-							</span>
-						</td>
-						<td>7</td>
-						<td>CFES</td>
-						<td>College of Forestry and Environmental Studies</td>
-						<td>Mayor 7</td>
-						<td>
-							<a href="#editCollegesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr> 
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-							</span>
-						</td>
-						<td>8</td>
-						<td>CHE</td>
-						<td>College of Home Economics</td>
-						<td>Mayor 8</td>
-						<td>
-							<a href="#editCollegesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr> 
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-							</span>
-						</td>
-						<td>9</td>
-						<td>CL</td>
-						<td>College of Law</td>
-						<td>Mayor 9</td>
-						<td>
-							<a href="#editCollegesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr> 
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-							</span>
-						</td>
-						<td>10</td>
-						<td>CLA</td>
-						<td>College of Liberal Arts</td>
-						<td>Mayor 10</td>
-						<td>
-							<a href="#editCollegesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr> 
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-							</span>
-						</td>
-						<td>11</td>
-						<td>CN</td>
-						<td>College of Nursing</td>
-						<td>Mayor 11</td>
-						<td>
-							<a href="#editCollegesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr> 
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-							</span>
-						</td>
-						<td>12</td>
-						<td>CPADS</td>
-						<td>College of Public Administration and Development Studies</td>
-						<td>Mayor 12</td>
-						<td>
-							<a href="#editCollegesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr> 
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-							</span>
-						</td>
-						<td>13</td>
-						<td>CSSPE</td>
-						<td>College of Sports Sciene and Physical Education</td>
-						<td>Mayor 13</td>
-						<td>
-							<a href="#editCollegesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr> 	
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-							</span>
-						</td>
-						<td>14</td>
-						<td>CSM</td>
-						<td>College of Science and Mathematics</td>
-						<td>Mayor 14</td>
-						<td>
-							<a href="#editCollegesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr> 
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-							</span>
-						</td>
-						<td>15</td>
-						<td>CSWCD</td>
-						<td>College of Social Work and Community Development</td>
-						<td>Mayor 15</td>
-						<td>
-							<a href="#editCollegesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr> 
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-							</span>
-						</td>
-						<td>16</td>
-						<td>CTE</td>
-						<td>College of Teacher Education</td>
-						<td>Mayor 16</td>
-						<td>
-							<a href="#editCollegesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr> 		
 				</tbody>
 			</table>
-			<div class="clearfix">
+			<!-- <div class="clearfix">
 				<div class="hint-text">Showing <b>1</b> out of <b>25</b> entries</div>
 				<ul class="pagination">
 					<li class="page-item disabled"><a href="#">Previous</a></li>
@@ -388,35 +147,32 @@ $(document).ready(function(){
 					<li class="page-item"><a href="#" class="page-link">5</a></li>
 					<li class="page-item"><a href="#" class="page-link">Next</a></li>
 				</ul>
-			</div>
+			</div> -->
 		</div>
 	</div>        
-</div>
-<!-- Edit Modal HTML -->
+				</div>
+<!-- add Modal HTML -->
 <div id="addCollegesModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form action="addcollege.php" method="POST">
 				<div class="modal-header">						
 					<h4 class="modal-title">Add Colleges</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
 					<div class="form-group">
-						<label>College Code</label>
-						<input type="text" class="form-control" required>
+						<label for="collegeCode">College Code</label>
+						<input type="text" name="collegeCode" id="collegeCode" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>Description</label>
-						<input type="text" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Mayor</label>
-						<input type="text" class="form-control" required>
+						<label for="collegeName">College Name</label>
+						<input type="text" name="collegeName" id="collegeName" class="form-control" required>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="hidden" name="action" value="add">
 					<input type="submit" class="btn btn-success" value="Add">
 				</div>
 			</form>
@@ -427,27 +183,26 @@ $(document).ready(function(){
 <div id="editCollegesModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form action="editcollege.php" method="POST">
 				<div class="modal-header">						
 					<h4 class="modal-title">Edit College</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div class="modal-body">					
+				<div class="modal-body">				
 					<div class="form-group">
-						<label>College Code</label>
+					<input type="hidden" name="collegeCodeTarget" value="<?php echo $collegeCodeTarget; ?>">
+						<label>College Code</label>	
 						<input type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
+					<input type="hidden" name="collegeName" value="<?php echo $college['college_name']; ?>">
 						<label>Description</label>
-						<input type="email" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Mayor</label>
 						<input type="text" class="form-control" required>
 					</div>		
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="hidden" name="action" value="update">
 					<input type="submit" class="btn btn-info" value="Save">
 				</div>
 			</form>
@@ -458,7 +213,7 @@ $(document).ready(function(){
 <div id="deleteCollegesModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form action="deletecollege.php" method="POST">
 				<div class="modal-header">						
 					<h4 class="modal-title">Delete College</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -469,6 +224,8 @@ $(document).ready(function(){
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="hidden" name="action" value="delete">
+					<input type="hidden" name="college_id" value="<?php echo $college['college_id']; ?>">
 					<input type="submit" class="btn btn-danger" value="Delete">
 				</div>
 			</form>
