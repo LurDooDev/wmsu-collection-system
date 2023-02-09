@@ -78,7 +78,7 @@
 								<label for="selectAll"></label>
 							</span>
 						</th> -->
-					
+						<th>ID</th>
 						<th>Type of Fee</th>
 						<th>Description</th>
 						<th>Amount</th>
@@ -99,6 +99,7 @@
 								<label for="checkbox1"></label>
 							</span>
 						</td> -->
+						<td><?php echo $fee['fee_id']; ?></td>
 						<td><?php echo $fee['fee_type']; ?></td>
 						<td><?php echo $fee['fee_description']; ?></td>
 						<td><?php echo $fee['fee_amount']; ?></td>
@@ -201,7 +202,7 @@
 <div id="deleteFeesModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form action="deletefees.php" method="POST">
 				<div class="modal-header">						
 					<h4 class="modal-title">Delete Fees</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -212,6 +213,8 @@
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="hidden" name="action" value="delete">
+					<input type="hidden" name="fee_id" value="<?php echo $fee['fee_id']; ?>">
 					<input type="submit" class="btn btn-danger" value="Delete">
 				</div>
 			</form>
