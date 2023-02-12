@@ -2,9 +2,9 @@
 
 class Database{
     private $host = 'localhost';
-    private $username = 'u742250709_wmsu';
-    private $password = 'Godisgood420!';
-    private $database = 'u742250709_wmsucollection';
+    private $username = 'root';
+    private $password = '';
+    private $database = 'wmsucollection';
     protected $connection;
 
     function connect(){
