@@ -65,7 +65,7 @@
     <script src="https://datatables.net/extensions/fixedheader/examples/integration/responsive-bootstrap.html"></script>
 
     <title><?php echo $page_title; ?></title>
-    <link rel="icon" href="../img/greenscreen_logo_green.png" type="image/icon type">
+    <link rel="icon" href="../images/logo.jpg" type="image/icon type">
 </head>
 
 <body>
