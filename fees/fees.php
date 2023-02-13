@@ -1,51 +1,23 @@
 <?php
 
-    //resume session here to fetch session values
-    //session_start();
-    /*
-        if user is not login then redirect to login page,
-        this is to prevent users from accessing pages that requires
-        authentication such as the dashboard
-    */
-   // if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] == 'student'){
-     //   header('location: ../control-panel/login.php');
-   // }
-   //if the above code is false then html below will be displayed
+    // resume session here to fetch session values
+    session_start();
 
-  //  require_once '../tools/variables.php';
-   // $page_title = 'GreenScreen | Application';
-   //$application = 'active';
+	//prevent horny people
+    if (!isset($_SESSION['logged_id'])){
+        header('location: ../public/logout.php');
+    }
+	require_once '../classes/database.class.php';
+	require_once '../classes/fee.class.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="BigBirdieTech">
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" >
-    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.3.1/css/fixedHeader.bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.bootstrap.min.css">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/b7698cb814.js" crossorigin="anonymous"></script>
-
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Poppins:wght@200&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
-    <!-- Custom styles for this template -->
-    <link href="../css/carousel.css" rel="stylesheet">
-    <link href="../css/features.css" rel="stylesheet">
-    <link href="../css/custom.css" rel="stylesheet">
-
-    <!-- JavaScript -->
+<!doctype html>
+<html lang="en" class="no-js">
+  <html>
+    <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--- links for bootstrap and css  --->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
@@ -57,28 +29,17 @@
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://kit.fontawesome.com/30ff5f2a0c.js" crossorigin="anonymous"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
-    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.datatables.net/fixedheader/3.3.1/js/dataTables.fixedHeader.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
-    <script src="https://datatables.net/extensions/fixedheader/examples/integration/responsive-bootstrap.html"></script>
+    <title>Wmsu Collection System</title>
+    </head>
 
-    <title><?php echo $page_title; ?></title>
-    <link rel="icon" href="../img/greenscreen_logo_green.png" type="image/icon type">
-</head>
-
-<body>
-<div class="d-flex" id="wrapper">
+      <body>
+      <div class="d-flex" id="wrapper">
         <!-- Sidebar with bootstrap -->
         <div class="bg-white" id="sidebar-wrapper">
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
             <div class="list-group list-group-flush my-3">
                 <a href="../admin/dashboard.php" class="list-group-item list-group-item-action bg-hover first-text fw">Dashboard</a>
-                <a href="../fees/fees1.php" class="list-group-item list-group-item-action bg-hover first-text active">Fees</a>
+                <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text active">Fees</a>
                 <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw">Remit Records</a>
                 <a href="../college/college.php" class="list-group-item list-group-item-action bg-hover first-text fw">Colleges</a>
                 <a href="../funds/funds.php" class="list-group-item list-group-item-action bg-hover first-text fw">Funds</a>
@@ -88,15 +49,8 @@
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover first-text fw">Logout</a>
             </div>
         </div>
-    <?php
-//   require_once '../includes/topnav_admin.php';
-    ?>
-    <div class="container-fluid">
-        <div class="row">
-            <?php
-           //  require_once '../includes/sidebar.php';
-            ?>
-            <div id="page-content-wrapper">
+		<div class="table-responsive">
+	<div id="page-content-wrapper">
 <!-- Dashboard hamburger      -->
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
@@ -104,50 +58,227 @@
             <h2 class="fs-2 m-0">Fees</h2>
         </div>
     </nav>
-  </div>
-                    <div class="table-responsive py-3 table-container">
-                        
-                    </div>
-                </div>
-            </main>
-        </div>
-    </div>
-    <script>
-        function load(status){
-            if(status == 'fees'){
-                $.ajax({
-                    type: "GET",
-                    url: 'feestable.php',
-                    success: function(result)
-                    {
-                        $('div.table-responsive').html(result);
-                        dataTable = $("#table-fees").DataTable({
-                            "dom": 'rtip',
-                            responsive: true
-                        });
-                        $('input#keyword').on('input', function(e){
-                            var status = $(this).val();
-                            dataTable.columns([3]).search(status).draw();
-                        })
-                        $('select#student_fees').on('change', function(e){
-                            var status = $(this).val();
-                            dataTable.columns([2]).search(status).draw();
-                        })
-                        new $.fn.dataTable.FixedHeader(dataTable);
-                    },
-                    error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                        alert("Status: " + textStatus); alert("Error: " + errorThrown); 
-                    }  
-                });
-            }
-        }
-        $(document).ready(function(){
-            load('fees');
-            $('ul.application .nav-item').on('click', function(){
-                $('ul.application .nav-item').removeClass('active');
-                $(this).addClass('active');
-            });
-        });
-    </script>
-</body>
+		<div class="table-wrapper">
+		<div class="table-title">
+				<div class="row">
+					<div class="col-sm-4">
+					<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
+					<button class="btn btn-primary dropdown-toggle" id ="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By </button>
+						<div class="dropdown-menu">
+    					<a class="dropdown-item" href="#">Ascending</a>
+    					<a class="dropdown-item" href="#">Descending</a>
+					</div>
+					</div>
+					<div class="col-sm-8">
+						<a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a>
+
+						<!-- <a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
+					</div>
+				</div>
+			</div>
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<!-- <th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+						</th> -->
+						<th>ID</th>
+						<th>Type of Fee</th>
+						<th>Description</th>
+						<th>Amount</th>
+						<th>Duration</th>
+						<th>School Year</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php
+					//$fee = new Fee();
+					//$data = $fee->show();
+				//foreach($data as $fee) {
+        ?>
+					<tr>
+						<!-- <td>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="checkbox1" name="options[]" value="1">
+								<label for="checkbox1"></label>
+							</span>
+						</td> -->
+						<td>1</td>
+           			 <td>Wmsu Palaro</td>
+            		<td>University Fees</td>
+            		<td>200</td>
+            		<td>1st Semester</td>
+            		<td>05/19/2022</td>
+					<td>
+					<a href="#editFeesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							</td>
+				</tr>
+							<td>2</td>
+           			 <td>Bahay Kubo</td>
+            		<td>University Fees</td>
+            		<td>150</td>
+            		<td>1st Semester</td>
+            		<td>05/20/2022</td>
+					<td>
+					<a href="#editFeesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							</td>
+					</tr>
+					</tbody>
+			</table>
+						<!--<td><?php //echo $fee['fee_id']; ?></td>
+						<td><?php  // echo $fee['fee_type']; ?></td>
+						<td><?php //echo $fee['fee_description']; ?></td>
+						<td><?php //echo $fee['fee_amount']; ?></td>
+						<td><?php //echo $fee['fee_due_date']; ?></td>
+						<td>
+							<a href="#editFeesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+						</td>
+					</tr>
+					<?php //} ?>
+				</tbody>
+			</table>
+			<- - <div class="clearfix">
+				<div class="hint-text">Showing <b>1</b> out of <b>25</b> entries</div>
+				<ul class="pagination">
+					<li class="page-item disabled"><a href="#">Previous</a></li>
+					<li class="page-item active"><a href="#" class="page-link">1</a></li>
+					<li class="page-item"><a href="#" class="page-link">2</a></li>
+					<li class="page-item disabled"><a href="#" class="page-link">3</a></li>
+					<li class="page-item"><a href="#" class="page-link">4</a></li>
+					<li class="page-item"><a href="#" class="page-link">5</a></li>
+					<li class="page-item"><a href="#" class="page-link">Next</a></li>
+				</ul>
+			</div> -->
+		</div>
+	</div>        
+</div>
+<!-- Add Modal HTML -->
+<div id="addFeesModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form action="addfees.php" method="POST">
+				<div class="modal-header">						
+					<h4 class="modal-title">Add Fees</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<div class="form-group">
+						<label for="feeType">Type of Fee</label>
+						<input type="text" name="feeType" id="feeType" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="feeDescription">Description</label>
+						<input type="text" name="feeDescription" id="feeDescription" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="feeDueDate">Duration</label>
+						<input type="date" name="feeDueDate" id="feeDueDate" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="feeAmount">Amount</label>
+						<input type="number" name="feeAmount" id="feeAmount" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for ="">School Year</label> 
+						<input type="text" name ="" id= "" class="form-control" required> <!-- text muna kasi automatically default - mark -->
+					</div>	
+					<div class="form-group">
+						<label for = "">Semester</label>
+						<input type="text" name = " " id= " " class="form-control" required><!-- text muna kasi automatically default - mark -->
+					</div>						
+
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="hidden" name="action" value="add">
+					<input type="submit" class="btn btn-success" value="Add">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Edit Modal HTML -->
+<div id="editFeesModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">						
+					<h4 class="modal-title">Edit Fees</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<div class="form-group">
+						<label>Type of Fee</label>
+						<input type="text" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label>Description</label>
+						<input type="email" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label>Duration</label>
+						<input type="text" class="form-control" required>
+					</div>
+					<div class="form-group">
+					<label>Amount</label>
+						<input type="number" class="form-control" required>
+					</div>		
+					<div class="form-group">
+						<label for ="">School Year</label> 
+						<input type="text" name ="" id= "" class="form-control" required> <!-- text muna kasi automatically default - mark -->
+					</div>	
+					<div class="form-group">
+						<label for = "">Semester</label>
+						<input type="text" name = " " id= " " class="form-control" required><!-- text muna kasi automatically default - mark -->
+					</div>						
+			
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-info" value="Save">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Delete Modal HTML -->
+<div id="deleteFeesModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form action="deletefees.php" method="POST">
+				<div class="modal-header">						
+					<h4 class="modal-title">Delete Fees</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<p>Are you sure you want to delete these Records?</p>
+					<p class="text-warning"><small>This action cannot be undone.</small></p>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="hidden" name="action" value="delete">
+					<input type="hidden" name="fee_id" value="<?php echo $fee['fee_id']; ?>">
+					<input type="submit" class="btn btn-danger" value="Delete">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</body>       
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+            <script>
+                var el = document.getElementById("wrapper");
+                var toggleButton = document.getElementById("menu-toggle");
+        
+                toggleButton.onclick = function () {
+                    el.classList.toggle("toggled");
+                };
+            </script>
 </html>
