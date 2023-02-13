@@ -22,6 +22,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Jaydee C. Ballaho">
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -32,9 +33,12 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/b7698cb814.js" crossorigin="anonymous"></script>
+
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <!-- Custom styles for this template -->
     <link href="../css/carousel.css" rel="stylesheet">
@@ -64,7 +68,7 @@
     <script src="https://datatables.net/extensions/fixedheader/examples/integration/responsive-bootstrap.html"></script>
 
     <title><?php echo $page_title; ?></title>
-    <link rel="icon" href="../images/logo.jpg" type="image/icon type">
+    <link rel="icon" href="../img/greenscreen_logo_green.png" type="image/icon type">
 </head>
 
 <body>
@@ -90,11 +94,17 @@
     <div class="container-fluid">
         <div class="row">
             <?php
-             require_once '../includes/sidebar.php';
+           //  require_once '../includes/sidebar.php';
             ?>
-            <main class="col-md-9 ms-sm-auto col-lg-9 col-xl-10 p-md-4">
-                <div class="w-100">
-                    <h5 class="col-12 fw-bold mb-3">Fees</h5>
+            <div id="page-content-wrapper">
+<!-- Dashboard hamburger      -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
+        <div class="d-flex align-items-center">
+            <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+            <h2 class="fs-2 m-0">Fees</h2>
+        </div>
+    </nav>
+  </div>
                     <div class="table-responsive py-3 table-container">
                         
                     </div>
