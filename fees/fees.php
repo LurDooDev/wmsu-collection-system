@@ -2,15 +2,32 @@
 	<div id="page-content-wrapper">
 	<div class="col-sm-6">
 <div class="table-wrapper">
-    <div class="form-outline">
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6" id="search-form">
+		<label for="keyword">Search</label>
+        <input type="text" name="keyword" id="keyword" placeholder="Enter Type of Fees Here" class="form-control form-control-sm">
+        </div>
+        <div class="col-sm-6">
+		<div class ="sticky-md-top">
+        <a href="#addFeesModal" class="btn btn-success btn-primary position-relative" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Fees</span></a>	
+        </div>
+    </div>
+</div>
+    <!-- <div class="form-outline">
         <label for="keyword">Search</label>
         <input type="text" name="keyword" id="keyword" placeholder="Enter Type of Fees Here" class="form-control form-control-sm">
+		<a href="#addFeesModal" class="btn btn-success btn-primary position-relative" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Fees</span></a>	
+
     </div>
 	<div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-12">
 	<div class ="sticky-md-top">
         <a href="#addFeesModal" class="btn btn-success btn-primary position-relative" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Fees</span></a>	
-</div>
+</div> -->
 </div>
 <table class="table table-hover col-12" id="table-fees">
     <thead>
@@ -29,7 +46,7 @@
         <td>
 							<a href="#editFeesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                            <a href="" class="status" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Status">&#xE872;</i></a>
+                          			        <a href="" class="status" data-toggle="modal"><i class='far fa-address-card' data-toggle="tooltip" title="Status"></i></a>
 						</td>
             <td>1</td>
             <td>1st Semester</td>
@@ -43,7 +60,7 @@
         <td>
 							<a href="#editFeesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                            <a href="" class="status" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Status">&#xE872;</i></a>
+                          				<a href="" class="status" data-toggle="modal"><i class='far fa-address-card' data-toggle="tooltip" title="Status"></i></a>
 						</td>
             <td>2</td>
 			<td>1st Semester</td>
@@ -57,7 +74,7 @@
         <td>
 							<a href="#editFeesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                            <a href="" class="status" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Status">&#xE872;</i></a>
+                            				<a href="" class="status" data-toggle="modal"><i class='far fa-address-card' data-toggle="tooltip" title="Status"></i></a>
 						</td>
             <td>3</td>
 			<td>1st Semester</td>
@@ -71,7 +88,7 @@
         <td>
 							<a href="#editFeesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                            <a href="" class="status" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Status">&#xE872;</i></a>
+                                      			<a href="" class="status" data-toggle="modal"><i class='far fa-address-card' data-toggle="tooltip" title="Status"></i></a>
 						</td>
             <td>4</td>
             <td>1st Semester</td>
@@ -84,7 +101,7 @@
             <td>
 							<a href="#editFeesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                            <a href="" class="status" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Status">&#xE872;</i></a>
+                           			        <a href="" class="status" data-toggle="modal"><i class='far fa-address-card' data-toggle="tooltip" title="Status"></i></a>
 						</td>
             <td>5</td>
 			<td>1st Semester</td>
@@ -212,6 +229,9 @@
                     el.classList.toggle("toggled");
                 };
             </script>
+ <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="https://kit.fontawesome.com/6023332cf2.css" crossorigin="anonymous">
+
 			<script>
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
 var dropdown = document.getElementsByClassName("dropdown-btn");
