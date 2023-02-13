@@ -1,3 +1,4 @@
+Andre Que
 /* BOOTSTRAP CCS */
 
 *{
@@ -60,8 +61,10 @@
   }
   
   #page-content-wrapper {
-	min-width: 100vw;
-  }
+		min-width: 100vw;
+		padding-right: 365px;
+	  }
+
   
   #wrapper.toggled #sidebar-wrapper {
 	margin-left: 0;
@@ -127,13 +130,14 @@ body {
     margin: 30px 0;
 }
 .table-wrapper {
-	background: #fff;
-	padding: 20px 25px;
-	margin-left: 20%;
-	border-radius: 3px;
-	min-width: 1000px;
-	box-shadow: 0 1px 1px rgba(0,0,0,.05);
-	overflow: hidden;
+	    background: #fff;
+    padding: 20px 25px;
+    margin-left: 20%;
+    border-radius: 3px;
+    min-width: 1000px;
+    margin-top: 85px;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+    overflow: hidden;
 }
 .table-title {
 	padding-bottom: 15px;
@@ -350,7 +354,7 @@ table.table .avatar {
 }
 .fs-2 {
     font-size: calc(1.325rem + 9.vw)!important;
-	font-weight: 700;
+	font-weight: 400;
 }
 .sticky-md-top {
 	position: -webkit-sticky;
@@ -365,4 +369,29 @@ table.table .avatar {
 #search-form{
 	padding-top: 10px;
 
+}
+#sort-by{
+	margin-top: 15px;
+	border-radius: 6px;
+	float: left;
+}
+#search-input{
+	margin-top: 10px;
+}
+
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+    margin-top: 27px;
+}
+#add-fees{
+		padding: 13px;
+		margin-top: 19px;	
+		border-radius: 6px;
+		display: inline-block;
+	}
+
+.table-title .btn span {
+    float: left;
+    margin-top: 2px;
+    font-size: 16px;
 }
