@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <div class="table-responsive">
 	<div id="page-content-wrapper">
 	<div class="col-sm-6">
@@ -7,7 +11,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-6" id="search-form">
+        <div class="col-sm-6 my-auto" id="search-form">
 		<label for="keyword">Search</label>
         <input type="text" name="keyword" id="keyword" placeholder="Enter Type of Fees Here" class="form-control form-control-sm">
         </div>
