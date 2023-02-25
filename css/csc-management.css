@@ -394,3 +394,21 @@ table.table .avatar {
     margin-top: 2px;
     font-size: 16px;
 }
+
+@media (max-width: 575px){
+
+#search-input{
+	width: 40%;
+		
+}
+@media (max-width: 575px){
+		
+#add-fees {
+	  float: left;
+}
+}
+}
+
+
+
+
