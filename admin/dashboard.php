@@ -19,15 +19,15 @@
         <div class="bg-white" id="sidebar-wrapper">
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
             <div class="list-group list-group-flush my-3">
-                <a href="../admin/dashboard.php" class="list-group-item list-group-item-action bg-hover first-text active">Dashboard</a>
-                <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw">Fees</a>
-                <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw">Remit Records</a>
-                <a href="../college/college.php" class="list-group-item list-group-item-action bg-hover first-text fw">Colleges</a>
-                <a href="../funds/funds.php" class="list-group-item list-group-item-action bg-hover first-text fw">Funds</a>
-                <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw">Financial Report</a>
-                <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw">Audit Log</a>
-                <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw">Admin Settings</a>
-                <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover text-danger fw">Logout</a>
+                <a href="../admin/dashboard.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Dashboard</a>
+                <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Fees</a>
+                <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Remit Records</a>
+                <a href="../college/Oldcollege.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Colleges</a>
+                <a href="../funds/funds-sub.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Funds</a>
+                <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
+                <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
+                <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Admin Settings</a>
+                <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover fw-bold">Logout</a>
             </div>
         </div>
   <div id="page-content-wrapper">
