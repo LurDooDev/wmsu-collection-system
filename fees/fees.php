@@ -48,6 +48,14 @@
                 <a href="../csc-management/csc-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">CSC Management</a>
                 <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Admin Settings</a>
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Logout</a>
+                <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Fees</a>
+                <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Remit Records</a>
+                <a href="../college/Oldcollege.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Colleges</a>
+                <a href="../funds/funds-sub.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Funds</a>
+                <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
+                <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
+                <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Admin Settings</a>
+                <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover fw-bold">Logout</a>
             </div>
         </div>
 		<div class="table-responsive">
@@ -111,6 +119,8 @@
 						<td>1</td>
            			 <td>CCS</td>
             		<td>CCS Festival</td>
+           			 <td>Wmsu Palaro</td>
+            		<td>University Fees</td>
             		<td>200</td>
             		<td>1st Semester</td>
             		<td>05/19/2022</td>
@@ -122,6 +132,8 @@
 							<td>2</td>
            			 <td>CCS</td>
             		<td>CCS Rambulan</td>
+           			 <td>Bahay Kubo</td>
+            		<td>University Fees</td>
             		<td>150</td>
             		<td>1st Semester</td>
             		<td>05/20/2022</td>
@@ -195,6 +207,37 @@
 						<input type="text" name = " " id= " " class="form-control" required><!-- text muna kasi automatically default - mark -->
 					</div>						
 
+						<label for="feeAmount">Amount</label>
+						<input type="number" name="feeAmount" id="feeAmount" class="form-control" required>
+					</div>
+					&nbsp;&nbsp;<div class="form-group">&nbsp;&nbsp;
+						<label for ="" style="font-size:x-large; color: black; font-weight: 500; margin-top: 25px;">Fee Scheduling</label> 
+					</div>
+					<div class="form-group">
+						<label for="year-level">School Year</label>
+						<select name="sy" id="sy" class="form-control" required>
+                        <option value="" disabled selected>Select your option</option>
+                        <option value="pers">2020-2021</option>
+                        <option value="tecond">2022-2023</option>
+                        </select><br><br>
+                        </form>					</div>	
+					<div class="form-group">
+					<label for="year-level">Semester</label>
+						<select name="sy" id="sy" class="form-control" required>
+                        <option value="" disabled selected>Select your option</option>
+                        <option value="pers">1st Semester</option>
+                        <option value="tecond">2nd Semester</option>
+                        </select><br><br>
+                        </form>
+					</div>			
+					<div class="form-group">
+						<label for="feeDueDate">Start date</label>
+						<input type="date" name="feeDueDate" id="feeDueDate" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="feeDueDate">End date</label>
+						<input type="date" name="feeDueDate" id="feeDueDate" class="form-control" required>
+					</div>			
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -239,7 +282,15 @@
 						<label for = "">Semester</label>
 						<input type="text" name = " " id= " " class="form-control" required><!-- text muna kasi automatically default - mark -->
 					</div>						
-			
+								</div>
+					<div class="form-group">
+						<label for ="">School Year</label>
+						<input type="text" name ="" id= "" class="form-control" required> <!-- text muna kasi automatically default - mark -->
+					</div>
+					<div class="form-group">
+						<label for = "">Semester</label>
+						<input type="text" name = " " id= " " class="form-control" required><!-- text muna kasi automatically default - mark -->
+					</div>
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -255,6 +306,7 @@
 		<div class="modal-content">
 			<form action="deletefees.php" method="POST">
 				<div class="modal-header">						
+				<div class="modal-header">
 					<h4 class="modal-title">Delete Fees</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
