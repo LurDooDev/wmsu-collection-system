@@ -28,7 +28,16 @@
         <!-- Sidebar with bootstrap -->
         <div class="bg-white" id="sidebar-wrapper">
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
-            <div class="list-group list-group-flush my-3">
+			<div class="list-group list-group-flush my-3">
+                <a href="../admin/dashboard.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Dashboard</a>
+                <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Fees</a>
+                <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Remit Records</a>
+                <a href="../college/Oldcollege.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Colleges</a>
+                <a href="../funds/funds-sub.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Funds</a>
+                <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
+                <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
+                <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Admin Settings</a>
+                <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover fw-bold">Logout</a>            <div class="list-group list-group-flush my-3">
                 <a href="../admin/dashboard.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Dashboard</a>
                 <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold ">Fees</a>
                 <a href="../payment/payment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment</a>
@@ -54,6 +63,8 @@
 		<div class="row justify-content-center">
 			<div class="graphBox">
                     <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" id="funds">Overview</a>
+                    <a href="../admin-settings/User-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " id="funds">User Management</a>
+                    <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " id="funds">Colleges</a>
 				</div>
                 <h style="font-size: 20px;"><b>Permission</b></h>
                 <div class =" table-responsive">
@@ -67,6 +78,25 @@
               </tr>
             </thead>
             <tbody>
+              <tr>
+                <td>USC Admin</td>
+                <td>Allow Special Privilege</td>
+                <td>Active</td>
+                <td>
+                    <div class="form-check form-switch">
+                    <input class="form-check-input" style="width: 55%;" type="checkbox" id="flexSwitchCheckChecked" checked>
+                     <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+            </div>
+        </td>
+        <tr>
+                <td>USC Treasures/Auditor</td>
+                <td>Allow Access to view,edit and audit the payment</td>
+                <td>Active</td>
+                <td>
+                    <div class="form-check form-switch">
+                    <input class="form-check-input" style="width: 55%;" type="checkbox" id="flexSwitchCheckChecked" checked>
+                     <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+            </div>
         </td>
         <tr>
                 <td>College Admin</td>
@@ -307,6 +337,7 @@
 
 <!-- Script for dashboard hamburger         -->
         </body>       
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
             <script>
                 var el = document.getElementById("wrapper");
