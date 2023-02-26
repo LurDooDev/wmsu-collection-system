@@ -9,6 +9,10 @@
     }
 	require_once '../classes/database.class.php';
 	require_once '../classes/fee.class.php';
+	require_once '../classes/semester.class.php';
+	require_once '../classes/schoolyear.class.php';
+
+
 ?>
 <!doctype html>
 <html lang="en" class="no-js">
@@ -98,200 +102,265 @@
 						<th>Type of Fee</th>
 						<th>Description</th>
 						<th>Amount</th>
-						<th>Duration</th>
-						<th>School Year</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
+					<!--Admin-->
+					<?php
+                            if($_SESSION['user_type'] == 'admin'){ 
+                        ?>
 				<?php
-					//$fee = new Fee();
-					//$data = $fee->show();
-				//foreach($data as $fee) {
-        ?>
-					<tr>
-						<!-- <td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
-							</span>
-						</td> -->
-						<td>1</td>
-           			 <td>CCS</td>
-            		<td>CCS Festival</td>
-           			 <td>Wmsu Palaro</td>
-            		<td>University Fees</td>
-            		<td>200</td>
-            		<td>1st Semester</td>
-            		<td>05/19/2022</td>
-					<td>
+$fee = new Fee();
+$data = $fee->show();
+foreach ($data as $feeData) {
+    if ($feeData['fee_type'] == 'University') {
+?>
+        <tr>
+            <td><?php echo $feeData['fee_id']; ?></td>
+            <td><?php echo $feeData['fee_type']; ?></td>
+            <td><?php echo $feeData['fee_name']; ?></td>
+            <td><?php echo $feeData['fee_amount']; ?></td>
+            <td>
+                <a href="#feeScheduleModal" class="feeSchedAdd" data-toggle="modal" data-feeid="<?php echo $feeData['fee_id']; ?>"><i class="material-icons" data-toggle="tooltip" title="Add Fee Schedule">&#xE254;</i></a>
+                <a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+            </td>
+        </tr>
+<?php
+    }
+}
+?>
+					<!--End Admin-->
+					<?php
+                            }
+                        ?>
+					<!--OFFICER-->
+					<?php
+                            if($_SESSION['user_type'] == 'Officer'){ 
+                        ?>
+					<?php
+					foreach($data as $fee) {
+						if ($fee['fee_type'] == 'Local') {
+							?>
+							<tr>
+								<td><?php echo $fee['fee_id']; ?></td>
+								<td><?php echo $fee['fee_type']; ?></td>
+								<td><?php echo $fee['fee_name']; ?></td>
+								<td><?php echo $fee['fee_amount']; ?></td>
+								<td>
 					<a href="#editFeesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 				</tr>
-							<td>2</td>
-           			 <td>CCS</td>
-            		<td>CCS Rambulan</td>
-           			 <td>Bahay Kubo</td>
-            		<td>University Fees</td>
-            		<td>150</td>
-            		<td>1st Semester</td>
-            		<td>05/20/2022</td>
-					<td>
+					<?php } }?>
+					<!--End officer-->
+					<?php
+                            }
+                        ?>
+					</tbody>
+			</table>
+			<!--End Fee-->
+
+						</br></br></br>
+			<!--Fee Schedule Start-->
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-3">
+						<h1>Fees with Schedule</h1>
+					</div>
+				</div>
+			</div>
+
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<!-- <th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+						</th> -->
+						<th>ID</th>
+						<th>Type of Fee</th>
+						<th>Description</th>
+						<th>Amount</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!--Admin-->
+					<?php
+                            if($_SESSION['user_type'] == 'admin'){ 
+                        ?>
+				<?php
+					$fee = new Fee();
+					$data = $fee->show();
+					foreach($data as $fee) {
+						if ($fee['fee_type'] == 'University') {
+							?>
+							<tr>
+								<td><?php echo $fee['fee_id']; ?></td>
+								<td><?php echo $fee['fee_type']; ?></td>
+								<td><?php echo $fee['fee_name']; ?></td>
+								<td><?php echo $fee['fee_amount']; ?></td>
+								<td>
 					<a href="#editFeesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
-					</tr>
+				</tr>
+					<?php } }?>
+					<!--End Admin-->
+					<?php
+                            }
+                        ?>
+					<!--OFFICER-->
+					<?php
+                            if($_SESSION['user_type'] == 'Officer'){ 
+                        ?>
+					<?php
+					foreach($data as $fee) {
+						if ($fee['fee_type'] == 'Local') {
+							?>
+							<tr>
+								<td><?php echo $fee['fee_id']; ?></td>
+								<td><?php echo $fee['fee_type']; ?></td>
+								<td><?php echo $fee['fee_name']; ?></td>
+								<td><?php echo $fee['fee_amount']; ?></td>
+								<td>
+					<a href="#editFeesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							</td>
+				</tr>
+					<?php } }?>
+					<!--End officer-->
+					<?php
+                            }
+                        ?>
 					</tbody>
 			</table>
-						<!--<td><?php //echo $fee['fee_id']; ?></td>
-						<td><?php  // echo $fee['fee_type']; ?></td>
-						<td><?php //echo $fee['fee_description']; ?></td>
-						<td><?php //echo $fee['fee_amount']; ?></td>
-						<td><?php //echo $fee['fee_due_date']; ?></td>
-						<td>
-							<a href="#editFeesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<?php //} ?>
-				</tbody>
-			</table>
-			<- - <div class="clearfix">
-				<div class="hint-text">Showing <b>1</b> out of <b>25</b> entries</div>
-				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">Previous</a></li>
-					<li class="page-item active"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item disabled"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">4</a></li>
-					<li class="page-item"><a href="#" class="page-link">5</a></li>
-					<li class="page-item"><a href="#" class="page-link">Next</a></li>
-				</ul>
-			</div> -->
+
 		</div>
 	</div>        
 </div>
+
+<!-- Create Fee Modal PROTOTYPE -->
+<div class="modal Fade" id="feeScheduleModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Fee create schedule</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="feeScheduleForm" action="feesched.php" method="POST">
+		<input type="hidden" name="fee_id" value="<?php echo $fee['fee_id']; ?>">
+          <div class="form-group">
+		  <label for="schoolYear" class="form-label">School Year</label>
+            <select class="form-control" id="schoolYear" name="schoolYear" required>
+              <option value="">-- Select School Years --</option>
+			  <?php
+			  $schoolYear = new SchoolYear();
+			  $schoolYears = $schoolYear->show();
+            	 foreach ($schoolYears as $schoolYear) : ?>
+                <option value="<?php echo $schoolYear['school_year_id']; ?>"><?php echo $schoolYear['school_year_name']; ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+		  <div class="form-group">
+		  <label for="semester" class="form-label">Semesters</label>
+            <select class="form-control" id="semester" name="semester" required>
+				
+              <option value="">-- Semester --</option>
+			  <?php
+			  $semester = new Semester();
+			  $semesters = $semester->show();
+            	 foreach ($semesters as $semester) : ?>
+                <option value="<?php echo $semester['semester_id']; ?>"><?php echo $semester['semester_name']; ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+		  <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="hidden" name="action" value="feeSchedAdd">
+                    <input type="submit" class="btn btn-success" value="Save">
+                </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Create Fee Modal HTML -->
 <div id="addFeesModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form action="addfees.php" method="POST">
-				<div class="modal-header">						
-					<h4 class="modal-title">Add Fees</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">					
-					<div class="form-group">
-						<label for="feeType">Type of Fee</label>
-						<input type="text" name="feeType" id="feeType" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label for="feeDescription">Description</label>
-						<input type="text" name="feeDescription" id="feeDescription" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label for="feeDueDate">Duration</label>
-						<input type="date" name="feeDueDate" id="feeDueDate" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label for="feeAmount">Amount</label>
-						<input type="number" name="feeAmount" id="feeAmount" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label for ="">School Year</label> 
-						<input type="text" name ="" id= "" class="form-control" required> <!-- text muna kasi automatically default - mark -->
-					</div>	
-					<div class="form-group">
-						<label for = "">Semester</label>
-						<input type="text" name = " " id= " " class="form-control" required><!-- text muna kasi automatically default - mark -->
-					</div>						
-
-						<label for="feeAmount">Amount</label>
-						<input type="number" name="feeAmount" id="feeAmount" class="form-control" required>
-					</div>
-					&nbsp;&nbsp;<div class="form-group">&nbsp;&nbsp;
-						<label for ="" style="font-size:x-large; color: black; font-weight: 500; margin-top: 25px;">Fee Scheduling</label> 
-					</div>
-					<div class="form-group">
-						<label for="year-level">School Year</label>
-						<select name="sy" id="sy" class="form-control" required>
-                        <option value="" disabled selected>Select your option</option>
-                        <option value="pers">2020-2021</option>
-                        <option value="tecond">2022-2023</option>
-                        </select><br><br>
-                        </form>					</div>	
-					<div class="form-group">
-					<label for="year-level">Semester</label>
-						<select name="sy" id="sy" class="form-control" required>
-                        <option value="" disabled selected>Select your option</option>
-                        <option value="pers">1st Semester</option>
-                        <option value="tecond">2nd Semester</option>
-                        </select><br><br>
-                        </form>
-					</div>			
-					<div class="form-group">
-						<label for="feeDueDate">Start date</label>
-						<input type="date" name="feeDueDate" id="feeDueDate" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label for="feeDueDate">End date</label>
-						<input type="date" name="feeDueDate" id="feeDueDate" class="form-control" required>
-					</div>			
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="hidden" name="action" value="add">
-					<input type="submit" class="btn btn-success" value="Add">
-				</div>
-			</form>
-		</div>
-	</div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="createfees.php" method="POST">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Fees</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="feeType">Type of Fee</label>
+                        <select name="feeType" id="feeType" class="form-control" required>
+                            <option value="" disabled selected>Select your option</option>
+                            <option value="University">University</option>
+                            <option value="Local">Local</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="feeName">Description</label>
+                        <input type="text" name="feeName" id="feeName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="feeAmount">Amount</label>
+                        <input type="number" name="feeAmount" id="feeAmount" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="hidden" name="action" value="add">
+                    <input type="submit" class="btn btn-success" value="add">
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
-<!-- Edit Modal HTML -->
-<div id="editFeesModal" class="modal fade">
+<!-- Fee Schedule Modal HTML -->
+<div id="feeSchdaweModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form>
 				<div class="modal-header">						
-					<h4 class="modal-title">Edit Fees</h4>
+					<h4 class="modal-title">Activate Fees</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div class="modal-body">					
-					<div class="form-group">
-						<label>Type of Fee</label>
-						<input type="text" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Description</label>
-						<input type="email" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Duration</label>
-						<input type="text" class="form-control" required>
-					</div>
-					<div class="form-group">
-					<label>Amount</label>
-						<input type="number" class="form-control" required>
-					</div>		
-					<div class="form-group">
-						<label for ="">School Year</label> 
-						<input type="text" name ="" id= "" class="form-control" required> <!-- text muna kasi automatically default - mark -->
-					</div>	
-					<div class="form-group">
-						<label for = "">Semester</label>
-						<input type="text" name = " " id= " " class="form-control" required><!-- text muna kasi automatically default - mark -->
-					</div>						
-								</div>
-					<div class="form-group">
-						<label for ="">School Year</label>
-						<input type="text" name ="" id= "" class="form-control" required> <!-- text muna kasi automatically default - mark -->
-					</div>
-					<div class="form-group">
-						<label for = "">Semester</label>
-						<input type="text" name = " " id= " " class="form-control" required><!-- text muna kasi automatically default - mark -->
-					</div>
-				</div>
+				<div class="modal-body">
+			<div class="mb-3">
+            <label for="schoolYear" class="form-label">School Year</label>
+            <select class="form-control" id="schoolYear" name="schoolYear" required>
+				
+              <option value="">-- Select School Year --</option>
+			  <?php
+			  $schoolYear = new SchoolYear();
+			  $schoolYears = $schoolYear->show();
+            	 foreach ($schoolYears as $schoolYear) : ?>
+                <option value="<?php echo $schoolYear['school_year_id']; ?>"><?php echo $schoolYear['school_year_name']; ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="semester" class="form-label">Semester</label>
+            <select class="form-control" id="semester" name="semester" required>
+              <option value="">-- Select Semester --</option>
+              <?php
+			  $semester = new Semester();
+			  $semesters = $semester->show();
+			   foreach ($semesters as $semester) : ?>
+                <option value="<?php echo $semester['semester_id']; ?>"><?php echo $semester['semester_name']; ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 					<input type="submit" class="btn btn-info" value="Save">
@@ -319,25 +388,6 @@
 					<input type="hidden" name="action" value="delete">
 					<input type="hidden" name="fee_id" value="<?php echo $fee['fee_id']; ?>">
 					<input type="submit" class="btn btn-danger" value="Delete">
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-<!-- Edit Modal HTML -->
-<div id="editFeesModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form>
-				<div class="modal-header">						
-					<h4 class="modal-title">Edit Fees</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">					
-					<div class="form-group">
-						<label>Type of Fee</label>
-						<input type="text" class="form-control" required>
-					</div>
 				</div>
 			</form>
 		</div>

@@ -16,11 +16,11 @@
 				  $_SESSION['fullname'] = 'Pogi';
 				  $_SESSION['user_type'] = $row['user_type'];
 				  //display the appropriate dashboard page for user
-				  if($row['type'] == 'admin'){
+				  if($row['user_type'] == 'admin'){
 					  header('location: ../admin/dashboard.php'); // Change path if want to test a specific file
-				  }else if($row['type'] == 'officer'){
+				  }else if($row['user_type'] == 'officer'){
 					  header('location: ../public/logout.php');
-				  }else if($row['type'] == 'collector'){
+				  }else if($row['user_type'] == 'collector'){
 					  header('location: ../collector/collector.php');
 				  }
 			  }
