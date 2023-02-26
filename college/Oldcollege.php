@@ -71,6 +71,16 @@ $(document).ready(function(){
                 <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
                 <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Admin Settings</a>
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover fw-bold">Logout</a>
+=======
+                <a href="../admin/dashboard.php" class="list-group-item list-group-item-action bg-hover first-text active">Dashboard</a>
+                <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw">Fees</a>
+                <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw">Remit Records</a>
+                <a href="../college/college.php" class="list-group-item list-group-item-action bg-hover first-text fw">Colleges</a>
+                <a href="../funds/funds.php" class="list-group-item list-group-item-action bg-hover first-text fw">Funds</a>
+                <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw">Financial Report</a>
+                <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw">Audit Log</a>
+                <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw">Admin Settings</a>
+                <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover text-danger fw">Logout</a>
             </div>
         </div>
 	<div class="table-responsive">
@@ -91,6 +101,13 @@ $(document).ready(function(){
 					<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
 					</div>
 					<div class="col-sm-7" style="display: flex; align-items: center; justify-content: flex-end; padding: 15px;">
+=======
+		<div class="table-wrapper">
+		<div class="table-title">
+				<div class="row">
+					<div class="col-sm-6">
+					</div>
+					<div class="col-sm-6">
 						<a href="#addCollegesModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New College</span></a>
 						<!-- <a href="#deleteCollegesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
 					</div>
@@ -107,6 +124,24 @@ $(document).ready(function(){
             </thead>
             <tbody>
 			<table class="table table-striped table-hover">
+=======
+
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>
+							<!-- <span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span> -->
+						</th>
+						</th>
+						<th>ID</th>
+						<th>College Code</th>
+						<th>Description</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
 				<tbody>
 					<?php
 					$college = new College();
@@ -158,6 +193,10 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
+</div>
+=======
+		</div>
+	</div>
 </div>
 <!-- Edit Modal HTML -->
 <div id="editCollegesModal" class="modal fade">
