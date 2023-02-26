@@ -39,6 +39,15 @@
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
 			<div class="list-group list-group-flush my-3">
                 <a href="../admin/dashboard.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Dashboard</a>
+                <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold active">Fees</a>
+                <a href="../payment/payment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment</a>
+                <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>
+                <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Students</a>
+                <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
+                <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
+                <a href="../csc-management/csc-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">CSC Management</a>
+                <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Admin Settings</a>
+                <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Logout</a>
                 <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Fees</a>
                 <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Remit Records</a>
                 <a href="../college/Oldcollege.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Colleges</a>
@@ -108,6 +117,8 @@
 							</span>
 						</td> -->
 						<td>1</td>
+           			 <td>CCS</td>
+            		<td>CCS Festival</td>
            			 <td>Wmsu Palaro</td>
             		<td>University Fees</td>
             		<td>200</td>
@@ -119,6 +130,8 @@
 							</td>
 				</tr>
 							<td>2</td>
+           			 <td>CCS</td>
+            		<td>CCS Rambulan</td>
            			 <td>Bahay Kubo</td>
             		<td>University Fees</td>
             		<td>150</td>
@@ -178,6 +191,22 @@
 						<input type="text" name="feeDescription" id="feeDescription" class="form-control" required>
 					</div>
 					<div class="form-group">
+						<label for="feeDueDate">Duration</label>
+						<input type="date" name="feeDueDate" id="feeDueDate" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="feeAmount">Amount</label>
+						<input type="number" name="feeAmount" id="feeAmount" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for ="">School Year</label> 
+						<input type="text" name ="" id= "" class="form-control" required> <!-- text muna kasi automatically default - mark -->
+					</div>	
+					<div class="form-group">
+						<label for = "">Semester</label>
+						<input type="text" name = " " id= " " class="form-control" required><!-- text muna kasi automatically default - mark -->
+					</div>						
+
 						<label for="feeAmount">Amount</label>
 						<input type="number" name="feeAmount" id="feeAmount" class="form-control" required>
 					</div>
@@ -244,7 +273,16 @@
 					<div class="form-group">
 					<label>Amount</label>
 						<input type="number" class="form-control" required>
-					</div>
+					</div>		
+					<div class="form-group">
+						<label for ="">School Year</label> 
+						<input type="text" name ="" id= "" class="form-control" required> <!-- text muna kasi automatically default - mark -->
+					</div>	
+					<div class="form-group">
+						<label for = "">Semester</label>
+						<input type="text" name = " " id= " " class="form-control" required><!-- text muna kasi automatically default - mark -->
+					</div>						
+								</div>
 					<div class="form-group">
 						<label for ="">School Year</label>
 						<input type="text" name ="" id= "" class="form-control" required> <!-- text muna kasi automatically default - mark -->
@@ -267,6 +305,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form action="deletefees.php" method="POST">
+				<div class="modal-header">						
 				<div class="modal-header">
 					<h4 class="modal-title">Delete Fees</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
