@@ -7,19 +7,19 @@ class Database{
     private $database = 'wmsucollection';
     protected $connection;
 
-    function connect(){
+    public function connect(){
         try 
-			{
-				$this->connection = new PDO("mysql:host=$this->host;dbname=$this->database", 
-											$this->username, $this->password);
-			} 
-			catch (PDOException $e) 
-			{
-				echo "Connection error " . $e->getMessage();
-			}
+		{
+			$this->connection = new PDO("mysql:host=$this->host;dbname=$this->database", 
+										$this->username, $this->password);
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		} 
+		catch (PDOException $e) 
+		{
+			echo "Connection error: " . $e->getMessage();
+            die();
+		}
         return $this->connection;
     }
-
 }
-
 ?>

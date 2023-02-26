@@ -159,7 +159,7 @@
 		</div>
 	</div>        
 </div>
-<!-- Add Modal HTML -->
+<!-- Create Fee Modal HTML -->
 <div id="addFeesModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
