@@ -1,4 +1,3 @@
-Andre Que
 /* BOOTSTRAP CCS */
 
 *{
@@ -202,6 +201,7 @@ table.table td:last-child i {
 	opacity: 0.9;
 	font-size: 22px;
 	margin: 0 5px;
+
 }
 table.table td a {
 	font-weight: bold;
@@ -222,6 +222,7 @@ table.table td a.delete {
 table.table td i {
 	font-size: 19px;
 }
+
 table.table .avatar {
 	border-radius: 50%;
 	vertical-align: middle;
@@ -395,18 +396,12 @@ table.table .avatar {
     margin-top: 2px;
     font-size: 16px;
 }
-
-@media (max-width: 575px){
-
-#search-input{
-	width: 40%;
-		
-}
 @media (max-width: 575px){
 		
-#add-fees {
-	  float: left;
-}
-}
-}
+    #search-input {
+        width: 40%;
+    }
+ }
 
+    
+    

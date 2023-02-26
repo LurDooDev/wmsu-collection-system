@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/fees.css" />
+    <link rel="stylesheet" href="../css/payment-records.css" />
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -37,16 +37,17 @@
         <!-- Sidebar with bootstrap -->
         <div class="bg-white" id="sidebar-wrapper">
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
-            <div class="list-group list-group-flush my-3">
+			<div class="list-group list-group-flush my-3">
                 <a href="../admin/dashboard.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Dashboard</a>
-                <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Fees</a>
-                <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Remit Records</a>
-                <a href="../college/Oldcollege.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Colleges</a>
-                <a href="../funds/funds-sub.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Funds</a>
+                <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold ">Fees</a>
+                <a href="../payment/payment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment</a>
+                <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Payment Records</a>
+                <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Students</a>
                 <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
                 <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
+                <a href="../csc-management/csc-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">CSC Management</a>
                 <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Admin Settings</a>
-                <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover fw-bold">Logout</a>
+                <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Logout</a>
             </div>
         </div>
 		<div class="table-responsive">
@@ -55,7 +56,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0">College Remit Records</h2>
+            <h2 class="fs-2 m-0">Payment Records</h2>
         </div>
     </nav>
 		<div class="table-wrapper">
@@ -79,13 +80,13 @@
 							</span>
 						</th> -->
                         <th>ID</th>
-                        <th>Payment Description</th>
+                        <th>Payment</th>
+                        <th>Student ID</th>
+                        <th>College Codes</th>
                         <th>Date</th>
-                        <th>Time</th>
-                        <th>College</th>
-                        <th>School Year</th>
                         <th>Semester</th>
-                        <th>Total Amount</th>
+                        <th>Time</th>
+                        <th>School Year</th>
                         <th>Status</th>
 					</tr>
 				</thead>
@@ -102,26 +103,25 @@
 								<label for="checkbox1"></label>
 							</span>
 						</td> -->
-                        <td>1</td>
-                         <td>Bahay Kubo</td>
-                         <td>12/5/2022</td>
-                         <td>1:58</td>
-                         <td>CCS</td>
-                         <td>2021-22</td>
+                        <td>1</td> 
+                        <td>CSC FEE</td>
+                        <td>sl202203004</td>
+                        <td>CCS</td>
+                         <td>12/10/2022</td>
                          <td>1</td>
-                         <td>Php 200,000</td>
+                         <td>12:30</td>
+                        <td>2022-2023</td>
 					<td> <a href="" class="status"><i class="far fa-address-card"></i></a>
 							</td>
 				</tr>
-
-                         <td>2</td>
-                         <td>CSC Fee</td>
-                         <td>11/2/2022</td>
-                         <td>12:30</td>
-                         <td>COE</td>
-                         <td>2021-22</td>
-                         <td>1</td>
-                         <td>Php 150,000</td>
+                            <td>2</td>
+                            <td>CN FEE</td>
+                            <td>sl202203333</td>
+                            <td>CN</td>
+                            <td>12/22/2022</td>
+                            <td>1</td>
+                            <td>1:30</td>
+                            <td>2022-2023</td>
                             <td> <a href="" class="status"><i class="far fa-address-card"></i></a>
 					</tr>
 					</tbody>

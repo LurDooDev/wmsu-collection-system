@@ -62,6 +62,16 @@ $(document).ready(function(){
         <div class="bg-white" id="sidebar-wrapper">
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
 			<div class="list-group list-group-flush my-3">
+                <a href="../admin/dashboard.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Dashboard</a>
+                <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Fees</a>
+                <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Remit Records</a>
+                <a href="../college/Oldcollege.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Colleges</a>
+                <a href="../funds/funds-sub.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Funds</a>
+                <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
+                <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
+                <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Admin Settings</a>
+                <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover fw-bold">Logout</a>
+=======
                 <a href="../admin/dashboard.php" class="list-group-item list-group-item-action bg-hover first-text active">Dashboard</a>
                 <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw">Fees</a>
                 <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw">Remit Records</a>
@@ -82,6 +92,16 @@ $(document).ready(function(){
             <h2 class="fs-2 m-0">Colleges</h2>
         </div>
     </nav>
+	</nav>
+    <div class="container">
+	<div class =" table-responsive" style="overflow-x: hidden;">
+                <table class="table">
+				<div class="row">
+					<div class="col-sm-5" style="padding: 15px;">
+					<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
+					</div>
+					<div class="col-sm-7" style="display: flex; align-items: center; justify-content: flex-end; padding: 15px;">
+=======
 		<div class="table-wrapper">
 		<div class="table-title">
 				<div class="row">
@@ -94,6 +114,17 @@ $(document).ready(function(){
 				</div>
 			</div>
 
+            <thead style="background-color:#95BDFE ;" class="text-white">
+              <tr>
+                <th scope="col" style = " color: #000000;"  >ID</th>
+                <th scope="col" style = " color: #000000;" >College Code</th>
+                <th scope="col" style = " color: #000000; width: 58%;" >Description</th></th>
+                <th scope="col" style = " color: #000000; width: 18%;" >Action</th>
+              </tr>
+            </thead>
+            <tbody>
+			<table class="table table-striped table-hover">
+=======
 
 			<table class="table table-striped table-hover">
 				<thead>
@@ -118,12 +149,6 @@ $(document).ready(function(){
 				foreach($data as $college) {
         ?>
 					<tr>
-						<td>
-							<!-- <span class="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
-							</span> -->
-						</td>
 						<td><?php echo $college['college_id']; ?></td>
 						<td><?php echo $college['college_code']; ?></td>
 						<td><?php echo $college['college_name']; ?></td>
@@ -136,18 +161,6 @@ $(document).ready(function(){
 
 				</tbody>
 			</table>
-			<!-- <div class="clearfix">
-				<div class="hint-text">Showing <b>1</b> out of <b>25</b> entries</div>
-				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">Previous</a></li>
-					<li class="page-item active"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item disabled"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">4</a></li>
-					<li class="page-item"><a href="#" class="page-link">5</a></li>
-					<li class="page-item"><a href="#" class="page-link">Next</a></li>
-				</ul>
-			</div> -->
 		</div>
 	</div>        
 				</div>
@@ -176,6 +189,12 @@ $(document).ready(function(){
 					<input type="submit" class="btn btn-success" value="Add">
 				</div>
 			</form>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+=======
 		</div>
 	</div>
 </div>
