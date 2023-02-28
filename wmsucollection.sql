@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2023 at 02:02 AM
+-- Generation Time: Feb 28, 2023 at 06:14 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -64,7 +64,8 @@ CREATE TABLE `fee` (
 INSERT INTO `fee` (`fee_id`, `fee_type`, `fee_amount`, `fee_name`) VALUES
 (1, 'University', 213, 'Wmsu Palaro'),
 (2, 'Local', 420, 'CSS Fest'),
-(4, 'University', 200, 'Wmsu Emergency');
+(4, 'University', 200, 'Wmsu Emergency'),
+(5, 'University', 300, 'WMSU Palaro 21');
 
 -- --------------------------------------------------------
 
@@ -78,6 +79,13 @@ CREATE TABLE `fee_schedule` (
   `school_year_id` int(11) NOT NULL,
   `semester_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `fee_schedule`
+--
+
+INSERT INTO `fee_schedule` (`fee_schedule_id`, `fee_id`, `school_year_id`, `semester_id`) VALUES
+(4, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -221,13 +229,13 @@ ALTER TABLE `colleges`
 -- AUTO_INCREMENT for table `fee`
 --
 ALTER TABLE `fee`
-  MODIFY `fee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `fee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `fee_schedule`
 --
 ALTER TABLE `fee_schedule`
-  MODIFY `fee_schedule_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `fee_schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `officer`
