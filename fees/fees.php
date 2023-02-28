@@ -106,7 +106,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<!--Admin-->
+					<!--Fix the FEE SCHEDULE-->
+					<!--AdmindH-->
 					<?php
                             if($_SESSION['user_type'] == 'admin'){ 
                         ?>

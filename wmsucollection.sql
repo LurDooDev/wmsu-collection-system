@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2023 at 12:18 AM
+-- Generation Time: Feb 28, 2023 at 02:02 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -47,26 +47,37 @@ INSERT INTO `colleges` (`college_id`, `college_name`, `college_code`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fees`
+-- Table structure for table `fee`
 --
 
-CREATE TABLE `fees` (
+CREATE TABLE `fee` (
   `fee_id` int(11) NOT NULL,
-  `fee_type` varchar(100) NOT NULL,
-  `fee_amount` decimal(10,2) NOT NULL,
-  `fee_description` varchar(100) NOT NULL,
-  `fee_due_date` date NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `fee_type` varchar(50) NOT NULL,
+  `fee_amount` int(11) NOT NULL,
+  `fee_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `fees`
+-- Dumping data for table `fee`
 --
 
-INSERT INTO `fees` (`fee_id`, `fee_type`, `fee_amount`, `fee_description`, `fee_due_date`, `created_at`, `updated_at`) VALUES
-(1, 'University', '200.00', 'Mandatory University Fees', '2023-05-15', '2023-02-09 22:08:43', '2023-02-09 22:08:43'),
-(2, 'University', '200.00', 'Donation', '2023-04-20', '2023-02-09 22:23:56', '2023-02-09 22:23:56');
+INSERT INTO `fee` (`fee_id`, `fee_type`, `fee_amount`, `fee_name`) VALUES
+(1, 'University', 213, 'Wmsu Palaro'),
+(2, 'Local', 420, 'CSS Fest'),
+(4, 'University', 200, 'Wmsu Emergency');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fee_schedule`
+--
+
+CREATE TABLE `fee_schedule` (
+  `fee_schedule_id` int(11) NOT NULL,
+  `fee_id` int(11) NOT NULL,
+  `school_year_id` int(11) NOT NULL,
+  `semester_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -83,6 +94,46 @@ CREATE TABLE `officer` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `school_year`
+--
+
+CREATE TABLE `school_year` (
+  `school_year_id` int(11) NOT NULL,
+  `school_year_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `school_year`
+--
+
+INSERT INTO `school_year` (`school_year_id`, `school_year_name`) VALUES
+(1, '2023-2024'),
+(2, '2024-2025');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `semester`
+--
+
+CREATE TABLE `semester` (
+  `semester_id` int(11) NOT NULL,
+  `semester_name` varchar(50) NOT NULL,
+  `semester_start_date` date NOT NULL,
+  `semester_end_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `semester`
+--
+
+INSERT INTO `semester` (`semester_id`, `semester_name`, `semester_start_date`, `semester_end_date`) VALUES
+(1, '1st Semester', '2023-06-01', '2023-10-31'),
+(2, '2nd Semester', '2024-01-01', '2024-05-31');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -91,7 +142,7 @@ CREATE TABLE `users` (
   `user_name` varchar(100) NOT NULL,
   `user_password` varchar(100) NOT NULL,
   `user_email` varchar(100) NOT NULL,
-  `type` varchar(100) NOT NULL,
+  `user_type` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -100,7 +151,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`, `user_password`, `user_email`, `type`, `created_at`, `updated_at`) VALUES
+INSERT INTO `users` (`user_id`, `user_name`, `user_password`, `user_email`, `user_type`, `created_at`, `updated_at`) VALUES
 (1, 'BrYaN', 'cs420', 'sl201503664@wmsu.edu.ph', 'admin', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 --
@@ -116,10 +167,19 @@ ALTER TABLE `colleges`
   ADD KEY `college_name` (`college_name`);
 
 --
--- Indexes for table `fees`
+-- Indexes for table `fee`
 --
-ALTER TABLE `fees`
+ALTER TABLE `fee`
   ADD PRIMARY KEY (`fee_id`);
+
+--
+-- Indexes for table `fee_schedule`
+--
+ALTER TABLE `fee_schedule`
+  ADD PRIMARY KEY (`fee_schedule_id`),
+  ADD KEY `fee_schedule_fee_fk` (`fee_id`),
+  ADD KEY `fee_schedule_school_year_fk` (`school_year_id`),
+  ADD KEY `fee_schedule_semester_fk` (`semester_id`);
 
 --
 -- Indexes for table `officer`
@@ -127,6 +187,18 @@ ALTER TABLE `fees`
 ALTER TABLE `officer`
   ADD PRIMARY KEY (`officer_id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `school_year`
+--
+ALTER TABLE `school_year`
+  ADD PRIMARY KEY (`school_year_id`);
+
+--
+-- Indexes for table `semester`
+--
+ALTER TABLE `semester`
+  ADD PRIMARY KEY (`semester_id`);
 
 --
 -- Indexes for table `users`
@@ -146,16 +218,34 @@ ALTER TABLE `colleges`
   MODIFY `college_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `fees`
+-- AUTO_INCREMENT for table `fee`
 --
-ALTER TABLE `fees`
-  MODIFY `fee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `fee`
+  MODIFY `fee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `fee_schedule`
+--
+ALTER TABLE `fee_schedule`
+  MODIFY `fee_schedule_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `officer`
 --
 ALTER TABLE `officer`
   MODIFY `officer_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `school_year`
+--
+ALTER TABLE `school_year`
+  MODIFY `school_year_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `semester`
+--
+ALTER TABLE `semester`
+  MODIFY `semester_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -166,6 +256,14 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `fee_schedule`
+--
+ALTER TABLE `fee_schedule`
+  ADD CONSTRAINT `fee_schedule_fee_fk` FOREIGN KEY (`fee_id`) REFERENCES `fee` (`fee_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fee_schedule_school_year_fk` FOREIGN KEY (`school_year_id`) REFERENCES `school_year` (`school_year_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fee_schedule_semester_fk` FOREIGN KEY (`semester_id`) REFERENCES `semester` (`semester_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `officer`
