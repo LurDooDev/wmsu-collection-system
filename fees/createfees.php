@@ -15,7 +15,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'add') {
     $fee->feeAmount = $feeAmount;
     
     if ($fee->createFee()) {
-        header('location: fees.php');
+        header('location: feeschedpage.php');
     } else {
         echo 'Failed to add fee.';
     }

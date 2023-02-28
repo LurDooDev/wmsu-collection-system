@@ -84,90 +84,13 @@
 					</div>
 					<div class="col-sm-8">
 						<a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a>
-
 						<!-- <a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
 					</div>
 				</div>
 			</div>
-			<table class="table table-striped table-hover">
-				<thead>
-					<tr>
-						<!-- <th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
-							</span>
-						</th> -->
-						<th>ID</th>
-						<th>Type of Fee</th>
-						<th>Description</th>
-						<th>Amount</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<!--Fix the FEE SCHEDULE-->
-					<!--AdmindH-->
-					<?php
-                            if($_SESSION['user_type'] == 'admin'){ 
-                        ?>
-				<?php
-$fee = new Fee();
-$data = $fee->show();
-foreach ($data as $feeData) {
-    if ($feeData['fee_type'] == 'University') {
-?>
-        <tr>
-            <td><?php echo $feeData['fee_id']; ?></td>
-            <td><?php echo $feeData['fee_type']; ?></td>
-            <td><?php echo $feeData['fee_name']; ?></td>
-            <td><?php echo $feeData['fee_amount']; ?></td>
-            <td>
-                <a href="#feeScheduleModal" class="feeSchedAdd" data-toggle="modal" data-feeid="<?php echo $feeData['fee_id']; ?>"><i class="material-icons" data-toggle="tooltip" title="Add Fee Schedule">&#xE254;</i></a>
-                <a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-            </td>
-        </tr>
-<?php
-    }
-}
-?>
-					<!--End Admin-->
-					<?php
-                            }
-                        ?>
-					<!--OFFICER-->
-					<?php
-                            if($_SESSION['user_type'] == 'Officer'){ 
-                        ?>
-					<?php
-					foreach($data as $fee) {
-						if ($fee['fee_type'] == 'Local') {
-							?>
-							<tr>
-								<td><?php echo $fee['fee_id']; ?></td>
-								<td><?php echo $fee['fee_type']; ?></td>
-								<td><?php echo $fee['fee_name']; ?></td>
-								<td><?php echo $fee['fee_amount']; ?></td>
-								<td>
-					<a href="#editFeesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-							</td>
-				</tr>
-					<?php } }?>
-					<!--End officer-->
-					<?php
-                            }
-                        ?>
-					</tbody>
-			</table>
-			<!--End Fee-->
-
-						</br></br></br>
-			<!--Fee Schedule Start-->
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-3">
-						<h1>Fees with Schedule</h1>
 					</div>
 				</div>
 			</div>
@@ -181,7 +104,7 @@ foreach ($data as $feeData) {
 								<label for="selectAll"></label>
 							</span>
 						</th> -->
-						<th>ID</th>
+						<th>#</th>
 						<th>Type of Fee</th>
 						<th>Description</th>
 						<th>Amount</th>
@@ -196,20 +119,20 @@ foreach ($data as $feeData) {
 				<?php
 					$fee = new Fee();
 					$data = $fee->show();
+					$i = 1;
 					foreach($data as $fee) {
 						if ($fee['fee_type'] == 'University') {
 							?>
 							<tr>
-								<td><?php echo $fee['fee_id']; ?></td>
+								<td><?php echo $i; ?></td>
 								<td><?php echo $fee['fee_type']; ?></td>
 								<td><?php echo $fee['fee_name']; ?></td>
 								<td><?php echo $fee['fee_amount']; ?></td>
 								<td>
-					<a href="#editFeesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 				</tr>
-					<?php } }?>
+					<?php $i++;}}?>
 					<!--End Admin-->
 					<?php
                             }
@@ -228,7 +151,6 @@ foreach ($data as $feeData) {
 								<td><?php echo $fee['fee_name']; ?></td>
 								<td><?php echo $fee['fee_amount']; ?></td>
 								<td>
-					<a href="#editFeesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 				</tr>
@@ -239,7 +161,6 @@ foreach ($data as $feeData) {
                         ?>
 					</tbody>
 			</table>
-
 		</div>
 	</div>        
 </div>
