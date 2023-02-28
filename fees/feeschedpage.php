@@ -11,6 +11,7 @@
 	require_once '../classes/fee.class.php';
 	require_once '../classes/semester.class.php';
 	require_once '../classes/schoolyear.class.php';
+    require_once '../classes/feeSchedule.class.php';
 
 
 ?>
@@ -75,34 +76,84 @@
 		<div class="table-title">
 				<div class="row">
 					<div class="col-sm-8">
-						<a href="fee.php" class="btn btn-success" id = "add-fees" data-toggle="modal"><span>Back To Fees</span></a>
+						<a href="fees.php" class="btn btn-success"><span>Back To Fees</span></a>
 						<!-- <a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
 					</div>
 				</div>
 			</div>
-            <form action="createfees.php" method="POST">
+            <form action="feesched.php" method="POST">
                 <div class="modal-header">
                     <h4 class="modal-title">Add Fees</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
+                <div class="form-group">
+		  <label for="fee" class="form-label">Fees</label>
+            <select class="form-control" id="fee" name="fee" required>
+				
+              <option value="">-- Fees --</option>
+              <!--Admin Fees-->
+              <?php
+                            if($_SESSION['user_type'] == 'admin'){ 
+                        ?>
+			  <?php
+			  $fee = new Fee();
+			  $feeData = $fee->show();
+            	 foreach ($feeData as $fee) {
+                    if ($fee['fee_type'] == 'University') {
+                 ?>
+                <option value="<?php echo $fee['fee_id']; ?>"><?php echo $fee['fee_name']; ?></option>
+              <?php } }?>
+              <?php }; ?>
+            </select>
+
+            <!--Local Fees-->
+            <?php
+                            if($_SESSION['user_type'] == 'officer'){ 
+                        ?>
+			  <?php
+			  $fee = new Fee();
+			  $feeData = $fee->show();
+            	 foreach ($feeData as $fee) {
+                    if ($fee['fee_type'] == 'Local') {
+                 ?>
+                <option value="<?php echo $fee['fee_id']; ?>"><?php echo $fee['fee_name']; ?></option>
+              <?php } }?>
+              <?php }; ?>
+            </select>
+            <!--End Fees-->
+
+          </div>
                     <div class="form-group">
-                        <label for="feeType">Type of Fee</label>
-                        <select name="feeType" id="feeType" class="form-control" required>
-                            <option value="" disabled selected>Select your option</option>
-                            <option value="University">University</option>
-                            <option value="Local">Local</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="feeName">Description</label>
-                        <input type="text" name="feeName" id="feeName" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="feeAmount">Amount</label>
-                        <input type="number" name="feeAmount" id="feeAmount" class="form-control" required>
-                    </div>
-                </div>
+		  <label for="schoolYear" class="form-label">School Year</label>
+            <select class="form-control" id="schoolYear" name="schoolYear" required>
+				
+              <option value="">-- School Years --</option>
+			  <?php
+			  $schoolYear = new SchoolYear();
+			  $schoolYearData = $schoolYear->show();
+            	 foreach ($schoolYearData as $schoolYear) {
+                 ?>
+                <option value="<?php echo $schoolYear['school_year_id']; ?>"><?php echo $schoolYear['school_year_name']; ?></option>
+              <?php } ?>
+            </select>
+
+          </div>
+          <div class="form-group">
+		  <label for="semester" class="form-label">Semester</label>
+            <select class="form-control" id="semester" name="semester" required>
+				
+              <option value="">-- Semester --</option>
+			  <?php
+			  $semester = new Semester();
+			  $semesterData = $semester->show();
+            	 foreach ($semesterData as $semester) {
+                 ?>
+                <option value="<?php echo $semester['semester_id']; ?>"><?php echo $semester['semester_name']; ?></option>
+              <?php } ?>
+            </select>
+
+          </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                     <input type="hidden" name="action" value="add">

@@ -11,6 +11,8 @@
 	require_once '../classes/fee.class.php';
 	require_once '../classes/semester.class.php';
 	require_once '../classes/schoolyear.class.php';
+	require_once '../classes/feeSchedule.class.php';
+
 
 
 ?>
@@ -82,6 +84,10 @@
     					<a class="dropdown-item" href="#">Descending</a>
 					</div>
 					</div>
+          <div class="col-sm-8">
+						<a href="feeschedpage.php" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Fee Sched</span></a>
+						<!-- <a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
+					</div>
 					<div class="col-sm-8">
 						<a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a>
 						<!-- <a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
@@ -108,57 +114,40 @@
 						<th>Type of Fee</th>
 						<th>Description</th>
 						<th>Amount</th>
+            <th>Semester</th>
+						<th>Start Date</th>
+            <th>End Date</th>
+						<th>School Year</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					<!--Admin-->
-					<?php
+        <?php
                             if($_SESSION['user_type'] == 'admin'){ 
                         ?>
-				<?php
-					$fee = new Fee();
-					$data = $fee->show();
+		<?php
+					$feeSched = new FeeSchedule();
+					$feeSchedData = $feeSched->showAllDetails();
 					$i = 1;
-					foreach($data as $fee) {
-						if ($fee['fee_type'] == 'University') {
-							?>
+					foreach($feeSchedData as $feeSched) {
+            if ($feeSched['fee_type'] == 'University') {
+             
+				?>
 							<tr>
 								<td><?php echo $i; ?></td>
-								<td><?php echo $fee['fee_type']; ?></td>
-								<td><?php echo $fee['fee_name']; ?></td>
-								<td><?php echo $fee['fee_amount']; ?></td>
+                <td><?php echo $feeSched['fee_type']; ?></td>
+								<td><?php echo $feeSched['fee_name']; ?></td>
+                <td><?php echo $feeSched['fee_amount']; ?></td>
+                <td><?php echo $feeSched['semester_name']; ?></td>
+								<td><?php echo $feeSched['semester_start_date']; ?></td>
+                <td><?php echo $feeSched['semester_end_date']; ?></td>
+                <td><?php echo $feeSched['school_year_name']; ?></td>
 								<td>
 							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 				</tr>
-					<?php $i++;}}?>
-					<!--End Admin-->
-					<?php
-                            }
-                        ?>
-					<!--OFFICER-->
-					<?php
-                            if($_SESSION['user_type'] == 'Officer'){ 
-                        ?>
-					<?php
-					foreach($data as $fee) {
-						if ($fee['fee_type'] == 'Local') {
-							?>
-							<tr>
-								<td><?php echo $fee['fee_id']; ?></td>
-								<td><?php echo $fee['fee_type']; ?></td>
-								<td><?php echo $fee['fee_name']; ?></td>
-								<td><?php echo $fee['fee_amount']; ?></td>
-								<td>
-							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-							</td>
-				</tr>
-					<?php } }?>
-					<!--End officer-->
-					<?php
-                            }
-                        ?>
+					<?php }} ?>
+				 <?php }?>
 					</tbody>
 			</table>
 		</div>
