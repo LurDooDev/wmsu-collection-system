@@ -28,7 +28,7 @@
         <div class="bg-white" id="sidebar-wrapper">
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
             <div class="list-group list-group-flush my-3">
-                <a href="../admin/dashboard.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Dashboard</a>
+                <a href="../admin/dashboard-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Dashboard</a>
                 <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold ">Fees</a>
                 <a href="../payment/payment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment</a>
                 <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>

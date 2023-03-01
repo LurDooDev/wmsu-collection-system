@@ -11,7 +11,6 @@
 	require_once '../classes/college.class.php';
 
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,10 +62,10 @@ $(document).ready(function(){
         <div class="bg-white" id="sidebar-wrapper">
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
 			<div class="list-group list-group-flush my-3">
-                <a href="../admin/dashboard.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Dashboard</a>
+                <a href="../admin/dashboard-main.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Dashboard</a>
                 <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Fees</a>
                 <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Remit Records</a>
-                <a href="../college/Oldcollege.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Colleges</a>
+                <a href="../college/college.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Colleges</a>
                 <a href="../funds/funds-sub.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Funds</a>
                 <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
                 <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
@@ -84,31 +83,28 @@ $(document).ready(function(){
         </div>
     </nav>
 	</nav>
-    <div class="container">
-	<div class =" table-responsive" style="overflow-x: hidden;">
-                <table class="table">
-				<div class="row">
-					<div class="col-sm-5" style="padding: 15px;">
-					<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
-					</div>
-					<div class="col-sm-7" style="display: flex; align-items: center; justify-content: flex-end; padding: 15px;">
-
 		<div class="table-wrapper">
 		<div class="table-title">
 				<div class="row">
-					<div class="col-sm-6">
-					</div>
-					<div class="col-sm-6">
+				<div class="col-auto ml-auto">
 						<a href="#addCollegesModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New College</span></a>
-						<!-- <a href="#deleteCollegesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
+						<br><br>
+</div>
+<div>
+<div class="col-sm-3 mr-auto">
+					<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Colleges">
 					</div>
-				</div>
+</div>
+</div>
+			<!-- <a href="#deleteCollegesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
 			</div>
-
 			<table class="table table-striped table-hover">
 				<thead>
-					<tr>
-	
+
+							<!-- <span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span> -->
 						<th>ID</th>
 						<th>College Code</th>
 						<th>Description</th>
@@ -116,23 +112,23 @@ $(document).ready(function(){
 					</tr>
 				</thead>
 				<tbody>
-    <?php
-        $college = new College();
-        $collegeData = $college->show();
-        $i = 1;
-        foreach($collegeData as $college) {
-    ?>
-    <tr>
-        <td><?php echo $i; ?></td>
-        <td><?php echo $college['college_code']; ?></td>
-        <td><?php echo $college['college_name']; ?></td>
-        <td>
-		<a href="editcollegepage.php?id=<?php echo $college['college_id']; ?>" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
-		<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-        </td>
-    </tr>
-    <?php $i++; } ?>
-</tbody>
+					<?php
+					$college = new College();
+					$data = $college->show();
+				foreach($data as $college) {
+        ?>
+					<tr>
+						<td><?php echo $college['college_id']; ?></td>
+						<td><?php echo $college['college_code']; ?></td>
+						<td><?php echo $college['college_name']; ?></td>
+						<td>
+							<a href="#editCollegesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+						</td>
+		</tr>
+		<?php } ?>
+
+				</tbody>
 			</table>
 		</div>
 	</div>        
@@ -165,7 +161,42 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
+</div>
+</div>
 
+		</div>
+	</div>
+</div>
+<!-- Edit Modal HTML -->
+<div id="editCollegesModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form action="editcollege.php" method="POST">
+				<div class="modal-header">						
+					<h4 class="modal-title">Edit College</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">				
+					<div class="form-group">
+					<input type="hidden" name="collegeCodeTarget" value="<?php echo $collegeCodeTarget; ?>">
+						<label>College Code</label>	
+						<input type="text" class="form-control" required>
+					</div>
+					<div class="form-group">
+					<input type="hidden" name="collegeName" value="<?php echo $college['college_name']; ?>">
+						<label>Description</label>
+						<input type="text" class="form-control" required>
+					</div>		
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="hidden" name="action" value="update">
+					<input type="submit" class="btn btn-info" value="Save">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 <!-- Delete Modal HTML -->
 <div id="deleteCollegesModal" class="modal fade">
 	<div class="modal-dialog">
@@ -189,7 +220,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
-</body>
+</body>       
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
             <script>
                 var el = document.getElementById("wrapper");
