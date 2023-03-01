@@ -37,7 +37,7 @@ class Fee {
     }
 
     function show(){
-        $sql = "SELECT * FROM `fee` ORDER BY `fee`.`fee_id` ASC";
+        $sql = "SELECT * FROM fee ORDER BY fee.fee_id ASC";
         $query=$this->db->connect()->prepare($sql);
         if($query->execute()){
             $data = $query->fetchAll();

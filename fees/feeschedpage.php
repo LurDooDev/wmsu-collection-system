@@ -74,8 +74,7 @@
 			</div>
             <form action="feesched.php" method="POST">
                 <div class="modal-header">
-                    <h4 class="modal-title">Add Fees</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Add Fee Schedule</h4>
                 </div>
                 <div class="modal-body">
                 <?php
@@ -166,6 +165,73 @@
                     <input type="submit" class="btn btn-success" value="save">
                 </div>
             </form>
+
+
+            <table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<!-- <th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+						</th> -->
+						<th>#</th>
+						<th>Type of Fee</th>
+						<th>Description</th>
+						<th>Amount</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+        <?php
+                            if($_SESSION['user_type'] == 'admin'){ 
+                        ?>
+		<?php
+					$fees = new Fee();
+          $feeData = $fees->show();
+					$i = 1;
+					foreach($feeData as $fees) {
+            if ($fees['fee_type'] == 'University') {
+             
+				?>
+							<tr>
+								<td><?php echo $i; ?></td>
+                <td><?php echo $fees['fee_type']; ?></td>
+								<td><?php echo $fees['fee_name']; ?></td>
+                <td><?php echo $fees['fee_amount']; ?></td>
+								<td>
+							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							</td>
+				</tr>
+					<?php $i++;}} ?>
+				 <?php }?>
+
+				 <!--Officer-->
+				 <?php
+                            if($_SESSION['user_type'] == 'officer'){ 
+                        ?>
+		<?php
+		$fees = new Fee();
+		$feeData = $fees->show();
+					$li = 1;
+					foreach($feeData as $fees) {
+            if ($fees['fee_type'] == 'Local') {
+             
+				?>
+							<tr>
+								<td><?php echo $li; ?></td>
+                <td><?php echo $fees['fee_type']; ?></td>
+								<td><?php echo $fees['fee_name']; ?></td>
+                <td><?php echo $fees['fee_amount']; ?></td>
+								<td>
+							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							</td>
+				</tr>
+					<?php $li++;}} ?>
+				 <?php }?>
+					</tbody>
+			</table>
 
 		</div>
 	</div>        
