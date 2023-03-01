@@ -62,9 +62,9 @@ if (!isset($_SESSION['logged_id'])){
     </nav>
     <div class="container">
 		<div class="row justify-content-center">
-			<div class="graphBoxing">
-                    <a href="../funds/funds-sub.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" id="funds">Funds</a>
-                    <a href="../funds/collected-fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " id="funds">Collected fees</a>
+    <div class="graphBoxing">
+                    <a href="../funds/funds-sub.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="border-color:black;" id="funds">Funds</a>
+                    <a href="../funds/collected-fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="border: inset;" id="funds">Collected fees</a>
 				</div>
                 </div>
                 <div class="table-responsive" id="depression">

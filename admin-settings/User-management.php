@@ -65,10 +65,10 @@ require_once '../classes/users.class.php';
     </nav>
     <div class="container">
 		<div class="row justify-content-center">
-			<div class="graphBox">
-                    <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " id="funds">Overview</a>
-                    <a href="../admin-settings/User-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" id="funds">User Management</a>
-                    <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " id="funds">Colleges</a>
+		<div class="graphBox">
+                    <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold "style="border:inset;" id="funds">Overview</a>
+                    <a href="../admin-settings/User-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold "style="border:inset;" id="funds">User Management</a>
+                    <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active " style="border:inset;"id="funds">Colleges</a>
 				</div>
                 </div>
                 <div class="row">
