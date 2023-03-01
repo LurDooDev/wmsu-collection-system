@@ -10,7 +10,6 @@ if (!isset($_SESSION['logged_id'])){
 
 ?>
 
-
 <!doctype html>
 <html lang="en" class="no-js">
   <html>
