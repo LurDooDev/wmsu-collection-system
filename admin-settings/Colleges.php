@@ -1,3 +1,18 @@
+<?php
+// resume session here to fetch session values
+session_start();
+
+//prevent horny people
+if (!isset($_SESSION['logged_id'])){
+    header('location: ../public/logout.php');
+}
+
+
+
+
+?>
+
+
 <!doctype html>
 <html lang="en" class="no-js">
   <html>
@@ -78,13 +93,6 @@
               </tr>
             </thead>
             <tbody>
-						<td>1</td>
-						<td>CCS</td>
-						<td>College of Computing Studies</td>
-						<td>
-                            <a href="#UpdateCCS" class="update" data-toggle="modal"><i  class="fa-sharp fa-regular fa-pen-to-square" data-toggle="tooltip" title="Update"></i></a>
-						</td>
-					</tr>
                     <tr>
 						<td>2</td>
 						<td>CN</td>

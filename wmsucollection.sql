@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2023 at 06:14 AM
+-- Generation Time: Mar 01, 2023 at 01:37 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -40,9 +40,7 @@ CREATE TABLE `colleges` (
 INSERT INTO `colleges` (`college_id`, `college_name`, `college_code`) VALUES
 (1, 'College of Computing Studies', 'CCS'),
 (3, 'College of Engineering', 'COE'),
-(4, 'College of Liberal Arts', 'CLA'),
-(5, 'College of Architecture', 'CA'),
-(6, 'College of Asian and Islamic Studies', 'CAIS');
+(4, 'College of Liberal Arts', 'CLA');
 
 -- --------------------------------------------------------
 
@@ -152,15 +150,19 @@ CREATE TABLE `users` (
   `user_email` varchar(100) NOT NULL,
   `user_type` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `user_position` varchar(50) DEFAULT NULL,
+  `user_college` varchar(30) DEFAULT NULL,
+  `user_fullname` varchar(80) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`, `user_password`, `user_email`, `user_type`, `created_at`, `updated_at`) VALUES
-(1, 'BrYaN', 'cs420', 'sl201503664@wmsu.edu.ph', 'admin', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `users` (`user_id`, `user_name`, `user_password`, `user_email`, `user_type`, `created_at`, `updated_at`, `user_position`, `user_college`, `user_fullname`) VALUES
+(1, 'BrYaN', 'cs420', 'sl201503664@wmsu.edu.ph', 'admin', '0000-00-00 00:00:00', '2023-03-01 11:50:19', 'Senator', 'CCS', 'Bryan Christian C. Sevilla'),
+(3, 'RombloX', 'RombloX420', 'romblox@wmsu.edu.ph', 'officer', '2023-03-01 12:35:09', '2023-03-01 12:35:09', 'Mayor', 'CCS', 'Testing101');
 
 --
 -- Indexes for dumped tables
@@ -223,7 +225,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `colleges`
 --
 ALTER TABLE `colleges`
-  MODIFY `college_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `college_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `fee`
@@ -259,7 +261,7 @@ ALTER TABLE `semester`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

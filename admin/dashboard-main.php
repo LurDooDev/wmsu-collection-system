@@ -1,3 +1,16 @@
+<?php
+// resume session here to fetch session values
+session_start();
+
+//prevent horny people
+if (!isset($_SESSION['logged_id'])){
+    header('location: ../public/logout.php');
+}
+
+
+?>
+
+
 <!doctype html>
 <html lang="en" class="no-js">
   <html>

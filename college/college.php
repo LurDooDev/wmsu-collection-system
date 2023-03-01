@@ -115,10 +115,11 @@ $(document).ready(function(){
 					<?php
 					$college = new College();
 					$data = $college->show();
+					$i = 1;
 				foreach($data as $college) {
         ?>
 					<tr>
-						<td><?php echo $college['college_id']; ?></td>
+						<td><?php echo $i; ?></td>
 						<td><?php echo $college['college_code']; ?></td>
 						<td><?php echo $college['college_name']; ?></td>
 						<td>
@@ -126,7 +127,7 @@ $(document).ready(function(){
 							<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 		</tr>
-		<?php } ?>
+		<?php $i++;} ?>
 
 				</tbody>
 			</table>

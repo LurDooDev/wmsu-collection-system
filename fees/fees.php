@@ -145,53 +145,6 @@
 	</div>        
 </div>
 
-<!-- Create Fee Modal PROTOTYPE -->
-<div class="modal Fade" id="feeScheduleModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Fee create schedule</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <form id="feeScheduleForm" action="feesched.php" method="POST">
-		<input type="hidden" name="fee_id" value="<?php echo $fee['fee_id']; ?>">
-          <div class="form-group">
-		  <label for="schoolYear" class="form-label">School Year</label>
-            <select class="form-control" id="schoolYear" name="schoolYear" required>
-              <option value="">-- Select School Years --</option>
-			  <?php
-			  $schoolYear = new SchoolYear();
-			  $schoolYears = $schoolYear->show();
-            	 foreach ($schoolYears as $schoolYear) : ?>
-                <option value="<?php echo $schoolYear['school_year_id']; ?>"><?php echo $schoolYear['school_year_name']; ?></option>
-              <?php endforeach; ?>
-            </select>
-          </div>
-		  <div class="form-group">
-		  <label for="semester" class="form-label">Semesters</label>
-            <select class="form-control" id="semester" name="semester" required>
-				
-              <option value="">-- Semester --</option>
-			  <?php
-			  $semester = new Semester();
-			  $semesters = $semester->show();
-            	 foreach ($semesters as $semester) : ?>
-                <option value="<?php echo $semester['semester_id']; ?>"><?php echo $semester['semester_name']; ?></option>
-              <?php endforeach; ?>
-            </select>
-          </div>
-		  <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="hidden" name="action" value="feeSchedAdd">
-                    <input type="submit" class="btn btn-success" value="Save">
-                </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Create Fee Modal HTML -->
 <div id="addFeesModal" class="modal fade">
     <div class="modal-dialog">

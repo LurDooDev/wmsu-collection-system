@@ -8,7 +8,7 @@
 		if(isset($_POST['username']) && isset($_POST['password'])){
 		  //Sanitizing the inputs of the users. Mandatory to prevent injections!
 		  $users_obj->username = htmlentities($_POST['username']);
-		  $users_obj->password = htmlentities($_POST['password']);
+		  $users_obj->userpassword = htmlentities($_POST['password']);
 		  if($users_obj->log_in()){
 			  $users = $users_obj->get_users_info();
 			  foreach($users as $row){
@@ -19,7 +19,7 @@
 				  if($row['user_type'] == 'admin'){
 					  header('location: ../admin/dashboard-main.php'); // Change path if want to test a specific file
 				  }else if($row['user_type'] == 'officer'){
-					  header('location: ../public/logout.php');
+					  header('location: ../admin/dashboard-user.php');
 				  }else if($row['user_type'] == 'collector'){
 					  header('location: ../collector/collector.php');
 				  }

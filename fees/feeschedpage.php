@@ -82,7 +82,7 @@
 		  <label for="fee" class="form-label">Fees</label>
             <select class="form-control" id="fee" name="fee" required>
 				
-              <option value="">-- Fees --</option>
+              <option value="">Select your option</option>
               <!--Admin Fees-->
               <?php
                             if($_SESSION['user_type'] == 'admin'){ 
@@ -119,7 +119,7 @@
 		  <label for="schoolYear" class="form-label">School Year</label>
             <select class="form-control" id="schoolYear" name="schoolYear" required>
 				
-              <option value="">-- School Years --</option>
+              <option value="">Select your option</option>
 			  <?php
 			  $schoolYear = new SchoolYear();
 			  $schoolYearData = $schoolYear->show();
@@ -134,7 +134,7 @@
 		  <label for="semester" class="form-label">Semester</label>
             <select class="form-control" id="semester" name="semester" required>
 				
-              <option value="">-- Semester --</option>
+              <option value="">Select your option</option>
 			  <?php
 			  $semester = new Semester();
 			  $semesterData = $semester->show();

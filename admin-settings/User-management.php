@@ -1,3 +1,17 @@
+<?php
+// resume session here to fetch session values
+session_start();
+
+//prevent horny people
+if (!isset($_SESSION['logged_id'])){
+    header('location: ../public/logout.php');
+}
+
+require_once '../classes/users.class.php';
+
+
+?>
+
 <!doctype html>
 <html lang="en" class="no-js">
   <html>
@@ -62,7 +76,7 @@
         			<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
        			 </div>
 					<div class="col-sm-8 " style="display: flex; align-items: center; justify-content: flex-end;">
-						<a href="#addCollectorModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Collector</span></a>
+						<a href="#addCollectorModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add User</span></a>
 					</div>
 				</div>
              <div class =" table-responsive">
@@ -71,45 +85,32 @@
               <tr>
                 <th scope="col" style = " color: #000000;" >ID</th>
                 <th scope="col" style = " color: #000000;" >Name</th>
-                <th scope="col" style = " color: #000000;" >College</th></th>
-                <th scope="col" style = " color: #000000;" >Position</th></th>
+				<th scope="col" style = " color: #000000;" >College</th></th>
+				<th scope="col" style = " color: #000000;" >Position</th></th>
+                <th scope="col" style = " color: #000000;" >Email</th></th>
                 <th scope="col" style = " color: #000000;" >Role</th></th>
                 <th scope="col" style = " color: #000000;" >Action</th>
               </tr>
             </thead>
             <tbody>
-						<td>1</td>
-						<td>Jerome Rabara</td>
-						<td>Colleges of Computing Studies</td>
-                        <td>USC Pres</td>
-						<td>USC Admin</td>
-						<td>
-                            <a href="#editUserModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteUserModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
+			<?php
+					$users= new Users();
+					$userData = $users->show();
+					$i = 1;
+					foreach($userData as $users) { ?>
 					<tr>
-						<td>2</td>
-						<td>Treasurer 1</td>
-						<td>College of Architecture</td>
-						<td>USC Secretary</td>
-                        <td>Assistant</td>
-						<td>
-                            <a href="#editUserModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteUserModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>Auditor 1</td>
-						<td>College of Asian and Islamic Studies</td>
-						<td>USC Auditor</td>
-                        <td>Assistant</td>
+					<td><?php echo $i; ?></td>
+                <td><?php echo $users['user_fullname']; ?></td>
+				<td><?php echo $users['user_college']; ?></td>
+                <td><?php echo $users['user_position']; ?></td>
+				<td><?php echo $users['user_email']; ?></td>
+                <td><?php echo $users['user_type']; ?></td>
 						<td>
 							<a href="#editUserModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 							<a href="#deleteUserModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
-					</tr>	
+					</tr>
+					<?php $i++;} ?>	
 				</tbody>
 			</table>
 		</div>
@@ -120,33 +121,45 @@
 <div id="addCollectorModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form action="addfees.php" method="POST">
+			<form action="adduser.php" method="POST">
 				<div class="modal-header">						
 					<h4 class="modal-title">Add Collector</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
 					<div class="form-group">
-						<label for="name">Name</label>
-						<input type="text" name="name" id="name" class="form-control" required>
+						<label for="userfullname">Name</label>
+						<input type="text" name="userfullname" id="userfullname" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label for="college">College</label>
-						<input type="text" name="college" id="college" class="form-control" required>
+						<label for="usercollege">College</label>
+						<input type="text" name="usercollege" id="usercollege" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label for="position">Position</label>
-						<input type="text" name="position" id="position" class="form-control" required>
+						<label for="username">Username</label>
+						<input type="text" name="username" id="username" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label for="role">Role</label>
-						<select name="role" id="role" class="form-control" required>
-                        <option value="" disabled selected>Select your option</option>
-                        <option value="pers">USC Admin</option>
-                        <option value="tecond">Assistant</option>
-                        </select><br><br>
-                        </form>					
-					</div>	
+						<label for="userpassword">Password</label>
+						<input type="text" name="userpassword" id="userpassword" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="userposition">Position</label>
+						<input type="text" name="userposition" id="userposition" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="text" name="email" id="email" class="form-control" required>
+					</div>
+					<div class="form-group">
+                        <label for="userroles">Roles</label>
+                        <select name="userroles" id="userroles" class="form-control" required>
+                            <option value="" disabled selected>Select your option</option>
+                            <option value="admin">admin</option>
+                            <option value="officer">officer</option>
+                        </select>
+                    </div>				
+						
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 					<input type="hidden" name="action" value="add">
@@ -154,6 +167,7 @@
 				</div>
 			</form>
 		</div>
+					</div>
 	</div>
 </div>
 <!-- Edit Modal HTML -->
@@ -191,7 +205,7 @@
 <div id="deleteUserModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form action="deleteuser.php" method="post">
 				<div class="modal-header">						
 					<h4 class="modal-title">Delete User</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -202,6 +216,8 @@
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="hidden" name="action" value="delete">
+					<input type="hidden" name="user_id" value="<?php echo $users['user_id']; ?>">
 					<input type="submit" class="btn btn-danger" value="Delete">
 				</div>
 			</form>
