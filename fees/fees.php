@@ -137,7 +137,7 @@
 							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 				</tr>
-					<?php }} ?>
+					<?php $i++;}} ?>
 				 <?php }?>
 					</tbody>
 			</table>

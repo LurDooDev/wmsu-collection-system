@@ -8,7 +8,6 @@ class College {
     public $collegeID;
     public $collegeCode;
     public $collegeName;
-    public $collegeCodeTarget; // Identifier
 
     protected $db;
 
@@ -35,20 +34,34 @@ class College {
     }
 
     function update(){
-        $sql = "UPDATE colleges SET college_name=:college_name, college_code=:college_code WHERE college_code=:college_code_target";
-    
+        $sql = "UPDATE colleges SET college_name=:college_name, college_code=:college_code WHERE college_id=:college_id";
         $query=$this->db->connect()->prepare($sql);
         $query->bindParam(':college_name', $this->collegeName);
         $query->bindParam(':college_code', $this->collegeCode);
-        $query->bindParam(':college_code_target', $this->collegeCodeTarget);
+        $query->bindParam(':college_id', $this->collegeID);
         
-        if($query->execute()){
+        if ($query->execute()) {
+            $count = $query->rowCount();
+            echo "$count row updated";
             return true;
-        }
-        else{
+        } else {
+            $error = $query->errorInfo();
+            echo "Update failed: " . $error[2];
             return false;
         }	
     }
+    
+
+    function get($id) {
+        $sql = "SELECT * FROM colleges WHERE college_id = :college_id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':college_id', $id);
+        $query->execute();
+        return $query->fetch();
+    }
+    
+    
+    
 
 
     function delete(){
