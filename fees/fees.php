@@ -139,6 +139,32 @@
 				</tr>
 					<?php $i++;}} ?>
 				 <?php }?>
+
+				 <!--Officer-->
+				 <?php
+                            if($_SESSION['user_type'] == 'officer'){ 
+                        ?>
+		<?php
+					$li = 1;
+					foreach($feeSchedData as $feeSched) {
+            if ($feeSched['fee_type'] == 'local') {
+             
+				?>
+							<tr>
+								<td><?php echo $li; ?></td>
+                <td><?php echo $feeSched['fee_type']; ?></td>
+								<td><?php echo $feeSched['fee_name']; ?></td>
+                <td><?php echo $feeSched['fee_amount']; ?></td>
+                <td><?php echo $feeSched['semester_name']; ?></td>
+								<td><?php echo $feeSched['semester_start_date']; ?></td>
+                <td><?php echo $feeSched['semester_end_date']; ?></td>
+                <td><?php echo $feeSched['school_year_name']; ?></td>
+								<td>
+							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							</td>
+				</tr>
+					<?php $li++;}} ?>
+				 <?php }?>
 					</tbody>
 			</table>
 		</div>
