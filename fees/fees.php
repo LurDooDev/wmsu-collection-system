@@ -145,9 +145,11 @@
                             if($_SESSION['user_type'] == 'officer'){ 
                         ?>
 		<?php
+		$feeSched = new FeeSchedule();
+		$feeSchedData = $feeSched->showAllDetails();
 					$li = 1;
 					foreach($feeSchedData as $feeSched) {
-            if ($feeSched['fee_type'] == 'local') {
+            if ($feeSched['fee_type'] == 'Local') {
              
 				?>
 							<tr>
@@ -207,49 +209,7 @@
         </div>
     </div>
 </div>
-<!-- Fee Schedule Modal HTML -->
-<div id="feeSchdaweModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form>
-				<div class="modal-header">						
-					<h4 class="modal-title">Activate Fees</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">
-			<div class="mb-3">
-            <label for="schoolYear" class="form-label">School Year</label>
-            <select class="form-control" id="schoolYear" name="schoolYear" required>
-				
-              <option value="">-- Select School Year --</option>
-			  <?php
-			  $schoolYear = new SchoolYear();
-			  $schoolYears = $schoolYear->show();
-            	 foreach ($schoolYears as $schoolYear) : ?>
-                <option value="<?php echo $schoolYear['school_year_id']; ?>"><?php echo $schoolYear['school_year_name']; ?></option>
-              <?php endforeach; ?>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="semester" class="form-label">Semester</label>
-            <select class="form-control" id="semester" name="semester" required>
-              <option value="">-- Select Semester --</option>
-              <?php
-			  $semester = new Semester();
-			  $semesters = $semester->show();
-			   foreach ($semesters as $semester) : ?>
-                <option value="<?php echo $semester['semester_id']; ?>"><?php echo $semester['semester_name']; ?></option>
-              <?php endforeach; ?>
-            </select>
-          </div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-info" value="Save">
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
+
 <!-- Delete Modal HTML -->
 <div id="deleteFeesModal" class="modal fade">
 	<div class="modal-dialog">

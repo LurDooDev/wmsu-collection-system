@@ -78,15 +78,15 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
+                <?php
+                            if($_SESSION['user_type'] == 'admin'){ 
+                        ?>
                 <div class="form-group">
 		  <label for="fee" class="form-label">Fees</label>
             <select class="form-control" id="fee" name="fee" required>
 				
               <option value="">Select your option</option>
               <!--Admin Fees-->
-              <?php
-                            if($_SESSION['user_type'] == 'admin'){ 
-                        ?>
 			  <?php
 			  $fee = new Fee();
 			  $feeData = $fee->show();
@@ -95,13 +95,22 @@
                  ?>
                 <option value="<?php echo $fee['fee_id']; ?>"><?php echo $fee['fee_name']; ?></option>
               <?php } }?>
-              <?php }; ?>
-            </select>
+            <!--End Fees-->
+          </div>
+                    <div class="form-group">
+                    </select>
+                    </div>
+                    <?php }; ?>
 
-            <!--Local Fees-->
-            <?php
+                    <?php
                             if($_SESSION['user_type'] == 'officer'){ 
                         ?>
+                <div class="form-group">
+		  <label for="fee" class="form-label">Fees</label>
+            <select class="form-control" id="fee" name="fee" required>
+				
+              <option value="">Select your option</option>
+              <!--Admin Fees-->
 			  <?php
 			  $fee = new Fee();
 			  $feeData = $fee->show();
@@ -110,12 +119,18 @@
                  ?>
                 <option value="<?php echo $fee['fee_id']; ?>"><?php echo $fee['fee_name']; ?></option>
               <?php } }?>
-              <?php }; ?>
-            </select>
             <!--End Fees-->
-
           </div>
                     <div class="form-group">
+                    </select>
+                    </div>
+                    <?php }; ?>
+
+
+<!--Local Fees-->
+
+</select>
+<div class="form-group">
 		  <label for="schoolYear" class="form-label">School Year</label>
             <select class="form-control" id="schoolYear" name="schoolYear" required>
 				
