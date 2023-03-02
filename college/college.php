@@ -85,19 +85,15 @@ $(document).ready(function(){
 	</nav>
 		<div class="table-wrapper">
 		<div class="table-title">
-				<div class="row">
-				<div class="col-auto ml-auto">
-						<a href="#addCollegesModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New College</span></a>
-						<br><br>
-</div>
-<div>
-<div class="col-sm-3 mr-auto">
-					<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Colleges">
+		<div class="row">
+		<div class="col-sm-4 pr-auto" style="padding-top: 16px;">
+					<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
 					</div>
-</div>
-</div>
-			<!-- <a href="#deleteCollegesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
+          <div class="col-sm-8 p-auto mr-auto" style="padding-top: 14px;">
+				  <a href="#addCollegesModal" class="btn btn-success" id = "add-college" data-toggle="modal" style="padding:10px; border-radius:6px;"><i class="material-icons">&#xE147;</i> <span>Add College</span></a>
+				</div>
 			</div>
+		</div>
 			<table class="table table-striped table-hover">
 				<thead>
 
