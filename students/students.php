@@ -7,6 +7,9 @@ if (!isset($_SESSION['logged_id'])){
     header('location: ../public/logout.php');
 }
 
+require_once '../classes/student.class.php';
+require_once '../classes/college.class.php';
+
 
 ?>
 <!doctype html>
@@ -80,30 +83,32 @@ if (!isset($_SESSION['logged_id'])){
 			<table class="table table-striped table-hover" style="width: 100%;">
 				<thead style="text-align: center;">
 					<tr>
-						<th>ID</th>
-						<th>Name</th>
+						<th>#</th>
 						<th>Student ID</th>
-						<th>College Code</th>
+						<th>Student Name</th>
+						<th>College</th>
 						<th>Year Level</th>
-						<th>School Year</th>
+						<th>Email</th>
 					</tr>
 				</thead>
 				<tbody style="text-align: center;">
+
+				<?php
+					$students = new Student();
+					$studentData = $students->showAllDetails();
+					$i = 1;
+				foreach($studentData as $students) {
+        ?>
 					<tr>
-						<td>1</td>
-           			 <td>Andre Que</td>
-            		<td>gt201901123</td>
-            		<td>BSCS</td>
-            		<td>3rd Year</td>
-            		<td style="width:20%">2022-2023</td>
+					<td><?php echo $i; ?></td>
+					<td><?php echo $students['student_personal_id']; ?></td>
+						<td><?php echo $students['student_fname'], ' ', $students['student_mname'], ' ', $students['student_lname']; ?></td>
+						<td><?php echo $students['college_code']; ?></td>
+						<td><?php echo $students['year_level']; ?></td>
+						<td><?php echo $students['student_email']; ?></td>
+						<td>
 				</tr>
-							<td>2</td>
-           			 <td>Jonathan The Great</td>
-            		<td>gt201901232</td>
-            		<td>COL</td>
-            		<td  >4th Year</td>
-            		<td style="width: 20%">2022-2023</td>
-					</tr>
+			<?php $i++; } ?>
 					</tbody>
 			</table>
 		</div>
@@ -119,43 +124,56 @@ if (!isset($_SESSION['logged_id'])){
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
                 <br>
-                <label for="fileSelect" style = "font-size:15px; margin-left: 20px">Student CSV file Upload</label>
+                <!-- <label for="fileSelect" style = "font-size:15px; margin-left: 20px">Student CSV file Upload</label>
                  <input id="fileSelect" type="file" accept=".csv" style ="margin-left: 30px;"/>
-            </label>
-				<div class="modal-body">					
+            </label> -->
+				<div class="modal-body">
+				<div class="form-group">
+						<label for="studentID">Student ID</label>
+						<input type="text" name="studentID" id="studentID" class="form-control" required>
+					</div>					
 					<div class="form-group">
-						<label for="name">Name</label>
-						<input type="text" name="" id="" class="form-control" required>
+						<label for="firstname">First name</label>
+						<input type="text" name="firstname" id="firstname" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label for="student-id">Student ID</label>
-						<input type="text" name="" id="" class="form-control" required>
+						<label for="middlename">Middle initial</label>
+						<input type="text" name="middlename" id="middle" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label for="college-code">College Code</label>
-						<input type="text" name="" id="" class="form-control" required>
+						<label for="lastname">Last name</label>
+						<input type="text" name="lastname" id="lastname" class="form-control" required>
 					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="text" name="email" id="email" class="form-control" required>
+					</div>
+		<div class="form-group">
+		  <label for="collegeCode" class="form-label">Colleges</label>
+            <select class="form-control" id="collegeCode" name="collegeCode" required>
+				
+              <option value="">Select your option</option>
+			  <?php
+			  $colleges = new College();
+			  $collegeData = $colleges->show();
+            	 foreach ($collegeData as $colleges) {
+                 ?>
+                <option value="<?php echo $colleges['college_id']; ?>"><?php echo $colleges['college_name']; ?></option>
+              <?php } ?>
+            </select>
+
+          </div>
              
 					<div class="form-group">
-						<label for="year-level">Year Level</label>
-						<select name="year-level" id="year-level" style="padding:5px;" >
-                        <option value="" disabled selected>Select your option</option>
-                        <option value="pers">1st Year</option>
-                        <option value="tecond">2nd Year</option>
-                        <option value="tert">3rd Year</option>
-                        <option value="port">4th Year</option>
-                        </select><br><br></form>
-
-					</div>
-					<div class="form-group">
-                    <label for="year-level">School Year</label>
-						<select name="sy" id="sy" style="padding:5px;">
-                        <option value="" disabled selected>Select your option</option>
-                        <option value="pers">2020-2021</option>
-                        <option value="tecond">2022-2023</option>
-                        </select><br><br>
-                        </form>
-					</div>	 
+                        <label for="yearlevel">Year Level</label>
+                        <select name="yearlevel" id="yearlevel" class="form-control" required>
+                            <option value="" disabled selected>Select your option</option>
+                            <option value="1st Year">1st Year</option>
+                            <option value="2nd Year">2nd Year</option>
+							<option value="3rd Year">3rd Year</option>
+                            <option value="4rth Year">4rth Year</option>
+                        </select>
+                    </div>	 
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">

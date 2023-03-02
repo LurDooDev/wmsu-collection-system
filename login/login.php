@@ -13,7 +13,7 @@
 			  $users = $users_obj->get_users_info();
 			  foreach($users as $row){
 				  $_SESSION['logged_id'] = $row['user_id'];
-				  $_SESSION['fullname'] = 'Pogi';
+				  $_SESSION['user_name'] = $row['user_fullname'];
 				  $_SESSION['user_type'] = $row['user_type'];
 				  //display the appropriate dashboard page for user
 				  if($row['user_type'] == 'admin'){
