@@ -40,11 +40,11 @@ if (!isset($_SESSION['logged_id'])){
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
             <div class="list-group list-group-flush my-3">
                 <a href="../admin/dashboard-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Dashboard</a>
-                <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold ">Fees</a>
+                <a href="../fees-user/fees-user.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold ">Fees</a>
                 <a href="../payment/payment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment</a>
                 <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>
-                <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Students</a>
-                <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
+                <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Students</a>
+                <a href="../financial-report-user/financial-report-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
                 <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
                 <a href="../csc-management/csc-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">CSC Management</a>
                 <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Admin Settings</a>
