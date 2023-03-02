@@ -1,3 +1,4 @@
+Andre Que
 /* BOOTSTRAP CCS */
 
 *{
@@ -61,7 +62,7 @@
   
   #page-content-wrapper {
 		min-width: 100vw;
-		padding-right: 365px;
+		padding-right: 20px;
 	  }
 
   
@@ -92,7 +93,7 @@
   @media (min-width: 768px) {
 	#sidebar-wrapper {
 	  margin-left: 0;
-	}	
+	}
   
 	#page-content-wrapper {
 	  min-width: 0;
@@ -131,10 +132,9 @@ body {
 .table-wrapper {
 	    background: #fff;
     padding: 20px 25px;
-    margin-left: 20%;
+    margin-left: 50px;
     border-radius: 3px;
     min-width: 1000px;
-    margin-top: 85px;
     box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
     overflow: hidden;
 }
@@ -201,7 +201,6 @@ table.table td:last-child i {
 	opacity: 0.9;
 	font-size: 22px;
 	margin: 0 5px;
-
 }
 table.table td a {
 	font-weight: bold;
@@ -222,7 +221,6 @@ table.table td a.delete {
 table.table td i {
 	font-size: 19px;
 }
-
 table.table .avatar {
 	border-radius: 50%;
 	vertical-align: middle;
@@ -399,15 +397,20 @@ table.table .avatar {
 
 @media (max-width: 575px){
 
-	#search-input{
-		width: 40%;
-			
-	}
-	@media (max-width: 575px){
-			
-	#add-fees {
-		  float: left;
-	}
-	}
-	}
-	
+#search-input{
+	width: 40%;
+		
+}
+@media (max-width: 575px){
+		
+#add-fees {
+	  float: left;
+}
+}
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+    margin-top: 27px;
+    padding: 13px;
+}
+}
+

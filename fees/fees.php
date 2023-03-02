@@ -35,7 +35,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
-    <title>Wmsu Collection System</title>
+    <title>Fees</title>
     </head>
 
       <body>
@@ -48,9 +48,9 @@
                 <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Fees</a>
                 <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Remit Records</a>
                 <a href="../college/college.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Colleges</a>
-               <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
                 <a href="../funds/funds-sub.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Funds</a>
                 <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
+                <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
                 <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Admin Settings</a>
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover fw-bold">Logout</a>
             </div>
@@ -75,11 +75,14 @@
     					<a class="dropdown-item" href="#">Descending</a>
 					</div>
 					</div>
-					<div class="col-sm-8 p-auto mr-auto">
-					<a href="feeschedpage.php" class="btn btn-success" style = " padding: 13px; margin-top: 19px; border-radius:6px;"><i class="material-icons">&#xE147;</i> <span>Fee Sched</span></a>						<!-- <a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
+          <div class="col-sm-8 p-auto mr-auto">
+						<a href="feeschedpage.php" class="btn btn-success" style = " padding: 13px; margin-top: 19px; border-radius:6px;"><i class="material-icons">&#xE147;</i> <span>Fee Sched</span></a>
+						<div class="col-sm-10 p-auto mb-auto">
+						<a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a>
+						<!-- <a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>		
+									 -->
 					</div>
-					<div class="col-sm-10 p-auto mb-auto">						
-					<a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a>						<!-- <a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
+						<!-- <a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
 					</div>
 				</div>
 			</div>
@@ -111,7 +114,7 @@
 					</tr>
 				</thead>
 				<tbody>
-        <?php
+						<?php
                             if($_SESSION['user_type'] == 'admin'){ 
                         ?>
 		<?php
@@ -208,6 +211,43 @@
     </div>
 </div>
 
+
+<!-- Create Fee Modal HTML -->
+<div id="addFeesModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="createfees.php" method="POST">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Fees</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="feeType">Type of Fee</label>
+                        <select name="feeType" id="feeType" class="form-control" required>
+                            <option value="" disabled selected>Select your option</option>
+                            <option value="University">University</option>
+                            <option value="Local">Local</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="feeName">Description</label>
+                        <input type="text" name="feeName" id="feeName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="feeAmount">Amount</label>
+                        <input type="number" name="feeAmount" id="feeAmount" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="hidden" name="action" value="add">
+                    <input type="submit" class="btn btn-success" value="add">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <!-- Delete Modal HTML -->
 <div id="deleteFeesModal" class="modal fade">
 	<div class="modal-dialog">
