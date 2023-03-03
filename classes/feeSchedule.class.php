@@ -54,8 +54,9 @@ class FeeSchedule {
     }
     
     function showAllDetails() {
-        $sql = "SELECT f.fee_name, ft.fee_type, fa.fee_amount, s.semester_name, ssd.semester_start_date, sed.semester_end_date, sy.school_year_name
+        $sql = "SELECT fsi.fee_schedule_id, f.fee_name, ft.fee_type, fa.fee_amount, s.semester_name, ssd.semester_start_date, sed.semester_end_date, sy.school_year_name
                 FROM fee_schedule fs
+                JOIN fee_schedule fsi ON fsi.fee_schedule_id = fs.fee_schedule_id
                 JOIN fee f ON f.fee_id = fs.fee_id
                 JOIN fee ft ON ft.fee_id = fs.fee_id
                 JOIN fee fa ON fa.fee_id = fs.fee_id
@@ -66,6 +67,20 @@ class FeeSchedule {
         $stmt = $this->db->connect()->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function delete(){
+        $sql = "DELETE FROM fee_schedule WHERE fee_schedule_id=:fee_schedule_id";
+
+        $query=$this->db->connect()->prepare($sql);
+        $query->bindParam(':fee_schedule_id', $this->feeScheduleID);
+
+        if($query->execute()){
+            return true;
+        }
+        else{
+            return false;
+        }	
     }
 
 }

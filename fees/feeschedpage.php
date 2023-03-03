@@ -185,57 +185,114 @@
 				</thead>
 				<tbody>
         <?php
-                            if($_SESSION['user_type'] == 'admin'){ 
-                        ?>
-		<?php
-					$fees = new Fee();
-          $feeData = $fees->show();
-					$i = 1;
-					foreach($feeData as $fees) {
-            if ($fees['fee_type'] == 'University') {
-             
-				?>
-							<tr>
-								<td><?php echo $i; ?></td>
+if($_SESSION['user_type'] == 'admin'){ 
+    $fees = new Fee();
+    $feeData = $fees->show();
+    $i = 1;
+    foreach($feeData as $fees) {
+        if ($fees['fee_type'] == 'University') {         
+?>
+            <tr>
+                <td><?php echo $i; ?></td>
                 <td><?php echo $fees['fee_type']; ?></td>
-								<td><?php echo $fees['fee_name']; ?></td>
+                <td><?php echo $fees['fee_name']; ?></td>
                 <td><?php echo $fees['fee_amount']; ?></td>
-								<td>
-							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-							</td>
-				</tr>
-					<?php $i++;}} ?>
-				 <?php }?>
+                <td>
+                    <a href="#deleteFeesModal<?php echo $i; ?>" class="delete" data-toggle="modal">
+                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                    </a>
+                </td>
+            </tr>
+            <!-- Delete Fees Modal -->
+            <div id="deleteFeesModal<?php echo $i; ?>" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="deletefees.php" method="POST">
+                            <div class="modal-header">						
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Delete Fees</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                            </div>
+                            <div class="modal-body">					
+                                <p>Are you sure you want to delete this record?</p>
+                                <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <input type="hidden" name="action" value="delete">
+                                <input type="hidden" name="fee_id" value="<?php echo $fees['fee_id']; ?>">
+                                <input type="submit" class="btn btn-danger" value="Delete">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+<?php 
+            $i++;
+        }
+    }
+} 
+?>
 
 				 <!--Officer-->
-				 <?php
-                            if($_SESSION['user_type'] == 'officer'){ 
-                        ?>
-		<?php
-		$fees = new Fee();
-		$feeData = $fees->show();
-					$li = 1;
-					foreach($feeData as $fees) {
-            if ($fees['fee_type'] == 'Local') {
-             
-				?>
-							<tr>
-								<td><?php echo $li; ?></td>
+         <?php
+				 if($_SESSION['user_type'] == 'officer'){ 
+    $fees = new Fee();
+    $feeData = $fees->show();
+    $li = 1;
+    foreach($feeData as $fees) {
+        if ($fees['fee_type'] == 'Local') {         
+?>
+            <tr>
+                <td><?php echo $li; ?></td>
                 <td><?php echo $fees['fee_type']; ?></td>
-								<td><?php echo $fees['fee_name']; ?></td>
+                <td><?php echo $fees['fee_name']; ?></td>
                 <td><?php echo $fees['fee_amount']; ?></td>
-								<td>
-							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-							</td>
-				</tr>
-					<?php $li++;}} ?>
-				 <?php }?>
+                <td>
+                    <a href="#deleteFeesModal<?php echo $li; ?>" class="delete" data-toggle="modal">
+                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                    </a>
+                </td>
+            </tr>
+            <!-- Delete Fees Modal -->
+            <div id="deleteFeesModal<?php echo $li; ?>" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="deletefees.php" method="POST">
+                            <div class="modal-header">						
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Delete Fees</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                            </div>
+                            <div class="modal-body">					
+                                <p>Are you sure you want to delete this record?</p>
+                                <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <input type="hidden" name="action" value="delete">
+                                <input type="hidden" name="fee_id" value="<?php echo $fees['fee_id']; ?>">
+                                <input type="submit" class="btn btn-danger" value="Delete">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+<?php 
+            $i++;
+        }
+    }
+} 
+?>
 					</tbody>
 			</table>
 
 		</div>
 	</div>        
 </div>
+
 
 </body>       
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>

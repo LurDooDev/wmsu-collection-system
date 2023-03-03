@@ -6,10 +6,10 @@
         $fee = new Fee();
         $fee->feeID = $_POST['fee_id'];
             if($fee->delete()){
-                header('location: fees.php');
+                header('location: feeschedpage.php');
             }
             else{
-                echo 'Error deleting fees';
+                echo 'Error deleting fees: ' ;
             }
     }
 ?>

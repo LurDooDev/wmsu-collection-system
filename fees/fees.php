@@ -114,19 +114,16 @@
 					</tr>
 				</thead>
 				<tbody>
-						<?php
-                            if($_SESSION['user_type'] == 'admin'){ 
-                        ?>
-		<?php
-					$feeSched = new FeeSchedule();
-					$feeSchedData = $feeSched->showAllDetails();
-					$i = 1;
-					foreach($feeSchedData as $feeSched) {
-            if ($feeSched['fee_type'] == 'University') {
-             
-				?>
-							<tr>
-								<td><?php echo $i; ?></td>
+                    <?php
+                if($_SESSION['user_type'] == 'admin'){ 
+                    $feeSched = new FeeSchedule();
+                    $feeSchedData = $feeSched->showAllDetails();
+    $i = 1;
+    foreach($feeSchedData as $feeSched) {
+        if ($feeSched['fee_type'] == 'University') {         
+?>
+            <tr>
+                <td><?php echo $i; ?></td>
                 <td><?php echo $feeSched['fee_type']; ?></td>
 								<td><?php echo $feeSched['fee_name']; ?></td>
                 <td><?php echo $feeSched['fee_amount']; ?></td>
@@ -134,27 +131,55 @@
 								<td><?php echo $feeSched['semester_start_date']; ?></td>
                 <td><?php echo $feeSched['semester_end_date']; ?></td>
                 <td><?php echo $feeSched['school_year_name']; ?></td>
-								<td>
-							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-							</td>
-				</tr>
-					<?php $i++;}} ?>
-				 <?php }?>
+                <td>
+                    <a href="#deleteFeesModal<?php echo $i; ?>" class="delete" data-toggle="modal">
+                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                    </a>
+                </td>
+            </tr>
+            <!-- Delete Fees Modal -->
+            <div id="deleteFeesModal<?php echo $i; ?>" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="deletefeesched.php" method="POST">
+                            <div class="modal-header">						
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Delete Fees</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                            </div>
+                            <div class="modal-body">					
+                                <p>Are you sure you want to delete this record?</p>
+                                <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <input type="hidden" name="action" value="delete">
+                                <input type="hidden" name="fee_schedule_id" value="<?php echo $feeSched['fee_schedule_id']; ?>">
+                                <input type="submit" class="btn btn-danger" value="Delete">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+<?php 
+            $i++;
+        }
+    }
+} 
+?>
 
 				 <!--Officer-->
 				 <?php
-                            if($_SESSION['user_type'] == 'officer'){ 
-                        ?>
-		<?php
-		$feeSched = new FeeSchedule();
-		$feeSchedData = $feeSched->showAllDetails();
-					$li = 1;
-					foreach($feeSchedData as $feeSched) {
-            if ($feeSched['fee_type'] == 'Local') {
-             
-				?>
-							<tr>
-								<td><?php echo $li; ?></td>
+                if($_SESSION['user_type'] == 'officer'){ 
+                    $feeSched = new FeeSchedule();
+                    $feeSchedData = $feeSched->showAllDetails();
+    $li = 1;
+    foreach($feeSchedData as $feeSched) {
+        if ($feeSched['fee_type'] == 'local') {         
+?>
+            <tr>
+                <td><?php echo $li; ?></td>
                 <td><?php echo $feeSched['fee_type']; ?></td>
 								<td><?php echo $feeSched['fee_name']; ?></td>
                 <td><?php echo $feeSched['fee_amount']; ?></td>
@@ -162,17 +187,43 @@
 								<td><?php echo $feeSched['semester_start_date']; ?></td>
                 <td><?php echo $feeSched['semester_end_date']; ?></td>
                 <td><?php echo $feeSched['school_year_name']; ?></td>
-								<td>
-							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-							</td>
-				</tr>
-					<?php $li++;}} ?>
-				 <?php }?>
-					</tbody>
-			</table>
-		</div>
-	</div>        
-</div>
+                <td>
+                    <a href="#deleteFeesModal<?php echo $li; ?>" class="delete" data-toggle="modal">
+                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                    </a>
+                </td>
+            </tr>
+            <!-- Delete Fees Modal -->
+            <div id="deleteFeesModal<?php echo $li; ?>" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="deletefeesched.php" method="POST">
+                            <div class="modal-header">						
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Delete Fees</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                            </div>
+                            <div class="modal-body">					
+                                <p>Are you sure you want to delete this record?</p>
+                                <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <input type="hidden" name="action" value="delete">
+                                <input type="hidden" name="fee_schedule_id" value="<?php echo $feeSched['fee_schedule_id']; ?>">
+                                <input type="submit" class="btn btn-danger" value="Delete">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+<?php 
+            $i++;
+        }
+    }
+} 
+?>
 
 <!-- Create Fee Modal HTML -->
 <div id="addFeesModal" class="modal fade">
@@ -248,30 +299,7 @@
         </div>
     </div>
 </div>
-<!-- Delete Modal HTML -->
-<div id="deleteFeesModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form action="deletefees.php" method="POST">
-				<div class="modal-header">						
-				<div class="modal-header">
-					<h4 class="modal-title">Delete Fees</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">					
-					<p>Are you sure you want to delete these Records?</p>
-					<p class="text-warning"><small>This action cannot be undone.</small></p>
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="hidden" name="action" value="delete">
-					<input type="hidden" name="fee_id" value="<?php echo $fee['fee_id']; ?>">
-					<input type="submit" class="btn btn-danger" value="Delete">
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
+
 </body>       
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
             <script>
