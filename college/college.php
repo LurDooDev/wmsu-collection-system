@@ -195,36 +195,6 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
-<!-- Edit Modal HTML -->
-<div id="editCollegesModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form action="editcollege.php" method="POST">
-				<div class="modal-header">						
-					<h4 class="modal-title">Edit College</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">				
-					<div class="form-group">
-					<input type="hidden" name="collegeCodeTarget" value="<?php echo $collegeCodeTarget; ?>">
-						<label>College Code</label>	
-						<input type="text" class="form-control" required>
-					</div>
-					<div class="form-group">
-					<input type="hidden" name="collegeName" value="<?php echo $college['college_name']; ?>">
-						<label>Description</label>
-						<input type="text" class="form-control" required>
-					</div>		
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="hidden" name="action" value="update">
-					<input type="submit" class="btn btn-info" value="Save">
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
 
 </body>       
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
