@@ -14,11 +14,24 @@ if (isset($_POST['action']) && $_POST['action'] == 'add') {
     $users->userpassword = htmlspecialchars($_POST['userpassword']);
     $users->email = htmlspecialchars($_POST['email']);
     
+      
     if ($users->add()) {
         header('location: User-management.php');
     } else {
         echo 'Failed to add fee.';
     }
+    if (strlen($username) > 20) {
+        echo "Username is too long.";
+    } else {
+        echo "Username is valid.";
+    }
+    if (preg_match('/^[A-Za-z0-9._%+-]+@wmsu\.edu\.ph$/', $email)) {
+        echo "Email is valid";
+    } else {
+        echo "Email is invalid";
+    } 
+        
+
     
 }
 
