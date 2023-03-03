@@ -108,22 +108,53 @@ $(document).ready(function(){
 					</tr>
 				</thead>
 				<tbody>
-					<?php
-					$college = new College();
-					$data = $college->show();
-					$i = 1;
-				foreach($data as $college) {
-        ?>
-					<tr>
-						<td><?php echo $i; ?></td>
-						<td><?php echo $college['college_code']; ?></td>
-						<td><?php echo $college['college_name']; ?></td>
-						<td>
-							<a href="#editCollegesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteCollegesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-		</tr>
-		<?php $i++;}?>
+
+		<?php
+                    $college = new College();
+                    $data = $college->show();
+    $i = 1;
+    foreach($data as $college) {        
+?>
+            <tr>
+                <td><?php echo $i; ?></td>
+                <td><?php echo $college['college_code']; ?></td>
+				<td><?php echo $college['college_name']; ?></td>
+                <td>
+				<a href="editcollegepage.php?id=<?php echo $college['college_id']; ?>" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
+                    <a href="#deleteFeesModal<?php echo $i; ?>" class="delete" data-toggle="modal">
+                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                    </a>
+                </td>
+            </tr>
+            <!-- Delete Fees Modal -->
+            <div id="deleteFeesModal<?php echo $i; ?>" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="deletecollege.php" method="POST">
+                            <div class="modal-header">						
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Delete Fees</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                            </div>
+                            <div class="modal-body">					
+                                <p>Are you sure you want to delete this record?</p>
+                                <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <input type="hidden" name="action" value="delete">
+                                <input type="hidden" name="college_id" value="<?php echo $college['college_id']; ?>">
+                                <input type="submit" class="btn btn-danger" value="Delete">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+<?php 
+            $i++;
+        }
+?>
 
 				</tbody>
 			</table>
@@ -194,29 +225,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
-<!-- Delete Modal HTML -->
-<div id="deleteCollegesModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form action="deletecollege.php" method="POST">
-				<div class="modal-header">						
-					<h4 class="modal-title">Delete College</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">					
-					<p>Are you sure you want to delete these Records?</p>
-					<p class="text-warning"><small>This action cannot be undone.</small></p>
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="hidden" name="action" value="delete">
-					<input type="hidden" name="college_id" value="<?php echo $college['college_id']; ?>">
-					<input type="submit" class="btn btn-danger" value="Delete">
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
+
 </body>       
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
             <script>
