@@ -66,7 +66,7 @@
 		<div class="table-wrapper">
 		<div class="table-title">
 				<div class="row">
-					<div class="col-sm-8">
+					<div class="col-sm-auto ml-auto">
 						<a href="fees.php" class="btn btn-success"><span>Back To Fees</span></a>
 						<!-- <a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
 					</div>
