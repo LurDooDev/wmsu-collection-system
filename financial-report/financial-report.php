@@ -125,7 +125,7 @@ if (!isset($_SESSION['logged_id'])){
             <li><label>Summary Report:</label></li>
             <form action="" method="post">
 <div>
-<textarea name="comments" id="comments" style="font-family:sans-serif;font-size:27px;">
+<textarea  class = "comment" name="comments" id="comments"  placeholder = "Enter your comments here">
 </textarea>
 </div>
 </form>
@@ -177,9 +177,9 @@ if (!isset($_SESSION['logged_id'])){
                         <input type="date" name="sem" id="sem" class="form-control" required>
                     </div>
                     <label>Summary Report:</label></li>
-            <form action="" method="post">
-<div>
-<textarea name="comments" id="comments" style="font-family:sans-serif;font-size:30px;">
+                        <form action="" method="post">
+                        <div>
+                        <textarea  class = "comment" name="comments" id="comments"  placeholder = "Enter your comments here">
 </textarea>
 </div>
 </form>
