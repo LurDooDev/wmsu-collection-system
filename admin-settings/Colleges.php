@@ -93,6 +93,14 @@ if (!isset($_SESSION['logged_id'])){
               </tr>
             </thead>
             <tbody>
+            <tr>
+						<td>1</td>
+						<td>CCS</td>
+						<td>College of Computing Studies</td>
+						<td>
+                        <a href="#UpdateCCS" class="update" data-toggle="modal"><i  class="fa-sharp fa-regular fa-pen-to-square" data-toggle="tooltip" title="Update"></i></a>
+						</td>
+					</tr>	
                     <tr>
 						<td>2</td>
 						<td>CN</td>
@@ -176,6 +184,77 @@ if (!isset($_SESSION['logged_id'])){
       </div>
     </div>
 </div>
+
+
+<div class="modal fade modal-fullscreen" id="UpdateNURSING" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="exampleModalLabel">College of Nursing(CN)</h5>
+        <div>
+        <a data-toggle="modal" href="#AddCSV" class="btn btn-primary">Add CSV</a>
+</div>
+</div>
+        <div class="modal-body">
+      <table class="table table-striped">
+            <thead style="background-color:#95BDFE ;" class="text-white">
+            <tr>
+                <th scope="col" style = " color: #000000;" >Student ID</th>
+                <th scope="col" style = " color: #000000;" >Student Name</th>
+                <th scope="col" style = " color: #000000;" >Student Email</th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2020-2121</td>
+                <td>Abdul Montero</td>
+                <td>xt202002121@wmsu.edu.ph</td>
+              </tr>
+
+              <tr>
+                <td>2020-6666</td>
+                <td>Vladimirskie Tingkasan</td>
+                <td>xt202006666@wmsu.edu.ph</td>
+              </tr>
+  </tbody>
+</table>
+</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="modal fade" id="AddCSV" data-backdrop="static">
+	<div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">College CSV Uploads</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        </div>
+        <div class="modal-body-md">
+        <div class="drop-zone">
+    <span class="drop-zone__prompt">Drop file here or click to upload</span>
+    <input type="file" name="myFile" class="drop-zone__input">
+  </div>
+
+  <script src="./src/main.js"></script>
+        </div>
+        <div class="modal-footer">
+          <a href="#" data-dismiss="modal" class="btn">Close</a>
+          <a href="#" class="btn btn-primary">Upload This File</a>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+
+
 <script>  
 document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
   const dropZoneElement = inputElement.closest(".drop-zone");

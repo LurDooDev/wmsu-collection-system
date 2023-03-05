@@ -40,9 +40,9 @@
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
 			<div class="list-group list-group-flush my-3">
                 <a href="../admin/dashboard-main.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Dashboard</a>
-                <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Fees</a>
+                <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold fw-bold">Fees</a>
                 <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Remit Records</a>
-                <a href="../college/Oldcollege.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Colleges</a>
+                <a href="../college/Oldcollege.php" class="list-group-item list-group-item-action bg-hover first-text active">Colleges</a>
                 <a href="../funds/funds-sub.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Funds</a>
                 <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
                 <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
@@ -56,13 +56,13 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0">Fees Scheduling</h2>
+            <h2 class="fs-2 m-0">College Edit</h2>
         </div>
     </nav>
 		<div class="table-wrapper">
 		<div class="table-title">
 				<div class="row">
-					<div class="col-sm-8">
+					<div class="col-sm-10 ml-auto">
 						<a href="college.php" class="btn btn-success"><span>Back To </span></a>
 						<!-- <a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
 					</div>

@@ -102,7 +102,7 @@ if (!isset($_SESSION['logged_id'])){
                 </div>
                 </div>
     <div class="table-responsive" id="anxiety">
-        <div class="row my-2 mx-1">
+        <div class="row my-auto mx-auto">
         <div class="col-sm-4">
         <input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
         </div>
@@ -113,7 +113,7 @@ if (!isset($_SESSION['logged_id'])){
     					<a class="dropdown-item" href="#">Descending</a>
 					</div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4 ">
         <button class="btn btn-primary dropdown-toggle" id ="school-year" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">School Year </button>
 						<div class="dropdown-menu">
     					<a class="dropdown-item" href="#">2021-2022</a>

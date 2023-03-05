@@ -79,8 +79,8 @@ if (!isset($_SESSION['logged_id'])){
                 </div>
                 </div>
                 <div class="table-responsive" id="lonely">
-        <div class="row my-2 mx-1">
-        <div class="col-sm-4">
+        <div class="row my-auto mx-auto">
+        <div class="col-sm-auto">
         <input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
         </div>
         <div class="col-sm-4" style="padding-bottom: 5px;">
@@ -119,7 +119,7 @@ if (!isset($_SESSION['logged_id'])){
               </tr>
 
               <tr>
-                <th scope="row">1</th>
+                <th scope="row">2</th>
                 <td>CCS</td>
                 <td>Php 1,500,000</td>
                 <td>Php 600,000</td>
@@ -128,7 +128,7 @@ if (!isset($_SESSION['logged_id'])){
               </tr>
 
               <tr>
-                <th scope="row">1</th>
+                <th scope="row">3</th>
                 <td>CCS</td>
                 <td>Php 2,000,000</td>
                 <td>Php 450,000</td>
