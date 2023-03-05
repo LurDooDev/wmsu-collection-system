@@ -358,3 +358,8 @@ table.table .avatar {
 #inner::-webkit-scrollbar{
 	display:none;
 }
+.comment {
+	width: 85%;
+	height: 100px;
+	padding: 10px;
+  }
