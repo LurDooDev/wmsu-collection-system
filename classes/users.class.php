@@ -24,6 +24,14 @@ class Users{
     {
         $this->db = new Database();
     }
+    function showByCollege($college) {
+        $sql = "SELECT * FROM users WHERE user_college = :college";
+        $stmt = $this->db->connect()->prepare($sql);
+        $stmt->bindParam(':college', $college, PDO::PARAM_STR);
+        $stmt->execute();
+        $userData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $userData;
+    }
 
     function show(){
         $sql = "SELECT * FROM users;";

@@ -94,23 +94,115 @@ require_once '../classes/users.class.php';
             </thead>
             <tbody>
 			<?php
-					$users= new Users();
-					$userData = $users->show();
-					$i = 1;
-					foreach($userData as $users) { ?>
-					<tr>
-					<td><?php echo $i; ?></td>
+                if($_SESSION['user_type'] == 'admin'){
+			$loggedInUserCollege = $_SESSION['user_college'];
+			$users = new Users();
+			$userData = $users->showByCollege($loggedInUserCollege);
+    $i = 1;
+    foreach($userData as $users) {
+        if ($users['user_type'] != 'collector' && $users['user_position'] != 'Assistant') {         
+?>
+            <tr>
+			<td><?php echo $i; ?></td>
                 <td><?php echo $users['user_fullname']; ?></td>
 				<td><?php echo $users['user_college']; ?></td>
                 <td><?php echo $users['user_position']; ?></td>
 				<td><?php echo $users['user_email']; ?></td>
                 <td><?php echo $users['user_type']; ?></td>
-						<td>
-							<a href="#editUserModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteUserModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<?php $i++;} ?>	
+                <td>
+                    <a href="#deleteFeesModal<?php echo $i; ?>" class="delete" data-toggle="modal">
+                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                    </a>
+                </td>
+            </tr>
+            <!-- Delete Fees Modal -->
+            <div id="deleteFeesModal<?php echo $i; ?>" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="deleteuser.php" method="POST">
+                            <div class="modal-header">						
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Delete Fees</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                            </div>
+                            <div class="modal-body">					
+                                <p>Are you sure you want to delete this record?</p>
+                                <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <input type="hidden" name="action" value="delete">
+                                <input type="hidden" name="user_id" value="<?php echo $users['user_id']; ?>">
+                                <input type="submit" class="btn btn-danger" value="Delete">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+<?php 
+            $i++;
+        }
+    }
+}
+?>
+
+<!--OFFICER-->
+			<?php
+                if($_SESSION['user_type'] == 'officer'){
+			$loggedInUserCollege = $_SESSION['user_college'];
+			$users = new Users();
+			$userData = $users->showByCollege($loggedInUserCollege);
+    $i = 1;
+    foreach($userData as $users) {
+        if ($users['user_type'] != 'admin' && $users['user_position'] != 'president' && $users['user_position'] != 'vice-president' && $users['user_position'] != 'secretary') {         
+?>
+            <tr>
+			<td><?php echo $i; ?></td>
+                <td><?php echo $users['user_fullname']; ?></td>
+				<td><?php echo $users['user_college']; ?></td>
+                <td><?php echo $users['user_position']; ?></td>
+				<td><?php echo $users['user_email']; ?></td>
+                <td><?php echo $users['user_type']; ?></td>
+                <td>
+                    <a href="#deleteFeesModal<?php echo $i; ?>" class="delete" data-toggle="modal">
+                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                    </a>
+                </td>
+            </tr>
+            <!-- Delete Fees Modal -->
+            <div id="deleteFeesModal<?php echo $i; ?>" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="deleteuser.php" method="POST">
+                            <div class="modal-header">						
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Delete Fees</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                            </div>
+                            <div class="modal-body">					
+                                <p>Are you sure you want to delete this record?</p>
+                                <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <input type="hidden" name="action" value="delete">
+                                <input type="hidden" name="user_id" value="<?php echo $users['user_id']; ?>">
+                                <input type="submit" class="btn btn-danger" value="Delete">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+<?php 
+            $i++;
+        }
+    }
+}
+?>
+
+
 				</tbody>
 			</table>
 		</div>
@@ -144,9 +236,21 @@ require_once '../classes/users.class.php';
 						<input type="text" name="userpassword" id="userpassword" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label for="userposition">Position</label>
-						<input type="text" name="userposition" id="userposition" class="form-control" required>
-					</div>
+                        <label for="userposition">Position</label>
+                        <select name="userposition" id="userposition" class="form-control" required>
+                            <option value="" disabled selected>Select your option</option>
+							<?php if($_SESSION['user_type'] == 'admin'){ ?>
+                            <option value="President">President</option>
+                            <option value="Vice-President">Vice-President</option>
+							<option value="Secretary">Secretary</option>
+							<?php }?>
+							<option value="Mayor">Mayor</option>
+							<?php if($_SESSION['user_type'] == 'officer'){ ?>
+							<option value="Vice-Mayor">Vice-Mayor</option>
+							<option value="Assistant">Assistant</option>
+							<?php }?>
+                        </select>
+                    </div>
 					<div class="form-group">
 						<label for="email">Email</label>
 						<input type="text" name="email" id="email" class="form-control" required>
@@ -155,8 +259,14 @@ require_once '../classes/users.class.php';
                         <label for="userroles">Roles</label>
                         <select name="userroles" id="userroles" class="form-control" required>
                             <option value="" disabled selected>Select your option</option>
-                            <option value="admin">admin</option>
-                            <option value="officer">officer</option>
+						<?php	if($_SESSION['user_type'] == 'admin'){ ?>
+                            <option value="admin">Admin</option>
+							<?php }?>
+                            <option value="officer">Officer</option>
+							<?php
+                if($_SESSION['user_type'] == 'officer'){ ?>
+							<option value="collector">Collector</option>
+							<?php }?>
                         </select>
                     </div>				
 						
@@ -201,29 +311,7 @@ require_once '../classes/users.class.php';
 		</div>
 	</div>
 </div>
-<!-- Delete Modal HTML -->
-<div id="deleteUserModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form action="deleteuser.php" method="post">
-				<div class="modal-header">						
-					<h4 class="modal-title">Delete User</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">					
-					<p>Are you sure you want to delete these Records?</p>
-					<p class="text-warning"><small>This action cannot be undone.</small></p>
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="hidden" name="action" value="delete">
-					<input type="hidden" name="user_id" value="<?php echo $users['user_id']; ?>">
-					<input type="submit" class="btn btn-danger" value="Delete">
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
+
 </body>       
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
