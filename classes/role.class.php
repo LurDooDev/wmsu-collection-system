@@ -2,19 +2,20 @@
 
 require_once 'database.class.php';
 
-class Semester {
-    public $semesterID;
-    public $semesterName;
-    public $semesterStartDate;
-    public $semesterEndDate;
+class Role {
+    //attributes
+
+    public $roleID;
+    public $roleName;
     protected $db;
 
-    function __construct() {
+    function __construct()
+    {
         $this->db = new Database();
     }
 
     function show(){
-        $sql = "SELECT * FROM `semesters` ORDER BY `semesters`.`id` ASC";
+        $sql = "SELECT * FROM roles ORDER BY roles.id ASC";
         $query=$this->db->connect()->prepare($sql);
         if($query->execute()){
             $data = $query->fetchAll();
@@ -23,4 +24,5 @@ class Semester {
     }
 
 }
+
 ?>

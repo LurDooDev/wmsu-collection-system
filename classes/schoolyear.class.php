@@ -12,7 +12,7 @@ class SchoolYear {
     }
 
     function show(){
-        $sql = "SELECT * FROM `school_year` ORDER BY `school_year`.`school_year_id` ASC";
+        $sql = "SELECT * FROM `school_year` ORDER BY `school_year`.`id` ASC";
         $query=$this->db->connect()->prepare($sql);
         if($query->execute()){
             $data = $query->fetchAll();

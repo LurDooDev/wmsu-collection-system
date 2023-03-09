@@ -1,36 +1,40 @@
 <?php
-	require_once '../classes/database.class.php';
-	require_once '../classes/users.class.php';
+  require_once '../classes/database.class.php';
+  require_once '../classes/users.class.php';
+  session_start();
 
-	session_start();
-	
-		$users_obj = new Users();
-		if(isset($_POST['username']) && isset($_POST['password'])){
-		  //Sanitizing the inputs of the users. Mandatory to prevent injections!
-		  $users_obj->username = htmlentities($_POST['username']);
-		  $users_obj->userpassword = htmlentities($_POST['password']);
-		  if($users_obj->log_in()){
-			  $users = $users_obj->get_users_info();
-			  foreach($users as $row){
-				  $_SESSION['logged_id'] = $row['user_id'];
-				  $_SESSION['user_fullname'] = $row['user_fullname'];
-				  $_SESSION['user_position'] = $row['user_position'];
-				  $_SESSION['user_college'] = $row['user_college'];
-				  $_SESSION['user_type'] = $row['user_type'];
-				  //display the appropriate dashboard page for user
-				  if($row['user_type'] == 'admin'){
-					  header('location: ../admin/dashboard-main.php'); // Change path if want to test a specific file
-				  }else if($row['user_type'] == 'officer'){
-					  header('location: ../admin/dashboard-user.php');
-				  }else if($row['user_type'] == 'collector'){
-					  header('location: ../collector/collector.php');
-				  }
-			  }
-		  }else{
-			  //set the error message if account is invalid
-			  $error = 'Invalid username/password. Try again.';
-		  }
-		}
+  if (isset($_POST['username']) && isset($_POST['password'])) {
+      $username = $_POST['username'];
+      $password = $_POST['password'];
+  
+      // Create a new Users object
+      $users_obj = new Users();
+  
+      // Call the log_in function to authenticate the user
+      $user_data = $users_obj->log_in($username, $password);
+  
+      if ($user_data) {
+          // Login successful - store user data in session
+          $_SESSION['logged_id'] = $user_data['id'];
+          $_SESSION['fullname'] = $user_data['user_fullname'];
+          $_SESSION['position'] = $user_data['user_position'];
+          $_SESSION['college'] = $user_data['college_name'];
+          $_SESSION['role'] = $user_data['role_name'];
+  
+          // Display the appropriate dashboard page for user
+          if ($user_data['role_name'] == 'admin') {
+              header('location: ../university/university.php');
+          } else if ($user_data['role_name'] == 'officer') {
+              header('location: ../admin/dashboard-user.php');
+          } else if ($user_data['role_name'] == 'collector') {
+              header('location: ../collector/collector.php');
+          }
+      } else {
+          // Login failed - set an error message
+          $error_msg = 'Invalid username or password';
+      }
+  }
+  
 ?>
 
 <!DOCTYPE html>

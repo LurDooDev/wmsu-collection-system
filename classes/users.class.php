@@ -7,14 +7,13 @@ require_once 'database.class.php';
 class Users{
 
     // Class properties
-    public $userID;
+    public $id;
     public $username;
     public $userfullname;
     public $userposition;
-    public $userroles;
-    public $usercollege;
     public $userpassword;
-    public $email;
+    public $roleID;
+    public $collegeID;
 
     // protected property to store the database connection
     protected $db;
@@ -24,6 +23,41 @@ class Users{
     {
         $this->db = new Database();
     }
+
+
+    function addUser(){
+    try {
+      
+        $roleSql = "SELECT id FROM roles WHERE id = :id";
+            $roleStmt = $this->db->connect()->prepare($roleSql);
+            $roleStmt->bindParam(':id', $this->roleID);
+            $roleStmt->execute();
+            $roleID = $roleStmt->fetchColumn();
+       
+            $collegeSql = "SELECT id FROM colleges WHERE id = :id";
+            $collegeStmt = $this->db->connect()->prepare($collegeSql);
+            $collegeStmt->bindParam(':id', $this->collegeID);
+            $collegeStmt->execute();
+            $collegeID = $collegeStmt->fetchColumn();
+
+            $insertSql = "INSERT INTO users (role_id, college_id, user_username, user_password, user_fullname, user_position) VALUES (:role_id, :college_id, :username, :userpassword, :userfullname, :userposition)";
+            $insertStmt = $this->db->connect()->prepare($insertSql);
+            $insertStmt->bindParam(':role_id', $roleID);
+            $insertStmt->bindParam(':college_id', $collegeID);
+            $insertStmt->bindParam(':username', $this->username);
+            $insertStmt->bindParam(':userpassword', $this->userpassword);
+            $insertStmt->bindParam(':userfullname', $this->userfullname);
+            $insertStmt->bindParam(':userposition', $this->userposition);
+            $insertStmt->execute();
+        
+        return true;
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
+
+    //old
     function showByCollege($college) {
         $sql = "SELECT * FROM users WHERE user_college = :college";
         $stmt = $this->db->connect()->prepare($sql);
@@ -42,97 +76,79 @@ class Users{
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-    function add(){
-        $sql = "INSERT INTO users(user_name, user_fullname, user_type, user_position, user_college, user_password, user_email) VALUES 
-        (:username, :userfullname, :userroles, :userposition, :usercollege, :userpassword, :email);";
+    // function add(){
+    //     $sql = "INSERT INTO users(user_uname, user_fullname, user_type, user_position, user_college, user_password, user_email) VALUES 
+    //     (:username, :userfullname, :userroles, :userposition, :usercollege, :userpassword, :email);";
 
-        $query=$this->db->connect()->prepare($sql);
-        $query->bindParam(':username', $this->username);
-        $query->bindParam(':userfullname', $this->userfullname);
-        $query->bindParam(':userroles', $this->userroles);
-        $query->bindParam(':userposition', $this->userposition);
-        $query->bindParam(':usercollege', $this->usercollege);
-        $query->bindParam(':userpassword', $this->userpassword);
-        $query->bindParam(':email', $this->email);
+    //     $query=$this->db->connect()->prepare($sql);
+    //     $query->bindParam(':username', $this->username);
+    //     $query->bindParam(':userfullname', $this->userfullname);
+    //     $query->bindParam(':userroles', $this->userroles);
+    //     $query->bindParam(':userposition', $this->userposition);
+    //     $query->bindParam(':usercollege', $this->usercollege);
+    //     $query->bindParam(':userpassword', $this->userpassword);
+    //     $query->bindParam(':email', $this->email);
         
-        if($query->execute()){
-            return true;
-        }
-        else{
-            return false;
-        }	
-    }
+    //     if($query->execute()){
+    //         return true;
+    //     }
+    //     else{
+    //         return false;
+    //     }	
+    // }
 
-    function delete(){
-        $sql = "DELETE FROM users WHERE user_id=:user_id";
+    // function delete(){
+    //     $sql = "DELETE FROM users WHERE user_id=:user_id";
 
-        $query=$this->db->connect()->prepare($sql);
-        $query->bindParam(':user_id', $this->userID);
+    //     $query=$this->db->connect()->prepare($sql);
+    //     $query->bindParam(':user_id', $this->userID);
 
-        if($query->execute()){
-            return true;
-        }
-        else{
-            return false;
-        }	
-    }
+    //     if($query->execute()){
+    //         return true;
+    //     }
+    //     else{
+    //         return false;
+    //     }	
+    // }
 
     // Method to log a user in
-    function log_in(){
-        // SQL statement to retrieve the user with the matching username and password
-        $sql = "SELECT * FROM users WHERE BINARY user_name = :username AND BINARY user_password = :password;";
-
+    function log_in($username, $password) {
+        // Sanitize inputs
+        $username = htmlentities($username);
+    
+        // SQL statement to retrieve the user with the matching username
+        $sql = "SELECT u.id, u.user_fullname, u.user_position, r.role_name, c.college_name, u.user_password 
+                FROM users u 
+                JOIN roles r ON u.role_id = r.id 
+                JOIN colleges c ON u.college_id = c.id
+                WHERE BINARY u.user_username = :username;";
+    
         // Prepare the SQL statement for execution
-        $query=$this->db->connect()->prepare($sql);
-
+        $query = $this->db->connect()->prepare($sql);
+    
         // Bind the parameters to the SQL statement
-        $query->bindParam(':username', $this->username);
-        $query->bindParam(':password', $this->userpassword);
-
+        $query->bindParam(':username', $username);
+    
         // Execute the SQL statement
-        if($query->execute()){
-            // Check if the user was found
-            if($query->rowCount()>0){
-                // Return true if the user was found
-                return true;
-            }
-        }
-        // Return false if the user was not found
-        return false;
-    }
-
-    // Method to retrieve the user's account information
-    function get_users_info($id=0){
-        // Check if the id parameter was provided
-        if($id == 0){
-            // SQL statement to retrieve the user with the matching username and password
-            $sql = "SELECT * FROM users WHERE BINARY user_name = :username AND BINARY user_password = :password;";
-
-            // Prepare the SQL statement for execution
-            $query=$this->db->connect()->prepare($sql);
-
-            // Bind the parameters to the SQL statement
-            $query->bindParam(':username', $this->username);
-            $query->bindParam(':password', $this->userpassword);
-        }else{
-            // SQL statement to retrieve the user with the matching id
-            $sql = "SELECT * FROM users WHERE user_id = :id;";
-
-            // Prepare the SQL statement for execution
-            $query=$this->db->connect()->prepare($sql);
-
-            // Bind the parameter to the SQL statement
-            $query->bindParam(':id', $id);
-        }
-
-        // Execute the SQL statement
-        if($query->execute()){
+        if ($query->execute()) {
             // Fetch the data
             $data = $query->fetchAll();
+    
+            if (count($data) == 1) {
+                // Verify the password using password_verify()
+                if (password_verify($password, $data[0]['user_password'])) {
+                    // Login successful
+                    return $data[0];
+                }
+            }
         }
-        // Return the data
-        return $data;
+        // Login failed
+        return false;
     }
+    
+    
+    
+    
 
 
     function get_all_users(){
@@ -150,6 +166,10 @@ class Users{
         // Return the data
         return $data;
     }
+
+
+
+    
 
 }
 

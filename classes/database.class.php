@@ -4,7 +4,7 @@ class Database {
     private $host = 'localhost';
     private $username = 'root';
     private $password = '';
-    private $database = 'wmsucollection';
+    private $database = 'wmsu';
     protected $connection;
 
     public function connect() {
