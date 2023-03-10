@@ -67,6 +67,17 @@ class Users{
         return $userData;
     }
 
+    function showAllDetails() {
+        $sql = "SELECT u.id, u.user_fullname, u.user_position, r.role_name, c.college_name, c.college_code
+        FROM users u 
+        JOIN roles r ON u.role_id = r.id 
+        JOIN colleges c ON u.college_id = c.id";
+        $stmt = $this->db->connect()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
     function show(){
         $sql = "SELECT * FROM users;";
         

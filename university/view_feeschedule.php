@@ -92,59 +92,56 @@
 					</div>
 				</div>
 			</div>
-
-			<table class="table table-striped table-hover">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Name</th>
-						<th>Category</th>
-						<th>Amount</th>
-                        <th>Created By</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
             <?php
-// Create an instance of the UniversityFee class
-$Fee = new UniversityFee();
+if (isset($_GET['fee_id'])) {
+    $feeId = $_GET['fee_id'];
+    $FeeSched = new UniversityFeeSched();
+    $FeeSchedData = $FeeSched->showAllDetailsByFeeId($feeId);
+?>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Semester</th>
+                <th>School Year</th>
+                <th>Begin</th>
+                <th>End</th>
+                <th>Created By</th>
+            </tr>
+        </thead>
+        <tbody>
 
-// Get all the fees from the database
-$FeeData = $Fee->show();
-
-$i = 1;
-foreach($FeeData as $Fee) {        
-    ?>
-    <tr>
-        <td><?php echo $i; ?></td>
-        <td><?php echo $Fee['university_name']; ?></td>
-        <td><?php echo $Fee['university_type']; ?></td>
-        <td><?php echo $Fee['university_amount']; ?></td>
-        <td><?php echo $Fee['created_by']; ?></td>
-        <td>
-            <!-- Link to edit the fee -->
-            <a href="universityfees.php?id=<?php echo $Fee['id']; ?>" class="edit">
-                <i class="material-icons" title="Edit">&#xe147;</i>
-            </a>
-            <?php 
-            // Check if there are any fee schedules associated with this fee
-            $Schedule = new universityFeeSched();
-            $schedules = $Schedule->get($Fee['id']);
-            if ($schedules) {
-                // If there are fee schedules, display a link to view them
-                ?>
-                <a href="view_feeschedule.php?fee_id=<?php echo $Fee['id']; ?>" class="view-schedules">
-                    <i class="material-icons" title="View Schedules">event_note</i>
-                </a>
-                <?php
-            }
+            <?php
+                $i = 1;
+                foreach($FeeSchedData as $FeeSched) {        
             ?>
-        </td>
-    </tr>
-    <?php 
-    $i++;
+                <tr>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $FeeSched['university_name']; ?></td>
+                    <td><?php echo $FeeSched['university_type']; ?></td>
+                    <td><?php echo $FeeSched['university_amount']; ?></td>
+                    <td><?php echo $FeeSched['semester_name']; ?></td>
+                    <td><?php echo $FeeSched['school_year_name']; ?></td>
+                    <td><?php echo date('F j, Y', strtotime($FeeSched['university_start_date'])); ?></td>
+                    <td><?php echo date('F j, Y', strtotime($FeeSched['university_end_date'])); ?></td>
+                    <td><?php echo $FeeSched['created_by']; ?></td>
+                </tr>
+            <?php 
+                    $i++;
+                }
+            ?>
+        </tbody>
+    </table>
+<?php
+} else {
+    echo "Fee ID: $feeId";
+    echo "No fee ID specified.";
 }
 ?>
+
 </tbody>
 </table>
 <!-- Create Fee Modal HTML -->

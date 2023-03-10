@@ -98,8 +98,8 @@ require_once '../classes/role.class.php';
             <tr>
 			<td><?php echo $i; ?></td>
                 <td><?php echo $users['user_fullname']; ?></td>
-				<td><?php echo $users['user_college']; ?></td>
-                <td><?php echo $users['user_position']; ?></td>
+				<td><?php echo $users['college_name']; ?></td>
+                <td><?php echo $users['college_code']; ?></td>
 				<td><?php echo $users['user_email']; ?></td>
                 <td><?php echo $users['user_type']; ?></td>
                 <td>

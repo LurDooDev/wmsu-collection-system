@@ -38,12 +38,12 @@ class UniversityFeeSched {
             $schoolYearStmt->bindParam(':school_year_id', $this->schoolYearID);
             $schoolYearStmt->execute();
             $schoolYearID = $schoolYearStmt->fetchColumn();
-            
+    
             // Define the variables for the prepared statement
             $universityStartDate = $this->universityStartDate;
             $universityEndDate = $this->universityEndDate;
             $universitycreatedby = $this->universitycreatedby;
-
+    
             // Insert the new row into the fee_schedule table with the retrieved ID values
             $insertSql = "INSERT INTO university_fee_schedule (university_fee_id, semester_id, school_year_id, university_start_date, university_end_date, created_by)
             VALUES (:university_id, :semester_id, :school_year_id, :university_start_date, :university_end_date, :created_by)";
@@ -55,12 +55,69 @@ class UniversityFeeSched {
             $insertStmt->bindParam(':university_end_date', $universityEndDate);
             $insertStmt->bindParam(':created_by', $universitycreatedby);
             $insertStmt->execute();
+
     
             return true;
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
             return false;
         }
+    }
+
+    function deleteUniversityFeeSchedule($universityFeeID) {
+        try {
+            // Check if the given university fee has an active schedule
+            $scheduleSql = "SELECT is_active FROM university_fee_schedule WHERE university_fee_id = :university_id AND is_active = true";
+            $scheduleStmt = $this->db->connect()->prepare($scheduleSql);
+            $scheduleStmt->bindParam(':university_id', $universityFeeID);
+            $scheduleStmt->execute();
+            $hasActiveSchedule = $scheduleStmt->fetchColumn();
+    
+            if ($hasActiveSchedule) {
+                // Deactivate the university fee
+                $deactivateSql = "UPDATE university_fee SET is_active = false WHERE id = :university_id";
+                $deactivateStmt = $this->db->connect()->prepare($deactivateSql);
+                $deactivateStmt->bindParam(':university_id', $universityFeeID);
+                $deactivateStmt->execute();
+            }
+    
+            // Delete the schedule for the given university fee
+            $deleteSql = "DELETE FROM university_fee_schedule WHERE university_fee_id = :university_id";
+            $deleteStmt = $this->db->connect()->prepare($deleteSql);
+            $deleteStmt->bindParam(':university_id', $universityFeeID);
+            $deleteStmt->execute();
+    
+            return true;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+    
+    function showAllDetailsbyID($fee_id) {
+        $sql = "SELECT ufs.university_start_date, ufs.university_end_date, ufs.created_by, uf.university_name, uf.university_amount, uf.university_type, s.semester_name, sy.school_year_name
+                FROM university_fee_schedule ufs
+                JOIN university_fee uf ON ufs.university_fee_id = uf.id
+                JOIN semesters s ON ufs.semester_id = s.id
+                JOIN school_year sy ON ufs.school_year_id = sy.id
+                WHERE ufs.university_fee_id = :fee_id";
+        $stmt = $this->db->connect()->prepare($sql);
+        $stmt->bindValue(':fee_id', $fee_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function showAllDetailsByFeeId($fee_id) {
+        $sql = "SELECT ufs.university_start_date, ufs.university_end_date, ufs.created_by, uf.university_name, uf.university_amount, uf.university_type, s.semester_name, sy.school_year_name
+                FROM university_fee_schedule ufs
+                JOIN university_fee uf ON ufs.university_fee_id = uf.id
+                JOIN semesters s ON ufs.semester_id = s.id
+                JOIN school_year sy ON ufs.school_year_id = sy.id
+                WHERE ufs.university_fee_id = :fee_id";
+        $stmt = $this->db->connect()->prepare($sql);
+        $stmt->bindValue(':fee_id', $fee_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     function showAllDetails() {
@@ -83,9 +140,16 @@ class UniversityFeeSched {
         return $data;   
     }
 
+    function getFeeScheduleByFeeId($fee_id) {
+        $stmt = $this->db->connect()->prepare("SELECT * FROM university_fee_schedule WHERE university_fee_id = :fee_id");
+        $stmt->bindParam(":fee_id", $fee_id);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
     function get($id) {
-        $stmt = $this->db->connect()->prepare("SELECT * FROM university_fee WHERE id = :id");
+        $stmt = $this->db->connect()->prepare("SELECT * FROM university_fee_schedule WHERE university_fee_id = :id");
         $stmt->bindParam(":id", $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
