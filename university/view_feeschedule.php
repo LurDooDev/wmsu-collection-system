@@ -78,7 +78,7 @@
           <div class="col-sm-8 p-auto mr-auto">
 						<a href="universitysched.php" class="btn btn-success" style = " padding: 13px; margin-top: 19px; border-radius:6px;"> <span>View Fee Schedules</span></a>
 						<div class="col-sm-10 p-auto mb-auto">
-						<a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a>
+						<a href="university.php" class="btn btn-success"><span>Back</span></a>
 						<!-- <a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>		
 									 -->
 					</div>
