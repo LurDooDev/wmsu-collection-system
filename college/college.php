@@ -65,14 +65,6 @@
 		<div class="table-wrapper">
 		<div class="table-title">
 				<div class="row">
-					<div class="col-sm-4 pr-auto">
-					<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
-					<button class="btn btn-primary dropdown-toggle" id ="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By </button>
-						<div class="dropdown-menu">
-    					<a class="dropdown-item" href="#">Ascending</a>
-    					<a class="dropdown-item" href="#">Descending</a>
-					</div>
-					</div>
           <div class="col-sm-8 p-auto mr-auto">
 						<div class="col-sm-10 p-auto mb-auto">
 						<a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New College</span></a>
