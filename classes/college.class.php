@@ -17,21 +17,20 @@ class College {
     }
 
     // //Methods
-    // function add(){
-    //     $sql = "INSERT INTO colleges (college_id, college_name, college_code) VALUES 
-    //     (:college_id, :college_name, :college_code);";
+    function createCollege(){
+        $sql = "INSERT INTO colleges (college_name, college_code) VALUES 
+        (:college_name, :college_code);";
 
-    //     $query=$this->db->connect()->prepare($sql);
-    //     $query->bindParam(':college_id', $this->collegeID);
-    //     $query->bindParam(':college_code', $this->collegeCode);
-    //     $query->bindParam(':college_name', $this->collegeName);
-    //     if($query->execute()){
-    //         return true;
-    //     }
-    //     else{
-    //         return false;
-    //     }	
-    // }
+        $query=$this->db->connect()->prepare($sql);
+        $query->bindParam(':college_code', $this->collegeCode);
+        $query->bindParam(':college_name', $this->collegeName);
+        if($query->execute()){
+            return true;
+        }
+        else{
+            return false;
+        }	
+    }
 
     // function update(){
     //     $sql = "UPDATE colleges SET college_name=:college_name, college_code=:college_code WHERE college_id=:college_id";

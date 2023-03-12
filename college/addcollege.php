@@ -1,17 +1,24 @@
 <?php 
-    require_once '../classes/database.class.php';
-    require_once "../classes/program.class.php";
+require_once '../classes/database.class.php';
+require_once "../classes/college.class.php";
+
+// Check if the form has been submitted
+if (isset($_POST['action']) && $_POST['action'] == 'add') {
     
+    $code = htmlspecialchars($_POST['code']);
+    $name = htmlspecialchars($_POST['name']);
     
-    if (isset($_POST['action']) && $_POST['action'] == 'add') {
-        $college = new College();
-        $college->collegeCode = htmlspecialchars($_POST['collegeCode']);
-        $college->collegeName = htmlspecialchars($_POST['collegeName']);
+    $College = new College();
+    $College->collegeCode = $code;
+    $College->collegeName = $name;
     
-        if ($college->createProgram()) {
-            header('location: college.php');
-        } else {
-            echo 'Failed to add college';
-        }
+    if ($College->createCollege()) {
+        header('location: college.php');
+    } else {
+        echo 'Failed to add program.';
     }
+    
+}
+
+
 ?>

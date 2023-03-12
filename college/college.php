@@ -111,8 +111,8 @@
 								<td><?php echo $college['college_code']; ?></td>
 								<td><?php echo $college['college_name']; ?></td>
 								<td>
-									<!-- Link to edit the fee -->
-									<a href="add_college.php?id=<?php echo $college['id']; ?>" class="edit">
+									<!-- Link to edit the Program -->
+									<a href="add_program.php?id=<?php echo $college['id']; ?>" class="edit">
 										<i class="material-icons" title="Edit">&#xe147;</i>
 									</a>
 									<?php 
@@ -120,9 +120,9 @@
 									$Program = new Program();
 									$Programs = $Program->get($college['id']);
 									if ($Programs) {
-										// If there are fee schedules, display a link to view them
+										// If there are Programs, display a link to view them
 										?>
-										<a href="view_program.php?fee_id=<?php echo $Program['id']; ?>" class="view-schedules">
+										<a href="view_program.php?college_id=<?php echo $college['id']; ?>" class="view-schedules">
 											<i class="material-icons" title="View Schedules">event_note</i>
 										</a>
 										<?php
@@ -142,7 +142,7 @@
 <div id="addFeesModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="adduniversityfees.php" method="POST" id="adduniversityfees">
+            <form action="addcollege.php" method="POST" id="adduniversityfees">
                 <div class="modal-header">
                     <h4 class="modal-title">College</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -152,11 +152,10 @@
                         <label for="name">Name</label>
                         <input type="text" name="name" id="name" class="form-control" required>
                     </div>
-                    <div class="form-group">
-                        <label for="amount">Amount</label>
-                        <input type="number" name="amount" id="amount" class="form-control" required>
+					<div class="form-group">
+                        <label for="code">Code</label>
+                        <input type="text" name="code" id="code" class="form-control" required>
                     </div>
-                    <input type="hidden" name="created_by" value="<?php echo $UserFullname; ?>">
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">

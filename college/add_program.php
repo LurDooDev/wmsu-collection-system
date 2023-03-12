@@ -93,9 +93,9 @@
             <h3>College Code: <span><?php echo $CollegeData['college_code']; ?></span></h3>
             <!--College-->
 </br></br>
-          <div class="form-group">
-                        <label for="program">Program Name</label>
-                        <input type="text" name="program" id="program" class="form-control" required>
+<div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" class="form-control" required>
                     </div>
                 <div class="modal-footer">
                     <input type="hidden" name="action" value="add">

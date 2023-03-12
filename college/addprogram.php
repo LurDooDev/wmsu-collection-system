@@ -6,11 +6,11 @@ require_once "../classes/program.class.php";
 if (isset($_POST['action']) && $_POST['action'] == 'add') {
     
     $collegeID = htmlspecialchars($_POST['collegeID']);
-    $programName = htmlspecialchars($_POST['program']);
+    $name = htmlspecialchars($_POST['name']);
     
     $Program = new Program();
     $Program->collegeID = $collegeID;
-    $Program->programName = $programName;
+    $Program->programName = $name;
     
     if ($Program->createProgram()) {
         header('location: college.php');

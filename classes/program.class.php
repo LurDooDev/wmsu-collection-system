@@ -29,7 +29,7 @@ class Program {
             $insertSql = "INSERT INTO programs (program_name, college_id)
             VALUES (:program, :college_id)";
             $insertStmt = $this->db->connect()->prepare($insertSql);
-            $insertStmt->bindParam(':program', $programName);
+            $insertStmt->bindParam(':program', $this->programName);
             $insertStmt->bindParam(':college_id', $collegeID);
             $insertStmt->execute();
 
@@ -41,36 +41,36 @@ class Program {
         }
     }
 
-    function deleteUniversityFeeSchedule($universityFeeID) {
-        try {
-            // Check if the given university fee has an active schedule
-            $scheduleSql = "SELECT is_active FROM university_fee_schedule WHERE university_fee_id = :university_id AND is_active = true";
-            $scheduleStmt = $this->db->connect()->prepare($scheduleSql);
-            $scheduleStmt->bindParam(':university_id', $universityFeeID);
-            $scheduleStmt->execute();
-            $hasActiveSchedule = $scheduleStmt->fetchColumn();
+    function delete(){
+            $sql = "DELETE FROM programs WHERE id=:id";
     
-            if ($hasActiveSchedule) {
-                // Deactivate the university fee
-                $deactivateSql = "UPDATE university_fee SET is_active = false WHERE id = :university_id";
-                $deactivateStmt = $this->db->connect()->prepare($deactivateSql);
-                $deactivateStmt->bindParam(':university_id', $universityFeeID);
-                $deactivateStmt->execute();
+            $query=$this->db->connect()->prepare($sql);
+            $query->bindParam(':id', $this->programID);
+    
+            if($query->execute()){
+                return true;
             }
-    
-            // Delete the schedule for the given university fee
-            $deleteSql = "DELETE FROM university_fee_schedule WHERE university_fee_id = :university_id";
-            $deleteStmt = $this->db->connect()->prepare($deleteSql);
-            $deleteStmt->bindParam(':university_id', $universityFeeID);
-            $deleteStmt->execute();
-    
-            return true;
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-            return false;
+            else{
+                return false;
+            }	
         }
-    }
-    
+
+        function update(){
+                $sql = "UPDATE programs SET program_name=:program_name WHERE id=:id";
+                $query=$this->db->connect()->prepare($sql);
+                $query->bindParam(':program_name', $this->programName);
+                $query->bindParam(':id', $this->programID);
+                
+                if ($query->execute()) {
+                    $count = $query->rowCount();
+                    echo "$count row updated";
+                    return true;
+                } else {
+                    $error = $query->errorInfo();
+                    echo "Update failed: " . $error[2];
+                    return false;
+                }	
+            }
 
 
     function show(){
@@ -82,9 +82,20 @@ class Program {
         return $data;   
     }
 
-    function getFeeScheduleByFeeId($fee_id) {
-        $stmt = $this->db->connect()->prepare("SELECT * FROM university_fee_schedule WHERE university_fee_id = :fee_id");
-        $stmt->bindParam(":fee_id", $fee_id);
+    function showAllDetailsByProgramId($college_id) {
+        $sql = "SELECT p.program_name, p.id, p.college_id, c.college_name, c.college_code
+                FROM programs p
+                JOIN colleges c ON p.college_id = c.id
+                WHERE p.college_id = :college_id";
+        $stmt = $this->db->connect()->prepare($sql);
+        $stmt->bindValue(':college_id', $college_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function getProgramByCollegeId($college_id) {
+        $stmt = $this->db->connect()->prepare("SELECT * FROM programs WHERE college_id = :college_id");
+        $stmt->bindParam(":college_id", $college_id);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
