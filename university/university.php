@@ -92,7 +92,6 @@
 					</div>
 				</div>
 			</div>
-
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
@@ -123,7 +122,7 @@ foreach($FeeData as $Fee) {
         <td><?php echo $Fee['created_by']; ?></td>
         <td>
             <!-- Link to edit the fee -->
-            <a href="universityfees.php?id=<?php echo $Fee['id']; ?>" class="edit">
+            <a href="add_universityfees.php?id=<?php echo $Fee['id']; ?>" class="edit">
                 <i class="material-icons" title="Edit">&#xe147;</i>
             </a>
             <?php 

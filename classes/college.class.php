@@ -52,13 +52,13 @@ class College {
     // }
     
 
-    // function get($id) {
-    //     $sql = "SELECT * FROM colleges WHERE college_id = :college_id";
-    //     $query = $this->db->connect()->prepare($sql);
-    //     $query->bindParam(':college_id', $id);
-    //     $query->execute();
-    //     return $query->fetch();
-    // }
+    function get($id) {
+        $sql = "SELECT * FROM colleges WHERE id = :college_id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':college_id', $id);
+        $query->execute();
+        return $query->fetch();
+    }
     
     
     
