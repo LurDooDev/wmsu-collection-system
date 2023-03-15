@@ -8,9 +8,11 @@
         header('location: ../public/logout.php');
     }
 	require_once '../classes/database.class.php';
-	require_once '../classes/universityfees.class.php';
+	require_once '../classes/localfees.class.php';
     require_once '../classes/semester.class.php';
     require_once '../classes/academicyear.class.php';
+    require_once '../classes/college.class.php';
+
 
 ?>
 <!doctype html>
@@ -72,7 +74,7 @@
     // check if college_id is set in GET parameter
     if (isset($_GET['id'])) {
         // fetch college data from database
-        $fee = new UniversityFee();
+        $fee = new LocalFee();
         $feeData = $fee->get($_GET['id']);
         // check if college data is found
         if ($feeData) {
@@ -87,11 +89,12 @@
 ?>
 			</div>
             </br>
-            <form action="adduniversitySched.php" method="post">
-            <input type="hidden" name="universityID" value="<?php echo $feeData['id']; ?>">
+            <form action="addlocalSchedule.php" method="post">
+            <input type="hidden" name="localID" value="<?php echo $feeData['id']; ?>">
             <!--University Fee-->
-            <h3>Category: <span><?php echo $feeData['university_fee_type']; ?></span></h3>
-            <h3>Name: <span><?php echo $feeData['university_name']; ?></span></h3>
+            <h3>Category: <span><?php echo $feeData['local_fee_type']; ?></span></h3>
+            <h3>Name: <span><?php echo $feeData['local_name']; ?></span></h3>
+            <h3><span><?php echo $UserCollege; ?></span></h3>
             <!--University Fee-->
 </br></br>
                 <div class="form-group">
@@ -120,12 +123,12 @@
               <?php } ?>
             </select>
           </div>
-          
           <div class="form-group">
                         <label for="amount">Amount</label>
                         <input type="number" name="amount" id="amount" class="form-control" required>
                     </div>
             <input type="hidden" name="created_by" value="<?php echo $UserFullname; ?>">
+            <input type="hidden" name="collegeID" value="<?php echo $UserCollegeID; ?>">
                 <div class="modal-footer">
                     <input type="hidden" name="action" value="add">
                     <button type="submit" class="btn btn-success" name="action" value="add">Save</button>

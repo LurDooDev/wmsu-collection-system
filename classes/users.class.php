@@ -128,7 +128,7 @@ class Users{
         $username = htmlentities($username);
     
         // SQL statement to retrieve the user with the matching username
-        $sql = "SELECT u.id, u.user_fullname, u.user_position, r.role_name, c.college_name, u.user_password 
+        $sql = "SELECT u.id, u.user_fullname, u.college_id, u.user_position, r.role_name, c.college_name, u.user_password 
                 FROM users u 
                 JOIN roles r ON u.role_id = r.id 
                 JOIN colleges c ON u.college_id = c.id

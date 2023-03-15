@@ -18,6 +18,7 @@
           $_SESSION['logged_id'] = $user_data['id'];
           $_SESSION['fullname'] = $user_data['user_fullname'];
           $_SESSION['position'] = $user_data['user_position'];
+		  $_SESSION['collegeID'] = $user_data['college_id'];
           $_SESSION['college'] = $user_data['college_name'];
           $_SESSION['role'] = $user_data['role_name'];
   

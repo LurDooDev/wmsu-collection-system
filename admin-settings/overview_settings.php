@@ -256,7 +256,6 @@ require_once "../classes/academicyear.class.php";
 
 
 
-
 </div>
 <!--Semester add here  -->
 

@@ -13,6 +13,8 @@
 
 
 
+
+
 ?>
 <!doctype html>
 <html lang="en" class="no-js">
@@ -33,7 +35,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
-    <title>Local Fees</title>
+    <title>University Fees</title>
     </head>
 
       <body>
@@ -59,7 +61,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0">Local Fees</h2>
+            <h2 class="fs-2 m-0">University Fees</h2>
         </div>
     </nav>
 		<div class="table-wrapper">
@@ -74,9 +76,9 @@
 					</div>
 					</div>
           <div class="col-sm-8 p-auto mr-auto">
-						<a href="localSchedule.php" class="btn btn-success" style = " padding: 13px; margin-top: 19px; border-radius:6px;"> <span>View Fee Schedules</span></a>
+						<a href="universitysched.php" class="btn btn-success" style = " padding: 13px; margin-top: 19px; border-radius:6px;"> <span>View Fee Schedules</span></a>
 						<div class="col-sm-10 p-auto mb-auto">
-						<a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a>
+						<a href="localfees.php" class="btn btn-success"><span>Back</span></a>
 						<!-- <a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>		
 									 -->
 					</div>
@@ -90,67 +92,65 @@
 					</div>
 				</div>
 			</div>
-			<table class="table table-striped table-hover">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Name</th>
-						<th>Category</th>
-                        <th>College</th>
-                        <th>Created By</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
             <?php
-// Create an instance of the UniversityFee class
-$LocalFee = new LocalFee();
+if (isset($_GET['fee_id'])) {
+    $feeId = $_GET['fee_id'];
+    $FeeSched = new LocalFeeSched();
+    $FeeSchedData = $FeeSched->showAllDetailsByFeeId($feeId);
+?>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Semester</th>
+                <th>School Year</th>
+                <th>Begin</th>
+                <th>End</th>
+                <th>Status</th>
+                <th>Created By</th>
+            </tr>
+        </thead>
+        <tbody>
 
-// Get all the fees from the database
-$LocalFeeData = $LocalFee->showAllDetails();
-
-$i = 1;
-foreach($LocalFeeData as $LocalFee) {        
-    ?>
-    <tr>
-        <td><?php echo $i; ?></td>
-        <td><?php echo $LocalFee['local_name']; ?></td>
-        <td><?php echo $LocalFee['local_fee_type']; ?></td>
-        <td><?php echo $LocalFee['college_name']; ?></td>
-        <td><?php echo $LocalFee['created_by']; ?></td>
-        <td>
-            <!-- Link to edit the fee -->
-            <a href="add_localschedule.php?id=<?php echo $LocalFee['id']; ?>" class="edit">
-                <i class="material-icons" title="Edit">&#xe147;</i>
-            </a>
-            <?php 
-            // Check if there are any fee schedules associated with this fee
-            $Schedule = new LocalFeeSched();
-            $schedules = $Schedule->get($LocalFee['id']);
-            if ($schedules) {
-                // If there are fee schedules, display a link to view them
-                ?>
-                <a href="view_localschedule.php?fee_id=<?php echo $LocalFee['id']; ?>" class="view-schedules">
-                    <i class="material-icons" title="View Schedules">event_note</i>
-                </a>
-                <?php
-            }
+            <?php
+                $i = 1;
+                foreach($FeeSchedData as $FeeSched) {        
             ?>
-        </td>
-    </tr>
-    <?php 
-    $i++;
+                <tr>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $FeeSched['local_name']; ?></td>
+                    <td><?php echo $FeeSched['local_amount']; ?></td>
+                    <td><?php echo $FeeSched['semester_name']; ?></td>
+                    <td><?php echo $FeeSched['academic_name']; ?></td>
+                    <td><?php echo date('F j, Y', strtotime($FeeSched['local_start_date'])); ?></td>
+                    <td><?php echo date('F j, Y', strtotime($FeeSched['local_end_date'])); ?></td>
+                    <td><?php echo ($FeeSched['is_active'] == 1) ? "Active" : "Not Active"; ?></td>
+                    <td><?php echo $FeeSched['created_by']; ?></td>
+                </tr>
+            <?php 
+                    $i++;
+                }
+            ?>
+        </tbody>
+    </table>
+<?php
+} else {
+    echo "Fee ID: $feeId";
+    echo "No fee ID specified.";
 }
 ?>
+
 </tbody>
 </table>
 <!-- Create Fee Modal HTML -->
 <div id="addFeesModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="addlocal.php" method="POST" id="addlocalfees">
+            <form action="adduniversityfees.php" method="POST" id="adduniversityfees">
                 <div class="modal-header">
-                    <h4 class="modal-title">Create Local Fees</h4>
+                    <h4 class="modal-title">Create University Fees</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -158,7 +158,10 @@ foreach($LocalFeeData as $LocalFee) {
                         <label for="name">Name</label>
                         <input type="text" name="name" id="name" class="form-control" required>
                     </div>
-                    <input type="hidden" name="collegeID" value="<?php echo $UserCollegeID; ?>">
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input type="number" name="amount" id="amount" class="form-control" required>
+                    </div>
                     <input type="hidden" name="created_by" value="<?php echo $UserFullname; ?>">
                 </div>
                 <div class="modal-footer">

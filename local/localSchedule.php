@@ -8,9 +8,10 @@
         header('location: ../public/logout.php');
     }
 	require_once '../classes/database.class.php';
-	require_once '../classes/universityfees.class.php';
-    require_once '../classes/semester.class.php';
-    require_once '../classes/academicyear.class.php';
+	require_once '../classes/localfeeSched.class.php';
+
+
+
 
 ?>
 <!doctype html>
@@ -32,7 +33,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
-    <title>Wmsu Collection System</title>
+    <title>University Fee Schedule</title>
     </head>
 
       <body>
@@ -42,9 +43,9 @@
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
 			<div class="list-group list-group-flush my-3">
                 <a href="../admin/dashboard-main.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Dashboard</a>
-                <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold fw-bold">Fees</a>
+                <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Fees</a>
                 <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Remit Records</a>
-                <a href="../college/Oldcollege.php" class="list-group-item list-group-item-action bg-hover first-text active">Colleges</a>
+                <a href="../college/college.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Colleges</a>
                 <a href="../funds/funds-sub.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Funds</a>
                 <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
                 <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
@@ -58,81 +59,105 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0">Add Scheduling Fees</h2>
+            <h2 class="fs-2 m-0">University Fee Scheduling</h2>
         </div>
     </nav>
 		<div class="table-wrapper">
 		<div class="table-title">
 				<div class="row">
-					<div class="col-sm-10 ml-auto">
-						<a href="university.php" class="btn btn-success"><span>Back To University Fees </span></a>
+					<div class="col-sm-4 pr-auto">
+					<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
+					<button class="btn btn-primary dropdown-toggle" id ="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By </button>
+						<div class="dropdown-menu">
+    					<a class="dropdown-item" href="#">Ascending</a>
+    					<a class="dropdown-item" href="#">Descending</a>
+					</div>
+					</div>
+          <div class="col-sm-8 p-auto mr-auto">
+						<a href="localfees.php" class="btn btn-success" style = " padding: 13px; margin-top: 19px; border-radius:6px;"> <span>Back</span></a>
+						<div class="col-sm-10 p-auto mb-auto">
+						<!-- <a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a> -->
+					</div>
 					</div>
 				</div>
-                <?php
-    // check if college_id is set in GET parameter
-    if (isset($_GET['id'])) {
-        // fetch college data from database
-        $fee = new UniversityFee();
-        $feeData = $fee->get($_GET['id']);
-        // check if college data is found
-        if ($feeData) {
-?>
-    <?php
-        } else {
-            echo "fees not found.";
-        }
-    } else {
-        echo "Invalid request.";
-    }
-?>
 			</div>
-            </br>
-            <form action="adduniversitySched.php" method="post">
-            <input type="hidden" name="universityID" value="<?php echo $feeData['id']; ?>">
-            <!--University Fee-->
-            <h3>Category: <span><?php echo $feeData['university_fee_type']; ?></span></h3>
-            <h3>Name: <span><?php echo $feeData['university_name']; ?></span></h3>
-            <!--University Fee-->
-</br></br>
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-3">
+					</div>
+				</div>
+			</div>
+
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Name</th>
+						<th>Category</th>
+						<th>Amount</th>
+                        <th>Semester</th>
+                        <th>School Year</th>
+                        <th>Begin</th>
+                        <th>End</th>
+                        <th>Status</th>
+                        <th>Created By</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+                    <?php
+                    $FeeSched = new localFeeSched();
+                    $FeeSchedData = $FeeSched->showAllDetails();
+    $i = 1;
+    foreach($FeeSchedData as $FeeSched) {        
+?>
+            <tr>
+            <td><?php echo $i; ?></td>
+                    <td><?php echo $FeeSched['local_name']; ?></td>
+                    <td><?php echo $FeeSched['local_fee_type']; ?></td>
+                    <td><?php echo $FeeSched['local_amount']; ?></td>
+                    <td><?php echo $FeeSched['semester_name']; ?></td>
+                    <td><?php echo $FeeSched['academic_name']; ?></td>
+                    <td><?php echo date('F j, Y', strtotime($FeeSched['local_start_date'])); ?></td>
+                    <td><?php echo date('F j, Y', strtotime($FeeSched['local_end_date'])); ?></td>
+                    <td><?php echo ($FeeSched['is_active'] == 1) ? "Active" : "Not Active"; ?></td>
+                    <td><?php echo $FeeSched['created_by']; ?> </td>
+                   <td><a href="universityfees.php?id=<?php echo $FeeSched['id']; ?>" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a></td>
+
+            </tr>
+<?php 
+            $i++;
+        }
+?>
+
+<!-- Create Fee Modal HTML -->
+<div id="addFeesModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="adduniversityfees.php" method="POST" id="adduniversityfees">
+                <div class="modal-header">
+                    <h4 class="modal-title">Create University Fees</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
                 <div class="form-group">
-		  <label for="academicYearID" class="form-label">School Year</label>
-            <select class="form-control" id="academicYearID" name="academicYearID" required>
-              <option value="">Select your option</option>
-			  <?php
-			  $AcademicYear = new AcademicYear();
-			  $AcademicYearData = $AcademicYear->show();
-            	 foreach ($AcademicYearData as $AcademicYear) {
-                 ?>
-                <option value="<?php echo $AcademicYear['id']; ?>"><?php echo $AcademicYear['academic_name']; ?></option>
-              <?php } ?>
-            </select>
-          </div>
-          <div class="form-group">
-		  <label for="semesterID" class="form-label">Semester</label>
-            <select class="form-control" id="semesterID" name="semesterID" required>
-              <option value="">Select your option</option>
-			  <?php
-			  $semester = new Semester();
-			  $semesterData = $semester->show();
-            	 foreach ($semesterData as $semester) {
-                 ?>
-                <option value="<?php echo $semester['id']; ?>"><?php echo $semester['semester_name']; ?></option>
-              <?php } ?>
-            </select>
-          </div>
-          
-          <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
                         <label for="amount">Amount</label>
                         <input type="number" name="amount" id="amount" class="form-control" required>
                     </div>
-            <input type="hidden" name="created_by" value="<?php echo $UserFullname; ?>">
+                    <input type="hidden" name="created_by" value="<?php echo $UserFullname; ?>">
+                </div>
                 <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                     <input type="hidden" name="action" value="add">
-                    <button type="submit" class="btn btn-success" name="action" value="add">Save</button>
+                    <input type="submit" class="btn btn-success" value="create">
                 </div>
             </form>
-		</div>
-	</div>        
+        </div>
+    </div>
 </div>
 
 </body>       
