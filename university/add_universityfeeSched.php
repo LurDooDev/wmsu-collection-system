@@ -10,7 +10,7 @@
 	require_once '../classes/database.class.php';
 	require_once '../classes/universityfees.class.php';
     require_once '../classes/semester.class.php';
-    require_once '../classes/schoolyear.class.php';
+    require_once '../classes/academicyear.class.php';
 
 ?>
 <!doctype html>
@@ -90,21 +90,20 @@
             <form action="adduniversitySched.php" method="post">
             <input type="hidden" name="universityID" value="<?php echo $feeData['id']; ?>">
             <!--University Fee-->
-            <h3>Category: <span><?php echo $feeData['university_type']; ?></span></h3>
+            <h3>Category: <span><?php echo $feeData['university_fee_type']; ?></span></h3>
             <h3>Name: <span><?php echo $feeData['university_name']; ?></span></h3>
-            <h3>Amount: <span>Php <?php echo $feeData['university_amount']; ?></span></h3>
             <!--University Fee-->
 </br></br>
                 <div class="form-group">
-		  <label for="schoolYearID" class="form-label">School Year</label>
-            <select class="form-control" id="schoolYearID" name="schoolYearID" required>
+		  <label for="academicYearID" class="form-label">School Year</label>
+            <select class="form-control" id="academicYearID" name="academicYearID" required>
               <option value="">Select your option</option>
 			  <?php
-			  $schoolYear = new SchoolYear();
-			  $schoolYearData = $schoolYear->show();
-            	 foreach ($schoolYearData as $schoolYear) {
+			  $AcademicYear = new AcademicYear();
+			  $AcademicYearData = $AcademicYear->show();
+            	 foreach ($AcademicYearData as $AcademicYear) {
                  ?>
-                <option value="<?php echo $schoolYear['id']; ?>"><?php echo $schoolYear['school_year_name']; ?></option>
+                <option value="<?php echo $AcademicYear['id']; ?>"><?php echo $AcademicYear['academic_name']; ?></option>
               <?php } ?>
             </select>
           </div>
@@ -122,13 +121,9 @@
             </select>
           </div>
           <div class="form-group">
-                        <label for="startdate">Begin</label>
-                        <input type="date" name="startdate" id="startdate" class="form-control" required>
+                        <label for="amount">Amount</label>
+                        <input type="number" name="amount" id="amount" class="form-control" required>
                     </div>
-            <div class="form-group">
-                        <label for="enddate">End</label>
-                        <input type="date" name="enddate" id="enddate" class="form-control" required>
-            </div>
             <input type="hidden" name="created_by" value="<?php echo $UserFullname; ?>">
                 <div class="modal-footer">
                     <input type="hidden" name="action" value="add">

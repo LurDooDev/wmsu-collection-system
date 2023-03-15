@@ -5,10 +5,14 @@ require_once 'database.class.php';
 class UniversityFeeSched {
     public $universityFeeID;
     public $semesterID;
-    public $schoolYearID;
+    public $academicYearID;
+    public $universityAmount;
     public $universityStartDate;
     public $universityEndDate;
     public $universitycreatedby;
+    public $semesterDuration;
+    public $isActive;
+
 
     protected $db;
 
@@ -16,9 +20,50 @@ class UniversityFeeSched {
         $this->db = new Database();
     }
 
+    function calculateStartDate($schoolYearStartDate, $semesterID) {
+        // Calculate the start date of the semester based on the school year start date
+        $startMonth = ($semesterID == 1) ? 8 : 1; // Assuming August start for 1st semester and January start for 2nd semester
+        $startYear = date('Y', strtotime($schoolYearStartDate));
+        $startDate = date('Y-m-d', strtotime("$startYear-$startMonth-01"));
+
+        return $startDate;
+    }
+
+    function calculateEndDate($schoolYearStartDate, $semesterID) {
+        try {
+            // Get the duration of the semester with the given ID
+            $semesterDurationSql = "SELECT semester_duration FROM semesters WHERE id = :semester_id";
+            $semesterDurationStmt = $this->db->connect()->prepare($semesterDurationSql);
+            $semesterDurationStmt->bindParam(':semester_id', $semesterID);
+            $semesterDurationStmt->execute();
+            $duration = $semesterDurationStmt->fetchColumn();
+
+            // Calculate the start and end dates of the semester based on the school year start date
+            $startDate = $this->calculateStartDate($schoolYearStartDate, $semesterID);
+            $endDate = date('Y-m-d', strtotime("$startDate +$duration months"));
+
+            return $endDate;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+
     function createUniversityFeeSched() {
         try {
-            // Get the ID of the fee with the given fee type
+
+                   // Get the academic year start date
+        $academicYearStartDateSql = "SELECT start_date FROM academic_year WHERE id = :academic_year_id";
+        $academicYearStartDateStmt = $this->db->connect()->prepare($academicYearStartDateSql);
+        $academicYearStartDateStmt->bindParam(':academic_year_id', $this->academicYearID);
+        $academicYearStartDateStmt->execute();
+        $academicYearStartDate = $academicYearStartDateStmt->fetchColumn();
+
+           // Calculate the start and end dates of the semester based on the academic year start date
+           $startDate = $this->calculateStartDate($academicYearStartDate, $this->semesterID);
+           $endDate = $this->calculateEndDate($academicYearStartDate, $this->semesterID);
+
+               // Get the ID of the fee with the given fee type
             $universityFeeSql = "SELECT id FROM university_fee WHERE id = :university_id";
             $universityFeeStmt = $this->db->connect()->prepare($universityFeeSql);
             $universityFeeStmt->bindParam(':university_id', $this->universityFeeID);
@@ -33,29 +78,27 @@ class UniversityFeeSched {
             $semesterID = $semesterStmt->fetchColumn();
     
             // Get the ID of the school year with the given school year name
-            $schoolYearSql = "SELECT id FROM school_year WHERE id = :school_year_id";
-            $schoolYearStmt = $this->db->connect()->prepare($schoolYearSql);
-            $schoolYearStmt->bindParam(':school_year_id', $this->schoolYearID);
-            $schoolYearStmt->execute();
-            $schoolYearID = $schoolYearStmt->fetchColumn();
+            $academicYearsql = "SELECT id FROM academic_year WHERE id = :academic_year_id";
+            $academicYearStmt = $this->db->connect()->prepare($academicYearsql);
+            $academicYearStmt->bindParam(':academic_year_id', $this->academicYearID);
+            $academicYearStmt->execute();
+            $academicYearID = $academicYearStmt->fetchColumn();
     
             // Define the variables for the prepared statement
-            $universityStartDate = $this->universityStartDate;
-            $universityEndDate = $this->universityEndDate;
             $universitycreatedby = $this->universitycreatedby;
     
-            // Insert the new row into the fee_schedule table with the retrieved ID values
-            $insertSql = "INSERT INTO university_fee_schedule (university_fee_id, semester_id, school_year_id, university_start_date, university_end_date, created_by)
-            VALUES (:university_id, :semester_id, :school_year_id, :university_start_date, :university_end_date, :created_by)";
+            // Insert a new row into the university_fee_schedule table
+            $insertSql = "INSERT INTO university_fee_schedule (university_fee_id, academic_year_id, semester_id, university_amount, university_start_date, university_end_date, created_by)
+                VALUES (:university_fee_id, :academic_year_id, :semester_id, :university_amount, :university_start_date, :university_end_date, :created_by)";
             $insertStmt = $this->db->connect()->prepare($insertSql);
-            $insertStmt->bindParam(':university_id', $universityFeeID);
+            $insertStmt->bindParam(':university_fee_id', $universityFeeID);
+            $insertStmt->bindParam(':academic_year_id', $academicYearID);
             $insertStmt->bindParam(':semester_id', $semesterID);
-            $insertStmt->bindParam(':school_year_id', $schoolYearID);
-            $insertStmt->bindParam(':university_start_date', $universityStartDate);
-            $insertStmt->bindParam(':university_end_date', $universityEndDate);
+            $insertStmt->bindParam(':university_amount', $universityAmount);
+            $insertStmt->bindParam(':university_start_date', $startDate);
+            $insertStmt->bindParam(':university_end_date', $endDate);
             $insertStmt->bindParam(':created_by', $universitycreatedby);
             $insertStmt->execute();
-
     
             return true;
         } catch (PDOException $e) {
@@ -63,6 +106,7 @@ class UniversityFeeSched {
             return false;
         }
     }
+
 
     function deleteUniversityFeeSchedule($universityFeeID) {
         try {

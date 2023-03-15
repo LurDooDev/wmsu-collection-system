@@ -98,7 +98,6 @@
 						<th>#</th>
 						<th>Name</th>
 						<th>Category</th>
-						<th>Amount</th>
                         <th>Created By</th>
 						<th>Action</th>
 					</tr>
@@ -117,8 +116,7 @@ foreach($FeeData as $Fee) {
     <tr>
         <td><?php echo $i; ?></td>
         <td><?php echo $Fee['university_name']; ?></td>
-        <td><?php echo $Fee['university_type']; ?></td>
-        <td><?php echo $Fee['university_amount']; ?></td>
+        <td><?php echo $Fee['university_fee_type']; ?></td>
         <td><?php echo $Fee['created_by']; ?></td>
         <td>
             <!-- Link to edit the fee -->
@@ -159,10 +157,6 @@ foreach($FeeData as $Fee) {
                 <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" name="name" id="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="amount">Amount</label>
-                        <input type="number" name="amount" id="amount" class="form-control" required>
                     </div>
                     <input type="hidden" name="created_by" value="<?php echo $UserFullname; ?>">
                 </div>

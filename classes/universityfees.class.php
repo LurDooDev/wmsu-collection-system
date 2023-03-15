@@ -5,7 +5,6 @@ require_once 'database.class.php';
 class UniversityFee {
     public $universityID;
     public $universityType;
-    public $universityAmount;
     public $universityName;
     public $universitycreatedby;
 
@@ -17,10 +16,9 @@ class UniversityFee {
 
     function createUniversityFee() {
         try {
-            $sql = "INSERT INTO university_fee (university_name, university_amount, created_by) VALUES (:university_name, :university_amount, :created_by)";
+            $sql = "INSERT INTO university_fee (university_name, created_by) VALUES (:university_name, :created_by)";
             $stmt = $this->db->connect()->prepare($sql);
             $stmt->bindParam(':university_name', $this->universityName);
-            $stmt->bindParam(':university_amount', $this->universityAmount);
             $stmt->bindParam(':created_by', $this->universitycreatedby);
             $stmt->execute();
             return true;
