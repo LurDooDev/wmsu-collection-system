@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2023 at 03:16 PM
+-- Generation Time: Mar 15, 2023 at 08:03 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -139,8 +139,7 @@ CREATE TABLE `semesters` (
 
 INSERT INTO `semesters` (`id`, `semester_name`, `semester_duration`, `is_active`, `created_at`, `updated_at`) VALUES
 (1, '1st Semester', 4, 1, '2023-03-14 11:19:07', '2023-03-14 14:05:18'),
-(2, '2nd Semester', 4, 1, '2023-03-14 11:20:23', '2023-03-14 14:05:18'),
-(3, 'Summer', 2, 1, '2023-03-14 11:20:33', '2023-03-14 14:05:18');
+(2, '2nd Semester', 4, 1, '2023-03-14 11:20:23', '2023-03-14 14:05:18');
 
 -- --------------------------------------------------------
 
@@ -172,6 +171,43 @@ CREATE TABLE `university_fee` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `university_fee`
+--
+
+INSERT INTO `university_fee` (`id`, `university_fee_type`, `university_name`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 'University', 'CSB', 'Bryan', '2023-03-15 04:11:11', '2023-03-15 04:11:11'),
+(2, 'University', 'WMSU Palaro', 'Bryan', '2023-03-15 06:59:04', '2023-03-15 06:59:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `university_fee_schedule`
+--
+
+CREATE TABLE `university_fee_schedule` (
+  `id` int(11) NOT NULL,
+  `university_fee_id` int(11) NOT NULL,
+  `academic_year_id` int(11) NOT NULL,
+  `semester_id` int(11) NOT NULL,
+  `university_start_date` date NOT NULL,
+  `university_end_date` date NOT NULL,
+  `university_amount` int(11) NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_by` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `university_fee_schedule`
+--
+
+INSERT INTO `university_fee_schedule` (`id`, `university_fee_id`, `academic_year_id`, `semester_id`, `university_start_date`, `university_end_date`, `university_amount`, `is_active`, `created_at`, `updated_at`, `created_by`) VALUES
+(1, 1, 1, 1, '2022-08-01', '2022-12-01', 231, 1, '2023-03-15 06:39:30', '2023-03-15 06:39:30', 'Bryan'),
+(2, 1, 1, 2, '2022-01-01', '2022-05-01', 420, 1, '2023-03-15 06:57:49', '2023-03-15 06:57:49', 'Bryan'),
+(3, 2, 1, 2, '2022-01-01', '2022-05-01', 320, 1, '2023-03-15 06:59:34', '2023-03-15 06:59:34', 'Bryan');
 
 -- --------------------------------------------------------
 
@@ -256,6 +292,15 @@ ALTER TABLE `university_fee`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `university_fee_schedule`
+--
+ALTER TABLE `university_fee_schedule`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `university_fee_id` (`university_fee_id`),
+  ADD KEY `academic_year_id` (`academic_year_id`),
+  ADD KEY `semester_id` (`semester_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -307,7 +352,13 @@ ALTER TABLE `semesters`
 -- AUTO_INCREMENT for table `university_fee`
 --
 ALTER TABLE `university_fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `university_fee_schedule`
+--
+ALTER TABLE `university_fee_schedule`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -331,6 +382,14 @@ ALTER TABLE `programs`
 ALTER TABLE `students`
   ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`college_id`) REFERENCES `colleges` (`id`),
   ADD CONSTRAINT `students_ibfk_2` FOREIGN KEY (`program_id`) REFERENCES `programs` (`id`);
+
+--
+-- Constraints for table `university_fee_schedule`
+--
+ALTER TABLE `university_fee_schedule`
+  ADD CONSTRAINT `university_fee_schedule_ibfk_1` FOREIGN KEY (`university_fee_id`) REFERENCES `university_fee` (`id`),
+  ADD CONSTRAINT `university_fee_schedule_ibfk_2` FOREIGN KEY (`academic_year_id`) REFERENCES `academic_year` (`id`),
+  ADD CONSTRAINT `university_fee_schedule_ibfk_3` FOREIGN KEY (`semester_id`) REFERENCES `semesters` (`id`);
 
 --
 -- Constraints for table `users`
