@@ -11,8 +11,6 @@ if (isset($_POST['action']) && $_POST['action'] == 'update') {
     $AcademicYear->isActive = htmlspecialchars($_POST['status']);
     $AcademicYear->academicYearID = htmlspecialchars($_POST['id']);
     
-
-      
     if ($AcademicYear->update()) {
         header('Location: overview_settings.php');
         exit();
