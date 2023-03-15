@@ -53,7 +53,7 @@ class UniversityFeeSched {
         try {
 
                    // Get the academic year start date
-        $academicYearStartDateSql = "SELECT start_date FROM academic_year WHERE id = :academic_year_id";
+        $academicYearStartDateSql = "SELECT academic_start_date FROM academic_year WHERE id = :academic_year_id";
         $academicYearStartDateStmt = $this->db->connect()->prepare($academicYearStartDateSql);
         $academicYearStartDateStmt->bindParam(':academic_year_id', $this->academicYearID);
         $academicYearStartDateStmt->execute();
@@ -94,7 +94,7 @@ class UniversityFeeSched {
             $insertStmt->bindParam(':university_fee_id', $universityFeeID);
             $insertStmt->bindParam(':academic_year_id', $academicYearID);
             $insertStmt->bindParam(':semester_id', $semesterID);
-            $insertStmt->bindParam(':university_amount', $universityAmount);
+            $insertStmt->bindParam(':university_amount', $this->universityAmount);
             $insertStmt->bindParam(':university_start_date', $startDate);
             $insertStmt->bindParam(':university_end_date', $endDate);
             $insertStmt->bindParam(':created_by', $universitycreatedby);
@@ -152,11 +152,11 @@ class UniversityFeeSched {
     }
 
     function showAllDetailsByFeeId($fee_id) {
-        $sql = "SELECT ufs.university_start_date, ufs.university_end_date, ufs.created_by, uf.university_name, uf.university_amount, uf.university_type, s.semester_name, sy.school_year_name
+        $sql = "SELECT ufs.university_start_date, ufs.university_amount, ufs.university_end_date, ufs.created_by, ufs.is_active, uf.university_name, uf.university_fee_type, s.semester_name, sy.academic_name
                 FROM university_fee_schedule ufs
                 JOIN university_fee uf ON ufs.university_fee_id = uf.id
                 JOIN semesters s ON ufs.semester_id = s.id
-                JOIN school_year sy ON ufs.school_year_id = sy.id
+                JOIN academic_year sy ON ufs.academic_year_id = sy.id
                 WHERE ufs.university_fee_id = :fee_id";
         $stmt = $this->db->connect()->prepare($sql);
         $stmt->bindValue(':fee_id', $fee_id, PDO::PARAM_INT);
@@ -165,11 +165,10 @@ class UniversityFeeSched {
     }
 
     function showAllDetails() {
-        $sql = "SELECT ufs.university_start_date, ufs.university_end_date, ufs.created_by, uf.university_name, uf.university_amount, uf.university_type, s.semester_name, sy.school_year_name
-                FROM university_fee_schedule ufs
+        $sql = "SELECT ufs.id, ufs.university_start_date, ufs.university_amount, ufs.university_end_date, ufs.created_by, ufs.is_active, uf.university_name, uf.university_fee_type, s.semester_name, sy.academic_name                FROM university_fee_schedule ufs
                 JOIN university_fee uf ON ufs.university_fee_id = uf.id
                 JOIN semesters s ON ufs.semester_id = s.id
-                JOIN school_year sy ON ufs.school_year_id = sy.id";
+                JOIN academic_year sy ON ufs.academic_year_id = sy.id";
         $stmt = $this->db->connect()->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

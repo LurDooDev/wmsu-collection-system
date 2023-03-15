@@ -9,8 +9,6 @@ if (isset($_POST['action']) && $_POST['action'] == 'add') {
     $universitySemesterID = htmlspecialchars($_POST['semesterID']);
     $academicYearID = htmlspecialchars($_POST['academicYearID']);
     $universityAmount = htmlspecialchars($_POST['amount']);
-    // $universityStartDate = htmlspecialchars($_POST['startdate']);
-    // $universityEndDate = htmlspecialchars($_POST['enddate']);
     $universitycreatedby = htmlspecialchars($_POST['created_by']);
     
     $universityFee = new UniversityFeeSched();
@@ -18,8 +16,6 @@ if (isset($_POST['action']) && $_POST['action'] == 'add') {
     $universityFee->semesterID = $universitySemesterID;
     $universityFee->universityAmount = $universityAmount;
     $universityFee->academicYearID = $academicYearID;
-    // $universityFee->universityStartDate = $universityStartDate;
-    // $universityFee->universityEndDate = $universityEndDate;
     $universityFee->universitycreatedby = $universitycreatedby;
     
     if ($universityFee->createUniversityFeeSched()) {

@@ -99,6 +99,7 @@
                         <th>School Year</th>
                         <th>Begin</th>
                         <th>End</th>
+                        <th>Status</th>
                         <th>Created By</th>
 						<th>Action</th>
 					</tr>
@@ -113,15 +114,16 @@
             <tr>
                 <td><?php echo $i; ?></td>
                 <td><?php echo $FeeSched['university_name']; ?></td>
-				<td><?php echo $FeeSched['university_type']; ?></td>
+				<td><?php echo $FeeSched['university_fee_type']; ?></td>
                 <td><?php echo $FeeSched['university_amount']; ?></td>
                 <td><?php echo $FeeSched['semester_name']; ?></td>
-                <td><?php echo $FeeSched['school_year_name']; ?></td>
+                <td><?php echo $FeeSched['academic_name']; ?></td>
                 <td><?php echo date('F j, Y', strtotime($FeeSched['university_start_date'])); ?></td>
                 <td><?php echo date('F j, Y', strtotime($FeeSched['university_end_date'])); ?></td>
+                <td><?php echo ($FeeSched['is_active'] == 1) ? "Active" : "Not Active"; ?></td>
                 <td><?php echo $FeeSched['created_by']; ?></td>
                 <td>
-                <a href="universityfees.php?id=<?php echo $Fee['id']; ?>" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
+                <a href="universityfees.php?id=<?php echo $FeeSched['id']; ?>" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
                 </td>
             </tr>
 <?php 
