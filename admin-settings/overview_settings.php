@@ -70,12 +70,16 @@ require_once "../classes/academicyear.class.php";
                     <a href="../admin-settings/User-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold "style="border:inset;" id="funds">User Management</a>
                     <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold fw-bold " style="border:inset;"id="funds">Colleges</a>
 				</div>
-        <div class="col-sm-8 " style="display: flex; align-items: center; justify-content: flex-end;">
-						<a href="#addSemesterModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Semester</span></a>
+                <div class="d-flex">
+                <div class="ml-auto pl-auto">
+                <a href="#addSemesterModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Semester</span></a>
+</div>
+<div class="d-flex" style="margin-right:20px">
+                <div class=" mr-5 pr-auto ml-4">
+						<a href="#addYearModal" class="btn btn-success" style= "nargin-right:100px;" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add School Year</span></a>
 					</div>
-          <div class="col-sm-8 " style="display: flex; align-items: center; justify-content: flex-end;">
-						<a href="#addYearModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add School Year</span></a>
-					</div>
+</div>
+</div>
 <h style="font-size: 20px;"><b>Semester</b></h>
           <div class =" table-responsive">
                 <table class="table">
@@ -102,7 +106,6 @@ require_once "../classes/academicyear.class.php";
 								<td><?php echo $Semester['semester_name']; ?></td>
 								<td><?php echo $Semester['semester_duration']; ?> months</td>
                 <td><?php echo ($Semester['is_active'] == 1) ? "Active" : "Not Active"; ?></td>
-                <td>
                 <td>
                     <a href="#updateSemesterModal<?php echo $i; ?>" class="edit" data-toggle="modal">
                 <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
@@ -193,7 +196,6 @@ require_once "../classes/academicyear.class.php";
 								<td><?php echo date('F j, Y', strtotime($AcademicYear['academic_start_date'])); ?></td>
                 <td><?php echo date('F j, Y', strtotime($AcademicYear['academic_end_date'])); ?></td>
                 <td><?php echo ($AcademicYear['is_active'] == 1) ? "Active" : "Not Active"; ?></td>
-                <td>
                 <td>
                     <a href="#updateYearModal<?php echo $i; ?>" class="edit" data-toggle="modal">
                 <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
