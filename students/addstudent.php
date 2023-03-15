@@ -7,13 +7,13 @@ if (isset($_POST['action']) && $_POST['action'] == 'add') {
     // Create a new FeeSchedule object
     $students = new Student();
 
-    $students->studentPersonalID = $_POST['studentID'];
+    $students->studentID = $_POST['studentID'];
     $students->studentFname = $_POST['firstname'];
-    $students->studentMname = $_POST['middlename'];
     $students->studentLname = $_POST['lastname'];
     $students->studentYearLevel = $_POST['yearlevel'];
     $students->studentEmail = $_POST['email'];
-    $students->studentCollege = $_POST['collegeCode'];
+    $students->programID = $_POST['program'];
+    $students->studentCollege = $_POST['college'];
 
     // Call the createFeeSchedule method to insert the new row into the fee_schedule table
     if ($students->createStudent()) {

@@ -4,13 +4,13 @@ require_once 'database.class.php';
 
 class Student {
     public $studentID;
-    public $studentPersonalID;
     public $studentFname;
-    public $studentMname;
     public $studentLname;
     public $studentYearLevel;
+    public $programName;
     public $studentEmail;
     public $studentCollege;
+    public $programID;
 
 
     protected $db;
@@ -22,21 +22,28 @@ class Student {
     function createStudent() {
         try {
 
-            $studentCollegeSql = "SELECT college_id FROM colleges WHERE college_id = :college_id";
+            $studentCollegeSql = "SELECT id FROM colleges WHERE id = :college_id";
             $studentCollegeStmt = $this->db->connect()->prepare($studentCollegeSql);
             $studentCollegeStmt->bindParam(':college_id', $this->studentCollege);
             $studentCollegeStmt->execute();
             $studentCollegeID = $studentCollegeStmt->fetchColumn();
 
-            $insertSql = "INSERT INTO student (student_personal_id, student_fname, student_mname, student_lname, year_level, student_email, college_id) VALUES (:student_personal_id, :student_fname, :student_mname, :student_lname, :year_level, :student_email, :college_id)";
+            $programSql = "SELECT id FROM programs WHERE id = :program_id";
+            $programStmt = $this->db->connect()->prepare($programSql);
+            $programStmt->bindParam(':program_id', $this->programID);
+            $programStmt->execute();
+            $programID = $programStmt->fetchColumn();
+
+            $insertSql = "INSERT INTO students (id, first_name, last_name, year_level, student_email, college_id, program_id)
+                        VALUES (:id, :first_name, :last_name, :year_level, :student_email, :college_id, :program_id)";
             $insertStmt = $this->db->connect()->prepare($insertSql);
-            $insertStmt->bindParam(':student_personal_id', $this->studentPersonalID);
-            $insertStmt->bindParam(':student_fname', $this->studentFname);
-            $insertStmt->bindParam(':student_mname', $this->studentMname);
-            $insertStmt->bindParam(':student_lname', $this->studentLname);
+            $insertStmt->bindParam(':id', $this->studentID);
+            $insertStmt->bindParam(':first_name', $this->studentFname);
+            $insertStmt->bindParam(':last_name', $this->studentLname);
             $insertStmt->bindParam(':year_level', $this->studentYearLevel);
             $insertStmt->bindParam(':student_email', $this->studentEmail);
             $insertStmt->bindParam(':college_id', $studentCollegeID);
+            $insertStmt->bindParam(':program_id', $programID);
             $insertStmt->execute();
 
             return true;

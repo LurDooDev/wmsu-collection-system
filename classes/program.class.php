@@ -6,7 +6,6 @@ class Program {
     public $programID;
     public $collegeID;
     public $programName;
-    public $collegeName;
 
     protected $db;
 
@@ -74,7 +73,7 @@ class Program {
 
 
     function show(){
-        $sql = "SELECT * FROM university_fee_schedule ORDER BY university_fee_schedule.id ASC";
+        $sql = "SELECT * FROM programs ORDER BY programs.id ASC";
         $query=$this->db->connect()->prepare($sql);
         if($query->execute()){
             $data = $query->fetchAll();

@@ -15,6 +15,7 @@ if (!isset($_SESSION['logged_id'])) {
 
 require_once '../classes/student.class.php';
 require_once '../classes/college.class.php';
+require_once '../classes/program.class.php';
 
 
 ?>
@@ -93,6 +94,7 @@ require_once '../classes/college.class.php';
 						<th>Student ID</th>
 						<th>Student Name</th>
 						<th>College</th>
+						<th>Course</th>
 						<th>Year Level</th>
 						<th>Email</th>
 					</tr>
@@ -107,9 +109,10 @@ require_once '../classes/college.class.php';
         ?>
 					<tr>
 					<td><?php echo $i; ?></td>
-					<td><?php echo $students['student_personal_id']; ?></td>
-						<td><?php echo $students['student_fname'], ' ', $students['student_mname'], ' ', $students['student_lname']; ?></td>
-						<td><?php echo $students['college_code']; ?></td>
+					<td><?php echo $students['id']; ?></td>
+						<td><?php echo $students['first_name'], ' ', $students['last_name']; ?></td>
+						<td><?php echo $students['college_name']; ?></td>
+						<td><?php echo $students['program_name']; ?></td>
 						<td><?php echo $students['year_level']; ?></td>
 						<td><?php echo $students['student_email']; ?></td>
 						<td>
@@ -131,21 +134,14 @@ require_once '../classes/college.class.php';
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
                 <br>
-                <!-- <label for="fileSelect" style = "font-size:15px; margin-left: 20px">Student CSV file Upload</label>
-                 <input id="fileSelect" type="file" accept=".csv" style ="margin-left: 30px;"/>
-            </label> -->
 				<div class="modal-body">
 				<div class="form-group">
 						<label for="studentID">Student ID</label>
-						<input type="text" name="studentID" id="studentID" class="form-control" required>
+						<input type="number" name="studentID" id="studentID" class="form-control" required>
 					</div>					
 					<div class="form-group">
 						<label for="firstname">First name</label>
 						<input type="text" name="firstname" id="firstname" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label for="middlename">Middle initial</label>
-						<input type="text" name="middlename" id="middle" class="form-control" required>
 					</div>
 					<div class="form-group">
 						<label for="lastname">Last name</label>
@@ -156,8 +152,8 @@ require_once '../classes/college.class.php';
 						<input type="text" name="email" id="email" class="form-control" required>
 					</div>
 		<div class="form-group">
-		  <label for="collegeCode" class="form-label">Colleges</label>
-            <select class="form-control" id="collegeCode" name="collegeCode" required>
+		  <label for="college" class="form-label">Colleges</label>
+            <select class="form-control" id="college" name="college" required>
 				
               <option value="">Select your option</option>
 			  <?php
@@ -165,7 +161,23 @@ require_once '../classes/college.class.php';
 			  $collegeData = $colleges->show();
             	 foreach ($collegeData as $colleges) {
                  ?>
-                <option value="<?php echo $colleges['college_id']; ?>"><?php echo $colleges['college_name']; ?></option>
+                <option value="<?php echo $colleges['id']; ?>"><?php echo $colleges['college_name']; ?></option>
+              <?php } ?>
+            </select>
+
+          </div>
+
+		  <div class="form-group">
+		  <label for="program" class="form-label">Programs</label>
+            <select class="form-control" id="program" name="program" required>
+				
+              <option value="">Select your option</option>
+			  <?php
+			  $Program = new Program();
+			  $ProgramData = $Program->show();
+            	 foreach ($ProgramData as $Program) {
+                 ?>
+                <option value="<?php echo $Program['id']; ?>"><?php echo $Program['program_name']; ?></option>
               <?php } ?>
             </select>
 
