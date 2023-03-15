@@ -65,8 +65,8 @@
 		<div class="table-wrapper">
 		<div class="table-title">
 				<div class="row">
-          <div class="col-sm-8 p-auto mr-auto">
-						<div class="col-sm-10 p-auto mb-auto">
+          <div class="col-sm-13 p-auto mr-auto">
+						<div class="col-sm-13 p-auto mb-auto">
 						<a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New College</span></a>
 					</div>
 					</div>
