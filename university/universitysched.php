@@ -4,8 +4,14 @@
     session_start();
     require_once '../functions/session.function.php';
 	//prevent horny people
-    if (!isset($_SESSION['logged_id'])){
+    if (!isset($_SESSION['logged_id'])) {
         header('location: ../public/logout.php');
+    } else if ($_SESSION['role'] != 'admin') {
+        if ($_SESSION['role'] == 'officer') {
+            header('location: officer.php');
+        } else if ($_SESSION['role'] == 'collector') {
+            header('location: collector.php');
+        }
     }
 	require_once '../classes/database.class.php';
 	require_once '../classes/universityfeeSched.class.php';

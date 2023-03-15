@@ -2,15 +2,26 @@
 // resume session here to fetch session values
 session_start();
 
-//prevent horny people
-if (!isset($_SESSION['logged_id'])){
+if (!isset($_SESSION['logged_id'])) {
     header('location: ../public/logout.php');
+} else if ($_SESSION['role'] != 'admin') {
+    if ($_SESSION['role'] == 'officer') {
+        header('location: officer.php');
+    } else if ($_SESSION['role'] == 'collector') {
+        header('location: collector.php');
+    }
 }
+
+// //prevent horny people
+// if (!isset($_SESSION['logged_id'])){
+//     header('location: ../public/logout.php');
+// }
 
 require_once "../classes/semester.class.php";
 require_once "../classes/academicyear.class.php";
 
 ?>
+
 
 <!doctype html>
 <html lang="en" class="no-js">
@@ -76,7 +87,7 @@ require_once "../classes/academicyear.class.php";
 </div>
 <div class="d-flex" style="margin-right:20px">
                 <div class=" mr-5 pr-auto ml-4">
-						<a href="#addYearModal" class="btn btn-success" style= "nargin-right:100px;" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add School Year</span></a>
+						<a href="#addYearModal" class="btn btn-success" style= "margin-right:100px;" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add School Year</span></a>
 					</div>
 </div>
 </div>

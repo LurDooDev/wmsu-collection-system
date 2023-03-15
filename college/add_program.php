@@ -4,9 +4,16 @@
     session_start();
     require_once '../functions/session.function.php';
 	//prevent horny people
-    if (!isset($_SESSION['logged_id'])){
+
+    if (!isset($_SESSION['logged_id'])) {
         header('location: ../public/logout.php');
-    }
+      } else if ($_SESSION['role'] != 'admin') {
+        if ($_SESSION['role'] == 'officer') {
+            header('location: officer.php');
+        } else if ($_SESSION['role'] == 'collector') {
+            header('location: collector.php');
+        }
+      }
 	require_once '../classes/database.class.php';
 	require_once '../classes/college.class.php';
     require_once '../classes/program.class.php';
@@ -57,14 +64,14 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0">Add Scheduling Fees</h2>
+            <h2 class="fs-2 m-0">Add Program</h2>
         </div>
     </nav>
 		<div class="table-wrapper">
 		<div class="table-title">
 				<div class="row">
 					<div class="col-sm-10 ml-auto">
-						<a href="college.php" class="btn btn-success"><span>Back To University Fees </span></a>
+						<a href="college.php" class="btn btn-success" id="back-fee"><span>Back To College</span></a>
 					</div>
 				</div>
                 <?php
@@ -95,11 +102,11 @@
 </br></br>
 <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" name="name" id="name" class="form-control" required>
+                        <input type="text" name="name" class="form-control" required>
                     </div>
                 <div class="modal-footer">
                     <input type="hidden" name="action" value="add">
-                    <button type="submit" class="btn btn-success" name="action" value="add">Save</button>
+                    <button type="submit" class="btn btn-success" name="action" id="save" value="add">Save</button>
                 </div>
             </form>
 		</div>

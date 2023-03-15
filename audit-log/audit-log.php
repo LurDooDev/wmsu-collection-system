@@ -2,12 +2,15 @@
 // resume session here to fetch session values
 session_start();
 
-//prevent horny people
-if (!isset($_SESSION['logged_id'])){
-    header('location: ../public/logout.php');
+if (!isset($_SESSION['logged_id'])) {
+  header('location: ../public/logout.php');
+} else if ($_SESSION['role'] != 'admin') {
+  if ($_SESSION['role'] == 'officer') {
+      header('location: officer.php');
+  } else if ($_SESSION['role'] == 'collector') {
+      header('location: collector.php');
+  }
 }
-
-
 ?>
 
 <!doctype html>

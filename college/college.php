@@ -4,9 +4,16 @@
     session_start();
 	require_once '../functions/session.function.php';
 	//prevent horny people
-    if (!isset($_SESSION['logged_id'])){
-        header('location: ../public/logout.php');
-    }
+
+	if (!isset($_SESSION['logged_id'])) {
+		header('location: ../public/logout.php');
+	  } else if ($_SESSION['role'] != 'admin') {
+		if ($_SESSION['role'] == 'officer') {
+			header('location: officer.php');
+		} else if ($_SESSION['role'] == 'collector') {
+			header('location: collector.php');
+		}
+	  }
 	require_once '../classes/database.class.php';
 	require_once '../classes/college.class.php';
 	require_once '../classes/program.class.php';
@@ -43,9 +50,9 @@
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
 			<div class="list-group list-group-flush my-3">
                 <a href="../admin/dashboard-main.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Dashboard</a>
-                <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Fees</a>
+                <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Fees</a>
                 <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Remit Records</a>
-                <a href="../college/college.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Colleges</a>
+                <a href="../college/college.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Colleges</a>
                 <a href="../funds/funds-sub.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Funds</a>
                 <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
                 <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
@@ -59,7 +66,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0">University Fees</h2>
+            <h2 class="fs-2 m-0">College</h2>
         </div>
     </nav>
 		<div class="table-wrapper">
