@@ -3,6 +3,7 @@
     // resume session here to fetch session values
     session_start();
     require_once '../functions/session.function.php';
+	//prevent horny people
     if (!isset($_SESSION['logged_id'])) {
         header('location: ../public/logout.php');
     } else if ($_SESSION['role'] != 'admin') {
@@ -66,7 +67,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0">University Fees</h2>
+            <h2 class="fs-2 m-0">Fee Scheduling</h2>
         </div>
     </nav>
 		<div class="table-wrapper">
@@ -83,7 +84,7 @@
           <div class="col-sm-8 p-auto mr-auto">
 						<a href="universitysched.php" class="btn btn-success" style = " padding: 13px; margin-top: 19px; border-radius:6px;"> <span>View Fee Schedules</span></a>
 						<div class="col-sm-10 p-auto mb-auto">
-						<a href="university.php" class="btn btn-success"><span>Back</span></a>
+						<a href="university.php" class="btn btn-success" style = " padding: 13px; margin-top: 19px; border-radius:6px;"><span>Back To University Fee</span></a>
 						<!-- <a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>		
 									 -->
 					</div>

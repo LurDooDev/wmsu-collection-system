@@ -3,6 +3,7 @@
     // resume session here to fetch session values
     session_start();
     require_once '../functions/session.function.php';
+	//prevent horny people
     if (!isset($_SESSION['logged_id'])) {
         header('location: ../public/logout.php');
     } else if ($_SESSION['role'] != 'admin') {
@@ -167,8 +168,8 @@ foreach($FeeData as $Fee) {
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="hidden" name="action" value="add">
-                    <input type="submit" class="btn btn-success" value="create">
+                    <input type="hidden" name="action" value="Add">
+                    <input type="submit" class="btn btn-success" value="Create">
                 </div>
             </form>
         </div>

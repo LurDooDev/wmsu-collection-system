@@ -11,7 +11,6 @@ if (!isset($_SESSION['logged_id'])) {
         header('location: collector.php');
     }
 }
-
 // Check if the form has been submitted
 if (isset($_POST['action']) && $_POST['action'] == 'add') {
     
