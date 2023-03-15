@@ -4,8 +4,14 @@
     session_start();
     require_once '../functions/session.function.php';
 	//prevent horny people
-    if (!isset($_SESSION['logged_id'])){
+    if (!isset($_SESSION['logged_id'])) {
         header('location: ../public/logout.php');
+    } else if ($_SESSION['role'] != 'admin') {
+        if ($_SESSION['role'] == 'officer') {
+            header('location: officer.php');
+        } else if ($_SESSION['role'] == 'collector') {
+            header('location: collector.php');
+        }
     }
 	require_once '../classes/database.class.php';
 	require_once '../classes/universityfeeSched.class.php';
@@ -59,7 +65,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0">University Fee Scheduling</h2>
+            <h2 class="fs-2 m-0">Fee Schedule</h2>
         </div>
     </nav>
 		<div class="table-wrapper">
@@ -74,7 +80,7 @@
 					</div>
 					</div>
           <div class="col-sm-8 p-auto mr-auto">
-						<a href="university.php" class="btn btn-success" style = " padding: 13px; margin-top: 19px; border-radius:6px;"> <span>Back</span></a>
+						<a href="university.php" class="btn btn-success" id="backstreet" style = " padding: 13px; margin-top: 19px; border-radius:6px;"> <span>Back To University Fee</span></a>
 						<div class="col-sm-10 p-auto mb-auto">
 						<!-- <a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a> -->
 					</div>

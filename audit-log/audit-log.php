@@ -2,12 +2,15 @@
 // resume session here to fetch session values
 session_start();
 
-//prevent horny people
-if (!isset($_SESSION['logged_id'])){
-    header('location: ../public/logout.php');
+if (!isset($_SESSION['logged_id'])) {
+  header('location: ../public/logout.php');
+} else if ($_SESSION['role'] != 'admin') {
+  if ($_SESSION['role'] == 'officer') {
+      header('location: officer.php');
+  } else if ($_SESSION['role'] == 'collector') {
+      header('location: collector.php');
+  }
 }
-
-
 ?>
 
 <!doctype html>
@@ -57,9 +60,10 @@ if (!isset($_SESSION['logged_id'])){
         <div class="table-responsive">
 	<div id="page-content-wrapper">
 <!-- Dashboard hamburger      -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
+<nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
-            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Audit Log</h2>
+            <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+            <h2 class="fs-2 m-0"  style="color:#000000; font-weight: 500;">Audit Log</h2>
         </div>
     </nav>
     <div class="container">

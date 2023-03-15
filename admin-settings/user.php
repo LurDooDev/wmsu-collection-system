@@ -1,5 +1,14 @@
 <?php
 
+if (!isset($_SESSION['logged_id'])) {
+    header('location: ../public/logout.php');
+} else if ($_SESSION['role'] != 'admin') {
+    if ($_SESSION['role'] == 'officer') {
+        header('location: officer.php');
+    } else if ($_SESSION['role'] == 'collector') {
+        header('location: collector.php');
+    }
+}
 
 require_once '../classes/users.class.php';
 require_once '../classes/college.class.php';
