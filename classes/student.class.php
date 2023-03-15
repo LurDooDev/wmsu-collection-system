@@ -47,15 +47,10 @@ class Student {
     }
 
     function showAllDetails() {
-        $sql = "SELECT spi.student_personal_id, sfn.student_fname, smn.student_mname, sln.student_lname, syr.year_level, se.student_email, ci.college_code
-                FROM student s
-                JOIN student spi ON spi.student_id = s.student_id
-                JOIN student sfn ON sfn.student_id = s.student_id
-                JOIN student smn ON smn.student_id = s.student_id
-                JOIN student sln ON sln.student_id = s.student_id
-                JOIN student syr ON syr.student_id = s.student_id
-                JOIN student se ON se.student_id = s.student_id
-                JOIN colleges ci ON ci.college_id = s.college_id";
+        $sql = "SELECT s.id, s.first_name, s.last_name, s.student_email, s.year_level, s.payment_status, s.outstanding_balance, c.college_name, p.program_name 
+                FROM students s
+                JOIN colleges c ON s.college_id = c.id
+                JOIN programs p ON s.program_id = p.id";
         $stmt = $this->db->connect()->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
