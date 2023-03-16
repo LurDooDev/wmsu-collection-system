@@ -87,40 +87,6 @@ class Users{
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-    // function add(){
-    //     $sql = "INSERT INTO users(user_uname, user_fullname, user_type, user_position, user_college, user_password, user_email) VALUES 
-    //     (:username, :userfullname, :userroles, :userposition, :usercollege, :userpassword, :email);";
-
-    //     $query=$this->db->connect()->prepare($sql);
-    //     $query->bindParam(':username', $this->username);
-    //     $query->bindParam(':userfullname', $this->userfullname);
-    //     $query->bindParam(':userroles', $this->userroles);
-    //     $query->bindParam(':userposition', $this->userposition);
-    //     $query->bindParam(':usercollege', $this->usercollege);
-    //     $query->bindParam(':userpassword', $this->userpassword);
-    //     $query->bindParam(':email', $this->email);
-        
-    //     if($query->execute()){
-    //         return true;
-    //     }
-    //     else{
-    //         return false;
-    //     }	
-    // }
-
-    // function delete(){
-    //     $sql = "DELETE FROM users WHERE user_id=:user_id";
-
-    //     $query=$this->db->connect()->prepare($sql);
-    //     $query->bindParam(':user_id', $this->userID);
-
-    //     if($query->execute()){
-    //         return true;
-    //     }
-    //     else{
-    //         return false;
-    //     }	
-    // }
 
     // Method to log a user in
     function log_in($username, $password) {
