@@ -69,7 +69,7 @@ if (!isset($_SESSION['logged_id'])){
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover fw-bold">Logout</a>
 </div>
         </div>
-<div class="table-responsive">
+<div class="table-responsive" id="yezzir">
 	<div id="page-content-wrapper">
 <!-- Dashboard hamburger      -->
 <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
@@ -125,7 +125,7 @@ if (!isset($_SESSION['logged_id'])){
 </body>
       <div class="d-flex">
                 <div class="ml-auto p-auto mr-3">
-                <a href="report.php" class="btn btn-danger" style="padding:15px; background-color:#AD2020; margin-bottom:12px"><span>Back to CCS Generated Report </span></a>
+                <a href="report.php" class="btn btn-danger" style="padding:12px; background-color:#AD2020; margin-bottom:12px; border-radius:40px;"><span>Back to CCS Generated Report </span></a>
 					</div>
 
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>

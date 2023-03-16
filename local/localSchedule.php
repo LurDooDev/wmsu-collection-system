@@ -89,7 +89,7 @@
 					</div>
 					</div>
           <div class="col-sm-8 p-auto mr-auto">
-						<a href="localfees.php" class="btn btn-success" style = " padding: 13px; margin-top: 19px; border-radius:6px;"> <span>Back</span></a>
+						<a href="localfees.php" class="btn btn-success" style = " padding: 13px; margin-top: 19px; border-radius:6px;"> <span>Back to Local Fees</span></a>
 						<div class="col-sm-10 p-auto mb-auto">
 						<!-- <a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a> -->
 					</div>
