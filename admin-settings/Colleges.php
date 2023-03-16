@@ -84,13 +84,6 @@ if (!isset($_SESSION['logged_id'])) {
         </div>
     </nav>
     <div class="container">
-		<div class="row justify-content-center">
-		<div class="graphBox">
-                    <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold "style="border:inset;" id="funds">Overview</a>
-                    <a href="../admin-settings/User-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold "style="border:inset;" id="funds">User Management</a>
-                    <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active " style="border:inset;"id="funds">Colleges</a>
-				</div>
-                </div>
                 <div class="row">
 					<div class="col-sm-3" style="flex: 0 0 30%;">
           <h2 style="font-weight: 550;">Colleges</h2>

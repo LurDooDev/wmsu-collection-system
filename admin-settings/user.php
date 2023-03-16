@@ -87,13 +87,6 @@ require_once '../classes/role.class.php';
         </div>
     </nav>
     <div class="container">
-		<div class="row justify-content-center">
-		<div class="graphBox">
-                    <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold "style="border:inset;" id="funds">Overview</a>
-                    <a href="../admin-settings/User-management.php" class="list-group-item list-group-item-action bg-hover first-text active "style="border:inset;" id="funds">User Management</a>
-                    <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold fw-bold " style="border:inset;"id="funds">Colleges</a>
-				</div>
-                </div>
                 <div class="row">
 				<div class="col-sm-4" style="border-color: #000000;">
         			<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
