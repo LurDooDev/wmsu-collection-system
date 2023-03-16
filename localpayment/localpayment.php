@@ -75,14 +75,11 @@ if (!isset($_SESSION['logged_id'])) {
 							<li class="active" id="step1">
 								<strong>Search User</strong>
 							</li>
-							<li id="step2"><strong>Balance</strong></li>
-							<li id="step3"><strong>Payment Details</strong></li>
-							<li id="step4"><strong>Transaction Complete</strong></li>
 						</ul>
 						<div class="progress">
 							<div class="progress-bar"></div>
-							
-						</div> <br>
+						</div> 
+  <br>
 						
 						<!-- <div class ="row justify-content-center"> -->
 						<fieldset>
@@ -101,117 +98,8 @@ if (!isset($_SESSION['logged_id'])) {
   							<input type="button" name="next-step"
 								class="next-step" id ="strepsils" value="Next Step" />
 								
-						</fieldset>
-						<fieldset>
-              <div class ="container-fluid">
-						<div class="card">
-  <div class="card-body-sm">
-    <div class="container-sm">
-        <div class="row">
-          <div class="col-xl-6">
-          <div class ="col-x-6">
-          <img src="../images/CCS.jpg" width ="135px" alt="CCS LOGO" style="padding: 10px; float:right; margin-right: -490px;" >  
-          </div>
-            <ul class="list-unstyled" style="text-align: left;">
-              <li class="text-muted"><span style="color:#5d9fc5 ; font-weight:bold;">sl202203664</span></li>&nbsp;
-              <li class="text-muted" style="font-weight: 600;">Gregory D. Yames</li>
-              <li class="text-muted"  style="font-weight: 600;">College:</i>College of Computing Studies</li>
-              <li class="text-muted"  style="font-weight: 600;">Balance:</i>Php 0.0</li>
-              <li class="text-muted"  style="font-weight: 600;">Staus:</i>Enrolled</li>
-            </ul>
-          </div>
-          <div class="table-responsive" id="bilat">
-        <div class="row my-2 mx-1 justify-content-center" style="display: block;">
-          <table class="table table-striped table-borderless">
-            <thead style="background-color:#95BDFE ;" class="text-white">
-              <tr>
-                <th scope="col" style = " color: #000000;" >Id</th>
-                <th scope="col" style = " color: #000000;" >Payment Type</th>
-                <th scope="col" style = " color: #000000;" >Description</th>
-                <th scope="col" style = " color: #000000;" >Semester</th>
-                <th scope="col" style = " color: #000000;" >Date</th>
-                <th scope="col" style = " color: #000000;" >Total</th>
-                <th scope="col" style = " color: #000000;" >Status</th>
-                <th scope="col" style = " color: #000000;" >Balance</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>CSC</td>
-                <td>College Student Council</td>
-                <td>1</td>
-                <td>11/2/2022</td>
-                <td>Php 200.00</td>
-                <td>Paid</td>
-                <td>0</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>	
-</div>
-                            <div class="col-md-8">
-                                <div class="balance">
-                            </div>
-                            </div>
-                            </h2>
-
-							<input type="button" name="next-step"
-								class="next-step" value="Proceed To Payment" style="width: 160px;" />
-						</fieldset>
-
-						<fieldset>
-            <table class="table">
-  <thead>
-    <tr>
-      <th scope="col" style="text-align: left; background-color: #95BDFE;"><b>USC Fee</b></th>
-    </tr>
-  </thead>
-</table>
-<div class ="container-fluid">
-        <div class="col-sm-2" id="USC" style="font-weight: 500;">
-				<a><span>CSC Fee</span></a>
-        <input type="text" id="fee" name="fee" placeholder="Php 200.00" style="padding: 8px; padding-left: 100px; background-color: #EBEBEB; border-color: #EBEBEB; margin-left: 27px;"><br><br>
-        </div>
-            </div>
-      <hr style="width: 100%; background-color: black; height:6px;"/>
-        <table class="table">
-  <thead>
-    <tr>
-      <th scope="col" style="text-align: left; background-color: #95BDFE;"><b>CCS Fees</b></th>
-    </tr>
-  </thead>
-</table>
-<div class="col-sm-2" id="CCSFee" style="font-weight: 500;">
-				<a><span>Gardening</span></a>
-        <input type="text" id="feeCCS" name="feeCCS" placeholder="Php 60.00" style="padding: 8px; padding-left: 100px; background-color: #EBEBEB; border-color: #EBEBEB; margin-left: 27px;"><br><br>
-        </div>
-
-
-    
-                
-              <input type="button" name="next-step"
-								class="next-step" value=" Pay" />
-						</fieldset>
-            
-						<fieldset>
-            <div class ="container-fluid">
-            <div class="col-sm-12">
-            <img src="../images/doggie.jpg" width="500px" alt="Doggier" style="width: 60%;">
-            </div>
-            <h2 style="color: Black; font-weight: 300;"> PAYMENT COMPLETED SUCCESSFULLY! </h2><div class="col-sm-8" id="doggie" style="margin-left: -35px;">
-          </div>
-						</fieldset>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+	
+  
   
 </body>       
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>

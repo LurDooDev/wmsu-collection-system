@@ -1,5 +1,8 @@
 <?php
-
+  // resume session here to fetch session values
+  session_start();
+  require_once '../functions/session.function.php';
+  
 if (!isset($_SESSION['logged_id'])) {
     header('location: ../public/logout.php');
 } else if ($_SESSION['role'] != 'admin') {
@@ -91,26 +94,24 @@ require_once '../classes/role.class.php';
                 <th scope="col" style = " color: #000000;" >ID</th>
                 <th scope="col" style = " color: #000000;" >Name</th>
 				<th scope="col" style = " color: #000000;" >College</th></th>
-				<th scope="col" style = " color: #000000;" >Position</th></th>
-                <th scope="col" style = " color: #000000;" >Email</th></th>
                 <th scope="col" style = " color: #000000;" >Role</th></th>
+				<th scope="col" style = " color: #000000;" >Position</th></th>
                 <th scope="col" style = " color: #000000;" >Action</th>
               </tr>
             </thead>
             <tbody>
 			<?php
 			$users = new Users();
-			$userData = $users->show();
+			$userData = $users->showAllDetails();
     $i = 1;
     foreach($userData as $users) {      
 ?>
             <tr>
 			<td><?php echo $i; ?></td>
                 <td><?php echo $users['user_fullname']; ?></td>
-				<td><?php echo $users['college_name']; ?></td>
                 <td><?php echo $users['college_code']; ?></td>
-				<td><?php echo $users['user_email']; ?></td>
-                <td><?php echo $users['user_type']; ?></td>
+				<td><?php echo $users['role_name']; ?></td>
+                <td><?php echo $users['user_position']; ?></td>
                 <td>
                     <a href="#deleteFeesModal<?php echo $i; ?>" class="delete" data-toggle="modal">
                         <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>

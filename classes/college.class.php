@@ -31,24 +31,6 @@ class College {
             return false;
         }	
     }
-
-    // function update(){
-    //     $sql = "UPDATE colleges SET college_name=:college_name, college_code=:college_code WHERE college_id=:college_id";
-    //     $query=$this->db->connect()->prepare($sql);
-    //     $query->bindParam(':college_name', $this->collegeName);
-    //     $query->bindParam(':college_code', $this->collegeCode);
-    //     $query->bindParam(':college_id', $this->collegeID);
-        
-    //     if ($query->execute()) {
-    //         $count = $query->rowCount();
-    //         echo "$count row updated";
-    //         return true;
-    //     } else {
-    //         $error = $query->errorInfo();
-    //         echo "Update failed: " . $error[2];
-    //         return false;
-    //     }	
-    // }
     
 
     function get($id) {
@@ -59,23 +41,6 @@ class College {
         return $query->fetch();
     }
     
-    
-    
-
-
-    // function delete(){
-    //     $sql = "DELETE FROM colleges WHERE college_id=:college_id";
-
-    //     $query=$this->db->connect()->prepare($sql);
-    //     $query->bindParam(':college_id', $this->collegeID);
-
-    //     if($query->execute()){
-    //         return true;
-    //     }
-    //     else{
-    //         return false;
-    //     }	
-    // }
 
     function show(){
         $sql = "SELECT * FROM colleges ORDER BY colleges.id ASC";

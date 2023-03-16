@@ -24,7 +24,7 @@
   
           // Display the appropriate dashboard page for user
           if ($user_data['role_name'] == 'admin') {
-              header('location: ../university/university.php');
+              header('location: ../admin-settings/user.php');
           } else if ($user_data['role_name'] == 'officer') {
               header('location: ../admin/dashboard-user.php');
           } else if ($user_data['role_name'] == 'collector') {

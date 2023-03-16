@@ -6,9 +6,14 @@
 	//prevent horny people
     if (!isset($_SESSION['logged_id'])) {
         header('location: ../public/logout.php');
+
+        //if hindi siya admin
     } else if ($_SESSION['role'] != 'admin') {
+        //edi check baka
+        //check if officer siya ba
         if ($_SESSION['role'] == 'officer') {
             header('location: officer.php');
+            //if di parin edi check kay collector
         } else if ($_SESSION['role'] == 'collector') {
             header('location: collector.php');
         }
