@@ -35,7 +35,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
-    <title>University Fees</title>
+    <title>Local Fees</title>
     </head>
 
       <body>
@@ -76,7 +76,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0">University Fees</h2>
+            <h2 class="fs-2 m-0">Local Fees</h2>
         </div>
     </nav>
 		<div class="table-wrapper">

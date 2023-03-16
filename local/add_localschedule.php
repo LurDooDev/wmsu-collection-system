@@ -75,7 +75,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0">Add Scheduling Fees</h2>
+            <h2 class="fs-2 m-0">Add Local Fees</h2>
         </div>
     </nav>
 		<div class="table-wrapper">
@@ -145,8 +145,8 @@
             <input type="hidden" name="created_by" value="<?php echo $UserFullname; ?>">
             <input type="hidden" name="collegeID" value="<?php echo $UserCollegeID; ?>">
                 <div class="modal-footer">
-                    <input type="hidden" name="action" value="add">
-                    <button type="submit" class="btn btn-success" name="action" value="add">Save</button>
+                    <input type="hidden" name="action" value="Add">
+                    <button type="submit" class="btn btn-success" name="action" value="Add">Save</button>
                 </div>
             </form>
 		</div>

@@ -74,7 +74,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0">University Fee Scheduling</h2>
+            <h2 class="fs-2 m-0">Local Fee Scheduling</h2>
         </div>
     </nav>
 		<div class="table-wrapper">
@@ -167,8 +167,8 @@
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="hidden" name="action" value="add">
-                    <input type="submit" class="btn btn-success" value="create">
+                    <input type="hidden" name="action" value="Add">
+                    <input type="submit" class="btn btn-success" value="Create">
                 </div>
             </form>
         </div>
