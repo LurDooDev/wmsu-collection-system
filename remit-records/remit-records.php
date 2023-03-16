@@ -30,6 +30,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
     <link rel="stylesheet" href="../css/fees.css" />
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -116,7 +117,9 @@
                          <td>2021-22</td>
                          <td>1</td>
                          <td>Php 200,000</td>
-					<td> <a href="" class="status"><i class="far fa-address-card"></i></a>
+					<td>    <a href="" class="view-schedules">
+                    <i class="material-icons" title="View Schedules">event_note</i>
+                </a>
 							</td>
 				</tr>
 
@@ -128,7 +131,8 @@
                          <td>2021-22</td>
                          <td>1</td>
                          <td>Php 150,000</td>
-                            <td> <a href="" class="status"><i class="far fa-address-card"></i></a>
+                            <td> <a href="" class="view-schedules">
+                    <i class="material-icons" title="View Schedules">event_note</i>
 					</tr>
 					</tbody>
 			</table>
