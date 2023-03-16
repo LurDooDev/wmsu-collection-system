@@ -1,22 +1,23 @@
 <?php
-   session_start();
-require_once '../functions/session.function.php';
+    session_start();
+	require_once '../functions/session.function.php';
 
-// Prevent unauthorized access
-if (!isset($_SESSION['logged_id']) || empty($_SESSION['logged_id']) || !isset($_SESSION['role']) || empty($_SESSION['role'])) {
-    // If user is not logged in or session variables are empty
-    header('location: ../public/logout.php');
-} else if ($_SESSION['role'] != 'officer') {
-    // If user is not an officer
-    header('location: ../admin/dashboard-main.php');
-    exit(); // Terminate script to prevent further execution
-}
+	//prevent unauthorized access
+	if (!isset($_SESSION['logged_id'])) {
+		header('location: ../college/college.php');
+	} else if ($_SESSION['role'] != 'collector') {
+		if ($_SESSION['role'] == 'admin') {
+			header('location: ../admin/dashboard-main.php');
+		} else if ($_SESSION['role'] == 'officer') {
+			header('location: ../admin/dashboard-main.php');
+		}
+	}
 
-// Only officers can see this page
-require_once '../classes/database.class.php';
-require_once '../classes/college.class.php';
-require_once '../classes/program.class.php';
+	require_once '../classes/database.class.php';
+	require_once '../classes/college.class.php';
+	require_once '../classes/program.class.php';
 ?>
+
 <!doctype html>
 <html lang="en" class="no-js">
   <html>
