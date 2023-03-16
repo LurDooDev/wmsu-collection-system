@@ -1,20 +1,21 @@
 <?php
-
-    // resume session here to fetch session values
     session_start();
+	require_once '../functions/session.function.php';
 
-	//prevent horny people
-    if (!isset($_SESSION['logged_id'])){
-        header('location: ../public/logout.php');
-    }
+	//prevent unauthorized access
+	if (!isset($_SESSION['logged_id'])) {
+		header('location: ../fees/fees.php');
+	} else if ($_SESSION['role'] != 'admin') {
+		if ($_SESSION['role'] == 'collector') {
+			header('location: ../admin/dashboard-main.php');
+		} else if ($_SESSION['role'] == 'officer') {
+			header('location: ../admin/dashboard-main.php');
+		}
+	}
+
 	require_once '../classes/database.class.php';
-	require_once '../classes/fee.class.php';
-	require_once '../classes/semester.class.php';
-	require_once '../classes/schoolyear.class.php';
-	require_once '../classes/feeSchedule.class.php';
-
-
-
+	require_once '../classes/college.class.php';
+	require_once '../classes/program.class.php';
 ?>
 <!doctype html>
 <html lang="en" class="no-js">
