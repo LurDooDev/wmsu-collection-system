@@ -174,7 +174,7 @@ foreach($FeeData as $Fee) {
 <div id="addFeesModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="adduniversityfees.php" method="POST" id="adduniversityfees">
+            <form action="adduniversityfees.php" method="post" id="adduniversityfees">
                 <div class="modal-header">
                     <h4 class="modal-title">Create University Fees</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -188,7 +188,7 @@ foreach($FeeData as $Fee) {
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="hidden" name="action" value="Add">
+                    <input type="hidden" name="action" value="add">
                     <input type="submit" class="btn btn-success" value="Create">
                 </div>
             </form>
