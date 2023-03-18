@@ -80,11 +80,6 @@ if (!isset($_SESSION['logged_id'])){
     </nav>
     <div class="container" id="yati">
     <div class="row">
-    <div class="d-flex">
-                <div class="ml-auto p-auto mr-3">
-                <a href="financial-report.php" class="btn btn-success" style="padding:9px; margin-bottom:10px; margin-top:18px;"><span>Back To Financial Report </span></a>
-					</div>
-				</div>
     <div class =" table-responsive">
                 <table class="table">
             <thead>
@@ -143,9 +138,13 @@ if (!isset($_SESSION['logged_id'])){
 </tbody>
 			</table>
 </body>
+<div class="d-flex">
+                <div class="mr-auto p-auto ml-3">
+                <a href="financial-report.php" class="btn btn-danger" style="padding:12px; margin-bottom:12px; border-radius: 40px;"><span>Back To Financial Report </span></a>
+					</div>
       <div class="d-flex">
                 <div class="ml-auto p-auto mr-3">
-                <a href="receipt.php" class="btn btn-danger" style="padding:12px; background-color:#AD2020; margin-bottom:12px; border-radius: 40px;"><span>Proceed to Receipt </span></a>
+                <a href="receipt.php" class="btn btn-success" style="padding:12px; margin-bottom:12px; border-radius: 40px;"><span>Proceed to Receipt </span></a>
 					</div>
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
             <script>

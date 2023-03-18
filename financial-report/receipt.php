@@ -124,9 +124,20 @@ if (!isset($_SESSION['logged_id'])){
 			</table>
 </body>
       <div class="d-flex">
-                <div class="ml-auto p-auto mr-3">
-                <a href="report.php" class="btn btn-danger" style="padding:12px; background-color:#AD2020; margin-bottom:12px; border-radius:40px;"><span>Back to CCS Generated Report </span></a>
+                <div class="mr-auto p-auto mr-6">
+                <a href="report.php" class="btn btn-danger" style="padding:12px; margin-bottom:12px; border-radius:40px;"><span>Back to CCS Generated Report </span></a>
 					</div>
+        <div class="ml-auto p-auto ml-6" id="invoice">
+          <button class="btn btn-success" id="downloadPdf" style="padding:12px; margin-bottom:12px; margin-left: 10px; border-radius:40px;">Download Receipt</button>
+         <script>
+        document
+          .getElementById("downloadPdf")
+          .addEventListener("click", function () {
+           const element = document.getElementById("invoice");
+           html2pdf().from(element).save();
+           });
+         </script>
+      </div>
 
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
             <script>

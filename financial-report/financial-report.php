@@ -161,58 +161,61 @@
 </div>
 
 <div id="addReport" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form action="createfees.php" method="POST">
-                <div class="modal-header">
-                    <h4 class="modal-title">Financial Report </h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                <div class="form-group">
-                        <label for="">Expense Details: </label>
-                        <input type="text" name="expense" id="expense" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Funds: </label>
-                        <input type="text" name="funds" id="funds" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Total Cost: </label>
-                        <input type="number" name="cost" id="cost" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Date: </label>
-                        <input type="date" name="" id="date" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Time: </label>
-                        <input type="time" name="" id="time" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Semester: </label>
-                        <input type="text" name="sem" id="sem" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="">School Year: </label>
-                        <input type="date" name="sem" id="sem" class="form-control" required>
-                    </div>
-                    <label>Summary Report:</label></li>
-                        <form action="" method="post">
-                        <div>
-                        <textarea  class = "comment" name="comments" id="comments"  placeholder = "Enter your comments here">
-</textarea>
-</div>
-</form>
-                </div>
-                <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="hidden" name="action" value="Save">
-                    <input type="submit" class="btn btn-success" value="Save">
-                </div>
-            </form>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="createfees.php" method="POST">
+        <div class="modal-header">
+          <h4 class="modal-title">Financial Report </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="expense">Expense Details:</label>
+                <input type="text" name="expense" id="expense" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="funds">Funds:</label>
+                <input type="text" name="funds" id="funds" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="cost">Total Cost:</label>
+                <input type="number" name="cost" id="cost" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" name="date" id="date" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="time">Time:</label>
+                <input type="time" name="time" id="time" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="sem">Semester:</label>
+                <input type="text" name="sem" id="sem" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="schoolYear">School Year:</label>
+                <input type="date" name="schoolYear" id="schoolYear" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="comments">Summary Report:</label>
+                <textarea class="form-control" name="comments" id="comments" placeholder="Enter your comments here"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+          <input type="hidden" name="action" value="Save">
+          <input type="submit" class="btn btn-success" value="Save">
+        </div>
+      </form>
     </div>
+  </div>
 </div>
 
 <!-- Script for dashboard hamburger         -->
