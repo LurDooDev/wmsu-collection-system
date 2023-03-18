@@ -81,7 +81,7 @@
             <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Funds</h2>
         </div>
     </nav>
-    <div class="container">
+    <div class="container" style ="padding-top:  10px;">
                 <div class ="boxing">
                 <div class="box">
                 &nbsp; <h2>Total Fees to be Collected</h2>&nbsp;
@@ -156,6 +156,7 @@
              </div>
 			</div>
 		</div>
+</div>
 	</div>
     
 <!-- Details Modal -->
