@@ -83,11 +83,11 @@ require_once '../classes/role.class.php';
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Admin Settings</h2>
+            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">User Management</h2>
         </div>
     </nav>
     <div class="container">
-                <div class="row">
+                <div class="row" style="padding-top:  21px;">
 				<div class="col-sm-4" style="border-color: #000000;">
         			<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
        			 </div>
@@ -95,7 +95,7 @@ require_once '../classes/role.class.php';
 						<a href="#addCollectorModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add User</span></a>
 					</div>
 				</div>
-             <div class =" table-responsive">
+             <div class =" table-responsive" style="margin-top: 10px;">
                 <table class="table">
             <thead style="background-color:#95BDFE ;" class="text-white">
               <tr>
@@ -300,5 +300,18 @@ for (i = 0; i < dropdown.length; i++) {
   });
 }
 </script>
+<script>function setActiveLink(link) {
+  var links = document.querySelectorAll('.list-group-item');
+  for (var i = 0; i < links.length; i++) {
+    links[i].classList.remove('active');
+  }
+  link.classList.add('active');
+}
 
+var links = document.querySelectorAll('.list-group-item');
+for (var i = 0; i < links.length; i++) {
+  links[i].addEventListener('click', function() {
+    setActiveLink(this);
+  });
+}</script>
 </html>

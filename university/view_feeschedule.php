@@ -224,4 +224,18 @@ for (i = 0; i < dropdown.length; i++) {
   });
 }
 </script>
+<script>function setActiveLink(link) {
+  var links = document.querySelectorAll('.list-group-item');
+  for (var i = 0; i < links.length; i++) {
+    links[i].classList.remove('active');
+  }
+  link.classList.add('active');
+}
+
+var links = document.querySelectorAll('.list-group-item');
+for (var i = 0; i < links.length; i++) {
+  links[i].addEventListener('click', function() {
+    setActiveLink(this);
+  });
+}</script>
 </html>

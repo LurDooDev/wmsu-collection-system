@@ -78,11 +78,10 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Funds</h2>
+            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Overview Funds</h2>
         </div>
     </nav>
     <div class="container">
-                </div>
                 <div class="table-responsive" id="depression">
                 <div class="col-sm-6">
                     <p>112123123123123</p>
@@ -178,9 +177,10 @@
           </table>
                  </div>
 			    </div>
-              </div>
+            </div>
 		    </div>
 	    </div>
+      </div>
     </div>
     <!-- Details Modal -->
   <div id="detailsModal" class="modal fade">
@@ -264,4 +264,18 @@ for (i = 0; i < dropdown.length; i++) {
                     el.classList.toggle("toggled");
                 };
             </script>
+            <script>function setActiveLink(link) {
+  var links = document.querySelectorAll('.list-group-item');
+  for (var i = 0; i < links.length; i++) {
+    links[i].classList.remove('active');
+  }
+  link.classList.add('active');
+}
+
+var links = document.querySelectorAll('.list-group-item');
+for (var i = 0; i < links.length; i++) {
+  links[i].addEventListener('click', function() {
+    setActiveLink(this);
+  });
+}</script>
 </html>

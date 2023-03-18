@@ -57,8 +57,8 @@ if (!isset($_SESSION['logged_id'])) {
                 <i class="fa fa-caret-down" style="margin-left: 115px;"></i>
                 </button>                
                 <div class="">
-                    <a href="../admin-settings/overview.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
-                    <a href="../university/university.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Collected Fees</a></ul>
+                    <a href="../funds/overview_funds.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
+                    <a href="../funds/collected-fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Collected Fees</a></ul>
                 </div>
                 <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
                 <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
@@ -80,16 +80,13 @@ if (!isset($_SESSION['logged_id'])) {
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Admin Settings</h2>
+            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Colleges</h2>
         </div>
     </nav>
     <div class="container">
-                <div class="row">
-					<div class="col-sm-3" style="flex: 0 0 30%;">
-          <h2 style="font-weight: 550;">Colleges</h2>
-					</div>
-					<div class="col-sm-9 " style="display: flex; align-items: center; justify-content: flex-end;">
-                    <div class="col-sm-4">
+                <div class="row" style="padding-top:  21px;">
+					<div class="col-sm-4 " style="display: flex; align-items: center; justify-content: flex-end;">
+                    <div class="col-sm-12">
 					<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Colleges">
 					</div>
 					</div>
@@ -353,3 +350,17 @@ for (i = 0; i < dropdown.length; i++) {
   });
 }
 </script>
+<script>function setActiveLink(link) {
+  var links = document.querySelectorAll('.list-group-item');
+  for (var i = 0; i < links.length; i++) {
+    links[i].classList.remove('active');
+  }
+  link.classList.add('active');
+}
+
+var links = document.querySelectorAll('.list-group-item');
+for (var i = 0; i < links.length; i++) {
+  links[i].addEventListener('click', function() {
+    setActiveLink(this);
+  });
+}</script>
