@@ -32,7 +32,6 @@ require_once "../classes/academicyear.class.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!--- links for bootstrap and css  --->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/payment.css" />
     <!-- Unicons CSS -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
@@ -45,7 +44,6 @@ require_once "../classes/academicyear.class.php";
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
     <title>Wmsu Collection System</title>
     </head>
       <body>
@@ -63,7 +61,7 @@ require_once "../classes/academicyear.class.php";
                 </button>                
                 <div class="dropdown-container">
                     <a href="../funds/overview_funds.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Overview</a>
-                    <a href="../funds/collected-fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Collected Fees</a><
+                    <a href="../funds/collected-fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Collected Fees</a>
                 </div>
                 <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
                 <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
@@ -91,15 +89,16 @@ require_once "../classes/academicyear.class.php";
     </nav>
     <div class="container">
     <div class="d-flex">
-                <div class="ml-auto pl-auto" style="padding-top: 20px;">
-                <a href="#addSemesterModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Semester</span></a>
+                <div class=" ml-auto pl-auto" style="padding-top: 20px; margin-right:-20px;">
+                <a href="#addSemesterModal" class="btn btn-success"  style= "margin-right:-100px;" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Semester</span></a>
 </div>
-<div class="d-flex" style="margin-right:20px">
-                <div class=" mr-5 pr-auto ml-4"  style="padding-top: 20px;">
-						<a href="#addYearModal" class="btn btn-success" style= "margin-right:100px;" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add School Year</span></a>
+<div class="d-flex" style="margin-left:30px">
+                <div class=" mr-auto pr-auto ml-4"  style="padding-top: 20px;">
+						<a href="#addYearModal" class="btn btn-success" style= "margin-left:100px;" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add School Year</span></a>
 					</div>
 </div>
 </div>
+
 <h style="font-size: 20px;"><b>Semester</b></h>
           <div class =" table-responsive">
                 <table class="table">
