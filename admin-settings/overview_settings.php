@@ -140,6 +140,7 @@ require_once "../classes/academicyear.class.php";
                     <h4 class="modal-title"><?php echo $Semester['semester_name']; ?> Settings</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
+                    <div class="modal-body">
                     <div class="form-group">
         <label>Semester Name</label>
         <input type="text" class="form-control" name="name" value="<?php echo $Semester['semester_name']; ?>">
@@ -163,6 +164,7 @@ require_once "../classes/academicyear.class.php";
             </label>
         </div>
     </div>
+                    </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                         <input type="hidden" name="action" value="update">
@@ -230,10 +232,13 @@ require_once "../classes/academicyear.class.php";
                         <h4 class="modal-title"><?php echo $AcademicYear['academic_name']; ?> Year Settings</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
+                    <div class="modal-body">
     <div class="form-group">
-        <label>Start Date</label>
+        <label> Start Date</label>
         <input type="date" class="form-control" name="startdate" value="<?php echo $AcademicYear['academic_start_date']; ?>">
     </div>
+
+
     <div class="form-group">
         <label>End Date</label>
         <input type="date" class="form-control" name="enddate" value="<?php echo $AcademicYear['academic_end_date']; ?>">
@@ -253,6 +258,7 @@ require_once "../classes/academicyear.class.php";
             </label>
         </div>
     </div>
+                    </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                         <input type="hidden" name="action" value="update">
