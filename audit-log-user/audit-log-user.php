@@ -1,21 +1,23 @@
 <?php
-// resume session here to fetch session values
-session_start();
+    session_start();
+	require_once '../functions/session.function.php';
 
-//prevent horny people
-if (!isset($_SESSION['logged_id'])) {
-  header('location: ../admin/dashboard-user.php');
-} else if ($_SESSION['role'] != 'officer') {
-  if ($_SESSION['role'] == 'admin') {
-      header('location: dashboard.php');
-  } else if ($_SESSION['role'] == 'collector') {
-      header('location: dashboard-user.php');
-  }
-}
+	//prevent unauthorized access
+	if (!isset($_SESSION['logged_id'])) {
+		header('location: ../audit-log/audit-log.php');
+	} else if ($_SESSION['role'] != 'admin') {
+		if ($_SESSION['role'] == 'officer') {
+			header('location: admin.php');
+		} else if ($_SESSION['role'] == 'collector') {
+			header('location: collector.php');
+		}
+	}
 
-require_once '../classes/database.class.php';
-require_once '../classes/college.class.php';
+	require_once '../classes/database.class.php';
+	require_once '../classes/college.class.php';
+	require_once '../classes/program.class.php';
 ?>
+
 <!doctype html>
 <html lang="en" class="no-js">
   <html>
@@ -32,6 +34,7 @@ require_once '../classes/college.class.php';
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/audit.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -60,22 +63,75 @@ require_once '../classes/college.class.php';
                 <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>
                 <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Students</a>
                 <a href="../financial-report-user/financial-report-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
-                <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
+                <a href="../audit-log-user/audit-log-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
                 <a href="../csc-management/csc-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">CSC Management</a>
                 <a href="../admin-settings-user/admin-settings-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Admin Settings</a>
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Logout</a>
             </div>
         </div>
-		<div class="table-responsive">
+        <div class="table-responsive">
 	<div id="page-content-wrapper">
 <!-- Dashboard hamburger      -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
+<nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Dashboard</h2>
+            <h2 class="fs-2 m-0"  style="color:#000000; font-weight: 500;">Audit Log</h2>
         </div>
     </nav>
+    <div class="container">
+    <div class="col-sm-14" id="lakatan">
+                <table class="table table-striped table-borderless">
+            <thead style="background-color:#95BDFE ;" class="text-white">
+              <tr>
+                <hr style="height: 6px; color: #FFF;">
+                <th scope="col" style = " color: #000000;" >ID</th>
+                <th scope="col" style = " color: #000000;" >Name</th>
+                <th scope="col" style = " color: #000000;" >Officer</th>
+                <th scope="col" style = " color: #000000;" >Date</th>
+                <th scope="col" style = " color: #000000;" >Time</th>
+                <th scope="col" style = " color: #000000;" >Action Made</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Joy Cubile</td>
+                <td>CCS Mayor</td>
+                <td>12/13/2022</td>
+                <td>14:20</td>
+                <td>Collected Payment CSC Fee of Arthur Nery</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Jerome Rabara</td>
+                <td>USC President</td>
+                <td>12/15/2022</td>
+                <td>17:20</td>
+                <td>Added User for CCS Treasurer name Aj Roblox</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Joy Cubile</td>
+                <td>CCS Mayor</td>
+                <td>12/14/2022</td>
+                <td>15:20</td>
+                <td>Collected Payment CSC Fee of Eminem Pinoy</td>
+              </tr>
+              <td>4</td>
+                <td>Joy Cubile</td>
+                <td>CCS Mayor</td>
+                <td>12/14/2022</td>
+                <td>15:20</td>
+                <td>Collected Payment CSC Fee of Lil Pumpskie</td>
+              </tr>
+              
+          </table>
+                </div>
+                </div>
 </body>       
+
+<!-- Script for dashboard hamburger         -->
+        </body>       
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
             <script>
                 var el = document.getElementById("wrapper");
@@ -85,9 +141,7 @@ require_once '../classes/college.class.php';
                     el.classList.toggle("toggled");
                 };
             </script>
-
-</html>
-<script>
+                    <script>
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
 var dropdown = document.getElementsByClassName("dropdown-btn");
 var i;
@@ -104,16 +158,7 @@ for (i = 0; i < dropdown.length; i++) {
   });
 }
 </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-            <script>
-                var el = document.getElementById("wrapper");
-                var toggleButton = document.getElementById("menu-toggle");
-        
-                toggleButton.onclick = function () {
-                    el.classList.toggle("toggled");
-                };
-            </script>
-            <script>function setActiveLink(link) {
+<script>function setActiveLink(link) {
   var links = document.querySelectorAll('.list-group-item');
   for (var i = 0; i < links.length; i++) {
     links[i].classList.remove('active');
@@ -127,6 +172,4 @@ for (var i = 0; i < links.length; i++) {
     setActiveLink(this);
   });
 }</script>
-
-        </body>       
-
+</html>
