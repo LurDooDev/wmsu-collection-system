@@ -3,14 +3,15 @@
 	require_once '../functions/session.function.php';
 
 if (!isset($_SESSION['logged_id'])) {
-  header('location: ../college/college/php');
+  header('location: ../college/college.php');
 } else if ($_SESSION['role'] != 'admin') {
   if ($_SESSION['role'] == 'officer') {
       header('location: officer.php');
   } else if ($_SESSION['role'] == 'collector') {
       header('location: collector.php');
   }
-}
+} 
+
 
 require_once '../classes/database.class.php';
 require_once '../classes/college.class.php';
