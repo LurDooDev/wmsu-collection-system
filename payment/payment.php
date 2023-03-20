@@ -50,7 +50,7 @@ if (!isset($_SESSION['logged_id'])) {
                 <i class="fa fa-caret-down" style = "margin-left:18px;"></i>
                 </button>                
                 <div class="dropdown-container">
-                    <a href="university.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">University Payment</a>
+                    <a href="universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">University Payment</a>
                     <a href="" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Local Payment</a>
                 </div>
                 <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>
