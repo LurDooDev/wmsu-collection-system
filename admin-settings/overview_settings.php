@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION['logged_id'])) {
-    header('location: ../public/logout.php');
+    header('location: ..admin-settings/overview_settings.php');
 } else if ($_SESSION['role'] != 'admin') {
     if ($_SESSION['role'] == 'officer') {
         header('location: officer.php');
@@ -69,7 +69,10 @@ require_once "../classes/academicyear.class.php";
                 <i class="fa fa-caret-down" style="margin-left: 44px;"></i>
                 </button>
                 <div class="">
+                <?php
+                if($_SESSION['role'] == 'admin'){?>
                     <a href="../admin-settings/overview_settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
+                    <?php } ?>
                     <a href="../university/university.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
                     <a href="../local/localfees.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>
                     <a href="../admin-settings/user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">User Management</a></ul>

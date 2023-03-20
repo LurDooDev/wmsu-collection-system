@@ -4,17 +4,20 @@
 
 	//prevent unauthorized access
 	if (!isset($_SESSION['logged_id'])) {
-		header('location: ../admin/dasboard-main.php');
-		exit(); // stop execution after redirect
-	} else if ($_SESSION['role'] != 'admin' && $_SESSION['role'] != 'officer') {
-		header('location: ../admin/dashboard-main.php');
-		exit(); // stop execution after redirect
+		header('location: ../financial-report/financial-report.php');
+	} else if ($_SESSION['role'] != 'admin') {
+		if ($_SESSION['role'] == 'officer') {
+			header('location: admin.php');
+		} else if ($_SESSION['role'] == 'collector') {
+			header('location: collector.php');
+		}
 	}
 
 	require_once '../classes/database.class.php';
 	require_once '../classes/college.class.php';
 	require_once '../classes/program.class.php';
 ?>
+
 <!doctype html>
 <html lang="en" class="no-js">
   <html>
@@ -57,7 +60,10 @@
                     <a href="../funds/overview_funds.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Overview</a>
                     <a href="../funds/collected-fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Collected Fees</a>
                 </div>
+                <?php
+                if($_SESSION['role'] == 'admin'){?>
                 <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Financial Report</a>
+                <?php } ?>
                 <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
                 <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Admin Settings</a>
                 <i class="fa fa-caret-down" style="margin-left: 44px;"></i>

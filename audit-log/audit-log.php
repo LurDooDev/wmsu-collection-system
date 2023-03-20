@@ -6,10 +6,10 @@
 	if (!isset($_SESSION['logged_id'])) {
 		header('location: ../audit-log/audit-log.php');
 	} else if ($_SESSION['role'] != 'admin') {
-		if ($_SESSION['role'] == 'collector') {
-			header('location: ../admin/dashboard-main.php');
-		} else if ($_SESSION['role'] == 'officer') {
-			header('location: ../admin/dashboard-main.php');
+		if ($_SESSION['role'] == 'officer') {
+			header('location: admin.php');
+		} else if ($_SESSION['role'] == 'collector') {
+			header('location: collector.php');
 		}
 	}
 
@@ -60,7 +60,10 @@
                     <a href="../funds/collected-fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Collected Fees</a>
                 </div>
                 <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
+                <?php
+                if($_SESSION['role'] == 'admin'){?>
                 <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Audit Log</a>
+                <?php } ?>
                 <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Admin Settings</a>
                 <i class="fa fa-caret-down" style="margin-left: 44px;"></i>
                 </button>
