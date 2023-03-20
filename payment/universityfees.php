@@ -104,16 +104,7 @@ if (!isset($_SESSION['logged_id'])) {
             </div>
       <hr style="width: 100%; background-color: black; height:6px;"/>
         <table class="table">
-  <thead>
-    <tr>
-      <th scope="col" style="text-align: left; background-color: #95BDFE;"><b>CCS Fees</b></th>
-    </tr>
-  </thead>
-</table>
-<div class="col-sm-2" id="CCSFee" style="font-weight: 500;">
-				<a><span>Gardening</span></a>
-        <input type="text" id="feeCCS" name="feeCCS" placeholder="Php 60.00" style="padding: 8px; padding-left: 100px; background-color: #EBEBEB; border-color: #EBEBEB; margin-left: 27px;"><br><br>
-        </div>
+</div>
 
 
 <div>
