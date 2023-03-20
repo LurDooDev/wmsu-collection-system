@@ -119,7 +119,7 @@ if (!isset($_SESSION['logged_id'])) {
 <div>
 <div class="d-flex">
                 <div class="mr-auto">
-                <a href="university.php" class="btn btn-success"><span>Previous </span></a>
+                <a href="universitypayment.php" class="btn btn-success"><span>Previous </span></a>
 					</div>
           <div class="ml-auto p-auto">
             <a href="university-details.php" class="btn btn-success" id="backstreet"> <span>Pay</span></a>
