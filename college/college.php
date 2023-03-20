@@ -1,24 +1,32 @@
 <?php
+
+    // resume session here to fetch session values
     session_start();
-	require_once '../functions/session.function.php';
+    require_once '../functions/session.function.php';
+	//prevent horny people
+    if (!isset($_SESSION['logged_id'])) {
+        header('location: ../public/logout.php');
 
-if (!isset($_SESSION['logged_id'])) {
-  header('location: ../college/college.php');
-} else if ($_SESSION['role'] != 'admin') {
-  if ($_SESSION['role'] == 'officer') {
-      header('location: officer.php');
-  } else if ($_SESSION['role'] == 'collector') {
-      header('location: collector.php');
-  }
-} 
+        //if hindi siya admin
+    } else if ($_SESSION['role'] != 'admin') {
+        //edi check baka
+        //check if officer siya ba
+        if ($_SESSION['role'] == 'officer') {
+            header('location: officer.php');
+            //if di parin edi check kay collector
+        } else if ($_SESSION['role'] == 'collector') {
+            header('location: collector.php');
+        }
+    }
+	require_once '../classes/database.class.php';
+	require_once '../classes/college.class.php';
+  require_once '../classes/program.class.php';
 
 
-require_once '../classes/database.class.php';
-require_once '../classes/college.class.php';
-require_once '../classes/program.class.php';
+
+
+
 ?>
-
-
 <!doctype html>
 <html lang="en" class="no-js">
   <html>
@@ -27,24 +35,20 @@ require_once '../classes/program.class.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!--- links for bootstrap and css  --->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Unicons CSS -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../css/fees.css" />
-    <link rel="stylesheet" href="../css/dashboard.css" />
-    <link rel="stylesheet" href="../css/user-college.css" />
-    <link rel="stylesheet" href="../css/admin-settings.css" />  
+    <link rel="stylesheet" href="../css/fees.css" />
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
-    <title>Wmsu Collection System</title>
+    <title>University Fees</title>
     </head>
+
       <body>
       <div class="d-flex" id="wrapper">
         <!-- Sidebar with bootstrap -->
@@ -54,7 +58,7 @@ require_once '../classes/program.class.php';
                 <a href="../admin/dashboard-main.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Dashboard</a>
                 <!-- <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Fees</a> -->
                 <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Remit Records</a>
-                <a href="../college/college.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Colleges</a>
+                <a href="../college/college.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Colleges</a>
                 <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Funds</a>
                 <i class="fa fa-caret-down" style="margin-left: 115px;"></i>
                 </button>                
@@ -69,20 +73,18 @@ require_once '../classes/program.class.php';
                 </button>
                 <div class="">
                     <a href="../admin-settings/overview_settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
-                    <a href="../university/university.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
-                    <a href="../local/localfees.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>
-                    <a href="../admin-settings/user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">User Management</a></ul>
                     <?php
                     if($_SESSION['role'] == 'admin'){?>
-                    <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="text-decoration:none; padding-left: 70px;">Colleges</a></ul>
+                    <a href="../university/university.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
                     <?php } ?>
-                  </div>
+                    <a href="../local/localfees.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>
+                    <a href="../admin-settings/user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">User Management</a></ul>
                     <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Colleges</a></ul>
                 </div>
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover fw-bold">Logout</a>
 </div>
         </div>
-        <div class="table-responsive">
+		<div class="table-responsive">
 	<div id="page-content-wrapper">
 <!-- Dashboard hamburger      -->
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
@@ -91,19 +93,15 @@ require_once '../classes/program.class.php';
             <h2 class="fs-2 m-0">College</h2>
         </div>
     </nav>
-		<div class="table-wrapper">
-		<div class="table-title">
-				<div class="row">
-          <div class="col-sm-13 p-auto mr-auto">
-						<div class="col-sm-13 p-auto mb-auto">
-						<a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New College</span></a>
-            </div>
-			<div class="table-title">
-				<div class="row">
-					<div class="col-sm-3">
-					</div>
-				</div>
-			</div>
+<div>
+<div class="table-wrapper">
+    <div class="table-title">
+    <div class="row">
+         <div class="col-sm-13 p-auto mb-auto">
+              <a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New College</span></a>
+          </div>
+        </div>
+      </div>
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
@@ -115,7 +113,7 @@ require_once '../classes/program.class.php';
 				</thead>
 				<tbody>
 				<?php
-                    $college = new College();
+          $college = new College();
 					$data = $college->show();
 					
 					
@@ -154,7 +152,7 @@ require_once '../classes/program.class.php';
 					}
 ?>
 </tbody>
--<!-- Create Fee Modal HTML -->
+<!-- Create Fee Modal HTML -->
 <div id="addFeesModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -165,11 +163,11 @@ require_once '../classes/program.class.php';
                 </div>
                 <div class="modal-body">
                 <div class="form-group">
-                        <label for="name">Name</label>
+                        <label for="name">Enter Name</label>
                         <input type="text" name="name" id="name" class="form-control" required>
                     </div>
 					<div class="form-group">
-                        <label for="code">Code</label>
+                        <label for="code">Enter Code</label>
                         <input type="text" name="code" id="code" class="form-control" required>
                     </div>
                 </div>
@@ -180,7 +178,11 @@ require_once '../classes/program.class.php';
                 </div>
             </form>
    </body>       
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+        </div>
+        
+
+</body>       
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
             <script>
                 var el = document.getElementById("wrapper");
                 var toggleButton = document.getElementById("menu-toggle");
@@ -189,7 +191,7 @@ require_once '../classes/program.class.php';
                     el.classList.toggle("toggled");
                 };
             </script>
-<script>
+                    <script>
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
 var dropdown = document.getElementsByClassName("dropdown-btn");
 var i;
@@ -220,5 +222,4 @@ for (var i = 0; i < links.length; i++) {
     setActiveLink(this);
   });
 }</script>
-
 </html>
