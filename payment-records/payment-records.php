@@ -6,13 +6,13 @@
 	//prevent horny people
 	if (!isset($_SESSION['logged_id'])) {
 		header('location: ../payments-records/payment-records.php');
-	} else if ($_SESSION['role'] != 'admin') {
-		if ($_SESSION['role'] == 'officer') {
+	} else if ($_SESSION['role'] != 'officer') {
+		if ($_SESSION['role'] == 'admin') {
 			header('location: officer.php');
 		} else if ($_SESSION['role'] == 'collector') {
 			header('location: collector.php');
 		}
-	}
+	}	
 	require_once '../classes/database.class.php';
 	require_once '../classes/fee.class.php';
 ?>
