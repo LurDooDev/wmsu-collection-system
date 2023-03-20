@@ -94,20 +94,14 @@
         </div>
     </nav>
 <div>
-    <div class="table-wrapper">
+<div class="table-wrapper">
     <div class="table-title">
-				<div class="row">
+    <div class="row">
+         <div class="col-sm-13 p-auto mb-auto">
+              <a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New College</span></a>
+          </div>
         </div>
-          <div class="col-sm-13 p-auto mr-auto">
-						<div class="col-sm-13 p-auto mb-auto">
-						<a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New College</span></a>
-			<div class="table-title">
-				<div class="row">
-					<div class="col-sm-3">
-					</div>
-				</div>
-			</div>
-    </div>
+      </div>
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
