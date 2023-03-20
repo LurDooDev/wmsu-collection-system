@@ -1,6 +1,6 @@
 <?php
-// resume session here to fetch session values
-session_start();
+    session_start();
+	require_once '../functions/session.function.php';
 
 if (!isset($_SESSION['logged_id'])) {
   header('location: ../college/college/php');
@@ -34,9 +34,10 @@ require_once '../classes/program.class.php';
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/fees.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
     <link rel="stylesheet" href="../css/user-college.css" />
-    <link rel="stylesheet" href="../css/admin-settings.css" />
+    <link rel="stylesheet" href="../css/admin-settings.css" />  
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -75,267 +76,118 @@ require_once '../classes/program.class.php';
                     <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="text-decoration:none; padding-left: 70px;">Colleges</a></ul>
                     <?php } ?>
                   </div>
+                    <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Colleges</a></ul>
+                </div>
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover fw-bold">Logout</a>
 </div>
         </div>
+        <div class="table-responsive">
 	<div id="page-content-wrapper">
 <!-- Dashboard hamburger      -->
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Colleges</h2>
+            <h2 class="fs-2 m-0">College</h2>
         </div>
     </nav>
-    <div class="container">
-                <div class="row" style="padding-top:  21px;">
-					<div class="col-sm-4 " style="display: flex; align-items: center; justify-content: flex-end;">
-                    <div class="col-sm-12">
-					<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Colleges">
-					</div>
+		<div class="table-wrapper">
+		<div class="table-title">
+				<div class="row">
+          <div class="col-sm-13 p-auto mr-auto">
+						<div class="col-sm-13 p-auto mb-auto">
+						<a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New College</span></a>
+            </div>
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-3">
 					</div>
 				</div>
-             <div class =" table-responsive">
-                <table class="table">
-            <thead style="background-color:#95BDFE ;" class="text-white">
-              <tr>
-                <th scope="col" style = " color: #000000;" >ID</th>
-                <th scope="col" style = " color: #000000;" >College Code</th>
-                <th scope="col" style = " color: #000000;" >Description</th></th>
-                <th scope="col" style = " color: #000000;" >Action</th>
-              </tr>
-            </thead>
-            <tbody>
-            <tr>
-						<td>1</td>
-						<td>CCS</td>
-						<td>College of Computing Studies</td>
-						<td>
-                        <a href="#UpdateCCS" class="update" data-toggle="modal"><i  class="fa-sharp fa-regular fa-pen-to-square" data-toggle="tooltip" title="Update"></i></a>
-						</td>
-					</tr>	
-                    <tr>
-						<td>2</td>
-						<td>CN</td>
-						<td>College of Nursing</td>
-						<td>
-                        <a href="#UpdateNURSING" class="update" data-toggle="modal"><i  class="fa-sharp fa-regular fa-pen-to-square" data-toggle="tooltip" title="Update"></i></a>
-						</td>
-					</tr>	
-          <tr>
-						<td>3</td>
-						<td>COL</td>
-						<td>College of Law</td>
-						<td>
-                        <a href="#UpdateLAW" class="update" data-toggle="modal"><i  class="fa-sharp fa-regular fa-pen-to-square" data-toggle="tooltip" title="Update"></i></a>
-						</td>
-					</tr>	
-				</tbody>
-			</table>
-</div>
-<div class="modal fade modal-fullscreen" id="UpdateCCS" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<h5 class="modal-title" id="exampleModalLabel">College of Computing Studies(CCS)</h5>
-        <div>
-        <a data-toggle="modal" href="#AddCSV" class="btn btn-primary">Add CSV</a>
-</div>
-</div>
-        <div class="modal-body">
-      <table class="table table-striped">
-            <thead style="background-color:#95BDFE ;" class="text-white">
-            <tr>
-                <th scope="col" style = " color: #000000;" >Student ID</th>
-                <th scope="col" style = " color: #000000;" >Student Name</th>
-                <th scope="col" style = " color: #000000;" >Student Email</th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>2020-1311</td>
-                <td>Joy Cubile</td>
-                <td>xt202001311@wmsu.edu.ph</td>
-              </tr>
-
-              <tr>
-                <td>2020-1294</td>
-                <td>John Kent Tingkasan</td>
-                <td>xt202001311@wmsu.edu.ph</td>
-              </tr>
-  </tbody>
-</table>
-</div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-<div class="modal fade" id="AddCSV" data-backdrop="static">
-	<div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">College CSV Uploads</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        </div>
-        <div class="modal-body-md">
-        <div class="drop-zone">
-    <span class="drop-zone__prompt">Drop file here or click to upload</span>
-    <input type="file" name="myFile" class="drop-zone__input">
-  </div>
-
-  <script src="./src/main.js"></script>
-        </div>
-        <div class="modal-footer">
-          <a href="#" data-dismiss="modal" class="btn">Close</a>
-          <a href="#" class="btn btn-primary">Upload This File</a>
-        </div>
-      </div>
-    </div>
-</div>
-
-
-<div class="modal fade modal-fullscreen" id="UpdateNURSING" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<h5 class="modal-title" id="exampleModalLabel">College of Nursing(CN)</h5>
-        <div>
-        <a data-toggle="modal" href="#AddCSV" class="btn btn-primary">Add CSV</a>
-</div>
-</div>
-        <div class="modal-body">
-      <table class="table table-striped">
-            <thead style="background-color:#95BDFE ;" class="text-white">
-            <tr>
-                <th scope="col" style = " color: #000000;" >Student ID</th>
-                <th scope="col" style = " color: #000000;" >Student Name</th>
-                <th scope="col" style = " color: #000000;" >Student Email</th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>2020-2121</td>
-                <td>Abdul Montero</td>
-                <td>xt202002121@wmsu.edu.ph</td>
-              </tr>
-
-              <tr>
-                <td>2020-6666</td>
-                <td>Vladimirskie Tingkasan</td>
-                <td>xt202006666@wmsu.edu.ph</td>
-              </tr>
-  </tbody>
-</table>
-</div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-<div class="modal fade" id="AddCSV" data-backdrop="static">
-	<div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">College CSV Uploads</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        </div>
-        <div class="modal-body-md">
-        <div class="drop-zone">
-    <span class="drop-zone__prompt">Drop file here or click to upload</span>
-    <input type="file" name="myFile" class="drop-zone__input">
-  </div>
-
-  <script src="./src/main.js"></script>
-        </div>
-        <div class="modal-footer">
-          <a href="#" data-dismiss="modal" class="btn">Close</a>
-          <a href="#" class="btn btn-primary">Upload This File</a>
-        </div>
-      </div>
-    </div>
-</div>
-
-
-
-
-
-<script>  
-document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
-  const dropZoneElement = inputElement.closest(".drop-zone");
-
-  dropZoneElement.addEventListener("click", (e) => {
-    inputElement.click();
-  });
-
-  inputElement.addEventListener("change", (e) => {
-    if (inputElement.files.length) {
-      updateThumbnail(dropZoneElement, inputElement.files[0]);
-    }
-  });
-
-  dropZoneElement.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    dropZoneElement.classList.add("drop-zone--over");
-  });
-
-  ["dragleave", "dragend"].forEach((type) => {
-    dropZoneElement.addEventListener(type, (e) => {
-      dropZoneElement.classList.remove("drop-zone--over");
-    });
-  });
-
-  dropZoneElement.addEventListener("drop", (e) => {
-    e.preventDefault();
-
-    if (e.dataTransfer.files.length) {
-      inputElement.files = e.dataTransfer.files;
-      updateThumbnail(dropZoneElement,e.dataTransfer.files[0]);
-    }
-
-    dropZoneElement.classList.remove("drop-zone--over");
-  });
-});
-
-
-function updateThumbnail(dropZoneElement, file) {
-  let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
-
-  // First time - remove the prompt
-  if (dropZoneElement.querySelector(".drop-zone__prompt")) {
-    dropZoneElement.querySelector(".drop-zone__prompt").remove();
-  }
-
-  // First time - there is no thumbnail element, so lets create it
-  if (!thumbnailElement) {
-    thumbnailElement = document.createElement("div");
-    thumbnailElement.classList.add("drop-zone__thumb");
-    dropZoneElement.appendChild(thumbnailElement);
-  }
-
-  thumbnailElement.dataset.label = file.name;
-
-  // Show thumbnail for image files
-  if (file.type.startsWith("image/")) {
-    const reader = new FileReader();
-
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
-    };
-  } else {
-    thumbnailElement.style.backgroundImage = null;
-  }
-}
-</script>
-
+			</div>
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Code</th>
+						<th>Name</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php
+                    $college = new College();
+					$data = $college->show();
+					
+					
+					foreach($data as $college) {
+						// Convert both values to lowercase and compare them
+						if(strtolower($UserCollege) == strtolower($college['college_name'])){ 
+							$i = 1;
+							?>
+							<tr>
+								<td><?php echo $i; ?></td>
+								<td><?php echo $college['college_code']; ?></td>
+								<td><?php echo $college['college_name']; ?></td>
+								<td>
+									<!-- Link to edit the Program -->
+									<a href="add_program.php?id=<?php echo $college['id']; ?>" class="edit">
+										<i class="material-icons" title="Edit">&#xe147;</i>
+									</a>
+									<?php 
+									// Check if there are any fee schedules associated with this fee
+									$Program = new Program();
+									$Programs = $Program->get($college['id']);
+									if ($Programs) {
+										// If there are Programs, display a link to view them
+										?>
+										<a href="view_program.php?college_id=<?php echo $college['id']; ?>" class="view-schedules">
+											<i class="material-icons" title="View Schedules">event_note</i>
+										</a>
+										<?php
+									}
+									?>
+								</td>
+							</tr>
+							<?php 
+							$i++;
+						}
+					}
+?>
+</tbody>
+-<!-- Create Fee Modal HTML -->
+<div id="addFeesModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="addcollege.php" method="POST" id="adduniversityfees">
+                <div class="modal-header">
+                    <h4 class="modal-title">College</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" class="form-control" required>
+                    </div>
+					<div class="form-group">
+                        <label for="code">Code</label>
+                        <input type="text" name="code" id="code" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="hidden" name="action" value="add">
+                    <input type="submit" class="btn btn-success" value="create">
+                </div>
+            </form>
+   </body>       
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+            <script>
+                var el = document.getElementById("wrapper");
+                var toggleButton = document.getElementById("menu-toggle");
+        
+                toggleButton.onclick = function () {
+                    el.classList.toggle("toggled");
+                };
+            </script>
 <script>
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
 var dropdown = document.getElementsByClassName("dropdown-btn");
@@ -367,3 +219,5 @@ for (var i = 0; i < links.length; i++) {
     setActiveLink(this);
   });
 }</script>
+
+</html>
