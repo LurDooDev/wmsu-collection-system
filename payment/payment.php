@@ -13,6 +13,8 @@ if (!isset($_SESSION['logged_id'])) {
   }
 }
 
+require_once '../classes/database.class.php';
+require_once '../classes/college.class.php';
 ?>
 <!doctype html>
 <html lang="en" class="no-js">
@@ -50,7 +52,10 @@ if (!isset($_SESSION['logged_id'])) {
                 <i class="fa fa-caret-down" style = "margin-left:18px;"></i>
                 </button>                
                 <div class="dropdown-container">
+                  <?php
+                  if($_SESSION['role'] == 'officer'){?>
                     <a href="universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">University Payment</a>
+                  <?php } ?>
                     <a href="" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Local Payment</a>
                 </div>
                 <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>

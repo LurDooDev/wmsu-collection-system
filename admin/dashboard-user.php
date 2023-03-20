@@ -4,7 +4,7 @@ session_start();
 
 //prevent horny people
 if (!isset($_SESSION['logged_id'])) {
-  header('location: ../public/logout.php');
+  header('location: ../admin/dashboard-user.php');
 } else if ($_SESSION['role'] != 'officer') {
   if ($_SESSION['role'] == 'admin') {
       header('location: dashboard.php');
@@ -13,6 +13,8 @@ if (!isset($_SESSION['logged_id'])) {
   }
 }
 
+require_once '../classes/database.class.php';
+require_once '../classes/college.class.php';
 ?>
 <!doctype html>
 <html lang="en" class="no-js">
@@ -43,7 +45,10 @@ if (!isset($_SESSION['logged_id'])) {
         <div class="bg-white" id="sidebar-wrapper">
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
             <div class="list-group list-group-flush my-3">
+              <?php
+              if($_SESSION['role'] == 'officer'){?>
                 <a href="../admin/dashboard-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active ">Dashboard</a>
+                <?php } ?>
                 <a href="../fees-user/fees-user.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold ">Fees</a>
                 <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Payments</a>
                 <i class="fa fa-caret-down" style = "margin-left:18px;"></i>

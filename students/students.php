@@ -4,7 +4,7 @@ session_start();
 
 //prevent horny people
 if (!isset($_SESSION['logged_id'])) {
-    header('location: ../public/logout.php');
+    header('location: ../students/studentds.php');
 } else if ($_SESSION['role'] != 'officer') {
     if ($_SESSION['role'] == 'admin') {
         header('location: officer.php');
@@ -58,7 +58,10 @@ require_once '../classes/program.class.php';
                     <a href="../payment/localpayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Local Payment</a>
                 </div>
                 <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>
+				<?php
+				if($_SESSION['role'] == 'officer'){?>
                 <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Students</a>
+				<?php } ?>
                 <a href="../financial-report-user/financial-report-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
                 <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
                 <a href="../csc-management/csc-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">CSC Management</a>
