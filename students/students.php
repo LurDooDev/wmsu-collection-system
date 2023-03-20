@@ -42,7 +42,7 @@ require_once '../classes/program.class.php';
     <title>Wmsu Collection System</title>
     </head>
 
-      <body>
+	<body>
       <div class="d-flex" id="wrapper">
         <!-- Sidebar with bootstrap -->
         <div class="bg-white" id="sidebar-wrapper">
@@ -61,7 +61,7 @@ require_once '../classes/program.class.php';
                 <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Students</a>
                 <a href="../financial-report-user/financial-report-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
                 <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
-                <a href="../csc-management/csc-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">CSC Management</a>
+                <a href="../csc-management/csc-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">CSC Management</a>
                 <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Admin Settings</a>
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Logout</a>
             </div>
@@ -72,7 +72,7 @@ require_once '../classes/program.class.php';
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Students</h2>
+            <h2 class="fs-2 m-0">Students</h2>
         </div>
     </nav>
 		<div class="table-wrapper">
@@ -160,7 +160,6 @@ require_once '../classes/program.class.php';
 		<div class="form-group">
 		  <label for="college" class="form-label">Colleges</label>
             <select class="form-control" id="college" name="college" required>
-				
               <option value="">Select your option</option>
 			  <?php
 			  $colleges = new College();
@@ -176,7 +175,6 @@ require_once '../classes/program.class.php';
 		  <div class="form-group">
 		  <label for="program" class="form-label">Programs</label>
             <select class="form-control" id="program" name="program" required>
-				
               <option value="">Select your option</option>
 			  <?php
 			  $Program = new Program();
@@ -188,7 +186,6 @@ require_once '../classes/program.class.php';
             </select>
 
           </div>
-             
 					<div class="form-group">
                         <label for="yearlevel">Year Level</label>
                         <select name="yearlevel" id="yearlevel" class="form-control" required>
@@ -237,3 +234,6 @@ for (i = 0; i < dropdown.length; i++) {
   });
 }
 </script>
+
+
+
