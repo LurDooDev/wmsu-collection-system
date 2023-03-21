@@ -93,6 +93,9 @@ if (!isset($_SESSION['logged_id'])) {
               <tr>
                 <th scope="col" style = " color: #000000;" >Select Fees</th>
                 <th scope="col" style = " color: #000000;" >University Fees</th>
+                <th scope="col" style = " color: #000000;" >Amount</th>
+                <th scope="col" style = " color: #000000;" >Semester</th>
+                <th scope="col" style = " color: #000000;" >School Year</th>
               </tr>
             </thead>
             <tbody>
@@ -100,24 +103,33 @@ if (!isset($_SESSION['logged_id'])) {
              <td> 
               <div th:each="fees : ${fees}" class="checkbox-group">
     <div class="checkbox"><label class="checkbox-inline" th:text="${fees}">
-    <input type="checkbox" th:field="*{checkedItems}" th:value="${fees}" />   1</label></div>
+    <input type="checkbox" th:field="*{checkedItems}" th:value="${fees}" /></label></div>
 </td>
                 <td> CCS Fees</td>
+                <td> 200</td>
+                <td> 1st Semester</td>
+                <td> 2021-2022</td>
                 </tr>
                 <td> 
               <div th:each="fees : ${fees}" class="checkbox-group">
     <div class="checkbox"><label class="checkbox-inline" th:text="${fees}">
-    <input type="checkbox" th:field="*{checkedItems}" th:value="${fees}" />   2</label></div>
+    <input type="checkbox" th:field="*{checkedItems}" th:value="${fees}" /></label></div>
 </td>
                 <td> To be Determined</td>
+                <td> 200</td>
+                <td> 1st Semester</td>
+                <td> 2021-2022</td>
                 </tr>
 
                 <td> 
               <div th:each="fees : ${fees}" class="checkbox-group">
     <div class="checkbox"><label class="checkbox-inline" th:text="${fees}">
-    <input type="checkbox" th:field="*{checkedItems}" th:value="${fees}" />   3</label></div>
+    <input type="checkbox" th:field="*{checkedItems}" th:value="${fees}" /></label></div>
 </td>
                 <td> To be Determined</td>
+                <td> 200</td>
+                <td> 1st Semester</td>
+                <td> 2021-2022</td>
                 </tr>
             </tbody>
           </table>
