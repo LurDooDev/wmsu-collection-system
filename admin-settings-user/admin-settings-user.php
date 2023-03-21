@@ -4,8 +4,8 @@ session_start();
 
 if (!isset($_SESSION['logged_id'])) {
     header('location: ..admin-settings-user/admin-settings-user.php');
-} else if ($_SESSION['role'] != 'admin') {
-    if ($_SESSION['role'] == 'officer') {
+} else if ($_SESSION['role'] != 'officer') {
+    if ($_SESSION['role'] == 'admin') {
         header('location: officer.php');
     } else if ($_SESSION['role'] == 'collector') {
         header('location: collector.php');
@@ -64,7 +64,10 @@ if (!isset($_SESSION['logged_id'])) {
                 <a href="../financial-report-user/financial-report-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
                 <a h ref="../audit-log-user/audit-log-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
                 <a href="../csc-management/csc-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">CSC Management</a>
+                <?php
+                if($_SESSION['role'] == 'officer'){?>
                 <a href="../admin-settings-user/admin-settings-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Admin Settings</a>
+                <?php } ?>
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Logout</a>
             </div>
         </div>

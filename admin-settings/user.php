@@ -4,9 +4,9 @@
   require_once '../functions/session.function.php';
   
 if (!isset($_SESSION['logged_id'])) {
-    header('location: ../admin-settings-user/officer.php');
-} else if ($_SESSION['role'] != 'officer') {
-    if ($_SESSION['role'] == 'admin') {
+    header('location: ../admin-settings/user.php');
+} else if ($_SESSION['role'] != 'admin') {
+    if ($_SESSION['role'] == 'officer') {
         header('location: officer.php');
     } else if ($_SESSION['role'] == 'collector') {
         header('location: collector.php');
@@ -71,7 +71,7 @@ require_once '../classes/role.class.php';
                     <a href="../university/university.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
                     <a href="../local/localfees.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>
                     <?php
-                    if($_SESSION['role'] == 'officer'){?>
+                    if($_SESSION['role'] == 'admin'){?>
                     <a href="../admin-settings/user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="text-decoration:none; padding-left: 70px;">User Management</a></ul>
                     <?php } ?>
                     <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Colleges</a></ul>
