@@ -4,7 +4,7 @@
 
 	//prevent unauthorized access
 	if (!isset($_SESSION['logged_id'])) {
-		header('location: ../audit-log/audit-log.php');
+		header('location: ../audit-log-user/audit-log-user.php');
 	} else if ($_SESSION['role'] != 'admin') {
 		if ($_SESSION['role'] == 'officer') {
 			header('location: admin.php');
