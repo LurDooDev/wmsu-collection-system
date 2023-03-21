@@ -298,12 +298,11 @@ overflow-wrap: hidden;
      }
      .container {
       background-color: #ffffff;
-      padding-bottom: 200px;
+      padding-bottom: 30px;
     }
       .container {
         background-color: #ffffff;
-        padding-bottom: 100px;
-        margin-bottom: -150px;
+        padding-bottom: 30px;
       }
      
      /* Google Fonts - Poppins */
@@ -473,7 +472,6 @@ strong{
 }
 }
 body{
-  margin-top:20px;
   color: #484b51;
 }
 .text-secondary-d1 {
