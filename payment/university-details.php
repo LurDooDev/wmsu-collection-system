@@ -135,16 +135,15 @@ if (!isset($_SESSION['logged_id'])) {
                     <!-- /.col -->
                 </div>
                 <div class="table-responsive" id="yati">
-        <div class="row my-2 mx-1 justify-content-center" style="display: block;">
-          <table class="table table-striped table-borderless">
-            <thead style="background-color:#95BDFE ;" class="text-white">
+                <table class="table table-bordered">
+                <thead style="background-color:#95BDFE ;" class="text-white">
               <tr>
-                <th scope="col" style = " color: #000000;" >#</th>
-                <th scope="col" style = " color: #000000;" >Description</th>
-                <th scope="col" style = " color: #000000;" >School Year</th>
-                <th scope="col" style = " color: #000000;" >Quantity</th>
-                <th scope="col" style = " color: #000000;" >Unit Price</th>
-                <th scope="col" style = " color: #000000;" >Amount</th>
+                <th scope="col" >#</th>
+                <th scope="col">Description</th>
+                <th scope="col">School Year</th>
+                <th scope="col" style = " text-align:center; " >Quantity</th>
+                <th scope="col" style = "text-align:center ;" >Unit Price</th>
+                <th scope="col" style = " text-align:center;" >Amount</th>
               </tr>
             </thead>
             <tbody>
@@ -152,74 +151,42 @@ if (!isset($_SESSION['logged_id'])) {
                 <td> 1</td>
                 <td> CCS Fees</td>
                 <td> 2021-2022</td>
-                <td> 1</td>
-                <td>₱ 200</td>
-                <td>₱ 200</td>
+                <td style="text-align:center"> 1</td>
+                <td style="text-align:right">₱ 200</td>
+                <td style="text-align:right">₱ 200</td>
 
                 </tr>
                 <td> 2</td>
                 <td> To be Determined</td>
                 <td> XXX</td>
-                <td> 1</td>
-                <td> XXX</td>
-                <td> XXX</td>
+                <td style="text-align:center"> 1</td>
+                <td style="text-align:right"> XXX</td>
+                <td style="text-align:right"> XXX</td>
 
                 </tr>
 
                 <td> 3</td>
                 <td> To be Determined</td>
                 <td> XXX</td>
-                <td> 1</td>
-                <td> XXX</td>
-                <td> XXX</td>
+                <td style="text-align:center"> 1</td>
+                <td style="text-align:right"> XXX</td>
+                <td style="text-align:right"> XXX</td>
                 </tr>
-                <!-- <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> 1</td>
-                <td> Total Amount:</td>
-                <td> ₱ 200</td> -->
-            </tbody>
-          </table>
+                <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="text-align:right; font-weight:bold;">Total Amount:</td>
+        <td style="text-align:right">₱ 200.00</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
           <hr />
           <div class="row mt-3">
                         <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
-                            Please take note to not lose your receipt!!
+                            <b>Please take note to not lose your receipt!!</b>
                         </div>
-
-                        <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
-                            <div class="row my-2">
-                                <div class="col-7 text-right">
-                                    SubTotal:
-                                </div>
-                                <div class="col-5">
-                                    <span class="text-120 text-secondary-d1">₱ 200</span>
-                                </div>
-                            </div>
-
-                            <div class="row my-2">
-                                <div class="col-7 text-right">
-                                    Discount: 
-                                </div>
-                                <div class="col-5">
-                                    <span class="text-110 text-secondary-d1">None</span>
-                                </div>
-                            </div>
-
-                            <div class="row my-2 align-items-center bgc-primary-l3 p-2">
-                                <div class="col-7 text-right">
-                                    Total Amount:
-                                </div>
-                                <div class="col-5">
-                                    <span class="text-150 text-success-d3 opacity-2">₱ 200</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-        </div>
-        </div>
-    </div>
 
 
 <div class="d-flex">
