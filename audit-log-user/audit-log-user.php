@@ -5,8 +5,8 @@
 	//prevent unauthorized access
 	if (!isset($_SESSION['logged_id'])) {
 		header('location: ../audit-log-user/audit-log-user.php');
-	} else if ($_SESSION['role'] != 'admin') {
-		if ($_SESSION['role'] == 'officer') {
+	} else if ($_SESSION['role'] != 'officer') {
+		if ($_SESSION['role'] == 'admin') {
 			header('location: admin.php');
 		} else if ($_SESSION['role'] == 'collector') {
 			header('location: collector.php');
@@ -63,7 +63,10 @@
                 <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>
                 <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Students</a>
                 <a href="../financial-report-user/financial-report-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
+                <?php
+                if($_SESSION['role'] == 'officer'){?>
                 <a href="../audit-log-user/audit-log-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
+                <?php } ?>
                 <a href="../csc-management/csc-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">CSC Management</a>
                 <a href="../admin-settings-user/admin-settings-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Admin Settings</a>
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Logout</a>
