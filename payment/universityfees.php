@@ -45,20 +45,20 @@ if (!isset($_SESSION['logged_id'])) {
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
             <div class="list-group list-group-flush my-3">
                 <a href="../admin/dashboard-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Dashboard</a>
-                <!-- <a href="../fees-user/fees-user.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold ">Fees</a> -->
+                <a href="../fees-user/fees-user.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold ">Fees</a>
                 <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Payments</a>
                 <i class="fa fa-caret-down" style = "margin-left:70px;"></i>
                 </button>                
                 <div class="dropdown-container">
-                    <a href="university.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="text-decoration:none; padding-left: 70px;">University Payment</a>
-                    <a href="" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Local Payment</a>
+                    <a href="universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="text-decoration:none; padding-left: 70px;">University Payment</a>
+                    <a href="localpayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Local Payment</a>
                 </div>
                 <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>
                 <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Students</a>
                 <a href="../financial-report-user/financial-report-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
-                <a href="../audit-log-user/audit-log-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
+                <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
                 <a href="../csc-management/csc-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">CSC Management</a>
-                <a href="../admin-settings-user/admin-settings-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Admin Settings</a>
+                <a href="../admin-settings/admin-settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Admin Settings</a>
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Logout</a>
             </div>
         </div>
@@ -81,7 +81,7 @@ if (!isset($_SESSION['logged_id'])) {
 								<strong>Search User</strong>
 							</li>
 							<li class ="active" id="step2"><strong>University Fees</strong></li>
-							<li class ="" id="step3"><strong>Payment Details</strong></li>
+							<li class ="" id="step3"><strong>University Payment Details</strong></li>
 							<li id="step4"><strong>Transaction Complete</strong></li>
 						</ul>
 						<div class="">
@@ -144,7 +144,7 @@ if (!isset($_SESSION['logged_id'])) {
                 <a href="universitypayment.php" class="btn btn-success"><span>Previous </span></a>
 					</div>
           <div class="ml-auto p-auto">
-            <a href="university-details.php" class="btn btn-success" id="backstreet"> <span>Proceed To Payment Details</span></a>
+            <a href="university-details.php" class="btn btn-success" id="backstreet"> <span>Pay</span></a>
 
 </div>
 </fieldset>
