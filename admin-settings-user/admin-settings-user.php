@@ -49,7 +49,7 @@ if (!isset($_SESSION['logged_id'])) {
             <div class="list-group list-group-flush my-3">
               <?php
               if($_SESSION['role'] == 'officer'){?>
-                <a href="../admin/dashboard-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Dashboard</a>
+                <a href="../admin/dashboard-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Dashboard</a>
                 <?php } ?>
                 <!-- <a href="../fees-user/fees-user.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold ">Fees</a> -->
                 <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Payments</a>
