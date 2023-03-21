@@ -85,7 +85,7 @@ require_once '../classes/program.class.php';
 							<li class="active" id="step1">
 								<strong>Search User</strong>
 							</li>
-							<li id="step2"><strong>Balance</strong></li>
+							<li id="step2"><strong>University Fees</strong></li>
 							<li id="step3"><strong>Payment Details</strong></li>
 							<li id="step4"><strong>Transaction Complete</strong></li>
 						</ul>
@@ -125,7 +125,7 @@ require_once '../classes/program.class.php';
                 <td>sl202203664</td>
                 <td>College of Computing Studies</td>
                 <td>
-            <a href="" class="edit">
+            <a href="universityfees.php" class="edit">
                 <i class="material-icons" title="Edit">&#xe147;</i>
             </a>
 						</td>
@@ -136,7 +136,7 @@ require_once '../classes/program.class.php';
                 <td>sl202203212</td>
                 <td>College of Nursing</td>
                 <td>
-            <a href="" class="edit">
+            <a href="universityfees.php" class="edit">
                 <i class="material-icons" title="Edit">&#xe147;</i>
             </a>
 						</td>
@@ -147,7 +147,7 @@ require_once '../classes/program.class.php';
                 <td>sl202234242</td>
                 <td>College of Architecture</td>
                 <td>
-            <a href="" class="edit">
+            <a href="universityfees.php" class="edit">
                 <i class="material-icons" title="Edit">&#xe147;</i>
             </a>
 						</td>
@@ -158,7 +158,7 @@ require_once '../classes/program.class.php';
                 <td>sl202202541</td>
                 <td>College of Law</td>
                 <td>
-            <a href="" class="edit">
+            <a href="universityfees.php" class="edit">
                 <i class="material-icons" title="Edit">&#xe147;</i>
             </a>
 						</td>
@@ -169,7 +169,7 @@ require_once '../classes/program.class.php';
                 <td>sl202207543</td>
                 <td>College of Engineering</td>
                 <td>
-            <a href="" class="edit">
+            <a href="universityfees.php" class="edit">
                 <i class="material-icons" title="Edit">&#xe147;</i>
             </a>
 						</td>
@@ -179,12 +179,6 @@ require_once '../classes/program.class.php';
         </div>
         </div>
     </div>
-<div>
-<div class="d-flex">
-          <div class="ml-auto p-auto">
-            <a href="universityfees.php" class="btn btn-success" id="backstreet"> <span>Next Step</span></a>
-
-</div>
 </fieldset>
   
 </body>       
