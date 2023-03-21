@@ -30,7 +30,7 @@ if (!isset($_SESSION['logged_id'])) {
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/payments.css" />
+    <link rel="stylesheet" href="../css/paymentfees.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -86,26 +86,45 @@ if (!isset($_SESSION['logged_id'])) {
 						</ul>
 						<div class="">
 </div>
-						</div> <br>
-						<!-- <div class ="row justify-content-center"> -->
-                        <fieldset>
-            <table class="table">
-  <thead>
-    <tr>
-      <th scope="col" style="text-align: left; background-color: #95BDFE;"><b>USC Fee</b></th>
-    </tr>
-  </thead>
-</table>
-<div class ="container-fluid">
-        <div class="col-sm-2" id="USC" style="font-weight: 500;">
-				<a><span>CSC Fee</span></a>
-        <input type="text" id="fee" name="fee" placeholder="Php 200.00" style="padding: 8px; padding-left: 100px; background-color: #EBEBEB; border-color: #EBEBEB; margin-left: 27px;"><br><br>
-        </div>
-            </div>
-      <hr style="width: 100%; background-color: black; height:6px;"/>
-        <table class="table">
-</div>
+<div class="table-responsive" id="bilat">
+        <div class="row my-2 mx-1 justify-content-center" style="display: block;">
+          <table class="table table-striped table-borderless">
+            <thead style="background-color:#95BDFE ;" class="text-white">
+              <tr>
+                <th scope="col" style = " color: #000000;" >Select Fees</th>
+                <th scope="col" style = " color: #000000;" >University Fees</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+             <td> 
+              <div th:each="fees : ${fees}" class="checkbox-group">
+    <div class="checkbox"><label class="checkbox-inline" th:text="${fees}">
+    <input type="checkbox" th:field="*{checkedItems}" th:value="${fees}" />   1</label></div>
+</td>
+                <td> CCS Fees</td>
+                </tr>
+                <td> 
+              <div th:each="fees : ${fees}" class="checkbox-group">
+    <div class="checkbox"><label class="checkbox-inline" th:text="${fees}">
+    <input type="checkbox" th:field="*{checkedItems}" th:value="${fees}" />   2</label></div>
+</td>
+                <td> To be Determined</td>
+                </tr>
 
+                <td> 
+              <div th:each="fees : ${fees}" class="checkbox-group">
+    <div class="checkbox"><label class="checkbox-inline" th:text="${fees}">
+    <input type="checkbox" th:field="*{checkedItems}" th:value="${fees}" />   3</label></div>
+</td>
+                <td> To be Determined</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+    </div>
+</fieldset>
 
 <div>
 <div class="d-flex">
