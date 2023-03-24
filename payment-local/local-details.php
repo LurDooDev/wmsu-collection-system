@@ -202,7 +202,7 @@ if (!isset($_SESSION['logged_id'])) {
                 <a href="../payment-local/localfees.php" class="btn btn-success"><span>Previous </span></a>
 					</div>
           <div class="ml-auto p-auto">
-            <a href="../payment-local/local-details.php" class="btn btn-success" id="backstreet"  style="border-radius: 40px; padding: 10 10 10 10;"> <span>Pay Now</span></a>
+            <a href="../payment-local/local-complete.php" class="btn btn-success" id="backstreet"  style="border-radius: 40px; padding: 10 10 10 10;"> <span>Pay Now</span></a>
 
 </div>
 </fieldset>
