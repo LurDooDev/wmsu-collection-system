@@ -65,7 +65,7 @@
                 <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Audit Log</a>
                 <?php } ?>
                 <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Admin Settings</a>
-                <i class="fa fa-caret-down" style="margin-left: 44px;"></i>
+                <i class="fa fa-caret-down" style="margin-left: 37px;"></i>
                 </button>
                 <div class="">
                     <a href="../admin-settings/overview_settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
