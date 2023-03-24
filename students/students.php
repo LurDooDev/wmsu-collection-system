@@ -100,7 +100,7 @@ require_once '../classes/program.class.php';
       </div>
       <div class="col-sm-8 d-flex justify-content-end">
         <div class="mr-2">
-          <a href="#addStudentModal" class="btn btn-success" id="add-student" data-toggle="modal">
+          <a href="#AddCSV" class="btn btn-success" id="add-student" data-toggle="modal">
             <i class="material-icons">&#xE147;</i> <span>Add CSV</span>
           </a>
         </div>
@@ -225,6 +225,27 @@ require_once '../classes/program.class.php';
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="AddCSV" data-backdrop="static" tabindex = "1">
+	<div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Students CSV Uploads</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        </div>
+		<div class="modal-body">
+        <div class="drop-zone">
+    <input type="file" name="myFile" class="drop-zone_input">
+  </div>
+  <script src="./src/main.js"></script>
+        </div>
+        <div class="modal-footer">
+          <a href="#" data-dismiss="modal" class="btn">Close</a>
+          <a href="#" class="btn btn-primary">Upload This File</a>
+        </div>
+      </div>
+    </div>
+</div>
+
 </body>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
             <script>
