@@ -96,20 +96,22 @@ if (!isset($_SESSION['logged_id'])) {
 						</div> <br>
                         <fieldset>
             <div class ="container-fluid">
-            <div class="col-sm-12">
-            <h2 style="color: Black; font-weight: 300; margin-left:290px;"> PAYMENT COMPLETED SUCCESSFULLY! </h2><div class="col-sm-13" id="doggie">
+            <div class="ml-auto mr-sm-auto">
+            <h2 style="color: Black; font-weight: 300; margin-left:240px;"> PAYMENT COMPLETED SUCCESSFULLY! </h2><div class="col-sm-13" id="doggie">
           </div>
-            <img src="../images/doggie.jpg" width="300px" alt="Doggier" style="width: 100%;">
+            <img src="../images/doggie.jpg" width="300px" alt="Doggier" style="width: 90%;">
             </div>
-
 				</div>
+      </div>
+    <div>
+     <div class="d-flex">
+    <div class="ml-auto mr-sm-auto" style="margin-right: 200px;">
+    <a href="../payment-local/localpayment.php" class="btn btn-success" id="backstreet" style="border-radius: 40px; padding: 10px 20px; font-size: 20px;">
+      <span>New Payment</span>
+    </a>
+  </div>
 </div>
-                <div>
-<div class="d-flex">
-          <div class="ml-auto mr-sm-auto" style = "margin-right:180px;">
-            <a href="" class="btn btn-success" id="backstreet"  style="border-radius: 40px; padding: 10 10 10 10;"> <span>Download Receipt</span></a>
-</div>
-</div>
+
 </fieldset>
 </body>       
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>

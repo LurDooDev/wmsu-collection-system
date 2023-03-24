@@ -85,33 +85,33 @@ require_once '../classes/program.class.php';
             <h2 class="fs-2 m-0">Students</h2>
         </div>
     </nav>
-		<div class="table-wrapper">
-		<div class="table-title">
-				<div class="row">
-					<div class="col-sm-4">
-					<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
-					<button class="btn btn-primary dropdown-toggle" id ="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter Year </button>
-						<div class="dropdown-menu">
-    					<a class="dropdown-item" href="#">1st Year</a>
-    					<a class="dropdown-item" href="#">2nd Year</a>
-                        <a class="dropdown-item" href="#">3rd Year</a>
-                        <a class="dropdown-item" href="#">4th Year</a>
-					</div>
-					</div>
-					<div class = "d-flex justify-content-end">
-					<div class="col-sm-13">
-						<div class = "mr-auto pr-auto" style = "margin-top:-110px;">
-						<a href="#addStudentModal" class="btn btn-success" id = "add-student" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Student</span></a>
-						<div class = "ml-auto"  style = "margin-top:-110px;">
-						<div class="col-sm-13">
-						<a href="#addStudentModal" class="btn btn-success" id = "add-student" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Student</span></a>
-					</div>
-					</div>
-				  </div>
-				  </div>
-				  </div>
-				</div>
-			</div>
+	<div class="table-wrapper">
+  <div class="table-title">
+    <div class="row">
+      <div class="col-sm-4">
+        <input class="form-control border" type="search" name="search" id="search-input" placeholder="Search Name">
+        <button class="btn btn-primary dropdown-toggle" id="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter Year </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">1st Year</a>
+          <a class="dropdown-item" href="#">2nd Year</a>
+          <a class="dropdown-item" href="#">3rd Year</a>
+          <a class="dropdown-item" href="#">4th Year</a>
+        </div>
+      </div>
+      <div class="col-sm-8 d-flex justify-content-end">
+        <div class="mr-2">
+          <a href="#addStudentModal" class="btn btn-success" id="add-student" data-toggle="modal">
+            <i class="material-icons">&#xE147;</i> <span>Add CSV</span>
+          </a>
+        </div>
+        <div class="ml-2">
+          <a href="#addStudentModal" class="btn btn-success" id="add-student" data-toggle="modal">
+            <i class="material-icons">&#xE147;</i> <span>Add Student</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 			<table class="table table-striped table-hover" style="width: 100%;">
 				<thead style="text-align: center;">
 					<tr>
