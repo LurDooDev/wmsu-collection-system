@@ -97,17 +97,16 @@ if (!isset($_SESSION['logged_id'])) {
                         <fieldset>
             <div class ="container-fluid">
             <div class="col-sm-12">
+            <h2 style="color: Black; font-weight: 300; margin-left:290px;"> PAYMENT COMPLETED SUCCESSFULLY! </h2><div class="col-sm-13" id="doggie">
+          </div>
             <img src="../images/doggie.jpg" width="300px" alt="Doggier" style="width: 100%;">
             </div>
-            <h2 style="color: Black; font-weight: 300; margin-left:310px;"> PAYMENT COMPLETED SUCCESSFULLY! </h2><div class="col-sm-7" id="doggie">
-          </div>
+
 				</div>
+</div>
                 <div>
 <div class="d-flex">
-                <div class="mr-auto">
-                <a href="../payment-local/localfees.php" class="btn btn-success" style="border-radius: 40px; padding: 10 10 10 10;"><span>Previous </span></a>
-					</div>
-          <div class="ml-auto p-auto">
+          <div class="ml-auto mr-sm-auto" style = "margin-right:180px;">
             <a href="" class="btn btn-success" id="backstreet"  style="border-radius: 40px; padding: 10 10 10 10;"> <span>Download Receipt</span></a>
 </div>
 </div>
