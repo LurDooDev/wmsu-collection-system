@@ -98,9 +98,18 @@ require_once '../classes/program.class.php';
                         <a class="dropdown-item" href="#">4th Year</a>
 					</div>
 					</div>
-					<div class="col-sm-8">
+					<div class = "d-flex justify-content-end">
+					<div class="col-sm-13">
+						<div class = "mr-auto pr-auto" style = "margin-top:-110px;">
+						<a href="#addStudentModal" class="btn btn-success" id = "add-student" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Student</span></a>
+						<div class = "ml-auto"  style = "margin-top:-110px;">
+						<div class="col-sm-13">
 						<a href="#addStudentModal" class="btn btn-success" id = "add-student" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Student</span></a>
 					</div>
+					</div>
+				  </div>
+				  </div>
+				  </div>
 				</div>
 			</div>
 			<table class="table table-striped table-hover" style="width: 100%;">
