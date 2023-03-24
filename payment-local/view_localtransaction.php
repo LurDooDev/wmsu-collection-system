@@ -139,7 +139,7 @@ if (!isset($_SESSION['logged_id'])) {
                 <td> Bahay Kubo</td>
                 <td> 2021-2022</td>
                 <td style="text-align:center"> 1</td>
-                <td style="text-align:center"> Unpaid</td>
+                <td style="text-align:center; color: red;"> Unpaid</td>
                 <td style="text-align:right">₱ 30</td>
                 <td style="text-align:center"> 1</td>
                 <td style="text-align:right">₱ 30</td>
@@ -149,7 +149,7 @@ if (!isset($_SESSION['logged_id'])) {
                 <td> Gardening</td>
                 <td> 2021-2022</td>
                 <td style="text-align:center"> 1</td>
-                <td style="text-align:center"> Unpaid</td>
+                <td style="text-align:center; color: red;"> Unpaid</td>
                 <td style="text-align:right">₱ 100</td>
                 <td style="text-align:center"> 1</td>
                 <td style="text-align:right">₱ 100</td>
@@ -160,7 +160,7 @@ if (!isset($_SESSION['logged_id'])) {
                 <td> Aircon</td>
                 <td> 2021-2022</td>
                 <td style="text-align:center"> 1</td>
-                <td style="text-align:center"> Unpaid</td>
+                <td style="text-align:center; color: red;"> Unpaid</td>
                 <td style="text-align:right">₱ 150</td>
                 <td style="text-align:center"> 1</td>
                 <td style="text-align:right">₱ 150</td>

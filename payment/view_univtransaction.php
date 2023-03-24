@@ -139,7 +139,7 @@ if (!isset($_SESSION['logged_id'])) {
                 <td> CCS Fees</td>
                 <td> 2021-2022</td>
                 <td style="text-align:center"> 1</td>
-                <td style="text-align:center"> Unpaid</td>
+                <td style="text-align:center; color: red;"> Unpaid</td>
                 <td style="text-align:right">₱ 200</td>
                 <td style="text-align:center"> 1</td>
                 <td style="text-align:right">₱ 200</td>
