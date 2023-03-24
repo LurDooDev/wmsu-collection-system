@@ -201,7 +201,7 @@ if (!isset($_SESSION['logged_id'])) {
                 <a href="universityfees.php" class="btn btn-success"><span>Previous </span></a>
 					</div>
           <div class="ml-auto p-auto">
-            <a href="university-details.php" class="btn btn-success" id="backstreet"> <span>Pay</span></a>
+            <a href="university-complete.php" class="btn btn-success" id="backstreet"> <span>Pay</span></a>
 
 </div>
 </fieldset>
