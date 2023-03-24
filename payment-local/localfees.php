@@ -113,7 +113,7 @@ if (!isset($_SESSION['logged_id'])) {
     <input type="checkbox" th:field="*{checkedItems}" th:value="${fees}" /></label></div>
 </td>
                 <td>Bahay Kubo</td>
-                <td>250</td>
+                <td>30</td>
                 <td> 1st Semester</td>
                 <td> 2021-2022</td>
                 </tr>

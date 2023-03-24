@@ -20,7 +20,7 @@ if (!isset($_SESSION['logged_id'])) {
     <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--- links for bootstrap and css  --->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Unicons CSS -->
@@ -96,7 +96,7 @@ if (!isset($_SESSION['logged_id'])) {
 						</div> <br>
                         <fieldset>
                         <div class ="container-fluid">
-            <div class="ml-auto mr-sm-auto">
+            <div class="ml-auto mr-sm-auto" id="gawk">
             <h2 style="color: Black; font-weight: 300; margin-left:240px;"> PAYMENT COMPLETED SUCCESSFULLY! </h2><div class="col-sm-13" id="doggie">
           </div>
             <img src="../images/doggie.jpg" width="300px" alt="Doggier" style="width: 90%;">

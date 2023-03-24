@@ -102,13 +102,13 @@ if (!isset($_SESSION['logged_id'])) {
         </h1>
         <div class="page-tools">
             <div class="action-buttons">
+            <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="file" input ="file" id="payment" data-toggle="modal"> 
+                <i class="mr-1 fa fa-upload text-primary-m1 text-120 w-2"></i>
+                 Upload Promissory Note
+                </a>
                 <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="Print">
                     <i class="mr-1 fa fa-print text-primary-m1 text-120 w-2"></i>
                     Print
-                </a>
-                <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="PDF">
-                    <i class="mr-1 fa fa-file-pdf-o text-danger-m1 text-120 w-2"></i>
-                    Export
                 </a>
             </div>
         </div>
@@ -148,6 +148,7 @@ if (!isset($_SESSION['logged_id'])) {
         <th scope="col">#</th>
         <th scope="col ">Description</th>
         <th scope="col">School Year</th>
+        <th scope="col">Unpaid Balance</th>
         <th scope="col" style="text-align:center">Quantity</th>
         <th scope="col" style="text-align:center">Unit Price</th>
         <th scope="col" style="text-align:center">Amount</th>
@@ -158,6 +159,7 @@ if (!isset($_SESSION['logged_id'])) {
         <td>1</td>
         <td>Bahay Kubo</td>
         <td>2021-2022</td>
+        <td style="text-align:right">₱ 30.00</td>
         <td style="text-align:center">1</td>
         <td style="text-align:right">₱ 30.00</td>
         <td style="text-align:right">₱ 30.00</td>
@@ -166,6 +168,7 @@ if (!isset($_SESSION['logged_id'])) {
         <td>2</td>
         <td>Gardening</td>
         <td>2021-2022</td>
+        <td style="text-align:right">₱ 100.00</td>
         <td style="text-align:center">2</td>
         <td style="text-align:right">₱ 50.00</td>
         <td style="text-align:right">₱ 100.00</td>
@@ -174,11 +177,13 @@ if (!isset($_SESSION['logged_id'])) {
         <td>3</td>
         <td>Aircon</td>
         <td>2021-2022</td>
+        <td style="text-align:right">₱ 150.00</td>
         <td style="text-align:center">1</td>
         <td style="text-align:right">₱ 150.00</td>
         <td style="text-align:right">₱ 150.00</td>
       </tr>
       <tr>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>

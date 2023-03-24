@@ -84,7 +84,7 @@ if (!isset($_SESSION['logged_id'])) {
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Admin Settings</h2>
+            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Local Fee</h2>
         </div>
     </nav>
    
