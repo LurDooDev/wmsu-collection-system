@@ -138,7 +138,6 @@ require_once '../classes/program.class.php';
             </a>
 						</td>
               </tr>
-<<<<<<< Updated upstream
               <tr>
                 <th scope="row">2</th>
                 <td>Joy Batumbakal</td>
@@ -195,8 +194,6 @@ require_once '../classes/program.class.php';
             </a>
 						</td>
               </tr>
-=======
->>>>>>> Stashed changes
             </tbody>
           </table>
         </div>

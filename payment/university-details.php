@@ -198,10 +198,10 @@ if (!isset($_SESSION['logged_id'])) {
 
 <div class="d-flex">
                 <div class="mr-auto">
-                <a href="universityfees.php" class="btn btn-success"><span>Previous </span></a>
+                <a href="universityfees.php" class="btn btn-success" style="border-radius: 40px; padding: 10 10 10 10;"><span>Previous </span></a>
 					</div>
           <div class="ml-auto p-auto">
-            <a href="university-complete.php" class="btn btn-success" id="backstreet"> <span>Pay</span></a>
+            <a href="university-complete.php" class="btn btn-success" id="backstreet" style="border-radius: 40px; padding: 10 10 10 10;"> <span>Pay Balance</span></a>
 
 </div>
 </fieldset>

@@ -105,10 +105,10 @@ if (!isset($_SESSION['logged_id'])) {
                 <div>
 <div class="d-flex">
                 <div class="mr-auto">
-                <a href="../payment/universityfees.php" class="btn btn-success"><span>Previous </span></a>
+                <a href="../payment/universityfees.php" class="btn btn-success" style="border-radius: 40px; padding: 10 10 10 10;"><span>Previous </span></a>
 					</div>
           <div class="ml-auto p-auto">
-            <a href="" class="btn btn-success" id="backstreet"  style="border-radius: 40px; padding: 10 10 10 10;"> <span>Download Receipt</span></a>
+            <a href="" class="btn btn-success" id="backstreet"  style="border-radius: 40px; padding: 10 10 10 10;"> <span>New Payment?</span></a>
 </div>
 </div>
 </fieldset>
@@ -194,6 +194,16 @@ if (!isset($_SESSION['logged_id'])) {
 		return false;
 	})
 });
+</script>
+<script>
+  // Select the last fieldset element
+  const lastFieldset = document.querySelector("fieldset:last-of-type");
+  
+  // Select the first fieldset element
+  const firstFieldset = document.querySelector("fieldset:first-of-type");
+  
+  // Move the last fieldset element to the first position
+  firstFieldset.parentNode.insertBefore(lastFieldset, firstFieldset);
 </script>
 <script>
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
