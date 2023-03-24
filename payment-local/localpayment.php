@@ -63,10 +63,17 @@ require_once '../classes/program.class.php';
                 <a href="../financial-report-user/financial-report-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
                 <a href="../audit-log-user/audit-log-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
                 <a href="../csc-management/csc-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">CSC Management</a>
-                <a href="../admin-settings-user/admin-settings-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Admin Settings</a>
+                <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Admin Settings
+                <i class="fa fa-caret-down" style="margin-left: 37px;"></i>
+                </button>
+                <div class="dropdown-container">
+                    <a href="../admin-settings-user/admin-settings-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Overview</a>
+                    <a href="../admin-settings-user/univer-fee.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">University Fee</a>
+                    <a href="../admin-settings-user/local-fee.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fees</a>
+                </div>            
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Logout</a>
             </div>
-        </div>
+        </div>               
 		<div class="table-responsive">
 	<div id="page-content-wrapper">
 <!-- Dashboard hamburger      -->
@@ -128,6 +135,9 @@ require_once '../classes/program.class.php';
             <a href="localfees.php" class="add">
                 <i class="material-icons" title="Add">&#xe147;</i>
             </a>
+            <a href="view_localtransaction.php" class="edit">
+                <i class="material-icons" title="View History">event_note</i>
+            </a>
 						</td>
               </tr>
               <tr>
@@ -136,8 +146,11 @@ require_once '../classes/program.class.php';
                 <td>sl202203212</td>
                 <td>College of Nursing</td>
                 <td>
-            <a href="localfees.php" class="add">
+                <a href="localfees.php" class="add">
                 <i class="material-icons" title="Add">&#xe147;</i>
+            </a>
+            <a href="view_localtransaction.php" class="edit">
+                <i class="material-icons" title="View History">event_note</i>
             </a>
 						</td>
               </tr>
@@ -147,8 +160,11 @@ require_once '../classes/program.class.php';
                 <td>sl202234242</td>
                 <td>College of Architecture</td>
                 <td>
-            <a href="localfees.php"" class="add">
+                <a href="localfees.php" class="add">
                 <i class="material-icons" title="Add">&#xe147;</i>
+            </a>
+            <a href="view_localtransaction.php" class="edit">
+                <i class="material-icons" title="View History">event_note</i>
             </a>
 						</td>
               </tr>
@@ -158,8 +174,11 @@ require_once '../classes/program.class.php';
                 <td>sl202202541</td>
                 <td>College of Law</td>
                 <td>
-            <a href="localfees.php" class="add">
+                <a href="localfees.php" class="add">
                 <i class="material-icons" title="Add">&#xe147;</i>
+            </a>
+            <a href="view_localtransaction.php" class="edit">
+                <i class="material-icons" title="View History">event_note</i>
             </a>
 						</td>
               </tr>
@@ -169,8 +188,11 @@ require_once '../classes/program.class.php';
                 <td>sl202207543</td>
                 <td>College of Engineering</td>
                 <td>
-            <a href="localfees.php"" class="add">
+                <a href="localfees.php" class="add">
                 <i class="material-icons" title="Add">&#xe147;</i>
+            </a>
+            <a href="view_localtransaction.php" class="edit">
+                <i class="material-icons" title="View History">event_note</i>
             </a>
 						</td>
               </tr>
