@@ -103,12 +103,9 @@ if (!isset($_SESSION['logged_id'])) {
           </div>
 				</div>
                 <div>
-<div class="d-flex">
-                <div class="mr-auto">
-                <a href="../payment-local/localfees.php" class="btn btn-success" style="border-radius: 40px; padding: 10 10 10 10;"><span>Previous </span></a>
-					</div>
+<div class="d-flex justify-content-center">
           <div class="ml-auto p-auto">
-            <a href="" class="btn btn-success" id="backstreet"  style="border-radius: 40px; padding: 10 10 10 10;"> <span>Download Receipt</span></a>
+            <a href="../payment-local/localpayment.php" class="btn btn-success" id="backstreet"  style="border-radius: 40px; padding: 10 10 10 10;"> <span>New Payment?</span></a>
 </div>
 </div>
 </fieldset>

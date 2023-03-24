@@ -108,7 +108,7 @@ if (!isset($_SESSION['logged_id'])) {
                 <a href="../payment/universityfees.php" class="btn btn-success" style="border-radius: 40px; padding: 10 10 10 10;"><span>Previous </span></a>
 					</div>
           <div class="ml-auto p-auto">
-            <a href="" class="btn btn-success" id="backstreet"  style="border-radius: 40px; padding: 10 10 10 10;"> <span>New Payment?</span></a>
+            <a href="../payment/universitypayment.php" class="btn btn-success" id="backstreet"  style="border-radius: 40px; padding: 10 10 10 10;"> <span>New Payment?</span></a>
 </div>
 </div>
 </fieldset>
