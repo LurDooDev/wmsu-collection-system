@@ -82,7 +82,7 @@
 		<div class="table-title">
 				<div class="row">
 					<div class="col-sm-10 ml-auto">
-						<a href="university.php" class="btn btn-success"><span>Back To Local Fees </span></a>
+						<a href="localfees.php" class="btn btn-success"><span>Back To Local Fees </span></a>
 					</div>
 				</div>
                 <?php
