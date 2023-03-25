@@ -226,9 +226,10 @@ require_once '../classes/role.class.php';
 						<input type="text" name="username" id="username" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label for="userpassword">Password</label>
-						<input type="text" name="userpassword" id="userpassword" class="form-control" required>
-					</div>		
+          <label for="userpassword">Password</label>
+           <input type="password" name="userpassword" id="userpassword" class="form-control" required>
+          </div>
+	
 						
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
