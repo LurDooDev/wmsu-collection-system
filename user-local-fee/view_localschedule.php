@@ -96,9 +96,9 @@
 					</div>
 					</div>
           <div class="col-sm-8 p-auto mr-auto">
-						<a href="universitysched.php" class="btn btn-success" style = " padding: 13px; margin-top: 19px; border-radius:6px;"> <span>View Fee Schedules</span></a>
+						<a href="localSchedule.php" class="btn btn-success" style = " padding: 13px; margin-top: 19px; border-radius:6px;"> <span>View Fee Schedules</span></a>
 						<div class="col-sm-10 p-auto mb-auto">
-						<a href="localfees.php" class="btn btn-success"><span>Back To Local Fees</span></a>
+						<a href="local-fee.php" class="btn btn-success" style = " padding: 13px; margin-top: 19px; border-radius:6px;"><span>Back To Local Fees</span></a>
 						<!-- <a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>		
 									 -->
 					</div>

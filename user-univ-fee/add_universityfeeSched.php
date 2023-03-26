@@ -28,7 +28,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/fees.css" />
-    
+
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -86,7 +86,7 @@
 		<div class="table-title">
 				<div class="row">
 					<div class="col-sm-10 ml-auto">
-						<a href="university.php" class="btn btn-success"><span>Back To University Fees </span></a>
+						<a href="univer-fee.php" class="btn btn-success"  style = " padding: 10px; margin-top: 4px; border-radius:6px;"><span>Back To University Fees </span></a>
 					</div>
 				</div>
                 <?php

@@ -5,9 +5,9 @@
     require_once '../functions/session.function.php';
 	//prevent horny people
     if (!isset($_SESSION['logged_id'])) {
-        header('location: ../public/logout.php');
-    } else if ($_SESSION['role'] != 'admin') {
-        if ($_SESSION['role'] == 'officer') {
+        header('location: ../user-univ-fee/universitysched.php');
+    } else if ($_SESSION['role'] != 'officer') {
+        if ($_SESSION['role'] == 'admin') {
             header('location: officer.php');
         } else if ($_SESSION['role'] == 'collector') {
             header('location: collector.php');
@@ -100,7 +100,7 @@
 					</div>
 					</div>
           <div class="col-sm-8 p-auto mr-auto">
-						<a href="university.php" class="btn btn-success" id="backstreet" style = " padding: 13px; margin-top: 19px; border-radius:6px;"> <span>Back To University Fee</span></a>
+						<a href="univer-fee.php" class="btn btn-success" id="backstreet" style = " padding: 13px; margin-top: 19px; border-radius:6px;"> <span>Back To University Fee</span></a>
 						<div class="col-sm-10 p-auto mb-auto">
 						<!-- <a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a> -->
 					</div>
@@ -149,7 +149,7 @@
                 <td><?php echo ($FeeSched['is_active'] == 1) ? "Active" : "Not Active"; ?></td>
                 <td><?php echo $FeeSched['created_by']; ?></td>
                 <td>
-                <a href="universityfees.php?id=<?php echo $FeeSched['id']; ?>" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
+                <a href="univer-fee.php" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
                 </td>
             </tr>
 <?php 

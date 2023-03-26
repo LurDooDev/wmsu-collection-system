@@ -87,7 +87,7 @@
 		<div class="table-title">
 				<div class="row">
 					<div class="col-sm-10 ml-auto">
-						<a href="localfees.php" class="btn btn-success"><span>Back To Local Fees </span></a>
+						<a href="local-fee.php" class="btn btn-success"  style = " padding: 10px; margin-top: 4px; border-radius:6px;"><span>Back To Local Fees </span></a>
 					</div>
 				</div>
                 <?php
@@ -151,7 +151,7 @@
             <input type="hidden" name="collegeID" value="<?php echo $UserCollegeID; ?>">
                 <div class="modal-footer">
                     <input type="hidden" name="action" value="Add">
-                    <button type="submit" class="btn btn-success" name="action" value="Add">Save</button>
+                    <button type="submit" class="btn btn-success" name="action" value="Add" style="border-radius: 30px; padding: 10px 40px;">Save</button>
                 </div>
             </form>
 		</div>

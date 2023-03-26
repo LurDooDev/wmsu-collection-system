@@ -21,7 +21,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'add') {
     $LocalFee->localcreatedby = $createdby;
     
     if ($LocalFee->createLocalFeeSched()) {
-        header('location: localfees.php');
+        header('location: local-fee.php');
     } else {
         echo 'Failed to add fee.';
     }

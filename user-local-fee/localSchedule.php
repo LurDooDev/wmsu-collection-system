@@ -94,7 +94,7 @@
 					</div>
 					</div>
           <div class="col-sm-8 p-auto mr-auto">
-						<a href="localfees.php" class="btn btn-success" style = " padding: 13px; margin-top: 19px; border-radius:6px;"> <span>Back to Local Fees</span></a>
+						<a href="local-fee.php" class="btn btn-success" style = " padding: 13px; margin-top: 19px; border-radius:6px;"> <span>Back to Local Fees</span></a>
 						<div class="col-sm-10 p-auto mb-auto">
 						<!-- <a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a> -->
 					</div>
@@ -142,7 +142,7 @@
                     <td><?php echo date('F j, Y', strtotime($FeeSched['local_end_date'])); ?></td>
                     <td><?php echo ($FeeSched['is_active'] == 1) ? "Active" : "Not Active"; ?></td>
                     <td><?php echo $FeeSched['created_by']; ?> </td>
-                   <td><a href="universityfees.php?id=<?php echo $FeeSched['id']; ?>" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a></td>
+                   <td><a href="local-fee.php" class="edit"><i class="material-icons" title="Edit">&#xE254;</i></a></td>
 
             </tr>
 <?php 
@@ -154,7 +154,7 @@
 <div id="addFeesModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="adduniversityfees.php" method="POST" id="adduniversityfees">
+            <form action="addlocal.php" method="POST" id="adduniversityfees">
                 <div class="modal-header">
                     <h4 class="modal-title">Create University Fees</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
