@@ -100,10 +100,3 @@
   }
   
 }
-.dropdown-container {
-  display: none;
-}
-
-.dropdown-container.active {
-  display: block;
-}
