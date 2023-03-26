@@ -393,4 +393,22 @@ for (var i = 0; i < links.length; i++) {
     setActiveLink(this);
   });
 }</script>
+<script>
+	$(document).ready(function() {
+		// Hide the dropdown on page load
+		$('.dropdown-container').hide();
+
+		// Toggle the dropdown on click
+		$('.dropdown-btn').click(function() {
+			var containerId = $(this).attr('data-container');
+			$('#'+containerId).toggle();
+		});
+
+		// Add the active class on click
+		$('.list-group-item-action').click(function() {
+			$('.list-group-item-action').removeClass('active');
+			$(this).addClass('active');
+		});
+	});
+</script>
 </html>

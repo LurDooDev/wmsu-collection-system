@@ -52,7 +52,7 @@
                 <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Funds
                 <i class="fa fa-caret-down" style="margin-left: 115px;"></i>
                 </button>                
-                <div class="dropdown-container">
+                <div class="dropdown-container" id="funds">
                     <a href="../funds/overview_funds.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Overview</a>
                     <a href="../funds/collected-fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Collected Fees</a>
                 </div>
@@ -61,7 +61,7 @@
                 <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Admin Settings
                 <i class="fa fa-caret-down" style="margin-left: 37px;"></i>
                 </button>
-                <div class="dropdown-container">
+                <div class="dropdown-container" id="admin">
                     <a href="../admin-settings/overview_settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
                     <a href="../university/university.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
                     <a href="../local/localfees.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>
@@ -281,7 +281,24 @@ for (var i = 0; i < links.length; i++) {
     setActiveLink(this);
   });
 }</script>
+<script>
+	$(document).ready(function() {
+		// Hide the dropdown on page load
+		$('.dropdown-container').hide();
 
+		// Toggle the dropdown on click
+		$('.dropdown-btn').click(function() {
+			var containerId = $(this).attr('data-container');
+			$('#'+containerId).toggle();
+		});
+
+		// Add the active class on click
+		$('.list-group-item-action').click(function() {
+			$('.list-group-item-action').removeClass('active');
+			$(this).addClass('active');
+		});
+	});
+</script>
         </body>       
 
 
