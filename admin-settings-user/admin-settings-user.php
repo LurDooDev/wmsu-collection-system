@@ -12,8 +12,9 @@ if (!isset($_SESSION['logged_id'])) {
     }
 }
 
-require_once "../classes/semester.class.php";
-require_once "../classes/academicyear.class.php";
+require_once '../classes/semester.class.php';
+require_once '../classes/academicyear.class.php';
+
 
 
 ?>
@@ -37,6 +38,10 @@ require_once "../classes/academicyear.class.php";
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/dashboard.css" />
     <link rel="stylesheet" href="../css/admin-settings.css" />
+    <script src="../js/dropdown.js"></script>
+    <script src="../js/active.js"></script>
+    <script src="../js/toggle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -99,7 +104,6 @@ require_once "../classes/academicyear.class.php";
 					</div>
 </div>
 </div>
-
 <h style="font-size: 20px;"><b>Semester</b></h>
           <div class =" table-responsive">
                 <table class="table">
@@ -208,7 +212,7 @@ require_once "../classes/academicyear.class.php";
                     $AcademicYear = new AcademicYear();
 					$data = $AcademicYear->show();
 					$i = 1;
-					
+
 					foreach($data as $AcademicYear) {
 						// Convert both values to lowercase and compare them
 							?>
@@ -346,58 +350,5 @@ require_once "../classes/academicyear.class.php";
 	</div>
 </div>
 
-
-
-
-<!-- Script for dashboard hamburger         -->
-        </body>       
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-            <script>
-                var el = document.getElementById("wrapper");
-                var toggleButton = document.getElementById("menu-toggle");
-        
-                toggleButton.onclick = function () {
-                    el.classList.toggle("toggled");
-                };
-            </script>
-			<script>
-/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-var dropdown = document.getElementsByClassName("dropdown-btn");
-var i;
-
-for (i = 0; i < dropdown.length; i++) {
-  dropdown[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var dropdownContent = this.nextElementSibling;
-    if (dropdownContent.style.display === "block") {
-      dropdownContent.style.display = "none";
-    } else {
-      dropdownContent.style.display = "block";
-    }
-  });
-}
-</script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-            <script>
-                var el = document.getElementById("wrapper");
-                var toggleButton = document.getElementById("menu-toggle");
-        
-                toggleButton.onclick = function () {
-                    el.classList.toggle("toggled");
-                };
-            </script>
-            <script>function setActiveLink(link) {
-  var links = document.querySelectorAll('.list-group-item');
-  for (var i = 0; i < links.length; i++) {
-    links[i].classList.remove('active');
-  }
-  link.classList.add('active');
-}
-
-var links = document.querySelectorAll('.list-group-item');
-for (var i = 0; i < links.length; i++) {
-  links[i].addEventListener('click', function() {
-    setActiveLink(this);
-  });
-}</script>
+        </body>      
 </html>

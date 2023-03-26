@@ -183,6 +183,18 @@ class UniversityFeeSched {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    function showAllDetailsActive() {
+        $sql = "SELECT ufs.id, ufs.university_start_date, ufs.university_amount, ufs.university_end_date, ufs.created_by, ufs.is_active, uf.university_name, uf.university_fee_type, s.semester_name, sy.academic_name
+                FROM university_fee_schedule ufs
+                JOIN university_fee uf ON ufs.university_fee_id = uf.id
+                JOIN semesters s ON ufs.semester_id = s.id
+                JOIN academic_year sy ON ufs.academic_year_id = sy.id
+                WHERE ufs.is_active = 1";
+        $stmt = $this->db->connect()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     function show(){
         $sql = "SELECT * FROM university_fee_schedule ORDER BY university_fee_schedule.id ASC";
         $query=$this->db->connect()->prepare($sql);

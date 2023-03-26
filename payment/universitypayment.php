@@ -13,8 +13,9 @@ if (!isset($_SESSION['logged_id'])) {
   }
 }
 require_once '../classes/database.class.php';
-require_once '../classes/college.class.php';
-require_once '../classes/program.class.php';
+require_once '../classes/student.class.php';
+require_once '../functions/session.function.php'
+
 ?>
 <!doctype html>
 <html lang="en" class="no-js">
@@ -30,11 +31,11 @@ require_once '../classes/program.class.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/payments.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <!--Jquery NEED-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!--Jquery NEED-->
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <title>Wmsu Collection System</title>
     </head>
@@ -101,107 +102,69 @@ require_once '../classes/program.class.php';
 						<!-- <div class ="row justify-content-center"> -->
 						<fieldset>
             <div class="row mt-5" id="idolo">
-						<div class="col-md-8 mx-auto">
-           				 <div class="input-group">
-                		<input class="form-control" type="search" id="example-search-input" placeholder ="Search Name or ID">
-                		<span class="input-group-append">
-                   		 <button class="btn btn-outline-secondary bg-white ms-n5" type="button">
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                    </button>
-                </span>
-            </div>
-        </div>
-        <div class="table-responsive" id="bilat">
-        <div class="row my-2 mx-1 justify-content-center" style="display: block;">
-          <table class="table table-striped table-borderless">
-            <thead style="background-color:#95BDFE ;" class="text-white">
-              <tr>
-                <th scope="col" style = " color: #000000;" >Id</th>
-                <th scope="col" style = " color: #000000;" >Name</th>
-                <th scope="col" style = " color: #000000;" >ID Number</th>
-                <th scope="col" style = " color: #000000;" >Colleges</th>
-                <th scope="col" style = " color: #000000;" >Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Gregory Roblox</td>
-                <td>sl202203664</td>
-                <td>College of Computing Studies</td>
-                <td>
-                <a href="universityfees.php" class="edit">
-                <i class="material-icons" title="Edit">&#xe147;</i>
-            </a>
-            <a href="view_univtransaction.php" class="edit">
-                <i class="material-icons" title="View History">event_note</i>
-            </a>
-						</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Joy Batumbakal</td>
-                <td>sl202203212</td>
-                <td>College of Nursing</td>
-                <td>
-            <a href="universityfees.php" class="edit">
-                <i class="material-icons" title="Edit">&#xe147;</i>
-            </a>
-            <a href="view_univtransaction.php" class="edit">
-                <i class="material-icons" title="View History">event_note</i>
-            </a>
-						</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Jose Rizal</td>
-                <td>sl202234242</td>
-                <td>College of Architecture</td>
-                <td>
-                <a href="universityfees.php" class="edit">
-                <i class="material-icons" title="Edit">&#xe147;</i>
-            </a>
-            <a href="view_univtransaction.php" class="edit">
-                <i class="material-icons" title="View History">event_note</i>
-            </a>
-						</td>
-              </tr>
-              <tr>
-                <th scope="row">4</th>
-                <td>Vladimir Romblon</td>
-                <td>sl202202541</td>
-                <td>College of Law</td>
-                <td>
-                <a href="universityfees.php" class="edit">
-                <i class="material-icons" title="Edit">&#xe147;</i>
-            </a>
-            <a href="view_univtransaction.php" class="edit">
-                <i class="material-icons" title="View History">event_note</i>
-            </a>
-						</td>
-              </tr>
-              <tr>
-                <th scope="row">5</th>
-                <td>Jonathan Dunkit</td>
-                <td>sl202207543</td>
-                <td>College of Engineering</td>
-                <td>
-                <a href="universityfees.php" class="edit">
-                <i class="material-icons" title="Edit">&#xe147;</i>
-            </a>
-            <a href="view_univtransaction.php" class="edit">
-                <i class="material-icons" title="View History">event_note</i>
-            </a>
-						</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div class="col-md-8 mx-auto">
+        <div class="input-group">
+            <input class="form-control" type="search" id="example-search-input" placeholder ="Search Name or ID">
+            <span class="input-group-append">
+            <button id="search-btn" class="btn btn-outline-secondary bg-white ms-n5" type="button">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </span>
         </div>
     </div>
+    <div class="table-responsive" id="bilat">
+        <div class="row my-2 mx-1 justify-content-center" style="display: block;">
+            <table class="table table-striped table-borderless">
+                <thead style="background-color:#95BDFE ;" class="text-white">
+                    <tr>
+                        <th scope="col" style="color: #000000;">Name</th>
+                        <th scope="col" style="color: #000000;">Student ID</th>
+                        <th scope="col" style="color: #000000;">Colleges</th>
+                        <th scope="col" style="color: #000000;">Course</th>
+                        <th scope="col" style="color: #000000;">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="studentsTable">
+                    <!-- Table rows  -->
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 </fieldset>
   
-</body>       
+</body>
+<script>
+function searchStudents() {
+  var searchValue = $('#example-search-input').val();
+  $.ajax({
+    type: 'GET',
+    url: 'searchStudent.php',
+    data: { searchValue: searchValue },
+    success: function(result) {
+      $('#studentsTable').html(result);
+    }
+  });
+}
+
+// Trigger search on button click
+$('#search-btn').click(function() {
+  searchStudents();
+});
+
+// Trigger search on enter key press
+$('#example-search-input').on('keypress', function(event) {
+  if (event.which === 1) {
+    event.preventDefault();
+    searchStudents();
+  }
+});
+
+</script>
+
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
             <script>
                 var el = document.getElementById("wrapper");
@@ -211,7 +174,6 @@ require_once '../classes/program.class.php';
                     el.classList.toggle("toggled");
                 };
             </script>
-<script src="script.js"></script>
 
 </html>
 <script>
