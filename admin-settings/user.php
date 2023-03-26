@@ -74,7 +74,7 @@ require_once '../classes/role.class.php';
                     if($_SESSION['role'] == 'admin'){?>
                     <a href="../admin-settings/user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="text-decoration:none; padding-left: 70px;">User Management</a></ul>
                     <?php } ?>
-                    <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Colleges</a></ul>
+                    <!-- <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Colleges</a></ul> -->
                 </div>
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover fw-bold">Logout</a>
 </div>

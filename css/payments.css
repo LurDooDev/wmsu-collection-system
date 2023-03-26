@@ -299,6 +299,7 @@ overflow-wrap: hidden;
      .container {
       background-color: #ffffff;
       padding-bottom: 30px;
+      width: 95%;
       
     }
 
@@ -434,6 +435,10 @@ input.next-step{
 border-top-right-radius: 0;
 border-bottom-right-radius: 0;
 background: #EBEBEB;
+}
+.input-group>.input-group-append>.btn{
+  margin-right: 15px;
+
 }
 .table-responsive {
   display: block;
@@ -607,9 +612,26 @@ hr {
   }
   img {
     width: 100%;
-    max-width: 300px;
+    max-width: 245px;
     height: auto;
   }
+}
+.sidebar {
+  width: 13%; 
+  transition: all 0.3s ease-in-out;
+}
+
+.sidebar.active {
+  width: 250px; 
+}
+
+.content {
+  margin-left: 13%; 
+  transition: all 0.3s ease-in-out;
+}
+
+.sidebar.active ~ .content {
+  margin-left: 250px;
 }
 
 
