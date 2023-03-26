@@ -12,7 +12,8 @@ if (!isset($_SESSION['logged_id'])) {
     }
 }
 
-
+require_once "../classes/semester.class.php";
+require_once "../classes/academicyear.class.php";
 
 
 ?>
