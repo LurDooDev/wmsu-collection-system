@@ -131,7 +131,72 @@ require_once '../classes/universityfeeSched.class.php';
 					</tr>
 				</thead>
 				<tbody>
+            <?php
+// Create an instance of the UniversityFee class
+$Fee = new UniversityFee();
 
+// Get all the fees from the database
+$FeeData = $Fee->show();
+
+$i = 1;
+foreach($FeeData as $Fee) {        
+    ?>
+    <tr>
+        <td><?php echo $i; ?></td>
+        <td><?php echo $Fee['university_name']; ?></td>
+        <td><?php echo $Fee['university_fee_type']; ?></td>
+        <td><?php echo $Fee['created_by']; ?></td>
+        <td>
+            <!-- Link to edit the fee -->
+            <a href="add_universityfeeSched.php?id=<?php echo $Fee['id']; ?>" class="edit">
+                <i class="material-icons" title="Edit">&#xe147;</i>
+            </a>
+            <?php 
+            // Check if there are any fee schedules associated with this fee
+            $Schedule = new universityFeeSched();
+            $schedules = $Schedule->get($Fee['id']);
+            if ($schedules) {
+                // If there are fee schedules, display a link to view them
+                ?>
+                <a href="view_feeschedule.php?fee_id=<?php echo $Fee['id']; ?>" class="view-schedules">
+                    <i class="material-icons" title="View Schedules">event_note</i>
+                </a>
+                <?php
+            }
+            ?>
+        </td>
+    </tr>
+    <?php 
+    $i++;
+}
+?>
+</tbody>
+</table>
+<!-- Create Fee Modal HTML -->
+<div id="addFeesModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="adduniversityfees.php" method="post" id="adduniversityfees">
+                <div class="modal-header">
+                    <h4 class="modal-title">Create University Fees</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" class="form-control" required>
+                    </div>
+                    <input type="hidden" name="created_by" value="<?php echo $UserFullname; ?>">
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="hidden" name="action" value="add">
+                    <input type="submit" class="btn btn-success" value="Create">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 <!-- Script for dashboard hamburger         -->
