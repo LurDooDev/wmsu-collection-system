@@ -23,7 +23,6 @@
 }
 .sidebar .logo-details i{
   font-size: 28px;
-  font-weight: 500;
   color: #fff;
   min-width: 60px;
   text-align: center
@@ -31,7 +30,6 @@
 .sidebar .logo-details .logo_name{
   color: #fff;
   font-size: 24px;
-  font-weight: 500;
 }
 .sidebar .nav-links{
   margin-top: 10px;
@@ -64,7 +62,6 @@
 .sidebar .nav-links li a .links_name{
   color: #fff;
   font-size: 15px;
-  font-weight: 400;
   white-space: nowrap;
 }
 .sidebar .nav-links .log_out{
@@ -107,7 +104,6 @@
   display: flex;
   align-items: center;
   font-size: 24px;
-  font-weight: 500;
 }
 nav .sidebar-button i{
   font-size: 35px;
@@ -163,7 +159,6 @@ nav .profile-details img{
 }
 nav .profile-details .admin_name{
   font-size: 15px;
-  font-weight: 500;
   color: #333;
   margin: 0 10px;
   white-space: nowrap;
@@ -196,13 +191,11 @@ nav .profile-details i{
 }
 .overview-boxes .box-topic{
   font-size: 20px;
-  font-weight: 500;
 }
 .home-content .box .number{
   display: inline-block;
   font-size: 35px;
   margin-top: -6px;
-  font-weight: 500;
 }
 .home-content .box .indicator{
   display: flex;
@@ -251,7 +244,6 @@ nav .profile-details i{
  }
 .home-content .total-order{
   font-size: 20px;
-  font-weight: 500;
 }
 .home-content .sales-boxes{
   display: flex;
@@ -275,12 +267,10 @@ nav .profile-details i{
 }
 .sales-boxes .box .title{
   font-size: 24px;
-  font-weight: 500;
   /* margin-bottom: 10px; */
 }
 .sales-boxes .sales-details li.topic{
   font-size: 20px;
-  font-weight: 500;
 }
 .sales-boxes .sales-details li{
   list-style: none;
@@ -302,7 +292,6 @@ nav .profile-details i{
   background: #0A2558;
   padding: 4px 12px;
   font-size: 15px;
-  font-weight: 400;
   border-radius: 4px;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -342,7 +331,6 @@ nav .profile-details i{
 .sales-boxes .top-sales li .product,
 .price{
   font-size: 17px;
-  font-weight: 400;
   color: #333;
 }
 /* Responsive Media Query */
