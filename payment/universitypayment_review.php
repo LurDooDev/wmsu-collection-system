@@ -22,20 +22,18 @@ if (!isset($_SESSION['logged_id'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!--- links for bootstrap and css  --->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Unicons CSS -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/payments.css" />
+    <link rel="stylesheet" href="../css/paymentfees.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <!--Jquery NEED-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!--Jquery NEED-->
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
     <title>Wmsu Collection System</title>
     </head>
       <body>
@@ -97,19 +95,10 @@ if (!isset($_SESSION['logged_id'])) {
 <fieldset>
           <!-- content here -->
     <div class="page-header text-blue-d2">
-        <h1 class="page-title text-secondary-d1">
-            Receipt No: #11111
-        </h1>
         <div class="page-tools">
             <div class="action-buttons">
             <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="file" input ="file" id="payment" data-toggle="modal"> 
-                <i class="mr-1 fa fa-upload text-primary-m1 text-120 w-2"></i>
-                 Upload Promissory Note
-                </a>
                 <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="Print">
-                    <i class="mr-1 fa fa-print text-primary-m1 text-120 w-2"></i>
-                    Print
-                </a>
             </div>
         </div>
     </div>
@@ -164,11 +153,6 @@ if (!isset($_SESSION['logged_id'])) {
                 <td style="text-align:right">₱ 200</td>
                 <td style="text-align:right">₱ 200</td>
                 <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-               <td></td>
         <td style="text-align:right; font-weight:bold;">Total Amount:</td>
         <td style="text-align:right">₱ 200.00</td> 
       </tr>
@@ -202,7 +186,7 @@ if (!isset($_SESSION['logged_id'])) {
                     el.classList.toggle("toggled");
                 };
             </script>
-<script src="script.js"></script>
+
 
 </html>
 <script>

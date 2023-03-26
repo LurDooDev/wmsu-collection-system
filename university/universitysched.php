@@ -152,6 +152,7 @@
             $i++;
         }
 ?>
+              
 
 <!-- Create Fee Modal HTML -->
 <div id="addFeesModal" class="modal fade">

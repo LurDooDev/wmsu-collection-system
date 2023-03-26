@@ -18,6 +18,80 @@ class Student {
     function __construct() {
         $this->db = new Database();
     }
+    
+    public function searchStudents($searchValue, $collegeID) {
+    
+        if(is_numeric($searchValue)) {
+            $sql = "SELECT s.id, s.first_name, s.last_name, s.year_level, s.college_id, p.program_name, s.student_email, c.college_name, c.college_code
+                    FROM students s
+                    INNER JOIN programs p ON s.program_id = p.id
+                    INNER JOIN colleges c ON s.college_id = c.id
+                    WHERE s.id = :searchValue AND s.college_id = $collegeID";
+        } else {
+            $sql = "SELECT s.id, s.first_name, s.last_name, s.year_level, s.college_id, p.program_name, s.student_email, c.college_name, c.college_code
+            FROM students s
+            INNER JOIN programs p ON s.program_id = p.id
+            INNER JOIN colleges c ON s.college_id = c.id
+            WHERE CONCAT(s.first_name, ' ', s.last_name) LIKE :searchTerm AND s.college_id = $collegeID";
+            $searchTerm = "%{$searchValue}%";
+        }
+    
+        $stmt = $this->db->connect()->prepare($sql);
+        if(isset($searchTerm)) {
+            $stmt->bindParam(':searchTerm', $searchTerm);
+        } else {
+            $stmt->bindParam(':searchValue', $searchValue);
+        }
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    // public function searchStudents($searchValue) {
+    //     if(is_numeric($searchValue)) {
+    //         $sql = "SELECT s.id, s.first_name, s.last_name, s.year_level, p.program_name, s.student_email, c.college_name
+    //                 FROM students s
+    //                 INNER JOIN programs p ON s.program_id = p.id
+    //                 INNER JOIN colleges c ON s.college_id = c.id
+    //                 WHERE s.id = :searchValue";
+    //     } else {
+    //         $sql = "SELECT s.id, s.first_name, s.last_name, s.year_level, p.program_name, s.student_email, c.college_name, c.
+    //         FROM students s
+    //         INNER JOIN programs p ON s.program_id = p.id
+    //         INNER JOIN colleges c ON s.college_id = c.id
+    //         WHERE CONCAT(s.first_name, ' ', s.last_name) LIKE :searchTerm";
+    //         $searchTerm = "%{$searchValue}%";
+    //     }
+    
+    //     $stmt = $this->db->connect()->prepare($sql);
+    //     if(isset($searchTerm)) {
+    //         $stmt->bindParam(':searchTerm', $searchTerm);
+    //     } else {
+    //         $stmt->bindParam(':searchValue', $searchValue);
+    //     }
+    //     $stmt->execute();
+    //     return $stmt->fetchAll();
+    // }
+    
+    
+    
+    
+    
+    
+    
+    
+
+    public function getStudentById($id) {
+        $sql = "SELECT * FROM students WHERE id = :id";
+        $stmt = $this->db->connect()->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch();
+    }
+
+    public function getStudents() {
+        $sql = "SELECT * FROM students";
+        $stmt = $this->db->connect()->query($sql);
+        return $stmt->fetchAll();
+    }
 
     function createStudent() {
         try {
