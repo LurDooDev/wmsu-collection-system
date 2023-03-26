@@ -12,7 +12,7 @@
 	}
 
 	require_once '../classes/database.class.php';
-	require_once '../classes/college.class.php';
+  
 	?>
 
 <!doctype html>
