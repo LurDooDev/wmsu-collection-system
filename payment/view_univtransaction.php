@@ -90,7 +90,7 @@ if (!isset($_SESSION['logged_id'])) {
                     <div class="col-sm-6">
                         <div>
                             <span class="text-sm text-grey-m2 align-middle">Name:</span>
-                            <span class="text-600 text-110 text-black align-middle">Bryan Christian Sevillia</span>
+                            <span class="text-600 text-110 text-black align-middle">Gregory Roblox</span>
                         </div>
                         <div class="text-grey-m2">
                             <div class="my-1">
@@ -123,7 +123,6 @@ if (!isset($_SESSION['logged_id'])) {
                 <thead style="background-color:#95BDFE ;" class="text-white">
               <tr>
                 <th scope="col" >#</th>
-                <th scope="col">Type Of Fee</th>
                 <th scope="col">Description</th>
                 <th scope="col">School Year</th>
                 <th scope="col">Semester</th>
@@ -137,8 +136,7 @@ if (!isset($_SESSION['logged_id'])) {
             <tbody>
               <tr>
                 <td> 1</td>
-                <td> University Fee</td>
-                <td> CSB Fee</td>
+                <td> CCS Fees</td>
                 <td> 2021-2022</td>
                 <td style="text-align:center"> 1</td>
                 <td style="text-align:center; color: red;"> Unpaid</td>
@@ -146,41 +144,6 @@ if (!isset($_SESSION['logged_id'])) {
                 <td style="text-align:center"> 1</td>
                 <td style="text-align:right">₱ 200</td>
                 <td style="text-align:right">₱ 200</td>
-              </tr>
-              <tr>
-                <td> 2</td>
-                <td> Local Fee</td>
-                <td> WMSU Palaro </td>
-                <td> 2021-2022</td>
-                <td style="text-align:center"> 1</td>
-                <td style="text-align:center; color: red;"> Unpaid</td>
-                <td style="text-align:right">₱ 200</td>
-                <td style="text-align:center"> 1</td>
-                <td style="text-align:right">₱ 200</td>
-                <td style="text-align:right">₱ 200</td>
-              </tr>
-              <tr>
-                <td> 3</td>
-                <td> Local Fee</td>
-                <td> WMSU Boracay </td>
-                <td> 2021-2022</td>
-                <td style="text-align:center"> 1</td>
-                <td style="text-align:center; color: red;"> Unpaid</td>
-                <td style="text-align:right">₱ 100</td>
-                <td style="text-align:center"> 3</td>
-                <td style="text-align:right">₱ 100</td>
-                <td style="text-align:right">₱ 300</td>
-              </tr>
-              <td> 4</td>
-                <td> Local Fee</td>
-                <td> Test</td>
-                <td> 2021-2022</td>
-                <td style="text-align:center"> 1</td>
-                <td style="text-align:center; color: red;"> Unpaid</td>
-                <td style="text-align:right">₱ 20 0</td>
-                <td style="text-align:center"> 4</td>
-                <td style="text-align:right">₱ 121</td>
-                <td style="text-align:right">₱ 484</td>
               </tr>
     </tbody>
   </table>
