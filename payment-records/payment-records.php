@@ -53,11 +53,7 @@
                 <div class="dropdown-container">
                   <?php
                   if($_SESSION['role'] == 'officer'){?>
-<<<<<<< HEAD
-                <a href="../payment/universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payments</a>
-=======
-                    <a href="../payment/universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">University Payment</a>
->>>>>>> parent of b2c775f (test)
+                    <a href="../payment/universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="text-decoration:none; padding-left: 70px;">University Payment</a>
                     <?php } ?>
                     <a href="../payment-local/localpayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Local Payment</a>
                 </div>
@@ -142,7 +138,7 @@
 							</td>
 				</tr>
                             <td>2</td>
-                            <td>CSC FEE</td>
+                            <td>CN FEE</td>
                             <td>sl202203333</td>
                             <td>CCS</td>
                             <td>12/22/2022</td>

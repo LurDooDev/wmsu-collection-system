@@ -56,11 +56,7 @@ require_once '../classes/program.class.php';
                 <div class="dropdown-container">
                   <?php
                   if($_SESSION['role'] == 'officer'){?>
-<<<<<<< HEAD
-                <a href="../payment/universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payments</a>
-=======
                     <a href="../payment/universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">University Payment</a>
->>>>>>> parent of b2c775f (test)
                     <?php } ?>
                     <a href="../payment-local/localpayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Local Payment</a>
                 </div>

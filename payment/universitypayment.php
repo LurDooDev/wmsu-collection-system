@@ -53,11 +53,7 @@ require_once '../functions/session.function.php'
                 <div class="dropdown-container">
                   <?php
                   if($_SESSION['role'] == 'officer'){?>
-<<<<<<< HEAD
-                <a href="../payment/universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Payments</a>
-=======
                     <a href="../payment/universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="text-decoration:none; padding-left: 70px;">University Payment</a>
->>>>>>> parent of b2c775f (test)
                     <?php } ?>
                     <a href="../payment-local/localpayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Local Payment</a>
                 </div>
@@ -95,8 +91,8 @@ require_once '../functions/session.function.php'
 							<li class="active" id="step1">
 								<strong>Search User</strong>
 							</li>
-							<li id="step2"><strong> Fees</strong></li>
-							<li id="step3"><strong> Payment Details</strong></li>
+							<li id="step2"><strong>University Fees</strong></li>
+							<li id="step3"><strong>University Payment Details</strong></li>
 							<li id="step4"><strong>Transaction Complete</strong></li>
 						</ul>
 						<div class="">
