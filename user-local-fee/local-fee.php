@@ -5,7 +5,7 @@
     require_once '../functions/session.function.php';
     
     if (!isset($_SESSION['logged_id'])) {
-        header('location: ..admin-settings-user/admin-settings-user.php');
+        header('location: ..user-local-fee/local-fee.php');
     } else if ($_SESSION['role'] != 'officer') {
         if ($_SESSION['role'] == 'admin') {
             header('location: officer.php');

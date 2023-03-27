@@ -7,6 +7,7 @@
     if (!isset($_SESSION['logged_id'])){
         header('location: ../public/logout.php');
     }
+    
 	require_once '../classes/database.class.php';
 	require_once '../classes/universityfees.class.php';
     require_once '../classes/semester.class.php';

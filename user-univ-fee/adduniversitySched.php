@@ -18,7 +18,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'add') {
     $universityFee->universitycreatedby = $universitycreatedby;
     
     if ($universityFee->createUniversityFeeSched()) {
-        header('location: university.php');
+        header('location: univer-fee.php');
     } else {
         echo 'Failed to add fee.';
     }
