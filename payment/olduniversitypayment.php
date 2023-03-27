@@ -104,7 +104,7 @@ require_once '../functions/session.function.php'
             <div class="row mt-5" id="idolo">
     <div class="col-md-8 mx-auto">
         <div class="input-group">
-                  <input type="search" class="form-control" name="searchValue" id="searchValue" placeholder="Search name or ID">
+            <input class="form-control" type="search" id="example-search-input" placeholder ="Search Name or ID">
             <span class="input-group-append">
             <button id="search-btn" class="btn btn-outline-secondary bg-white ms-n5" type="button">
                     <i class="fa fa-search" aria-hidden="true"></i>
@@ -112,9 +112,9 @@ require_once '../functions/session.function.php'
             </span>
         </div>
     </div>
-    <div class="table-responsive" id="studentTable">
+    <div class="table-responsive" id="bilat">
         <div class="row my-2 mx-1 justify-content-center" style="display: block;">
-            <table class="table table-striped table-borderless"  id="students-table">
+            <table class="table table-striped table-borderless">
                 <thead style="background-color:#95BDFE ;" class="text-white">
                     <tr>
                         <th scope="col" style="color: #000000;">Name</th>
@@ -124,7 +124,7 @@ require_once '../functions/session.function.php'
                         <th scope="col" style="color: #000000;">Action</th>
                     </tr>
                 </thead>
-                <tbody id="searchResults">
+                <tbody id="studentsTable">
                     <!-- Table rows  -->
 
                 </tbody>
@@ -136,30 +136,32 @@ require_once '../functions/session.function.php'
 </fieldset>
   
 </body>
-
 <script>
-    // Wait for the document to be ready
-    document.addEventListener("DOMContentLoaded", function() {
-        // Get the input field element
-        var searchInput = document.getElementById("searchValue");
+function searchStudents() {
+  var searchValue = $('#example-search-input').val();
+  $.ajax({
+    type: 'GET',
+    url: 'searchStudent.php',
+    data: { searchValue: searchValue },
+    success: function(result) {
+      $('#studentsTable').html(result);
+    }
+  });
+}
 
-        // Add an event listener for changes in the input field
-        searchInput.addEventListener("input", function() {
-            // Get the search value from the input field
-            var searchValue = searchInput.value;
+// Trigger search on button click
+$('#search-btn').click(function() {
+  searchStudents();
+});
 
-            // Make an AJAX request to searchstudent.php
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    // Update the search results table with the response from the server
-                    document.getElementById("searchResults").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "searchstudent.php?searchValue=" + searchValue, true);
-            xhttp.send();
-        });
-    });
+// Trigger search on enter key press
+$('#example-search-input').on('keypress', function(event) {
+  if (event.which === 1) {
+    event.preventDefault();
+    searchStudents();
+  }
+});
+
 </script>
 
 

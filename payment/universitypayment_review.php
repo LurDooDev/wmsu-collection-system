@@ -18,6 +18,11 @@ require_once '../classes/student.class.php';
 require_once '../classes/universityfeeSched.class.php';
 
 
+if(isset($_GET['studentID']) && isset($_GET['universityID'])) {
+  $studentId = $_GET['studentID'];
+  $universityId = $_GET['universityID'];
+
+}
 
 ?>
 
@@ -207,7 +212,7 @@ require_once '../classes/universityfeeSched.class.php';
                 <a href="universitypayment_fees.php?studentID=<?php echo $_GET['studentID']; ?>" class="btn btn-success" style="border-radius: 40px; padding: 10 10 10 10;"><span>Previous </span></a>
 					</div>
           <div class="ml-auto p-auto">
-            <a href="university-complete.php" class="btn btn-success" id="backstreet" style="border-radius: 40px; padding: 10 10 10 10;"> <span>Pay</span></a>
+            <a href="pay_universitypayment.php?studentID=<?php echo $_GET['studentID']; ?>&universityID=<?php echo $_GET['universityID']; ?>" class="btn btn-success" id="backstreet" style="border-radius: 40px; padding: 10 10 10 10;"> <span>Pay</span></a>
 
 </div>
 </fieldset>
