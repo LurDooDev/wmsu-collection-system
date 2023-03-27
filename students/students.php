@@ -18,6 +18,7 @@ require_once '../classes/college.class.php';
 require_once '../classes/program.class.php';
 
 
+
 ?>
 <!doctype html>
 <html lang="en" class="no-js">
@@ -143,9 +144,16 @@ require_once '../classes/program.class.php';
 </div>
 </div>
 <!-- Add Modal HTML -->
+
+<?php if(isset($_GET['error'])): ?>
+    <input type="hidden" name="error" value="true">
+<?php endif; ?>
+
+
 <div id="addStudentModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
+    <form action="addstudent.php<?php if(isset($_GET['error'])) echo '?error=true'; ?>" method="POST">
 			<form action="addstudent.php" method="POST">
 				<div class="modal-header">						
 					<h4 class="modal-title">Add Student</h4>
@@ -153,6 +161,11 @@ require_once '../classes/program.class.php';
 				</div>
                 <br>
 				<div class="modal-body">
+        <?php if(isset($_GET['error'])): ?>
+				    <div class="alert alert-danger" role="alert">
+				        Error adding student. Please try again.
+				    </div>
+				<?php endif; ?>
 				<div class="form-group">
 						<label for="studentID">Student ID</label>
 						<input type="number" name="studentID" id="studentID" class="form-control" required>
