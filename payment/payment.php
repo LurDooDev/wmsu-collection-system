@@ -49,7 +49,7 @@ require_once '../classes/college.class.php';
                 <a href="../admin/dashboard-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Dashboard</a>
                   <?php
                   if($_SESSION['role'] == 'officer'){?>
-                <a href="../payment/universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment</a>
+                <a href="../payment/universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Payment</a>
                   <?php } ?>
                 <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>
                 <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Students</a>

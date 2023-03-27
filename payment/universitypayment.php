@@ -49,7 +49,7 @@ require_once '../functions/session.function.php'
                 <!-- <a href="../fees-user/fees-user.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold ">Fees</a> -->
                   <?php
                   if($_SESSION['role'] == 'officer'){?>
-                <a href="../payment/universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment</a>
+                <a href="../payment/universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Payment</a>
                     <?php } ?>
                 <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>
                 <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Students</a>
@@ -85,8 +85,8 @@ require_once '../functions/session.function.php'
 							<li class="active" id="step1">
 								<strong>Search User</strong>
 							</li>
-							<li id="step2"><strong>University Fees</strong></li>
-							<li id="step3"><strong>University Payment Details</strong></li>
+							<li id="step2"><strong> Fees</strong></li>
+							<li id="step3"><strong> Payment Details</strong></li>
 							<li id="step4"><strong>Transaction Complete</strong></li>
 						</ul>
 						<div class="">
