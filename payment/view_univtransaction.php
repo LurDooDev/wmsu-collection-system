@@ -84,7 +84,7 @@ if (!isset($_SESSION['logged_id'])) {
                     <div class="col-sm-6">
                         <div>
                             <span class="text-sm text-grey-m2 align-middle">Name:</span>
-                            <span class="text-600 text-110 text-black align-middle">Gregory Roblox</span>
+                            <span class="text-600 text-110 text-black align-middle">Bryan Christian Sevillia</span>
                         </div>
                         <div class="text-grey-m2">
                             <div class="my-1">
