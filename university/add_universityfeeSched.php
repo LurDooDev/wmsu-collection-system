@@ -81,7 +81,7 @@
 		<div class="table-title">
 				<div class="row">
 					<div class="col-sm-10 ml-auto">
-						<a href="university.php" class="btn btn-success"><span>Back To University Fees </span></a>
+						<a href="university.php" class="btn btn-success" style = " padding: 10px; margin-top: 4px; border-radius:6px;"><span>Back To University Fees </span></a>
 					</div>
 				</div>
                 <?php

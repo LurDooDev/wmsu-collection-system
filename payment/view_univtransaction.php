@@ -46,7 +46,17 @@ if (!isset($_SESSION['logged_id'])) {
             <div class="list-group list-group-flush my-3">
                 <a href="../admin/dashboard-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Dashboard</a>
                 <!-- <a href="../fees-user/fees-user.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold ">Fees</a> -->
-                <a href="../payment/universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Payment</a>
+<<<<<<< HEAD
+                <a href="../payment/universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Payments</a>
+=======
+                <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Payments</a>
+                <i class="fa fa-caret-down" style = "margin-left:70px;"></i>
+                </button>                
+                <div class="dropdown-container">
+                    <a href="../payment/universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="text-decoration:none; padding-left: 70px;">University Payment</a>
+                    <a href="../payment-local/localpayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Local Payment</a>
+                </div>
+>>>>>>> parent of b2c775f (test)
                 <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>
                 <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Students</a>
                 <a href="../financial-report-user/financial-report-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
@@ -88,7 +98,7 @@ if (!isset($_SESSION['logged_id'])) {
                         </div>
                         <div class="text-grey-m2">
                             <div class="my-1">
-                                University Fee Payment
+                                  Required Payments
                             </div>
                             <div class="my-1">
                                Status: Enrolled
@@ -117,6 +127,7 @@ if (!isset($_SESSION['logged_id'])) {
                 <thead style="background-color:#95BDFE ;" class="text-white">
               <tr>
                 <th scope="col" >#</th>
+                <th scope="col">Type Of Fee</th>
                 <th scope="col">Description</th>
                 <th scope="col">School Year</th>
                 <th scope="col">Semester</th>
@@ -130,7 +141,8 @@ if (!isset($_SESSION['logged_id'])) {
             <tbody>
               <tr>
                 <td> 1</td>
-                <td> CCS Fees</td>
+                <td> University Fee</td>
+                <td> CSB Fee</td>
                 <td> 2021-2022</td>
                 <td style="text-align:center"> 1</td>
                 <td style="text-align:center; color: red;"> Unpaid</td>
@@ -138,6 +150,41 @@ if (!isset($_SESSION['logged_id'])) {
                 <td style="text-align:center"> 1</td>
                 <td style="text-align:right">₱ 200</td>
                 <td style="text-align:right">₱ 200</td>
+              </tr>
+              <tr>
+                <td> 2</td>
+                <td> Local Fee</td>
+                <td> WMSU Palaro </td>
+                <td> 2021-2022</td>
+                <td style="text-align:center"> 1</td>
+                <td style="text-align:center; color: red;"> Unpaid</td>
+                <td style="text-align:right">₱ 200</td>
+                <td style="text-align:center"> 1</td>
+                <td style="text-align:right">₱ 200</td>
+                <td style="text-align:right">₱ 200</td>
+              </tr>
+              <tr>
+                <td> 3</td>
+                <td> Local Fee</td>
+                <td> WMSU Boracay </td>
+                <td> 2021-2022</td>
+                <td style="text-align:center"> 1</td>
+                <td style="text-align:center; color: red;"> Unpaid</td>
+                <td style="text-align:right">₱ 100</td>
+                <td style="text-align:center"> 3</td>
+                <td style="text-align:right">₱ 100</td>
+                <td style="text-align:right">₱ 300</td>
+              </tr>
+              <td> 4</td>
+                <td> Local Fee</td>
+                <td> Test</td>
+                <td> 2021-2022</td>
+                <td style="text-align:center"> 1</td>
+                <td style="text-align:center; color: red;"> Unpaid</td>
+                <td style="text-align:right">₱ 200</td>
+                <td style="text-align:center"> 4</td>
+                <td style="text-align:right">₱ 121</td>
+                <td style="text-align:right">₱ 484</td>
               </tr>
     </tbody>
   </table>

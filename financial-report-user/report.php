@@ -45,7 +45,17 @@ if (!isset($_SESSION['logged_id'])){
                 <a href="../admin/dashboard-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Dashboard</a>
                 <?php } ?>
                 <!-- <a href="../fees-user/fees-user.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold ">Fees</a> -->
-                <a href="../payment/universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment</a>
+<<<<<<< HEAD
+                <a href="../payment/universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payments</a>
+=======
+                <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Payments</a>
+                <i class="fa fa-caret-down" style = "margin-left:70px;"></i>
+                </button>                
+                <div class="dropdown-container">
+                    <a href="../payment/universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">University Payment</a>
+                    <a href="../payment-local/localpayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Local Payment</a>
+                </div>
+>>>>>>> parent of b2c775f (test)
                 <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>
                 <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Students</a>
                 <a href="../financial-report-user/financial-report-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Financial Report</a>
