@@ -128,18 +128,18 @@
                          <td>1</td>
                          <td>12:30</td>
                         <td>2022-2023</td>
-					<td> <a href="" class="status"><i class="far fa-address-card"></i></a>
+					<td style="color: green;">Paid</a>
 							</td>
 				</tr>
                             <td>2</td>
-                            <td>CN FEE</td>
+                            <td>CSC FEE</td>
                             <td>sl202203333</td>
-                            <td>CN</td>
+                            <td>CCS</td>
                             <td>12/22/2022</td>
                             <td>1</td>
                             <td>1:30</td>
                             <td>2022-2023</td>
-                            <td> <a href="" class="status"><i class="far fa-address-card"></i></a>
+                            <td style="color: green;">Paid</a>
 					</tr>
 					</tbody>
 			</table>
