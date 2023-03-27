@@ -49,7 +49,7 @@
                 <a href="../admin/dashboard-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Dashboard</a>
                 <?php } ?>
                 <!-- <a href="../fees-user/fees-user.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold ">Fees</a> -->
-                <a href="../payment/universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment</a>
+                <a href="../payment/universitypayment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payments</a>
                 <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>
                 <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Students</a>
                 <a href="../financial-report-user/financial-report-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
