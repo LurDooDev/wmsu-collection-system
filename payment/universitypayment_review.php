@@ -13,7 +13,14 @@ if (!isset($_SESSION['logged_id'])) {
   }
 }
 
+
+require_once '../classes/student.class.php';
+require_once '../classes/universityfeeSched.class.php';
+
+
+
 ?>
+
 <!doctype html>
 <html lang="en" class="no-js">
   <html>
@@ -24,7 +31,6 @@ if (!isset($_SESSION['logged_id'])) {
 <!--- links for bootstrap and css  --->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Unicons CSS -->
-  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -60,10 +66,10 @@ if (!isset($_SESSION['logged_id'])) {
                 <i class="fa fa-caret-down" style="margin-left: 37px;"></i>
                 </button>
                 <div class="dropdown-container">
-                    <a href="../admin-settings-user/admin-settings-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Overview</a>
-                    <a href="../user-univ-fee/univer-fee.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">University Fee</a>
-                    <a href="../user-local-fee/local-fee.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fees</a>
-                </div>               
+                    <a href="../admin-settings-user/admin-settings-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Overview</a>
+                    <a href="../admin-settings-user/univer-fee.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">University Fee</a>
+                    <a href="../admin-settings-user/local-fee.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fees</a>
+                </div>            
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Logout</a>
             </div>
         </div>               
@@ -95,26 +101,34 @@ if (!isset($_SESSION['logged_id'])) {
 <fieldset>
           <!-- content here -->
     <div class="page-header text-blue-d2">
+      <?php
+    if (isset($_GET['studentID'])) {
+  $studentId = $_GET['studentID'];
+  $student = new Student();
+  $studentData = $student->showAllDetailsBystudentId($studentId);
+
+?>
         <div class="page-tools">
             <div class="action-buttons">
-            <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="file" input ="file" id="payment" data-toggle="modal"> 
-                <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="Print">
             </div>
         </div>
     </div>
+    <?php
+    
+                foreach($studentData as $student) {        
+            ?>
     <hr class="row brc-default-l1 mx-n1 mb-4" />
     <div class="row">
                     <div class="col-sm-6">
                         <div>
-                            <span class="text-sm text-grey-m2 align-middle">To:</span>
-                            <span class="text-600 text-110 text-black align-middle">Gregory Roblox</span>
+                            <h2 class="text-600 text-110 text-black align-middle"><?php echo $student['first_name'] . ' ' . $student['last_name']; ?></h2>
                         </div>
                         <div class="text-grey-m2">
                             <div class="my-1">
                                 University Fee Payment
                             </div>
                             <div class="my-1">
-                               Western Mindanao State Unviversity
+                               Western Mindanao State University
                          </div>
                         </div>
                     </div>
@@ -123,142 +137,82 @@ if (!isset($_SESSION['logged_id'])) {
                     <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
                         <hr class="d-sm-none" />
                         <div class="text-grey-m2">
-                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">ID:</span> #111-111</div>
-                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Issue Date:</span> Oct 26, 2021</div>
-                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Status:</span> <span class="badge badge-warning badge-pill px-25">Unpaid</span></div>
+                            <div class="my-2"> <span class="text-600 text-90">ID:</span> <?php echo $student['id']; ?></div>
+                            <div class="my-2"> <span class="text-600 text-90">College:</span> <?php echo $student['college_name']; ?></div>
+                            <div class="my-2"> <span class="text-600 text-90">Course:</span> <?php echo $student['program_name']; ?></div>
                         </div>
                     </div>
+                    <?php 
+          
+                };
+            ?>
                     <!-- /.col -->
                 </div>
+                <?php
+} else {
+    echo "student ID: $studentId";
+}
+?>
                 <div class="table-responsive" id="yati">
                 <table class="table table-bordered">
                 <thead style="background-color:#95BDFE ;" class="text-white">
               <tr>
                 <th scope="col" >#</th>
                 <th scope="col">Description</th>
-                <th scope="col">School Year</th>
-                <th scope="col" style = " text-align:center;">Unpaid Balance</th>
-                <th scope="col" style = " text-align:center; " >Quantity</th>
-                <th scope="col" style = "text-align:center ;" >Unit Price</th>
                 <th scope="col" style = " text-align:center;" >Amount</th>
+                <th scope="col">Semester</th>
+                <th scope="col">School Year</th>
               </tr>
             </thead>
+            <?php
+            if (isset($_GET['universityID'])) {
+    $feeId = $_GET['universityID'];
+    $FeeSched = new UniversityFeeSched();
+    $FeeSchedData = $FeeSched->showAllDetailsByPayId($feeId);
+?>
             <tbody>
+            <?php
+                $i = 1;
+                foreach($FeeSchedData as $FeeSched) {        
+            ?>
               <tr>
-                <td> 1</td>
-                <td> CCS Fees</td>
-                <td> 2021-2022</td>
-                <td style="text-align:right">₱ 200</td>
-                <td style="text-align:center"> 1</td>
-                <td style="text-align:right">₱ 200</td>
-                <td style="text-align:right">₱ 200</td>
+              <td><?php echo $i; ?></td>
+                <td><?php echo $FeeSched['university_name']; ?></td>
+                <td>₱ <?php echo $FeeSched['university_amount']; ?></td>
+                    <td><?php echo $FeeSched['semester_name']; ?></td>
+                    <td><?php echo $FeeSched['academic_name']; ?></td>
                 <tr>
         <td style="text-align:right; font-weight:bold;">Total Amount:</td>
-        <td style="text-align:right">₱ 200.00</td> 
+        <td>₱ <?php echo $FeeSched['university_amount']; ?></td>
       </tr>
+      <?php 
+                    $i++;
+                }
+            ?>
     </tbody>
   </table>
+  <?php
+} else {
+    echo "Fee ID: $feeId";
+    echo "No fee ID specified.";
+}
+?>
 </div>
           <hr />
           <div class="row mt-3">
-                        <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
-                            <b>Please take note to not lose your receipt!!</b>
-                        </div>
 
 
 <div class="d-flex">
                 <div class="mr-auto">
-                <a href="universityfees.php" class="btn btn-success" style="border-radius: 40px; padding: 10 10 10 10;"><span>Previous </span></a>
+                <a href="universitypayment_fees.php?studentID=<?php echo $_GET['studentID']; ?>" class="btn btn-success" style="border-radius: 40px; padding: 10 10 10 10;"><span>Previous </span></a>
 					</div>
           <div class="ml-auto p-auto">
-            <a href="university-complete.php" class="btn btn-success" id="backstreet" style="border-radius: 40px; padding: 10 10 10 10;"> <span>Pay Balance</span></a>
+            <a href="university-complete.php" class="btn btn-success" id="backstreet" style="border-radius: 40px; padding: 10 10 10 10;"> <span>Pay</span></a>
 
 </div>
 </fieldset>
   
 </body>       
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-            <script>
-                var el = document.getElementById("wrapper");
-                var toggleButton = document.getElementById("menu-toggle");
-        
-                toggleButton.onclick = function () {
-                    el.classList.toggle("toggled");
-                };
-            </script>
-
-
-</html>
-<script>
-    $(document).ready(function () {
-	var currentGfgStep, nextGfgStep, previousGfgStep;
-	var opacity;
-	var current = 1;
-	var steps = $("fieldset").length;
-
-	setProgressBar(current);
-
-	$(".next-step").click(function () {
-
-		currentGfgStep = $(this).parent();
-		nextGfgStep = $(this).parent().next();
-
-		$("#progressbar li").eq($("fieldset")
-			.index(nextGfgStep)).addClass("active");
-
-		nextGfgStep.show();
-		currentGfgStep.animate({ opacity: 0 }, {
-			step: function (now) {
-				opacity = 1 - now;
-
-				currentGfgStep.css({
-					'display': 'none',
-					'position': 'relative'
-				});
-				nextGfgStep.css({ 'opacity': opacity });
-			},
-			duration: 500
-		});
-		setProgressBar(++current);
-	});
-
-	$(".new-payment").click(function () {
-
-		currentGfgStep = $(this).parent();
-		newpaymentGfgStep = $(this).parent().new();
-
-		$("#progressbar li").eq($("fieldset")
-			.index(currentGfgStep)).removeClass("active");
-
-      newpaymentGfgStep.show();
-
-		currentGfgStep.animate({ opacity: 0 }, {
-			step: function (now) {
-				opacity = 1 - now;
-
-				currentGfgStep.css({
-					'display': 'none',
-					'position': 'relative'
-				});
-				newpaymentGfgStep.css({ 'opacity': opacity });
-			},
-			duration: 500
-		});
-		setProgressBar(--current);
-	});
-
-	function setProgressBar(currentStep) {
-		var percent = parseFloat(100 / steps) * current;
-		percent = percent.toFixed();
-		$(".progress-bar")
-			.css("width", percent + "%")
-	}
-
-	$(".submit").click(function () {
-		return false;
-	})
-});
-</script>
 <script>
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
 var dropdown = document.getElementsByClassName("dropdown-btn");

@@ -20,6 +20,32 @@ class UniversityFeeSched {
         $this->db = new Database();
     }
 
+    function showAllDetailsByPayId($fee_id) {
+        $sql = "SELECT ufs.id, ufs.university_start_date, ufs.university_amount, ufs.university_end_date, ufs.created_by, ufs.is_active, uf.university_name, uf.university_fee_type, s.semester_name, sy.academic_name
+                FROM university_fee_schedule ufs
+                JOIN university_fee uf ON ufs.university_fee_id = uf.id
+                JOIN semesters s ON ufs.semester_id = s.id
+                JOIN academic_year sy ON ufs.academic_year_id = sy.id
+                WHERE ufs.id = :fee_id";
+        $stmt = $this->db->connect()->prepare($sql);
+        $stmt->bindValue(':fee_id', $fee_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function showAllDetailsByFeeId($fee_id) {
+        $sql = "SELECT ufs.university_start_date, ufs.university_amount, ufs.university_end_date, ufs.created_by, ufs.is_active, uf.university_name, uf.university_fee_type, s.semester_name, sy.academic_name
+                FROM university_fee_schedule ufs
+                JOIN university_fee uf ON ufs.university_fee_id = uf.id
+                JOIN semesters s ON ufs.semester_id = s.id
+                JOIN academic_year sy ON ufs.academic_year_id = sy.id
+                WHERE ufs.university_fee_id = :fee_id";
+        $stmt = $this->db->connect()->prepare($sql);
+        $stmt->bindValue(':fee_id', $fee_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     function calculateStartDate($schoolYearStartDate, $semesterID) {
         // Extract the year from the school year start date
         $startYear = date('Y', strtotime($schoolYearStartDate));
@@ -160,18 +186,6 @@ class UniversityFeeSched {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function showAllDetailsByFeeId($fee_id) {
-        $sql = "SELECT ufs.university_start_date, ufs.university_amount, ufs.university_end_date, ufs.created_by, ufs.is_active, uf.university_name, uf.university_fee_type, s.semester_name, sy.academic_name
-                FROM university_fee_schedule ufs
-                JOIN university_fee uf ON ufs.university_fee_id = uf.id
-                JOIN semesters s ON ufs.semester_id = s.id
-                JOIN academic_year sy ON ufs.academic_year_id = sy.id
-                WHERE ufs.university_fee_id = :fee_id";
-        $stmt = $this->db->connect()->prepare($sql);
-        $stmt->bindValue(':fee_id', $fee_id, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 
     function showAllDetails() {
         $sql = "SELECT ufs.id, ufs.university_start_date, ufs.university_amount, ufs.university_end_date, ufs.created_by, ufs.is_active, uf.university_name, uf.university_fee_type, s.semester_name, sy.academic_name                FROM university_fee_schedule ufs

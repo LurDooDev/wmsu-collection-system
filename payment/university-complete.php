@@ -122,79 +122,10 @@ if (!isset($_SESSION['logged_id'])) {
                     el.classList.toggle("toggled");
                 };
             </script>
-<script src="script.js"></script>
+
 
 </html>
-<script>
-    $(document).ready(function () {
-	var currentGfgStep, nextGfgStep, previousGfgStep;
-	var opacity;
-	var current = 1;
-	var steps = $("fieldset").length;
 
-	setProgressBar(current);
-
-	$(".next-step").click(function () {
-
-		currentGfgStep = $(this).parent();
-		nextGfgStep = $(this).parent().next();
-
-		$("#progressbar li").eq($("fieldset")
-			.index(nextGfgStep)).addClass("active");
-
-		nextGfgStep.show();
-		currentGfgStep.animate({ opacity: 0 }, {
-			step: function (now) {
-				opacity = 1 - now;
-
-				currentGfgStep.css({
-					'display': 'none',
-					'position': 'relative'
-				});
-				nextGfgStep.css({ 'opacity': opacity });
-			},
-			duration: 500
-		});
-		setProgressBar(++current);
-	});
-
-	$(".new-payment").click(function () {
-
-		currentGfgStep = $(this).parent();
-		newpaymentGfgStep = $(this).parent().new();
-
-		$("#progressbar li").eq($("fieldset")
-			.index(currentGfgStep)).removeClass("active");
-
-      newpaymentGfgStep.show();
-
-		currentGfgStep.animate({ opacity: 0 }, {
-			step: function (now) {
-				opacity = 1 - now;
-
-				currentGfgStep.css({
-					'display': 'none',
-					'position': 'relative'
-				});
-				newpaymentGfgStep.css({ 'opacity': opacity });
-			},
-			duration: 500
-		});
-		setProgressBar(--current);
-	});
-
-	function setProgressBar(currentStep) {
-		var percent = parseFloat(100 / steps) * current;
-		percent = percent.toFixed();
-		$(".progress-bar")
-			.css("width", percent + "%")
-	}
-
-	$(".submit").click(function () {
-		return false;
-	})
-});
-</script>
 <script>
   // Select the last fieldset element
   const lastFieldset = document.querySelector("fieldset:last-of-type");

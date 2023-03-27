@@ -103,11 +103,11 @@ require_once '../classes/universityfeeSched.class.php';
       <table class="table table-striped table-borderless">
         <thead style="background-color:#95BDFE ;" class="text-white">
           <tr>
-            <th scope="col" style="color: #000000;">Select Fees</th>
             <th scope="col" style="color: #000000;">Description</th>
             <th scope="col" style="color: #000000;">Amount</th>
             <th scope="col" style="color: #000000;">Semester</th>
             <th scope="col" style="color: #000000;">School Year</th>
+            <th scope="col" style="color: #000000;">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -117,17 +117,22 @@ require_once '../classes/universityfeeSched.class.php';
             foreach($FeeSchedData as $FeeSched) {        
           ?>             
           <tr>
-            <td> 
+            <!-- <td> 
               <div class="checkbox">
                 <label class="checkbox-inline">
                   <input type="checkbox" name="fee[]" value="<?php echo $FeeSched['id']; ?>">
                 </label>
               </div>
-            </td>
+            </td> -->
             <td><?php echo $FeeSched['university_name']; ?></td>
             <td><?php echo $FeeSched['university_amount']; ?></td>
             <td><?php echo $FeeSched['semester_name']; ?></td>
             <td><?php echo $FeeSched['academic_name']; ?></td>
+            <td>
+  <a href="universitypayment_review.php?studentID=<?php echo $_GET['studentID']; ?>&universityID=<?php echo $FeeSched['id']; ?>" class="edit">
+    <i class="material-icons" title="Edit">&#xe147;</i>
+  </a>
+</td>
           </tr>
           <?php 
             }
@@ -140,17 +145,6 @@ require_once '../classes/universityfeeSched.class.php';
             <a href="universitypayment.php" class="btn btn-success" style="border-radius: 40px; padding: 10 10 10 10;">
               <span>Previous</span>
             </a>
-          </div>
-          <div class="ml-auto p-auto">
-            <?php if (isset($_POST['fee'])): ?>
-              <a href="<?php echo 'universitypayment_review.php?studentID='.$_GET['studentID'].'&fees='.implode(',',$_POST['fee']); ?>" class="btn btn-success" style="border-radius: 40px; padding: 10 10 10 10;">
-                <span>Proceed To Payment</span>
-              </a>
-            <?php else: ?>
-              <button type="button" class="btn btn-success disabled" style="border-radius: 40px; padding: 10 10 10 10;">
-                <span>Select at least one fee to proceed</span>
-              </button>
-            <?php endif; ?>
           </div>
         </div>
       </div>
