@@ -11,12 +11,39 @@ class Student {
     public $studentEmail;
     public $studentCollege;
     public $programID;
+    public $outstandingBalance; 
 
     protected $db;
 
     function __construct() {
         $this->db = new Database();
     }
+
+    public function updateOutstandingBalance($studentID, $paymentAmount) {
+        // I miss you
+        $outstandingBalance = $this->getOutstandingBalance();
+            
+        // sana
+        $newOutstandingBalance = $outstandingBalance - $paymentAmount;
+    
+        // update 
+        $stmt = $this->db->connect()->prepare("UPDATE students SET outstanding_balance = :newBalance WHERE id = :studentID");
+        $stmt->bindParam(':newBalance', $newOutstandingBalance);
+        $stmt->bindParam(':studentID', $studentID);
+        $stmt->execute();
+    
+        // update 
+        $this->outstandingBalance = $newOutstandingBalance;
+    }
+    
+
+    public function getOutstandingBalance() {
+        $stmt = $this->db->connect()->prepare("SELECT outstanding_balance FROM students WHERE id = :studentID");
+        $stmt->bindParam(':studentID', $this->studentID);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+
 
     public function searchStudents($searchValue, $collegeID) {
     

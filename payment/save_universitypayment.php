@@ -31,7 +31,7 @@
     }
 
     // Get other payment details
-    $collectedBy = $UserFullname; // Make sure $UserFullname is defined
+    $collectedBy = $UserFullname; 
     $paymentDate = date('Y-m-d H:i:s');
     $receiptNumber = 'WMSU' . date('YmdHis') . rand(1000, 9999);
 
@@ -87,10 +87,21 @@
         'payment_date' => $paymentDate,
     ];
 
-    // Encode payment details array to JSON
+   
+
+$remainingBalance = $feeAmount - $paymentAmount;
+
+
+if ($remainingBalance > 0) {
+  $students = new Student();
+    $students->updateOutstandingBalance($studentID, $remainingBalance);
+}
+
+
+ 
     $paymentDetails = json_encode($paymentDetails);
     $paymentDetailsJson = json_encode($paymentDetails);
-    // Save payment to database
+
     $payment = new UniversityPayment();
     if ($payment->savePayment($studentID, $feeScheduleID, $feeAmount, $paymentAmount, $collectedBy, $paymentDate, $paymentDetailsJson, $receiptNumber, $paymentImage)) {
         header('location: university-complete.php');
@@ -98,5 +109,8 @@
       echo "Failed to save payment.";
     }
   }
+
+//KAPUYA MAG ENGLISH COMMENT UY 
+  ?>
 
 
