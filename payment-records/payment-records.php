@@ -75,7 +75,6 @@
         </div>               
 		<div class="table-responsive">
 	<div id="page-content-wrapper">
-<!-- Dashboard hamburger      -->
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
@@ -89,19 +88,13 @@
 					<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
 					</div>
 					<div class="col-sm-8">
-						<!-- <a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
 					</div>
 				</div>
 			</div>
 			<table class="table table-striped table-hover">
 				<thead style="text-align: center;">
 					<tr>
-						<!-- <th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
-							</span>
-						</th> -->
+
                         <th>ID</th>
                         <th>Payment</th>
                         <th>Student ID</th>
@@ -114,18 +107,6 @@
 					</tr>
 				</thead>
 				<tbody style="text-align: center;">
-				<?php
-					//$fee = new Fee();
-					//$data = $fee->show();
-				//foreach($data as $fee) {
-        ?>
-					<tr>
-						<!-- <td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
-							</span>
-						</td> -->
                         <td>1</td> 
                         <td>CSC FEE</td>
                         <td>sl202203004</td>
@@ -149,31 +130,6 @@
 					</tr>
 					</tbody>
 			</table>
-						<!--<td><?php //echo $fee['fee_id']; ?></td>
-						<td><?php  // echo $fee['fee_type']; ?></td>
-						<td><?php //echo $fee['fee_description']; ?></td>
-						<td><?php //echo $fee['fee_amount']; ?></td>
-						<td><?php //echo $fee['fee_due_date']; ?></td>
-						<td>
-							<a href="#editFeesModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteFeesModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<?php //} ?>
-				</tbody>
-			</table>
-			<- - <div class="clearfix">
-				<div class="hint-text">Showing <b>1</b> out of <b>25</b> entries</div>
-				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">Previous</a></li>
-					<li class="page-item active"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item disabled"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">4</a></li>
-					<li class="page-item"><a href="#" class="page-link">5</a></li>
-					<li class="page-item"><a href="#" class="page-link">Next</a></li>
-				</ul>
-			</div> -->
 		</div>
 	</div>        
 </div>
