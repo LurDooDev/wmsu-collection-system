@@ -186,10 +186,6 @@ if(isset($_GET['studentID']) && isset($_GET['universityID'])) {
                 <td>₱ <?php echo $FeeSched['university_amount']; ?></td>
                     <td><?php echo $FeeSched['semester_name']; ?></td>
                     <td><?php echo $FeeSched['academic_name']; ?></td>
-                <tr>
-        <td style="text-align:right; font-weight:bold;">Total Amount:</td>
-        <td>₱ <?php echo $FeeSched['university_amount']; ?></td>
-      </tr>
       <?php 
                     $i++;
                 }
