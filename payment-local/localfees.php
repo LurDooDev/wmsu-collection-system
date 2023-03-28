@@ -13,6 +13,8 @@ if (!isset($_SESSION['logged_id'])) {
   }
 }
 
+require_once '../classes/localfeeSched.class.php';
+
 ?>
 <!doctype html>
 <html lang="en" class="no-js">
@@ -92,67 +94,55 @@ if (!isset($_SESSION['logged_id'])) {
 						<div class="">
 </div>
 <div class="table-responsive" id="bilat">
-        <div class="row my-2 mx-1 justify-content-center" style="display: block;">
-          <table class="table table-striped table-borderless">
-            <thead style="background-color:#95BDFE ;" class="text-white">
-              <tr>
-                <th scope="col" style = " color: #000000;" >Select Fees</th>
-                <th scope="col" style = " color: #000000;" >Local Fees</th>
-                <th scope="col" style = " color: #000000;" >Amount</th>
-                <th scope="col" style = " color: #000000;" >Semester</th>
-                <th scope="col" style = " color: #000000;" >School Year</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-             <td> 
-              <div th:each="fees : ${fees}" class="checkbox-group">
-    <div class="checkbox"><label class="checkbox-inline" th:text="${fees}">
-    <input type="checkbox" th:field="*{checkedItems}" th:value="${fees}" /></label></div>
+  <div class="row my-2 mx-1 justify-content-center" style="display: block;">
+    <form id="feeForm" method="post">
+      <input type="hidden" name="studentID" value="<?php echo $_GET['studentID']; ?>">
+      <table class="table table-striped table-borderless">
+        <thead style="background-color:#95BDFE ;" class="text-white">
+          <tr>
+            <th scope="col" style="color: #000000;">Description</th>
+            <th scope="col" style="color: #000000;">Amount</th>
+            <th scope="col" style="color: #000000;">Semester</th>
+            <th scope="col" style="color: #000000;">School Year</th>
+            <th scope="col" style="color: #000000;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+            $FeeSched = new LocalFeeSched();
+            $FeeSchedData = $FeeSched->show();  
+            foreach($FeeSchedData as $FeeSched) {        
+          ?>             
+          <tr>
+            <td><?php echo $FeeSched['local_name']; ?></td>
+            <td><?php echo $FeeSched['local_amount']; ?></td>
+            <td><?php echo $FeeSched['semester_name']; ?></td>
+            <td><?php echo $FeeSched['academic_name']; ?></td>
+            <td>
+  <a href="local-details.php?studentID=<?php echo $_GET['studentID']; ?>&localID=<?php echo $FeeSched['id']; ?>" class="edit">
+    <i class="material-icons" title="Edit">&#xe147;</i>
+  </a>
 </td>
-                <td>Bahay Kubo</td>
-                <td>30</td>
-                <td> 1st Semester</td>
-                <td> 2021-2022</td>
-                </tr>
-                <td> 
-              <div th:each="fees : ${fees}" class="checkbox-group">
-    <div class="checkbox"><label class="checkbox-inline" th:text="${fees}">
-    <input type="checkbox" th:field="*{checkedItems}" th:value="${fees}" /></label></div>
-</td>
-                <td>Gardening</td>
-                <td>100</td>
-                <td> 1st Semester</td>
-                <td> 2021-2022</td>
-                </tr>
-
-                <td> 
-              <div th:each="fees : ${fees}" class="checkbox-group">
-    <div class="checkbox"><label class="checkbox-inline" th:text="${fees}">
-    <input type="checkbox" th:field="*{checkedItems}" th:value="${fees}" /></label></div>
-</td>
-                <td>Aircon</td>
-                <td>150</td>
-                <td> 1st Semester</td>
-                <td> 2021-2022</td>
-                </tr>
-            </tbody>
-          </table>
+          </tr>
+          <?php 
+            }
+          ?>  
+        </tbody>
+      </table>
+      <div>
+        <div class="d-flex">
+          <div class="mr-auto">
+            <a href="localpayment.php" class="btn btn-success" style="border-radius: 40px; padding: 5px 40px; font-size: 18px;">
+              <span>Previous</span>
+            </a>
+          </div>
         </div>
-        </div>
-    </div>
-</fieldset>
-
-<div>
-<div class="d-flex">
-                <div class="mr-auto">
-                <a href="../payment-local/localpayment.php" class="btn btn-success" style="border-radius: 40px; padding: 10 10 10 10;"><span>Previous </span></a>
-					</div>
-          <div class="ml-auto p-auto">
-            <a href="../payment-local/local-details.php" class="btn btn-success" id="backstreet"style="border-radius: 40px; padding: 10 10 10 10;"> <span>Proceed To Payment</span></a>
-
+      </div>
+    </form>
+  </div>
 </div>
 </fieldset>
+
   
 </body>       
 </html>
