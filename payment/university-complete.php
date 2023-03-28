@@ -82,7 +82,6 @@ if (!isset($_SESSION['logged_id'])) {
 		<div class="row justify-content-center">
 			<div class="justify-content-center">
 				<div class="">
-					<form id="form">
 						<ul id="progressbar">
 							<li class="" id="step1">
 								<strong>Search User</strong>
