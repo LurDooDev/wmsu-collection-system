@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="../css/funds.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
@@ -83,16 +84,11 @@
     <div class="container">
                 <div class="table-responsive" id="depression">
                 <div class="col-sm-6">
-                    <p>112123123123123</p>
-                    <ul>
-                        <li>1</li>
-                        <li>1</li>
-                        <li>icon</li>
-                        <li>1212</li>
-                        <li>12</li>
-                        <li>1212</li>
-                    </ul>
-                </div>
+                <div>
+  <canvas id="myChart"></canvas>
+</div>
+<script src="../js/chart.js"></script>
+                 </div>
                 <div class="col-sm-6" id="lakatan">
                 <table class="table table-striped table-borderless">
             <thead style="background-color:#95BDFE ;" class="text-white">
@@ -278,3 +274,9 @@ for (var i = 0; i < links.length; i++) {
   });
 }</script>
 </html>
+<script>
+  const config = {
+  type: 'pie',
+  data: data,
+};
+</script>

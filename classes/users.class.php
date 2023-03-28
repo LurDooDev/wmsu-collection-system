@@ -88,6 +88,7 @@ class Users{
         return $result;
     }
 
+    
     // Method to log a user in
     function log_in($username, $password) {
         // Sanitize inputs

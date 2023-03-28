@@ -6,7 +6,7 @@
         $users = new Users();
         $users->userID = $_POST['user_id'];
             if($users->delete()){
-                header('location: User-management.php');
+                header('location: user.php');
             }
             else{
                 echo 'Error deleting college';
