@@ -13,6 +13,8 @@ if (!isset($_SESSION['logged_id'])) {
   }
 }
 
+require_once '../classes/localfeeSched.class.php';
+
 ?>
 <!doctype html>
 <html lang="en" class="no-js">
@@ -22,20 +24,18 @@ if (!isset($_SESSION['logged_id'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!--- links for bootstrap and css  --->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Unicons CSS -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/paymentfees.css" />
+    <link rel="stylesheet" href="../css/payments.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <!--Jquery NEED-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!--Jquery NEED-->
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
     <title>Wmsu Collection System</title>
     </head>
       <body>
@@ -94,151 +94,58 @@ if (!isset($_SESSION['logged_id'])) {
 						<div class="">
 </div>
 <div class="table-responsive" id="bilat">
-        <div class="row my-2 mx-1 justify-content-center" style="display: block;">
-          <table class="table table-striped table-borderless">
-            <thead style="background-color:#95BDFE ;" class="text-white">
-              <tr>
-                <th scope="col" style = " color: #000000;" >Select Fees</th>
-                <th scope="col" style = " color: #000000;" >Local Fees</th>
-                <th scope="col" style = " color: #000000;" >Amount</th>
-                <th scope="col" style = " color: #000000;" >Semester</th>
-                <th scope="col" style = " color: #000000;" >School Year</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-             <td> 
-              <div th:each="fees : ${fees}" class="checkbox-group">
-    <div class="checkbox"><label class="checkbox-inline" th:text="${fees}">
-    <input type="checkbox" th:field="*{checkedItems}" th:value="${fees}" /></label></div>
+  <div class="row my-2 mx-1 justify-content-center" style="display: block;">
+    <form id="feeForm" method="post">
+      <input type="hidden" name="studentID" value="<?php echo $_GET['studentID']; ?>">
+      <table class="table table-striped table-borderless">
+        <thead style="background-color:#95BDFE ;" class="text-white">
+          <tr>
+            <th scope="col" style="color: #000000;">Description</th>
+            <th scope="col" style="color: #000000;">Amount</th>
+            <th scope="col" style="color: #000000;">Semester</th>
+            <th scope="col" style="color: #000000;">School Year</th>
+            <th scope="col" style="color: #000000;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+            $FeeSched = new LocalFeeSched();
+            $FeeSchedData = $FeeSched->show();  
+            foreach($FeeSchedData as $FeeSched) {        
+          ?>             
+          <tr>
+            <td><?php echo $FeeSched['local_name']; ?></td>
+            <td><?php echo $FeeSched['local_amount']; ?></td>
+            <td><?php echo $FeeSched['semester_name']; ?></td>
+            <td><?php echo $FeeSched['academic_name']; ?></td>
+            <td>
+  <a href="local-details.php?studentID=<?php echo $_GET['studentID']; ?>&localID=<?php echo $FeeSched['id']; ?>" class="edit">
+    <i class="material-icons" title="Edit">&#xe147;</i>
+  </a>
 </td>
-                <td>Bahay Kubo</td>
-                <td>30</td>
-                <td> 1st Semester</td>
-                <td> 2021-2022</td>
-                </tr>
-                <td> 
-              <div th:each="fees : ${fees}" class="checkbox-group">
-    <div class="checkbox"><label class="checkbox-inline" th:text="${fees}">
-    <input type="checkbox" th:field="*{checkedItems}" th:value="${fees}" /></label></div>
-</td>
-                <td>Gardening</td>
-                <td>100</td>
-                <td> 1st Semester</td>
-                <td> 2021-2022</td>
-                </tr>
-
-                <td> 
-              <div th:each="fees : ${fees}" class="checkbox-group">
-    <div class="checkbox"><label class="checkbox-inline" th:text="${fees}">
-    <input type="checkbox" th:field="*{checkedItems}" th:value="${fees}" /></label></div>
-</td>
-                <td>Aircon</td>
-                <td>150</td>
-                <td> 1st Semester</td>
-                <td> 2021-2022</td>
-                </tr>
-            </tbody>
-          </table>
+          </tr>
+          <?php 
+            }
+          ?>  
+        </tbody>
+      </table>
+      <div>
+        <div class="d-flex">
+          <div class="mr-auto">
+            <a href="localpayment.php" class="btn btn-success" style="border-radius: 40px; padding: 5px 40px; font-size: 18px;">
+              <span>Previous</span>
+            </a>
+          </div>
         </div>
-        </div>
-    </div>
-</fieldset>
-
-<div>
-<div class="d-flex">
-                <div class="mr-auto">
-                <a href="../payment-local/localpayment.php" class="btn btn-success" style="border-radius: 40px; padding: 10 10 10 10;"><span>Previous </span></a>
-					</div>
-          <div class="ml-auto p-auto">
-            <a href="../payment-local/local-details.php" class="btn btn-success" id="backstreet"style="border-radius: 40px; padding: 10 10 10 10;"> <span>Proceed To Payment</span></a>
-
+      </div>
+    </form>
+  </div>
 </div>
 </fieldset>
+
   
 </body>       
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-            <script>
-                var el = document.getElementById("wrapper");
-                var toggleButton = document.getElementById("menu-toggle");
-        
-                toggleButton.onclick = function () {
-                    el.classList.toggle("toggled");
-                };
-            </script>
-<script src="script.js"></script>
-
 </html>
-<script>
-    $(document).ready(function () {
-	var currentGfgStep, nextGfgStep, previousGfgStep;
-	var opacity;
-	var current = 1;
-	var steps = $("fieldset").length;
-
-	setProgressBar(current);
-
-	$(".next-step").click(function () {
-
-		currentGfgStep = $(this).parent();
-		nextGfgStep = $(this).parent().next();
-
-		$("#progressbar li").eq($("fieldset")
-			.index(nextGfgStep)).addClass("active");
-
-		nextGfgStep.show();
-		currentGfgStep.animate({ opacity: 0 }, {
-			step: function (now) {
-				opacity = 1 - now;
-
-				currentGfgStep.css({
-					'display': 'none',
-					'position': 'relative'
-				});
-				nextGfgStep.css({ 'opacity': opacity });
-			},
-			duration: 500
-		});
-		setProgressBar(++current);
-	});
-
-	$(".new-payment").click(function () {
-
-		currentGfgStep = $(this).parent();
-		newpaymentGfgStep = $(this).parent().new();
-
-		$("#progressbar li").eq($("fieldset")
-			.index(currentGfgStep)).removeClass("active");
-
-      newpaymentGfgStep.show();
-
-		currentGfgStep.animate({ opacity: 0 }, {
-			step: function (now) {
-				opacity = 1 - now;
-
-				currentGfgStep.css({
-					'display': 'none',
-					'position': 'relative'
-				});
-				newpaymentGfgStep.css({ 'opacity': opacity });
-			},
-			duration: 500
-		});
-		setProgressBar(--current);
-	});
-
-	function setProgressBar(currentStep) {
-		var percent = parseFloat(100 / steps) * current;
-		percent = percent.toFixed();
-		$(".progress-bar")
-			.css("width", percent + "%")
-	}
-
-	$(".submit").click(function () {
-		return false;
-	})
-});
-</script>
 <script>
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
 var dropdown = document.getElementsByClassName("dropdown-btn");

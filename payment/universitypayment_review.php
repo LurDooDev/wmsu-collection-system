@@ -214,7 +214,7 @@ require_once '../classes/universityfeeSched.class.php';
     <input type="number" class="form-control" id="paymentAmount" name="paymentAmount" required>
   </div>
   <div class="form-group">
-    <label for="paymentImage">Payment Image:</label>
+    <label for="paymentImage">If, Partial Upload Promisorry image:</label>
     <input type="file" class="form-control-file" id="paymentImage" name="paymentImage">
   </div>
   <div class="d-flex">
