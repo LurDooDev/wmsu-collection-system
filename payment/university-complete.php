@@ -95,20 +95,21 @@ if (!isset($_SESSION['logged_id'])) {
 </div>
 						</div> <br>
                         <fieldset>
-                        <div class ="container-fluid">
-            <div class="ml-auto mr-sm-auto" id="gawk">
-            <div id="awo" style="color: Black; font-weight: 300; margin-left:240px;font-size: 30px;"> PAYMENT COMPLETED SUCCESSFULLY!</div><div class="col-sm-13" id="doggie">
-          </div>
-            <img src="../images/doggie.jpg" width="300px" alt="Doggier" style="width: 90%;">
-            </div>
-				</div>
+                        <div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="text-center">
+        <h2 id="awo" style="color: black; font-weight: 300; font-size: 30px; margin-bottom: 30px; margin-left: 1px;"> PAYMENT COMPLETED SUCCESSFULLY! </h2>
+        <img src="../images/doggie.jpg" class="img-fluid" alt="Doggier" style="width: 90%;"> 
       </div>
-    <div>
-     <div class="d-flex">
-    <div class="ml-auto mr-sm-auto" style="margin-right: 200px;">
-    <a href="../payment/universitypayment.php" class="btn btn-success" id="backstreet" style="border-radius: 40px; padding: 10px 20px; font-size: 20px;">
-      <span>New Payment</span>
-    </a>
+    </div>
+    <div class="col-12 mt-3">
+      <div class="text-center">
+        <a href="../payment/universitypayment.php" class="btn btn-success btn-lg" id="backstreet" style="border-radius: 40px; padding: 10px 20px; font-size: 20px;">
+          <span>New Payment</span>
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 </fieldset>

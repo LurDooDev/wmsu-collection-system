@@ -142,7 +142,7 @@ require_once '../classes/universityfeeSched.class.php';
       <div>
         <div class="d-flex">
           <div class="mr-auto">
-            <a href="universitypayment.php" class="btn btn-success" style="border-radius: 40px; padding: 10 10 10 10;">
+            <a href="universitypayment.php" class="btn btn-success" style="border-radius: 40px; padding: 5px 40px; font-size: 18px;">
               <span>Previous</span>
             </a>
           </div>
