@@ -126,14 +126,14 @@ require_once '../classes/universityfeeSched.class.php';
     <hr class="row brc-default-l1 mx-n1 mb-4" />
     <div class="row">
                     <div class="col-sm-6">
-                        <div>
+                        <div class = "" style = "margin-left:70px;">
                             <h2 class="text-600 text-120 text-black align-middle "><?php echo $student['first_name'] . ' ' . $student['last_name']; ?></h2>
                         </div>
                         <div class="text-black-m5">
-                            <div class="my-1" style = "font-size:20px;">
+                            <div class="my-1" style = "font-size:20px; margin-left:70px;">
                                 University Fee Payment
                             </div>
-                            <div class="my-1" style = "font-size:20px;">
+                            <div class="my-1" style = "font-size:20px; margin-left:70px;">
                                Western Mindanao State University
                          </div>
                         </div>
@@ -142,7 +142,7 @@ require_once '../classes/universityfeeSched.class.php';
 
                     <div class="text-105 col-sm-6 align-self-start d-sm-flex justify-content-end">
   <hr class="d-sm-none" />
-  <div class="text-black-m5">
+  <div class="text-black-m5" style = "margin-right:60px;">
     <div class="my-2 text-bigger"> <span class="text-600 text-100">ID:</span> <?php echo $student['id']; ?></div>
     <div class="my-2 text-bigger"> <span class="text-600 text-100">College:</span> <?php echo $student['college_name']; ?></div>
     <div class="my-2 text-bigger"> <span class="text-600 text-100">Course:</span> <?php echo $student['program_name']; ?></div>
