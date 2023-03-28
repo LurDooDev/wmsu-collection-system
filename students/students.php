@@ -90,14 +90,14 @@ require_once '../classes/program.class.php';
   <div class="table-title">
     <div class="row">
       <div class="col-sm-4">
-        <input class="form-control border" type="search" name="search" id="search-input" placeholder="Search Name">
-        <button class="btn btn-primary dropdown-toggle" id="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter Year </button>
+        <input class="form-control border" type="search"name="searchValue" id="searchValue" placeholder="Search Name">
+        <!-- <button class="btn btn-primary dropdown-toggle" id="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter Year </button>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="#">1st Year</a>
           <a class="dropdown-item" href="#">2nd Year</a>
           <a class="dropdown-item" href="#">3rd Year</a>
           <a class="dropdown-item" href="#">4th Year</a>
-        </div>
+        </div> -->
       </div>
       <div class="col-sm-8 d-flex justify-content-end">
         <div class="mr-2">
@@ -116,39 +116,19 @@ require_once '../classes/program.class.php';
 			<table class="table table-striped table-hover" style="width: 100%;">
 				<thead style="text-align: center;">
 					<tr>
-						<th>#</th>
-						<th>Student ID</th>
 						<th>Student Name</th>
+            <th>Student ID</th>
 						<th>College</th>
 						<th>Course</th>
 						<th>Year Level</th>
-						<th style="text-align:center;">Email</th>
             <th>Action</th>
 					</tr>
 				</thead>
-				<tbody style="text-align: center;">
+        <tbody id="searchResults">
+                    <!-- Table rows  -->
 
-				<?php
-					$students = new Student();
-					$studentData = $students->showAllDetails();
-					$i = 1;
-				foreach($studentData as $students) {
-        ?>
-					<tr>
-					<td><?php echo $i; ?></td>
-					<td><?php echo $students['id']; ?></td>
-						<td><?php echo $students['first_name'], ' ', $students['last_name']; ?></td>
-						<td><?php echo $students['college_name']; ?></td>
-						<td><?php echo $students['program_name']; ?></td>
-						<td><?php echo $students['year_level']; ?></td>
-						<td><?php echo $students['student_email']; ?></td>
-            <td>  <a href="student-details.php" class="view-schedules">
-                    <i class="material-icons" title="View Student Details">event_note</i>
-                </a>
-        </td>
-				</tr>
-			<?php $i++; } ?>
-					</tbody>
+                </tbody>
+            </table>
 			</table>
 		</div>
 	</div>        
@@ -276,6 +256,30 @@ require_once '../classes/program.class.php';
                 };
             </script>
 </html>
+<script>
+    // Wait for the document to be ready
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the input field element
+        var searchInput = document.getElementById("searchValue");
+
+        // Add an event listener for changes in the input field
+        searchInput.addEventListener("input", function() {
+            // Get the search value from the input field
+            var searchValue = searchInput.value;
+
+            // Make an AJAX request to searchstudent.php
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Update the search results table with the response from the server
+                    document.getElementById("searchResults").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "searchstudent.php?searchValue=" + searchValue, true);
+            xhttp.send();
+        });
+    });
+</script>
 <script>
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
 var dropdown = document.getElementsByClassName("dropdown-btn");
