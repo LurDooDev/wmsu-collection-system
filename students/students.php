@@ -113,7 +113,8 @@ require_once '../classes/program.class.php';
       </div>
     </div>
   </div>
-			<table class="table table-striped table-hover" style="width: 100%;">
+  <div class="row my-2 mx-1 justify-content-center" style="display: block;">
+			<table class="table table-striped table-hover">
 				<thead style="text-align: center;">
 					<tr>
 						<th>Student Name</th>
@@ -128,12 +129,8 @@ require_once '../classes/program.class.php';
                     <!-- Table rows  -->
 
                 </tbody>
-            </table>
-			</table>
-		</div>
-	</div>        
-</div>
-</div>
+            </table> 
+  </div>
 <!-- Add Modal HTML -->
 
 <?php if(isset($_GET['error'])): ?>
