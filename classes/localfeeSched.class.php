@@ -1,6 +1,6 @@
 <?php
-
 require_once 'database.class.php';
+
 
 class localFeeSched {
     public $localFeeID;
@@ -20,6 +20,32 @@ class localFeeSched {
     function __construct() {
         $this->db = new Database();
     }
+
+    function showAllDetailsActive() {
+        $sql = "SELECT lfs.id, lfs.local_start_date, lfs.local_amount, lfs.local_end_date, lfs.created_by, lf.college_id, lfs.is_active, lf.local_name, lf.local_fee_type, s.semester_name, sy.academic_name, c.college_code
+                FROM local_fee_schedule lfs
+                JOIN local_fee lf ON lfs.local_fee_id = lf.id
+                JOIN colleges c ON lf.college_id = c.id
+                JOIN semesters s ON lfs.semester_id = s.id
+                JOIN academic_year sy ON lfs.academic_year_id = sy.id
+                 WHERE lfs.is_active = 1 AND lf.college_id = :college_id";
+        $stmt = $this->db->connect()->prepare($sql);
+        $stmt->bindValue(':college_id', $_SESSION['collegeID']);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // function showAllDetailsActive() {
+    //     $sql = "SELECT lfs.id, lfs.university_start_date, lfs.university_amount, lfs.university_end_date, lfs.created_by, lfs.is_active, lf.university_name, lf.university_fee_type, s.semester_name, sy.academic_name
+    //             FROM local_fee_schedule lfs
+    //             JOIN local_fee lf ON lfs.university_fee_id = lf.id
+    //             JOIN semesters s ON lfs.semester_id = s.id
+    //             JOIN academic_year sy ON lfs.academic_year_id = sy.id
+    //             WHERE lfs.is_active = 1";
+    //     $stmt = $this->db->connect()->prepare($sql);
+    //     $stmt->execute();
+    //     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // }
 
     function calculateStartDate($schoolYearStartDate, $semesterID) {
         // Extract the year from the school year start date

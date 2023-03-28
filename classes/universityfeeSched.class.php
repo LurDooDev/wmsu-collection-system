@@ -233,19 +233,6 @@ class UniversityFeeSched {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // function delete(){
-    //     $sql = "DELETE FROM fee WHERE fee_id=:fee_id";
-
-    //     $query=$this->db->connect()->prepare($sql);
-    //     $query->bindParam(':fee_id', $this->feeID);
-
-    //     if($query->execute()){
-    //         return true;
-    //     }
-    //     else{
-    //         return false;
-    //     }	
-    // }
 
    
 }

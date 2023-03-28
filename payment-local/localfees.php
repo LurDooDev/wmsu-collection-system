@@ -102,6 +102,7 @@ require_once '../classes/localfeeSched.class.php';
           <tr>
             <th scope="col" style="color: #000000;">Description</th>
             <th scope="col" style="color: #000000;">Amount</th>
+            <th scope="col" style="color: #000000;">College</th>
             <th scope="col" style="color: #000000;">Semester</th>
             <th scope="col" style="color: #000000;">School Year</th>
             <th scope="col" style="color: #000000;">Action</th>
@@ -110,12 +111,13 @@ require_once '../classes/localfeeSched.class.php';
         <tbody>
           <?php
             $FeeSched = new LocalFeeSched();
-            $FeeSchedData = $FeeSched->show();  
+            $FeeSchedData = $FeeSched->showAllDetailsActive();  
             foreach($FeeSchedData as $FeeSched) {        
           ?>             
           <tr>
             <td><?php echo $FeeSched['local_name']; ?></td>
             <td><?php echo $FeeSched['local_amount']; ?></td>
+            <td><?php echo $FeeSched['college_code']; ?></td>
             <td><?php echo $FeeSched['semester_name']; ?></td>
             <td><?php echo $FeeSched['academic_name']; ?></td>
             <td>
