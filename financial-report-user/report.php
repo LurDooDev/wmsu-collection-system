@@ -30,14 +30,13 @@ if (!isset($_SESSION['logged_id'])){
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://kit.fontawesome.com/4caf6a2b18.css" crossorigin="anonymous">
+  
     <title>Wmsu Collection System</title>
     </head>
       <body>
       <div class="d-flex" id="wrapper">
-         <!-- Sidebar with bootstrap -->
-         <div class="bg-white" id="sidebar-wrapper">
+              <!-- Sidebar with bootstrap -->
+              <div class="bg-white" id="sidebar-wrapper">
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
             <div class="list-group list-group-flush my-3">
               <?php
@@ -67,85 +66,78 @@ if (!isset($_SESSION['logged_id'])){
                 </div>            
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Logout</a>
             </div>
-         </div>
-<div class="table-responsive">
+              </div>
+<div class="table-responsive" id="yezzir">
 	<div id="page-content-wrapper">
 <!-- Dashboard hamburger      -->
 <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0">CCS Generated Report</h2>
+    <div class="mx-auto">
+            <h3 style = "font-size:30px;">University Student Council</h3>
         </div>
-    </nav>
-    <div class="container" id="yati">
+</div>
+</nav>
+<div class="container">
     <div class="row">
-    <div class =" table-responsive">
+<div class ="table-responsive">
                 <table class="table">
+                <div class="col-xs-3 col-sm-3 col-md-3 text-left ml-auto">
+                    <p>
+                        <h5>Date: 08/25/2022</h5>
+                    </p>
+</div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 text-left">
+                    <p>
+                        <h5>Receipt Number:696969</h5>
+                    </p>
+                </div>
+            </div>
+</div>
             <thead>
               <tr>
-                <th scope="col" style = " color: #000000;" >Types of Expenses</th></th>
-                <th scope="col" style = " color: #000000;" >Total</th>
+                <th scope="col" style = " color: #000000;" >Item Number</th></th>
+                <th scope="col" style = " color: #000000;" >Description</th>
+                <th scope="col" style = " color: #000000;" >Amount</th>
               </tr>
             </thead>
-            <tbody>
-            <tr>
-						<td>CCS Fest</td>
-						<td>PHP 100.00</td>
+<tbody>
+<tr>
+						<td>1</td>
+						<td>Bahay Kubo</td>
+                        <td>PHP 100.00</td>
 					</tr>	
-                    <tr>
+                    <td>2</td>
 						<td>Palaro</td>
-						<td>PHP 300.00</td>
+                        <td>PHP 200.00</td>
 					</tr>	
-                    <tr>
+                    <td>3</td>
 						<td>Others</td>
-						<td>PHP 400.00</td>
+                        <td>PHP 500.00</td>
 					</tr>	
-                    <tr>
                     <td></td>
-                    <td></td>
-</tr>
-<thead>
-              <tr>
-                <th></th></th>
-                <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr>
-						<td>Current Assets</td>
-                        <td>PHP 500.00</td>
-                        </tr>
-                        <tr>
-                    <td></td>
-                    <td></td>
-</tr>
-<thead>
-              <tr>
-                <th></th></th>
-                <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr>
-						<td>Remaining Assets</td>
-                        <td>PHP 500.00</td>
-                        </tr>
-                        <tr>
-                    <td></td>
-                    <td></td>
-</tr>
-</tbody>
+                    <th style = " color: #000000;" >Total:</th>
+                    <td>PHP 800.00</td>
+                    </tbody>
 			</table>
 </body>
-<div class="d-flex">
-                <div class="mr-auto p-auto ml-3">
-                <a href="financial-report-user.php" class="btn btn-danger" style="padding:12px; margin-bottom:12px; border-radius: 40px;"><span>Back To Financial Report </span></a>
-					</div>
       <div class="d-flex">
-                <div class="ml-auto p-auto mr-3">
-                <a href="receipt.php" class="btn btn-success" style="padding:12px; margin-bottom:12px; border-radius: 40px;"><span>Proceed to Receipt </span></a>
+                <div class="mr-auto p-auto mr-6">
+                <a href="report.php" class="btn btn-danger" style="padding:12px; margin-bottom:12px; border-radius:40px;"><span>Back to CCS Generated Report </span></a>
 					</div>
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+        <div class="ml-auto p-auto ml-6" id="invoice">
+          <button class="btn btn-success" id="downloadPdf" style="padding:12px; margin-bottom:12px; margin-left: 10px; border-radius:40px;">Download Receipt</button>
+         <script>
+        document
+          .getElementById("downloadPdf")
+          .addEventListener("click", function () {
+           const element = document.getElementById("invoice");
+           html2pdf().from(element).save();
+           });
+         </script>
+      </div>
+
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
             <script>
                 var el = document.getElementById("wrapper");
                 var toggleButton = document.getElementById("menu-toggle");
@@ -185,6 +177,3 @@ for (var i = 0; i < links.length; i++) {
     setActiveLink(this);
   });
 }</script>
-
-
-
