@@ -119,23 +119,23 @@ require_once '../classes/student.class.php';
                         <div>
                             <h2 class="text-600 text-110 text-black align-middle"><?php echo $student['first_name'] . ' ' . $student['last_name']; ?></h2>
                         </div>
-                        <div class="text-grey-m2">
-                            <div class="my-1">
+                        <div class="text-black-m5">
+                            <div class="my-1" style = "font-size:20px;">
                                 Local Fee Payment
                             </div>
-                            <div class="my-1">
+                            <div class="my-1" style = "font-size:20px;">
                                Western Mindanao State University
                          </div>
                         </div>
                     </div>
                     <!-- /.col -->
 
-                    <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
+                    <div class="text-105 col-sm-6 align-self-start d-sm-flex justify-content-end">
                         <hr class="d-sm-none" />
-                        <div class="text-grey-m2">
-                            <div class="my-2"> <span class="text-600 text-90">ID:</span> <?php echo $student['id']; ?></div>
-                            <div class="my-2"> <span class="text-600 text-90">College:</span> <?php echo $student['college_code']; ?></div>
-                            <div class="my-2"> <span class="text-600 text-90">Course:</span> <?php echo $student['program_name']; ?></div>
+                        <div class="text-black-m5">
+                            <div class="my-2 text-bigger"> <span class="text-600 text-100">ID:</span> <?php echo $student['id']; ?></div>
+                            <div class="my-2 text-bigger "> <span class="text-600 text-100">College:</span> <?php echo $student['college_code']; ?></div>
+                            <div class="my-2 text-bigger"> <span class="text-600 text-100">Course:</span> <?php echo $student['program_name']; ?></div>
                         </div>
                     </div>
                     <?php 
@@ -153,11 +153,11 @@ require_once '../classes/student.class.php';
                 <table class="table table-bordered">
                 <thead style="background-color:#95BDFE ;" class="text-white">
               <tr>
-                <th scope="col" >#</th>
-                <th scope="col">Description</th>
+                <th scope="col" style = " text-align:center;">#</th>
+                <th scope="col" style = " text-align:center;">Description</th>
                 <th scope="col" style = " text-align:center;" >Amount</th>
-                <th scope="col">Semester</th>
-                <th scope="col">School Year</th>
+                <th scope="col"style = " text-align:center;">Semester</th>
+                <th scope="col"style = " text-align:center;">School Year</th>
               </tr>
             </thead>
             <?php
@@ -172,11 +172,11 @@ require_once '../classes/student.class.php';
                 foreach($FeeSchedData as $FeeSched) {        
             ?>
               <tr>
-              <td><?php echo $i; ?></td>
-                <td><?php echo $FeeSched['local_name']; ?></td>
-                <td>₱ <?php echo $FeeSched['local_amount']; ?></td>
-                    <td><?php echo $FeeSched['semester_name']; ?></td>
-                    <td><?php echo $FeeSched['academic_name']; ?></td>
+              <td style = " text-align:center;"><?php echo $i; ?></td>
+                <td style = " text-align:center;"><?php echo $FeeSched['local_name']; ?></td>
+                <td style = " text-align:center;">₱ <?php echo $FeeSched['local_amount']; ?></td>
+                    <td style = " text-align:center;"> <?php echo $FeeSched['semester_name']; ?></td>
+                    <td style = " text-align:center;"><?php echo $FeeSched['academic_name']; ?></td>
       <?php 
                     $i++;
                 }
