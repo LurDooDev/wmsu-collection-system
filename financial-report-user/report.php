@@ -123,10 +123,10 @@ if (!isset($_SESSION['logged_id'])){
 </body>
       <div class="d-flex">
                 <div class="mr-auto p-auto mr-6">
-                <a href="report.php" class="btn btn-danger" style="padding:12px; margin-bottom:12px; border-radius:40px;"><span>Back to CCS Generated Report </span></a>
+                <a href="financial-report-user.php" class="btn btn-danger" style="padding:12px; margin-bottom:12px; border-radius:40px;"><span>Back to CCS Generated Report </span></a>
 					</div>
         <div class="ml-auto p-auto ml-6" id="invoice">
-          <button class="btn btn-success" id="downloadPdf" style="padding:12px; margin-bottom:12px; margin-left: 10px; border-radius:40px;">Download Receipt</button>
+        <a href="receipt.php" class="btn btn-success" id="downloadPdf" style="padding:12px; margin-bottom:12px; margin-left: 10px; border-radius:40px;">Download Receipt</a>
          <script>
         document
           .getElementById("downloadPdf")
