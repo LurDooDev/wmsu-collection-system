@@ -1,5 +1,5 @@
 <?php
-  require_once '../classes/universitypayment.class.php';
+  require_once '../classes/localpayment.class.php';
   require_once '../classes/student.class.php';
   require_once '../classes/localfeeSched.class.php';
   session_start();
