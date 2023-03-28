@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2023 at 03:16 PM
+-- Generation Time: Mar 28, 2023 at 08:09 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -220,7 +220,9 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `first_name`, `last_name`, `student_email`, `year_level`, `college_id`, `program_id`, `payment_status`, `outstanding_balance`) VALUES
-(201503664, 'Bryan Christian', 'Sevilla', 'sl201503664@wmsu.edu.ph', '3rd Year', 1, 8, NULL, 0);
+(201503664, 'Bryan Christian', 'Sevilla', 'sl201503664@wmsu.edu.ph', '3rd Year', 1, 8, NULL, 0),
+(202234212, 'Gregory', 'Yames', 'yames@wmsu.edu.ph', '2nd Year', 2, 5, NULL, 0),
+(202304200, 'Bryant', 'Romblox', 'romblox@wmsu.edu.ph', '4rth Year', 1, 9, NULL, -100);
 
 -- --------------------------------------------------------
 
@@ -272,9 +274,9 @@ CREATE TABLE `university_fee_schedule` (
 --
 
 INSERT INTO `university_fee_schedule` (`id`, `university_fee_id`, `academic_year_id`, `semester_id`, `university_start_date`, `university_end_date`, `university_amount`, `is_active`, `created_at`, `updated_at`, `created_by`, `is_current`) VALUES
-(1, 1, 1, 1, '2022-08-01', '2022-12-01', 231, 1, '2023-03-15 06:39:30', '2023-03-15 06:39:30', 'Bryan', 1),
 (2, 1, 1, 2, '2022-01-01', '2022-05-01', 420, 1, '2023-03-15 06:57:49', '2023-03-15 06:57:49', 'Bryan', 1),
-(3, 2, 1, 2, '2022-01-01', '2022-05-01', 320, 1, '2023-03-15 06:59:34', '2023-03-15 06:59:34', 'Bryan', 1);
+(3, 2, 1, 2, '2022-01-01', '2022-05-01', 320, 1, '2023-03-15 06:59:34', '2023-03-15 06:59:34', 'Bryan', 1),
+(4, 3, 1, 2, '2023-01-01', '2023-05-01', 300, 1, '2023-03-27 00:08:23', '2023-03-27 00:08:23', 'Bryan COE', 1);
 
 -- --------------------------------------------------------
 
@@ -284,12 +286,20 @@ INSERT INTO `university_fee_schedule` (`id`, `university_fee_id`, `academic_year
 
 CREATE TABLE `university_payment` (
   `id` int(11) NOT NULL,
-  `student_id` int(11) DEFAULT NULL,
-  `fee_schedule_id` int(11) DEFAULT NULL,
-  `payment_amount` int(11) DEFAULT NULL,
-  `payment_date` datetime NOT NULL DEFAULT current_timestamp(),
-  `payment_status` varchar(20) DEFAULT 'paid',
-  `process_by` varchar(50) DEFAULT NULL
+  `student_id` int(11) NOT NULL,
+  `fee_schedule_id` int(11) NOT NULL,
+  `payment_amount` int(11) NOT NULL,
+  `collected_by` varchar(100) NOT NULL,
+  `payment_date` datetime NOT NULL,
+  `payment_details` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `receipt_number` varchar(50) NOT NULL,
+  `payment_fee_amount` int(11) NOT NULL,
+  `payment_status` tinyint(1) NOT NULL DEFAULT 1,
+  `payment_remaining` int(11) NOT NULL DEFAULT 0,
+  `payment_add` int(11) NOT NULL DEFAULT 0,
+  `payment_image` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -421,8 +431,8 @@ ALTER TABLE `university_fee_schedule`
 --
 ALTER TABLE `university_payment`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `student_id` (`student_id`),
-  ADD KEY `fee_schedule_id` (`fee_schedule_id`);
+  ADD KEY `fk_payment_students` (`student_id`),
+  ADD KEY `fk_payment_university_fee_schedule` (`fee_schedule_id`);
 
 --
 -- Indexes for table `university_payment_history`
@@ -502,13 +512,13 @@ ALTER TABLE `university_fee`
 -- AUTO_INCREMENT for table `university_fee_schedule`
 --
 ALTER TABLE `university_fee_schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `university_payment`
 --
 ALTER TABLE `university_payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `university_payment_history`
@@ -566,8 +576,8 @@ ALTER TABLE `university_fee_schedule`
 -- Constraints for table `university_payment`
 --
 ALTER TABLE `university_payment`
-  ADD CONSTRAINT `university_payment_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`),
-  ADD CONSTRAINT `university_payment_ibfk_2` FOREIGN KEY (`fee_schedule_id`) REFERENCES `university_fee_schedule` (`id`);
+  ADD CONSTRAINT `fk_payment_students` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`),
+  ADD CONSTRAINT `fk_payment_university_fee_schedule` FOREIGN KEY (`fee_schedule_id`) REFERENCES `university_fee_schedule` (`id`);
 
 --
 -- Constraints for table `university_payment_history`
