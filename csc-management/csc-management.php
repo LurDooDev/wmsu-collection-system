@@ -165,7 +165,7 @@
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 					<input type="hidden" name="action" value="add">
 					<input type="submit" class="btn btn-success" value="Add">
-				</div>
+				</div>	
 			</form>
 		</div>
 	</div>
@@ -173,37 +173,45 @@
 <div id="editUser" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form action = "" method = "POST">
-				<div class="modal-header">						
+			<form action="" method="POST">
+				<div class="modal-header">
 					<h4 class="modal-title">Edit User</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div class="modal-body">					
+				<div class="modal-body">
 					<div class="form-group">
 						<label for="name">Name</label>
-						<input type="text" name="" id="" class="form-control" required>
+						<input type="text" name="name" id="name" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label for="student-id">Position</label>
-						<input type="text" name="" id="" class="form-control" required>
+						<label for="position">Position</label>
+						<input type="text" name="position" id="position" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label for="college-code">Year Level</label>
-						<input type="text" name="" id="" class="form-control" required>
+						<label for="year-level">Year Level</label>
+						<input type="text" name="year-level" id="year-level" class="form-control" required>
 					</div>
-						<h4 class = "form-group">Role</h4>
-						<div>	
-				<input type="checkbox" name="" id="" value=""/>
-				  <label for="role">Assistant</label>
+					<div class="form-group">
+						<h4>Role</h4>
+						<div>
+							<input type="checkbox" name="assistant" id="assistant" value="Assistant"/>
+							<label for="assistant">Assistant</label>
+						</div>
+						<div>
+							<input type="checkbox" name="senator" id="senator" value="Senator"/>
+							<label for="senator">Senator</label>
+						</div>
 					</div>
-				  <input type="checkbox" name="" id="" value=""/>
-				  <label for="role">Senator</label>
-  					</div>
 				</div>
 				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-info" value="Save">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button type="submit" class="btn btn-info">Save</button>
 				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
 			</form>
 		</div>
 	</div>

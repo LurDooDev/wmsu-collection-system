@@ -361,10 +361,11 @@ if (!isset($_SESSION['logged_id'])) {
   <div class="modal-dialog">
     <div class="modal-content">
       <form action="student-details.php" method="POST">
-        <div class="modal-header">
-          <h4 class="modal-title">Edit Course</h4>
-          <button type="button" href="student-details.php" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        </div>
+      <div class="modal-header">
+  <h4 class="modal-title">Edit Details</h4>
+  <a href="student-details.php" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> </a>
+</div>
+
         <div class="modal-body">
           <div class="row">
             <div class="col-md-6">
