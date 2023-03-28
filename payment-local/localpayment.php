@@ -14,7 +14,7 @@ if (!isset($_SESSION['logged_id'])) {
 }
 require_once '../classes/database.class.php';
 require_once '../classes/student.class.php';
-require_once '../functions/session.function.php'
+require_once '../functions/session.function.php';
 
 ?>
 <!doctype html>
