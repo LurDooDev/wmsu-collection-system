@@ -83,7 +83,6 @@ require_once '../classes/student.class.php';
 		<div class="row justify-content-center">
 			<div class="justify-content-center">
 				<div class="">
-					<form id="form">
 						<ul id="progressbar">
 							<li class="" id="step1">
 								<strong>Search User</strong>
@@ -122,7 +121,7 @@ require_once '../classes/student.class.php';
                         </div>
                         <div class="text-grey-m2">
                             <div class="my-1">
-                                University Fee Payment
+                                Local Fee Payment
                             </div>
                             <div class="my-1">
                                Western Mindanao State University
@@ -135,7 +134,7 @@ require_once '../classes/student.class.php';
                         <hr class="d-sm-none" />
                         <div class="text-grey-m2">
                             <div class="my-2"> <span class="text-600 text-90">ID:</span> <?php echo $student['id']; ?></div>
-                            <div class="my-2"> <span class="text-600 text-90">College:</span> <?php echo $student['college_name']; ?></div>
+                            <div class="my-2"> <span class="text-600 text-90">College:</span> <?php echo $student['college_code']; ?></div>
                             <div class="my-2"> <span class="text-600 text-90">Course:</span> <?php echo $student['program_name']; ?></div>
                         </div>
                     </div>
@@ -174,8 +173,8 @@ require_once '../classes/student.class.php';
             ?>
               <tr>
               <td><?php echo $i; ?></td>
-                <td><?php echo $FeeSched['university_name']; ?></td>
-                <td>₱ <?php echo $FeeSched['university_amount']; ?></td>
+                <td><?php echo $FeeSched['local_name']; ?></td>
+                <td>₱ <?php echo $FeeSched['local_amount']; ?></td>
                     <td><?php echo $FeeSched['semester_name']; ?></td>
                     <td><?php echo $FeeSched['academic_name']; ?></td>
       <?php 
@@ -197,10 +196,10 @@ require_once '../classes/student.class.php';
                 <div class="mr-auto">
                 <a href="localfees.php?studentID=<?php echo $_GET['studentID']; ?>" class="btn btn-success" style="border-radius: 40px; padding: 5px 40px; font-size: 18px;"><span>Previous </span></a>
 </div>
-<form action="save_universitypayment.php" method="post" enctype="multipart/form-data">
+<form action="save_localpayment.php" method="post" enctype="multipart/form-data">
   <div class="form-group">
     <input type="hidden" name="studentID" value="<?php echo $_GET['studentID']; ?>">
-    <input type="hidden" name="universityID" value="<?php echo $_GET['localID']; ?>">
+    <input type="hidden" name="localID" value="<?php echo $_GET['localID']; ?>">
     <label for="paymentAmount" style="text-align:right; font-weight:bold;">Payment Amount:</label>
     <input type="number" class="form-control" id="paymentAmount" name="paymentAmount" required>
   </div>
@@ -213,7 +212,6 @@ require_once '../classes/student.class.php';
 </div>
 
 </form>
-
 
 </fieldset>
   

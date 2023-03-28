@@ -86,7 +86,7 @@ require_once '../functions/session.function.php';
 		<div class="row justify-content-center">
 			<div class="justify-content-center">
 				<div class="">
-					<form id="form">
+			
 						<ul id="progressbar">
 							<li class="active" id="step1">
 								<strong>Search User</strong>

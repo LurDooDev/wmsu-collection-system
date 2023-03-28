@@ -1,15 +1,15 @@
 <?php
   require_once '../classes/universitypayment.class.php';
   require_once '../classes/student.class.php';
-  require_once '../classes/universityfeeSched.class.php';
+  require_once '../classes/localfeeSched.class.php';
   session_start();
   require_once '../functions/session.function.php';
 
   // Check if all required parameters are set
-  if (isset($_POST['paymentAmount'], $_POST['studentID'], $_POST['universityID'])) {
+  if (isset($_POST['paymentAmount'], $_POST['studentID'], $_POST['localID'])) {
     $paymentAmount = $_POST['paymentAmount'];
     $studentID = $_POST['studentID'];
-    $feeScheduleID = $_POST['universityID'];
+    $feeScheduleID = $_POST['localID'];
   
     // Retrieve student name and college from database using student ID
     $student = new Student();
@@ -22,23 +22,23 @@
     }
 
     // Retrieve fee amount from database using fee schedule ID
-    $FeeSched = new UniversityFeeSched();
+    $FeeSched = new LocalFeeSched();
     $FeeSchedData = $FeeSched->showAllDetailsByPayId($feeScheduleID);
     foreach($FeeSchedData as $FeeSched) { 
-      $feeAmount = $FeeSched['university_amount'];
-      $description = $FeeSched['university_name'];
-      $type = $FeeSched['university_fee_type'];
+      $feeAmount = $FeeSched['local_amount'];
+      $description = $FeeSched['local_name'];
+      $type = $FeeSched['local_fee_type'];
     }
 
     // Get other payment details
     $collectedBy = $UserFullname; 
     $paymentDate = date('Y-m-d H:i:s');
-    $receiptNumber = 'WMSU' . date('YmdHis') . rand(1000, 9999);
+    $receiptNumber = 'WMSULocal' . date('YmdHis') . rand(1000, 9999);
 
 
 
     if (!empty($_FILES["paymentImage"]["tmp_name"])) {
-      $target_dir = "../images/promissory/university/";
+      $target_dir = "../images/promissory/local/";
       $target_file = $target_dir . basename($_FILES["paymentImage"]["name"]);
       $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
       $target_file = $target_dir . $studentName . $receiptNumber . '.' . $imageFileType;
@@ -102,15 +102,13 @@ if ($remainingBalance > 0) {
     $paymentDetails = json_encode($paymentDetails);
     $paymentDetailsJson = json_encode($paymentDetails);
 
-    $payment = new UniversityPayment();
+    $payment = new LocalPayment();
     if ($payment->savePayment($studentID, $feeScheduleID, $feeAmount, $paymentAmount, $collectedBy, $paymentDate, $paymentDetailsJson, $receiptNumber, $paymentImage)) {
-        header('location: university-complete.php');
+        header('location: local-complete.php');
     } else {
       echo "Failed to save payment.";
     }
   }
-
-//KAPUYA MAG ENGLISH COMMENT UY 
   ?>
 
 
