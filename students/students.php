@@ -122,7 +122,8 @@ require_once '../classes/program.class.php';
 						<th>College</th>
 						<th>Course</th>
 						<th>Year Level</th>
-						<th>Email</th>
+						<th style="text-align:center;">Email</th>
+            <th>Action</th>
 					</tr>
 				</thead>
 				<tbody style="text-align: center;">
@@ -141,6 +142,10 @@ require_once '../classes/program.class.php';
 						<td><?php echo $students['program_name']; ?></td>
 						<td><?php echo $students['year_level']; ?></td>
 						<td><?php echo $students['student_email']; ?></td>
+            <td>  <a href="student-details.php" class="view-schedules">
+                    <i class="material-icons" title="View Student Details">event_note</i>
+                </a>
+        </td>
 				</tr>
 			<?php $i++; } ?>
 					</tbody>
@@ -223,7 +228,7 @@ require_once '../classes/program.class.php';
                             <option value="" disabled selected>Select your option</option>
                             <option value="1st Year">1st Year</option>
                             <option value="2nd Year">2nd Year</option>
-							<option value="3rd Year">3rd Year</option>
+							              <option value="3rd Year">3rd Year</option>
                             <option value="4rth Year">4rth Year</option>
                         </select>
                     </div>	 
