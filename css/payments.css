@@ -710,5 +710,29 @@ hr {
   text-align: center;
 }
 
-
-
+@media screen and (max-width: 500px){
+.container{
+    width: 90%;
+    padding-right: var(--bs-gutter-x,.75rem);
+    padding-left: var(--bs-gutter-x,.75rem);
+    margin-right: auto;
+    margin-left: 25px;
+    margin-bottom: 350px;
+    border-radius: 6px;
+}
+}
+@media screen and (max-width: 860px){
+  #awo{
+    color: Black;
+    font-weight: 300;
+    margin-left: 85px;
+}
+  }
+  @media screen and (max-width: 630px){
+    #awo{
+      color: Black;
+      font-weight: 300;
+      margin-left: 120px;
+  }
+    }
+    

@@ -34,7 +34,7 @@ require_once '../classes/universityfeeSched.class.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="../css/paymentfees.css" />
+    <link rel="stylesheet" href="../css/payments.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
     <!--Jquery NEED-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

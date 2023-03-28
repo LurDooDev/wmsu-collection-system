@@ -97,7 +97,7 @@ if (!isset($_SESSION['logged_id'])) {
                         <fieldset>
                         <div class ="container-fluid">
             <div class="ml-auto mr-sm-auto" id="gawk">
-            <h2 style="color: Black; font-weight: 300; margin-left:240px;"> PAYMENT COMPLETED SUCCESSFULLY! </h2><div class="col-sm-13" id="doggie">
+            <div id="awo" style="color: Black; font-weight: 300; margin-left:240px;font-size: 30px;"> PAYMENT COMPLETED SUCCESSFULLY!</div><div class="col-sm-13" id="doggie">
           </div>
             <img src="../images/doggie.jpg" width="300px" alt="Doggier" style="width: 90%;">
             </div>
