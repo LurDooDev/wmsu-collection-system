@@ -156,6 +156,7 @@ require_once '../classes/universityfeeSched.class.php';
 
   
 </body>
+</html>
 
 
 

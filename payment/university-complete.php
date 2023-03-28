@@ -114,29 +114,9 @@ if (!isset($_SESSION['logged_id'])) {
 </div>
 </fieldset>
 </body>       
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-            <script>
-                var el = document.getElementById("wrapper");
-                var toggleButton = document.getElementById("menu-toggle");
-        
-                toggleButton.onclick = function () {
-                    el.classList.toggle("toggled");
-                };
-            </script>
-
-
 </html>
 
-<script>
-  // Select the last fieldset element
-  const lastFieldset = document.querySelector("fieldset:last-of-type");
-  
-  // Select the first fieldset element
-  const firstFieldset = document.querySelector("fieldset:first-of-type");
-  
-  // Move the last fieldset element to the first position
-  firstFieldset.parentNode.insertBefore(lastFieldset, firstFieldset);
-</script>
+
 <script>
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
 var dropdown = document.getElementsByClassName("dropdown-btn");
