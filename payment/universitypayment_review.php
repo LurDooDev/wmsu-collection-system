@@ -66,8 +66,8 @@ require_once '../classes/universityfeeSched.class.php';
                 </button>
                 <div class="dropdown-container">
                     <a href="../admin-settings-user/admin-settings-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Overview</a>
-                    <a href="../admin-settings-user/univer-fee.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">University Fee</a>
-                    <a href="../admin-settings-user/local-fee.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fees</a>
+                    <a href="../user-univ-fee/univer-fee.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">University Fee</a>
+                    <a href="../user-local-fee/local-fee.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fees</a>
                 </div>            
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Logout</a>
             </div>
@@ -86,14 +86,21 @@ require_once '../classes/universityfeeSched.class.php';
 			<div class="justify-content-center">
 				<div class="">
 
-						<ul id="progressbar">
-							<li class="" id="step1">
-								<strong>Search User</strong>
-							</li>
-							<li class ="" id="step2"><strong>University Fees</strong></li>
-							<li class ="active" id="step3"><strong>University Payment Details</strong></li>
-							<li id="step4"><strong>Transaction Complete</strong></li>
-						</ul>
+        <ul id="progressbar" class="justify-content-center">
+  <li class="" id="step1">
+    <strong>Search User</strong>
+  </li>
+  <li class="" id="step2">
+    <strong>University Fees</strong>
+  </li>
+  <li class="active" id="step3">
+    <strong>University Payment Details</strong>
+  </li>
+  <li id="step4">
+    <strong>Transaction Complete</strong>
+  </li>
+</ul>
+
 						<div class="">
 </div>
 						</div> <br>
@@ -197,7 +204,7 @@ require_once '../classes/universityfeeSched.class.php';
 <div class="ml-auto p-auto">
     <div class="d-flex">
                 <div class="mr-auto">
-                <a href="universitypayment_fees.php?studentID=<?php echo $_GET['studentID']; ?>" class="btn btn-success" style="border-radius: 40px; padding: 10 10 10 10;"><span>Previous </span></a>
+                <a href="universitypayment_fees.php?studentID=<?php echo $_GET['studentID']; ?>" class="btn btn-success" style="border-radius: 40px; padding: 5px 40px; font-size: 18px;"><span>Previous </span></a>
 </div>
 <form action="save_universitypayment.php" method="post" enctype="multipart/form-data">
   <div class="form-group">
@@ -210,9 +217,10 @@ require_once '../classes/universityfeeSched.class.php';
     <label for="paymentImage">If, Partial Upload Promisorry image:</label>
     <input type="file" class="form-control-file" id="paymentImage" name="paymentImage">
   </div>
-  <div>
-    <input type="submit" class="btn btn-success" value="Pay" id="backstreet" style="border-radius: 40px; padding: 10 10 10 10;" name="submit">
-  </div>
+  <div class="d-flex">
+  <input type="submit" class="btn btn-success" value="Pay" id="backstreet" style="border-radius: 40px; padding: 5px 40px; font-size: 18px;" name="submit">
+</div>
+
 </form>
 
 

@@ -18,7 +18,7 @@ if(isset($_GET['searchValue'])) {
             echo "<td>" . $s['college_code'] . "</td>";
             echo "<td>" . $s['program_name'] . "</td>";
             echo "<td><a href='universitypayment_fees.php?studentID=" . $s['id'] . "' class='edit'><i class='material-icons' title='Select'>&#xe147;</i></a>";
-echo "<a href='view_univtransaction.php?studentID=" . $s['id'] . "' class='edit'><i class='material-icons' title='View History'>event_note</i></a>";
+echo "<a href='view_univtransaction.php?studentID=" . $s['id'] . "";
 echo "</td>";   
             echo "</tr>";
         }

@@ -168,31 +168,70 @@ background: #d6d4d4;
 #progressbar .active {
   color: #2F8D46
 }
+#progressbar li.active:before{
+padding-right: 23px;
+  
+}
 
 #progressbar li {
   list-style-type: none;
+  padding-right: 20px;
   font-size: 15px;
   width: 25%;
   float: left;
   position: relative;
-  font-weight: 400
+  font-weight: 400;
+  padding-top: 20px;
 }
 
 #progressbar #step1:before {
-  content: "1"
+  content: "1";
+  margin-top: 23px;
+      padding-top: 2px;
+  padding-right: 23px;
+
 }
 
 #progressbar #step2:before {
-  content: "2"
+  content: "2";
+  margin-top: 23px;
+  padding-top: 2px;
+  padding-right: 23px;
+
 }
 
 #progressbar #step3:before {
-  content: "3"
+  content: "3";
+  margin-top: 23px;
+  padding-top: 2px;
+  padding-right: 23px;
+
 }
 
 #progressbar #step4:before {
-  content: "4"
+  content: "4";
+  margin-top: 23px;
+  padding-top: 2px;
+  padding-right: 23px;
+
+
 }
+#progressbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#progressbar li {
+  flex: 1;
+  text-align: center;
+}
+
+#progressbar li strong {
+  display: block;
+  margin: 30px auto;
+}
+
 
 #progressbar li:before {
   width: 50px;
@@ -204,7 +243,7 @@ background: #d6d4d4;
   background: lightgray;
   border-radius: 50%;
   margin: 0 auto 10px auto;
-  padding: 2px
+  padding-left: 20px;
 }
 
 #progressbar li:after {
