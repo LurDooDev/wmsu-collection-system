@@ -199,19 +199,23 @@ if(isset($_GET['studentID']) && isset($_GET['universityID'])) {
 }
 ?>
 </div>
-          <hr />
-          <div class="row mt-3">
-
-
-<div class="d-flex">
+<hr />
+<form action="save_universitypayment.php?studentID=<?php echo $_GET['studentID']; ?>&universityID=<?php echo $_GET['universityID']; ?>" method="post">
+  <div class="ml-auto p-auto">
+    <div class="d-flex">
                 <div class="mr-auto">
                 <a href="universitypayment_fees.php?studentID=<?php echo $_GET['studentID']; ?>" class="btn btn-success" style="border-radius: 40px; padding: 10 10 10 10;"><span>Previous </span></a>
-					</div>
-          <div class="ml-auto p-auto">
-
-            <a href="save_universitypayment.php?studentID=<?php echo $_GET['studentID']; ?>&universityID=<?php echo $_GET['universityID']; ?>" class="btn btn-success" id="backstreet" style="border-radius: 40px; padding: 10 10 10 10;"> <span>Pay</span></a>
-
 </div>
+<div class="form-group">
+      <label for="paymentAmount" style="text-align:right; font-weight:bold;">Payment Amount:</label>
+      <input type="number" class="form-control" id="paymentAmount" name="paymentAmount" required>
+    </div>
+</br>
+    <div>
+    <button type="submit" class="btn btn-success" id="backstreet" style="border-radius: 40px; padding: 10 10 10 10;">Pay</button>
+  </div>
+</form>
+
 </fieldset>
   
 </body>       
