@@ -210,7 +210,6 @@ if(isset($_GET['studentID']) && isset($_GET['universityID'])) {
       <label for="paymentAmount" style="text-align:right; font-weight:bold;">Payment Amount:</label>
       <input type="number" class="form-control" id="paymentAmount" name="paymentAmount" required>
     </div>
-</br>
     <div>
     <button type="submit" class="btn btn-success" id="backstreet" style="border-radius: 40px; padding: 10 10 10 10;">Pay</button>
   </div>
