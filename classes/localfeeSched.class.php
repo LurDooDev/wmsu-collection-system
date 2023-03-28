@@ -21,6 +21,21 @@ class localFeeSched {
         $this->db = new Database();
     }
 
+    function showAllDetailsByPayId($fee_id) {
+        $sql = "SELECT lfs.id, lfs.local_start_date, lfs.local_amount, lfs.local_end_date, lfs.created_by, lf.college_id, lfs.is_active, lf.local_name, lf.local_fee_type, s.semester_name, sy.academic_name, c.college_code
+        FROM local_fee_schedule lfs
+        JOIN local_fee lf ON lfs.local_fee_id = lf.id
+        JOIN colleges c ON lf.college_id = c.id
+        JOIN semesters s ON lfs.semester_id = s.id
+        JOIN academic_year sy ON lfs.academic_year_id = sy.id
+                WHERE lfs.id = :fee_id";
+        $stmt = $this->db->connect()->prepare($sql);
+        $stmt->bindValue(':fee_id', $fee_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
     function showAllDetailsActive() {
         $sql = "SELECT lfs.id, lfs.local_start_date, lfs.local_amount, lfs.local_end_date, lfs.created_by, lf.college_id, lfs.is_active, lf.local_name, lf.local_fee_type, s.semester_name, sy.academic_name, c.college_code
                 FROM local_fee_schedule lfs
