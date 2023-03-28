@@ -18,12 +18,6 @@ require_once '../classes/student.class.php';
 require_once '../classes/universityfeeSched.class.php';
 
 
-if(isset($_GET['studentID']) && isset($_GET['universityID'])) {
-  $studentId = $_GET['studentID'];
-  $universityId = $_GET['universityID'];
-
-}
-
 ?>
 
 <!doctype html>
@@ -91,7 +85,7 @@ if(isset($_GET['studentID']) && isset($_GET['universityID'])) {
 		<div class="row justify-content-center">
 			<div class="justify-content-center">
 				<div class="">
-					<form id="form">
+
 						<ul id="progressbar">
 							<li class="" id="step1">
 								<strong>Search User</strong>
@@ -205,21 +199,27 @@ if(isset($_GET['studentID']) && isset($_GET['universityID'])) {
                 <div class="mr-auto">
                 <a href="universitypayment_fees.php?studentID=<?php echo $_GET['studentID']; ?>" class="btn btn-success" style="border-radius: 40px; padding: 10 10 10 10;"><span>Previous </span></a>
 </div>
-<form action="save_universitypayment.php" method="post">
-<div class="form-group">
-<input type="hidden" name="studentID" value="<?php echo $_GET['studentID']; ?>">
-  <input type="hidden" name="universityID" value="<?php echo $_GET['universityID']; ?>">
-      <label for="paymentAmount" style="text-align:right; font-weight:bold;">Payment Amount:</label>
-      <input type="number" class="form-control" id="paymentAmount" name="paymentAmount" required>
-    </div>
-    <div>
-    <button type="submit" class="btn btn-success" id="backstreet" style="border-radius: 40px; padding: 10 10 10 10;">Pay</button>
+<form action="save_universitypayment.php" method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <input type="hidden" name="studentID" value="<?php echo $_GET['studentID']; ?>">
+    <input type="hidden" name="universityID" value="<?php echo $_GET['universityID']; ?>">
+    <label for="paymentAmount" style="text-align:right; font-weight:bold;">Payment Amount:</label>
+    <input type="number" class="form-control" id="paymentAmount" name="paymentAmount" required>
+  </div>
+  <div class="form-group">
+    <label for="paymentImage">Payment Image:</label>
+    <input type="file" class="form-control-file" id="paymentImage" name="paymentImage">
+  </div>
+  <div>
+    <input type="submit" class="btn btn-success" value="Pay" id="backstreet" style="border-radius: 40px; padding: 10 10 10 10;" name="submit">
   </div>
 </form>
 
+
 </fieldset>
   
-</body>       
+</body>   
+</html>    
 <script>
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
 var dropdown = document.getElementsByClassName("dropdown-btn");

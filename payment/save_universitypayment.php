@@ -5,7 +5,8 @@
   session_start();
   require_once '../functions/session.function.php';
 
-  if (isset($_POST['paymentAmount']) && isset($_POST['studentID']) && isset($_POST['universityID'])) {
+  // Check if all required parameters are set
+  if (isset($_POST['paymentAmount'], $_POST['studentID'], $_POST['universityID'])) {
     $paymentAmount = $_POST['paymentAmount'];
     $studentID = $_POST['studentID'];
     $feeScheduleID = $_POST['universityID'];
@@ -29,15 +30,48 @@
       $type = $FeeSched['university_fee_type'];
     }
 
-    // Calculate remaining payment amount
-    $remainingAmount = $feeAmount - $paymentAmount;
-    $paymentStatus = $remainingAmount > 0 ? 0 : 1;
-
     // Get other payment details
-    $collectedBy = $UserFullname;
+    $collectedBy = $UserFullname; // Make sure $UserFullname is defined
     $paymentDate = date('Y-m-d H:i:s');
     $receiptNumber = 'WMSU' . date('YmdHis') . rand(1000, 9999);
 
+
+
+    if (!empty($_FILES["paymentImage"]["tmp_name"])) {
+      $target_dir = "../images/promissory/";
+      $target_file = $target_dir . basename($_FILES["paymentImage"]["name"]);
+      $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+      $target_file = $target_dir . $receiptNumber . '.' . $imageFileType;
+      
+      // Check if file is a valid image
+      $check = getimagesize($_FILES["paymentImage"]["tmp_name"]);
+      if($check !== false) {
+          // Check file size
+          if ($_FILES["paymentImage"]["size"] > 10000000) {
+              echo "Sorry, your file is too large.";
+              exit;
+          }
+          // Allow only certain file formats
+          if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+              echo "Sorry, only JPG, JPEG, & PNG files are allowed.";
+              exit;
+          }
+          
+          // Save image file to server
+          if (move_uploaded_file($_FILES["paymentImage"]["tmp_name"], $target_file)) {
+              $paymentImage = basename($target_file);
+          } else {
+              echo "Sorry, there was an error uploading your file.";
+              exit;
+          }
+      } else {
+          $paymentImage = null;
+      }
+  } else {
+      $paymentImage = null;
+  }
+
+    // Create payment details array
     $paymentDetails = [
         'receipt' => $receiptNumber,
         'student_id' => $studentID,
@@ -49,25 +83,20 @@
         'feename' => $description,
         'amount' => $feeAmount,
         'totalamount' => $paymentAmount,
-        'payment_remaining' => $remainingAmount,
-        'payment_status' => $paymentStatus,
         'collected_by' => $collectedBy,
         'payment_date' => $paymentDate,
     ];
 
+    // Encode payment details array to JSON
+    $paymentDetails = json_encode($paymentDetails);
     $paymentDetailsJson = json_encode($paymentDetails);
+    // Save payment to database
     $payment = new UniversityPayment();
-
-    if ($payment->savePayment($studentID, $feeScheduleID, $feeAmount, $paymentAmount, $collectedBy, $paymentDate, $paymentDetailsJson, $receiptNumber, $remainingAmount, $paymentStatus)) {
+    if ($payment->savePayment($studentID, $feeScheduleID, $feeAmount, $paymentAmount, $collectedBy, $paymentDate, $paymentDetailsJson, $receiptNumber, $paymentImage)) {
         header('location: university-complete.php');
     } else {
       echo "Failed to save payment.";
     }
-  } else {
-    echo "Payment amount, student ID and fee schedule ID are required.";
   }
-?>
-
-
 
 
