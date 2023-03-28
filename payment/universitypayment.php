@@ -96,7 +96,6 @@ require_once '../functions/session.function.php';
 							<li id="step4"><strong>Transaction Complete</strong></li>
 						</ul>
 						<div class="">
-							
 						</div> <br>
 						
 						<!-- <div class ="row justify-content-center"> -->

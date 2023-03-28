@@ -90,8 +90,8 @@ require_once '../classes/database.class.php';
       <div class="overview-boxes">
         <div class="box">
           <div class="right-side">
-            <div class="box-topic">Total CSC Collected</div>
-            <div class="number">40,876</div>
+            <div class="box-topic">Total Collected</div>
+            <div class="number"> ₱ 40,876</div>
             <div class="indicator">
               <i class='bx bx-up-arrow-alt'></i>
               <span class="text">First Semester</span>
@@ -101,22 +101,20 @@ require_once '../classes/database.class.php';
         </div>
         <div class="box">
           <div class="right-side">
-            <div class="box-topic">Remaining 70%</div>
-            <div class="number">38,876</div>
+            <div class="box-topic">Total Collected</div>
+            <div class="number"> ₱38,876</div>
             <div class="indicator">
-              <i class='bx bx-up-arrow-alt'></i>
-              <span class="text">First Semester</span>
+              <span class="text">CCS Fee</span>
             </div>
           </div>
        
         </div>
         <div class="box">
           <div class="right-side">
-            <div class="box-topic">Remitted 30%</div>
-            <div class="number">12,876</div>
+            <div class="box-topic">Total Collected</div>
+            <div class="number"> ₱ 12,876</div>
             <div class="indicator">
-              <i class='bx bx-up-arrow-alt'></i>
-              <span class="text">First Semester</span>
+              <span class="text">CSC Fee</span>
             </div>
           </div>
        
@@ -124,10 +122,9 @@ require_once '../classes/database.class.php';
         <div class="box">
           <div class="right-side">
             <div class="box-topic">CSC Projects</div>
-            <div class="number">11,086</div>
+            <div class="number"> ₱ 11,086</div>
             <div class="indicator">
-              <i class='bx bx-down-arrow-alt down'></i>
-              <span class="text">First Semester</span>
+              <span class="text">70% of the total collected</span>
             </div>
           </div>
         </div>

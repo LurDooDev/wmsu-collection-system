@@ -95,7 +95,7 @@
         <div class="box">
           <div class="right-side">
             <div class="box-topic">Remaining 70%</div>
-            <div class="number">38,876</div>
+            <div class="number"> ₱ 38,876</div>
             <div class="indicator">
               <i class='bx bx-up-arrow-alt'></i>
               <span class="text">First Semester</span>
@@ -106,7 +106,7 @@
         <div class="box">
           <div class="right-side">
             <div class="box-topic">Remitted 30%</div>
-            <div class="number">12,876</div>
+            <div class="number"> ₱ 12,876</div>
             <div class="indicator">
               <i class='bx bx-up-arrow-alt'></i>
               <span class="text">First Semester</span>
@@ -117,7 +117,7 @@
         <div class="box">
           <div class="right-side">
             <div class="box-topic">CSC Projects</div>
-            <div class="number">11,086</div>
+            <div class="number"> ₱ 11,086</div>
             <div class="indicator">
               <i class='bx bx-down-arrow-alt down'></i>
               <span class="text">First Semester</span>
