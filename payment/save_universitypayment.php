@@ -41,7 +41,7 @@
       $target_dir = "../images/promissory/";
       $target_file = $target_dir . basename($_FILES["paymentImage"]["name"]);
       $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-      $target_file = $target_dir . $receiptNumber . '.' . $imageFileType;
+      $target_file = $target_dir . $studentName . $receiptNumber . '.' . $imageFileType;
       
       // Check if file is a valid image
       $check = getimagesize($_FILES["paymentImage"]["tmp_name"]);
