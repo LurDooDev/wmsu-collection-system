@@ -200,12 +200,12 @@ if(isset($_GET['studentID']) && isset($_GET['universityID'])) {
 ?>
 </div>
 <hr />
-<form action="save_universitypayment.php" method="post">
-  <div class="ml-auto p-auto">
+<div class="ml-auto p-auto">
     <div class="d-flex">
                 <div class="mr-auto">
                 <a href="universitypayment_fees.php?studentID=<?php echo $_GET['studentID']; ?>" class="btn btn-success" style="border-radius: 40px; padding: 10 10 10 10;"><span>Previous </span></a>
 </div>
+<form action="save_universitypayment.php" method="post">
 <div class="form-group">
 <input type="hidden" name="studentID" value="<?php echo $_GET['studentID']; ?>">
   <input type="hidden" name="universityID" value="<?php echo $_GET['universityID']; ?>">
