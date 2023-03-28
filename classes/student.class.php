@@ -19,6 +19,18 @@ class Student {
         $this->db = new Database();
     }
 
+    function showAllDetailsStudentCollege() {
+        $sql = "SELECT s.id, s.first_name, s.last_name, s.student_email, s.year_level, s.payment_status, s.outstanding_balance, c.college_name, p.program_name 
+                FROM students s
+                JOIN colleges c ON s.college_id = c.id
+                JOIN programs p ON s.program_id = p.id
+                 WHERE c.college_id = :college_id";
+        $stmt = $this->db->connect()->prepare($sql);
+        $stmt->bindValue(':college_id', $_SESSION['collegeID']);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function updateOutstandingBalance($studentID, $paymentAmount) {
         // I miss you
         $outstandingBalance = $this->getOutstandingBalance();

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2023 at 08:09 PM
+-- Generation Time: Mar 28, 2023 at 11:47 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -135,6 +135,37 @@ INSERT INTO `local_fee_schedule` (`id`, `semester_id`, `academic_year_id`, `coll
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `local_payment`
+--
+
+CREATE TABLE `local_payment` (
+  `id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `fee_schedule_id` int(11) NOT NULL,
+  `payment_amount` int(11) NOT NULL,
+  `collected_by` varchar(100) NOT NULL,
+  `payment_date` datetime NOT NULL,
+  `payment_details` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `receipt_number` varchar(50) NOT NULL,
+  `payment_fee_amount` int(11) NOT NULL,
+  `payment_status` tinyint(1) NOT NULL DEFAULT 1,
+  `payment_remaining` int(11) NOT NULL DEFAULT 0,
+  `payment_add` int(11) NOT NULL DEFAULT 0,
+  `payment_image` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `local_payment`
+--
+
+INSERT INTO `local_payment` (`id`, `student_id`, `fee_schedule_id`, `payment_amount`, `collected_by`, `payment_date`, `payment_details`, `created_at`, `updated_at`, `receipt_number`, `payment_fee_amount`, `payment_status`, `payment_remaining`, `payment_add`, `payment_image`) VALUES
+(1, 202234212, 12, 300, 'Bryan COE', '2023-03-28 23:30:39', '{\"receipt\":\"WMSULocal202303282330392638\",\"student_id\":\"202234212\",\"name\":\"Gregory Yames\",\"college\":\"College of Engineering\",\"program\":\"Civil Engineering\",\"yearlevel\":\"2nd Year\",\"type\":\"Local\",\"feename\":\"CSC\",\"amount\":321,\"totalamount\":\"300\",\"collected_by\":\"Bryan COE\",\"payment_date\":\"2023-03-28 23:30:39\"}', '2023-03-28 21:30:39', '2023-03-28 21:30:39', 'WMSULocal202303282330392638', 321, 0, 21, 0, 'Gregory YamesWMSULocal202303282330392638.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `programs`
 --
 
@@ -221,8 +252,7 @@ CREATE TABLE `students` (
 
 INSERT INTO `students` (`id`, `first_name`, `last_name`, `student_email`, `year_level`, `college_id`, `program_id`, `payment_status`, `outstanding_balance`) VALUES
 (201503664, 'Bryan Christian', 'Sevilla', 'sl201503664@wmsu.edu.ph', '3rd Year', 1, 8, NULL, 0),
-(202234212, 'Gregory', 'Yames', 'yames@wmsu.edu.ph', '2nd Year', 2, 5, NULL, 0),
-(202304200, 'Bryant', 'Romblox', 'romblox@wmsu.edu.ph', '4rth Year', 1, 9, NULL, -100);
+(202234212, 'Gregory', 'Yames', 'yames@wmsu.edu.ph', '2nd Year', 2, 5, NULL, -21);
 
 -- --------------------------------------------------------
 
@@ -301,6 +331,13 @@ CREATE TABLE `university_payment` (
   `payment_add` int(11) NOT NULL DEFAULT 0,
   `payment_image` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `university_payment`
+--
+
+INSERT INTO `university_payment` (`id`, `student_id`, `fee_schedule_id`, `payment_amount`, `collected_by`, `payment_date`, `payment_details`, `created_at`, `updated_at`, `receipt_number`, `payment_fee_amount`, `payment_status`, `payment_remaining`, `payment_add`, `payment_image`) VALUES
+(21, 201503664, 3, 320, 'Bryan The Officer', '2023-03-28 23:26:36', '{\"receipt\":\"WMSU202303282326369226\",\"student_id\":\"201503664\",\"name\":\"Bryan Christian Sevilla\",\"college\":\"College of Computing Studies\",\"program\":\"Computer Science\",\"yearlevel\":\"3rd Year\",\"type\":\"University\",\"feename\":\"WMSU Palaro\",\"amount\":320,\"totalamount\":\"320\",\"collected_by\":\"Bryan The Officer\",\"payment_date\":\"2023-03-28 23:26:36\"}', '2023-03-28 21:26:36', '2023-03-28 21:26:36', 'WMSU202303282326369226', 320, 1, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -383,6 +420,14 @@ ALTER TABLE `local_fee_schedule`
   ADD KEY `academic_year_id` (`academic_year_id`),
   ADD KEY `college_id` (`college_id`),
   ADD KEY `local_fee_id` (`local_fee_id`);
+
+--
+-- Indexes for table `local_payment`
+--
+ALTER TABLE `local_payment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`),
+  ADD KEY `fee_schedule_id` (`fee_schedule_id`);
 
 --
 -- Indexes for table `programs`
@@ -485,6 +530,12 @@ ALTER TABLE `local_fee_schedule`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `local_payment`
+--
+ALTER TABLE `local_payment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `programs`
 --
 ALTER TABLE `programs`
@@ -518,7 +569,7 @@ ALTER TABLE `university_fee_schedule`
 -- AUTO_INCREMENT for table `university_payment`
 --
 ALTER TABLE `university_payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `university_payment_history`
@@ -550,6 +601,13 @@ ALTER TABLE `local_fee_schedule`
   ADD CONSTRAINT `local_fee_schedule_ibfk_2` FOREIGN KEY (`academic_year_id`) REFERENCES `academic_year` (`id`),
   ADD CONSTRAINT `local_fee_schedule_ibfk_3` FOREIGN KEY (`college_id`) REFERENCES `colleges` (`id`),
   ADD CONSTRAINT `local_fee_schedule_ibfk_4` FOREIGN KEY (`local_fee_id`) REFERENCES `local_fee` (`id`);
+
+--
+-- Constraints for table `local_payment`
+--
+ALTER TABLE `local_payment`
+  ADD CONSTRAINT `local_payment_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`),
+  ADD CONSTRAINT `local_payment_ibfk_2` FOREIGN KEY (`fee_schedule_id`) REFERENCES `local_fee_schedule` (`id`);
 
 --
 -- Constraints for table `programs`
