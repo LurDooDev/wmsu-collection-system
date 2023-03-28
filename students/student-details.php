@@ -30,6 +30,7 @@ if (!isset($_SESSION['logged_id'])) {
 	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="../css/payments.css" />
     <link rel="stylesheet" href="../css/paymentlocal.css" />
     <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
@@ -83,46 +84,58 @@ if (!isset($_SESSION['logged_id'])) {
                     <!-- /.col -->
                 </div>
                 <div class="table-responsive" id="yati">
-                <table class="table">
-                <thead style="background-color:#95BDFE ;" class="text-white">
-              <tr>
-                <th scope="col" style = " text-align:center; ">Description</th>
-                <th scope="col" style = " text-align:center; ">Date</th>
-                <th scope="col" style = " text-align:center; ">School Year</th>
-                <th scope="col" style = " text-align:center; " >Semester</th>
-                <th scope="col" style = " text-align:center; " >Status</th>
-                <th scope="col" style = " text-align:center;" >Total Payment</th>        
-                <th scope="col" style = " text-align:center;" >Paid</th>      
-                <th scope="col" style = " text-align:center;" >Details</th>         
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="text-align:center">University Fees</td>
-                <td style="text-align:center">11/2/2022</td>
-                <td style="text-align:center"> 2021-2022</td>
-                <td style="text-align:center"> 1</td>
-                <td style="text-align:center; color: red;"> Unpaid</td>
-                <td style="text-align:center">₱ 200</td>
-                <td style="text-align:center">PHP 0.00</td>
-                <td style="text-align:center"><button class="view btn btn-outiline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#paymentdetails"><i class="material-icons">receipt</i></button>
-              </td>
-              </tr>
-              <tr>
-                <td style="text-align:center"> Local Fees</td>
-                <td style="text-align:center">11/2/2022</td>
-                <td style="text-align:center"> 2021-2022</td>
-                <td style="text-align:center"> 1</td>
-                <td style="text-align:center; color: red;"> Paid</td>
-                <td style="text-align:center">₱ 200</td>
-                <td style="text-align:center">PHP 200.00</td>
-                <td style="text-align:center"> <button class="view btn btn-outiline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#paymentdetails"><i class="material-icons">receipt</i></button>
+  <table class="table">
+    <thead style="background-color:#95BDFE ;" class="text-white">
+      <tr>
+        <th scope="col" style="text-align:center;">Description</th>
+        <th scope="col" style="text-align:center;">Date</th>
+        <th scope="col" style="text-align:center;">School Year</th>
+        <th scope="col" style="text-align:center;">Semester</th>
+        <th scope="col" style="text-align:center;">Status</th>
+        <th scope="col" style="text-align:center;">Total Payment</th>
+        <th scope="col" style="text-align:center;">Paid</th>
+        <th scope="col" style="text-align:center;padding-left: 40px;">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align:center;">University Fees</td>
+        <td style="text-align:center;">11/2/2022</td>
+        <td style="text-align:center;">2021-2022</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center; color:red;">Unpaid</td>
+        <td style="text-align:center;">₱ 200</td>
+        <td style="text-align:center;">PHP 0.00</td>
+        <td style="text-align:right;">
+          <button class="view btn btn-outiline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#paymentdetails">
+            <i class="material-icons">receipt</i>
+          </button>
+          <button class="view btn btn-outiline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#paymentdetails">
+            <span class="material-symbols-outlined">edit</span>
+          </button>
         </td>
-              </tr>
-    
+      </tr>
+      <tr>
+        <td style="text-align:center;">Local Fees</td>
+        <td style="text-align:center;">11/2/2022</td>
+        <td style="text-align:center;">2021-2022</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center; color:red;">Paid</td>
+        <td style="text-align:center;">₱ 200</td>
+        <td style="text-align:center;">PHP 200.00</td>
+        <td style="text-align:right;">
+          <button class="view btn btn-outiline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#paymentdetails">
+            <i class="material-icons">receipt</i>
+          </button>
+          <button class="view btn btn-outiline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#paymentdetails">
+            <span class="material-symbols-outlined">edit</span>
+          </button>
+        </td>
+      </tr>
     </tbody>
   </table>
-  </div>
+</div>
+
 <div class="modal fade modal-fullscreen" id="paymentdetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -157,40 +170,20 @@ if (!isset($_SESSION['logged_id'])) {
                     <!-- /.col -->
                 </div>
                 <div class="table-responsive" id="yati">
-                <table style="width: 100%; border: 2px solid black; border-collapse: collapse;">
+                <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
   <thead style="color: grey; background-color: black;">
-    <tr>
-      <th style="text-align: center; padding: 5px; border-right: 2px solid white;">No.</th>
-      <th style="text-align: center; padding: 5px; border-right: 2px solid white;">Description</th>
-      <th style="text-align: center; padding: 5px; border-right: 2px solid white;">Date</th>
+      <th style="text-align: center; padding: 5px; border-right: 2px;">No.</th>
+      <th style="text-align: center; padding: 5px; border-right: 2px;">Description</th>
+      <th style="text-align: center; padding: 5px; border-right: 2px;">Date</th>
+      <th style="text-align: right; padding: 5px;">Action</th>
       <th style="text-align: center; padding: 5px;">Amount</th>
-    </tr>
   </thead>
   <tbody>
-    <tr>
       <td style="text-align: center; padding: 5px; border-right: 1px solid black;">1</td>
       <td style="text-align: center; padding: 5px; border-right: 1px solid black;">WMSU Boracay</td>
       <td style="text-align: center; padding: 5px; border-right: 1px solid black;">11-02-222</td>
-      <td style="text-align: center; padding: 5px;">₱ 320</td>
-    </tr>
-    <tr>
-      <td style="text-align: center; padding: 5px; border-right: 1px solid black;">2</td>
-      <td style="text-align: center; padding: 5px; border-right: 1px solid black;">WMSU Fishing</td>
-      <td style="text-align: center; padding: 5px; border-right: 1px solid black;">11-03-222</td>
-      <td style="text-align: center; padding: 5px;">₱ 100</td>
-    </tr>
-    <tr>
-      <td style="text-align: center; padding: 5px; border-right: 1px solid black;">3</td>
-      <td style="text-align: center; padding: 5px; border-right: 1px solid black;">WMSU Rides</td>
-      <td style="text-align: center; padding: 5px; border-right: 1px solid black;">11-04-222</td>
-      <td style="text-align: center; padding: 5px;">₱ 100</td>
-    </tr>
-    <tr>
       <td style="text-align: right; padding: 5px; border-right: 1px solid black;"></td>
-      <td style="text-align: right; padding: 5px; border-right: 1px solid black;"></td>
-      <td style="text-align: right; padding: 5px; border-right: 1px solid black;">Total Amount:</td>
-      <td style="text-align: center; padding: 5px;">₱ 520</td>
-    </tr>
+      <td style="text-align: center; padding: 5px;border-right: 1px solid black;">₱ 320</td>
   </tbody>
 </table>
 </div>
@@ -208,9 +201,6 @@ if (!isset($_SESSION['logged_id'])) {
     </div>
     <div class="col-sm-6 d-flex flex-column align-items-end align-content-stretch" style="flex: 0 0 48%;">
     <div class="d-flex justify-content-end align-items-center">
-    <button class="btn bg-white btn-light mx-1px text-95" style="border: 1px solid black;" href="#" data-title="Edit">
-      <i class="ml-auto fa-solid fa-pen-to-square text-primary-m1 text-120 w-2"></i> Edit
-    </button>
     <button class="btn bg-white btn-light mx-1px text-95" style="border: 1px solid black;" href="#" data-title="Print">
       <i class="ml-auto fa fa-print text-primary-m1 text-120 w-2"></i> Print
     </button>
