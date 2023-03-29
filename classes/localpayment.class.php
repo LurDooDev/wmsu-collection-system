@@ -9,6 +9,35 @@ class LocalPayment {
         $this->db = new Database();
     }
 
+    public function getPaymentsByStudentId($studentId) {
+        $query = " SELECT lp.id, lp.student_id, lf.local_fee_type, lp.fee_schedule_id, lp.receipt_number, lp.payment_amount, lp.payment_status, lp.collected_by, lp.payment_date, lp.payment_fee_amount, lp.payment_remaining, lf.local_name
+        FROM local_payment lp
+        JOIN students s ON lp.student_id = s.id
+        JOIN local_fee_schedule lfs ON lp.fee_schedule_id = lfs.id
+        JOIN local_fee lf ON lfs.local_fee_id  = lf.id
+        WHERE lp.student_id = :studentId";
+        $stmt = $this->db->connect()->prepare($query);
+        $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
+        $stmt->execute();
+        $payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $payments;
+    }
+
+    public function getPaymentsByStatusAndStudentId($status, $studentId) {
+        $query = "SELECT lp.id, lp.student_id, lf.local_fee_type, lp.fee_schedule_id, lp.payment_amount, lp.receipt_number, lp.payment_status, lp.collected_by, lp.payment_date, lp.payment_fee_amount, lp.payment_remaining, lf.local_name
+        FROM local_payment lp
+        JOIN students s ON lp.student_id = s.id
+        JOIN local_fee_schedule lfs ON lp.fee_schedule_id = lfs.id
+        JOIN local_fee lf ON lfs.local_fee_id  = lf.id
+        WHERE lp.payment_status = :status AND student_id = :studentId";
+        $stmt = $this->db->connect()->prepare($query);
+        $stmt->bindParam(':status', $status, PDO::PARAM_INT);
+        $stmt->bindParam(':studentId', $studentId, PDO::PARAM_INT);
+        $stmt->execute();
+        $payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $payments;
+    }
+
     public function savePayment($studentID, $feeScheduleID, $feeamount, $paymentAmount, $collectedBy, $paymentDate, $paymentDetailsJson, $receiptNumber, $paymentImage) {
         $paymentDetails = json_decode($paymentDetailsJson, true);
         $payment_remaining = $feeamount - $paymentAmount;

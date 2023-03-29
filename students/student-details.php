@@ -14,6 +14,7 @@ if (!isset($_SESSION['logged_id'])) {
 }
 
 require_once '../classes/student.class.php';
+require_once '../classes/localpayment.class.php';
 
 ?>
 <!doctype html>
@@ -139,244 +140,87 @@ require_once '../classes/student.class.php';
     echo "student ID: $studentId";
 }
 ?>
-                <div class="table-responsive" id="yati">
+    <div class="table-responsive" id="yati">
   <table class="table">
     <thead style="background-color:#95BDFE ;" class="text-white">
       <tr>
-        <th scope="col" style="text-align:center;">Payment Details</th>
-        <th scope="col" style="text-align:center;">Receipt Number</th>
-        <th scope="col" style="text-align:center;">Student ID</th>
-        <th scope="col" style="text-align:center;">Student Name</th>
-        <th scope="col" style="text-align:center;">College</th>
-        <th scope="col" style="text-align:center;">Program</th>
-        <th scope="col" style="text-align:center;">Year Level</th>
-        <th scope="col" style="text-align:center;">Description</th>
+      <th scope="col" style="text-align:center;">Payment Type</th>
+        <th scope="col" style="text-align:center;">Title</th>
+        <th scope="col" style="text-align:center;">Payment Status</th>
         <th scope="col" style="text-align:center;">Fee Amount</th>
-        <th scope="col" style="text-align:center;">Amount</th>
+        <th scope="col" style="text-align:center;">Amount Paid</th>
         <th scope="col" style="text-align:center;">Collected By</th>
-        <th scope="col" style="text-align:center;">Details</th>
+        <th scope="col" style="text-align:center;">Date</th>
+        <th scope="col" style="text-align:center;">Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-      <td style="text-align: center; padding: 5px; ">University Fee</td>
-      <td style="text-align: center; padding: 5px; ">111111</td>
-      <td style="text-align: center; padding: 5px; ">201503664</td>
-      <td style="text-align: center; padding: 5px; ">Bryan Christian Sevilla</td>
-      <td style="text-align: center; padding: 5px;">CCS</td>
-      <td style="text-align: center; padding: 5px;">BSCS</td>
-      <td style="text-align: center; padding: 5px;">3rd Year</td>
-      <td style="text-align: center; padding: 5px;">CSB Fee</td>
-      <td style="text-align: center; padding: 5px;">₱ 200
-      <td style="text-align: center; padding: 5px;">₱ 200</td>
-      <td style="text-align: center; padding: 5px;">Eljen Augusto</td>
-      <td style="text-align: center; padding: 5px;"> 
-  <div class="d-flex justify-content-center">
-    <button class="view btn btn-outline-dark btn-sm me-2" data-bs-toggle="modal" data-bs-target="#paymentdetails">
-      <i class="material-icons">receipt</i>
-    </button>
-    <button class="view btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#editDetails">
-      <span class="material-symbols-outlined">edit</span>
-    </button>
-  </div>
-      </td>
-      </tr>
-      <tr>
-      <td style="text-align: center; padding: 5px; ">University Fee</td>
-      <td style="text-align: center; padding: 5px; ">111121</td>
-      <td style="text-align: center; padding: 5px;">201503664</td>
-      <td style="text-align: center; padding: 5px; ">Bryan Christian Sevilla</td>
-      <td style="text-align: center; padding: 5px;">CCS</td>
-      <td style="text-align: center; padding: 5px;">BSCS</td>
-      <td style="text-align: center; padding: 5px;">3rd Year</td>
-      <td style="text-align: center; padding: 5px;">CSV Fee</td>
-      <td style="text-align: center; padding: 5px;">₱ 200</td>
-      <td style="text-align: center; padding: 5px;">₱ 200</td>
-      <td style="text-align: center; padding: 5px;">Eljen Augusto</td>
-      <td style="text-align: center; padding: 5px;">
-  <div class="d-flex justify-content-center">
-    <button class="view btn btn-outline-dark btn-sm me-2" data-bs-toggle="modal" data-bs-target="#paymentdetails">
-      <i class="material-icons">receipt</i>
-    </button>
-    <button class="view btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#editDetails">
-      <span class="material-symbols-outlined">edit</span>
-    </button>
-  </div>
-      </td>
-      </tr>
+    <?php
+        // Retrieve payment data from the database
+        $payment = new LocalPayment();
+
+        // Check if a filter button was clicked
+        if (isset($_GET['status'])) {
+            $status = $_GET['status'];
+            $paymentData = $payment->getPaymentsByStatusAndStudentId($status, $studentId);
+        } else {
+            $paymentData = $payment->getPaymentsByStudentId($studentId);
+        }
+
+        // Loop through each payment and display it in a row of the table
+        foreach ($paymentData as $payment) {
+    ?>
+    <tr>
+    <td class="text-center"><?php echo $payment['local_fee_type']; ?></td>
+<td class="text-center"><?php echo $payment['local_name']; ?></td>
+<td class="text-center"><?php echo $payment['payment_status'] ? 'Paid' : 'Partial'; ?></td>
+<td class="text-center"><?php echo $payment['payment_fee_amount']; ?></td>
+<td class="text-center"><?php echo $payment['payment_amount']; ?></td>
+<td class="text-center"><?php echo $payment['collected_by']; ?></td>
+<td class="text-center"><?php echo date('F j, Y g:i A', strtotime($payment['payment_date'])); ?></td>
+<td class="text-center">Coming Soon </td>
+    </tr>
+    <?php
+        }
+    ?>
     </tbody>
   </table>
 </div>
 
-<div class="modal fade modal-fullscreen" id="paymentdetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-  <div class="text-center">
-<h5 class="modal-title" id="exampleModalLabel" style="font-size: 30px; margin-top: 20px">College of Computing Studies(CCS)</h5>
-</div>
-        <div class="modal-body">
-        <div class="table-responsive">
-          <!-- content here -->
-    <div class="row">
-                    <div class="col-sm-6">
-                        <div>
-                            <span class="text-sm text-grey-m2 align-middle">Name:</span>
-                            <span class="text-600 text-110 text-black align-middle">Bryan Christian Sevilla</span>
-                        </div>
-                        <div class="my-1">
-                            <span class="text-sm text-grey-m2 align-middle">Email:</span>
-                            <span class="text-sm text-grey text-black align-middle">sl201503664@wmsu.edu.ph</span>
-                         </div>
-                         <div class="my-1">
-                            <span class="text-sm text-grey-m2 align-middle">Date:</span>
-                            <span class="text-sm text-grey text-black align-middle">11-02-2022</span>
-                         </div>
-                    </div>
-                    <!-- /.col -->
-
-                    <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
-                        <div class="text-grey-m2">
-                        <img src="../images/ccs.jpg" width ="100" alt="CCS COLLECTION FEE" style="margin-top: 0px; padding-bottom: 10px;">
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <div class="table-responsive" id="yati">
-                <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
-  <thead style="color: grey; background-color: black;">
-      <th style="text-align: center; padding: 5px; border-right: 2px;">Payment Details</th>
-      <th style="text-align: center; padding: 5px; border-right: 2px;">Receipt Number</th>
-      <th style="text-align: center; padding: 5px; border-right: 2px;">Student ID</th>
-      <th style="text-align: right; padding: 5px;">Student Name</th>
-      <th style="text-align: center; padding: 5px;">College</th>
-      <th style="text-align: center; padding: 5px;">Program</th>
-      <th style="text-align: center; padding: 5px;">Year Level</th>
-      <th style="text-align: center; padding: 5px;">Description</th>
-      <th style="text-align: center; padding: 5px;">Fee Amount</th>
-      <th style="text-align: center; padding: 5px;">Amount</th>
-      <th style="text-align: center; padding: 5px;">Collected By</th>
-  </thead>
-  <tbody>
-      <td style="text-align: center; padding: 5px; border-right: 1px solid black;">University Fee</td>
-      <td style="text-align: center; padding: 5px; border-right: 1px solid black;">111111</td>
-      <td style="text-align: center; padding: 5px; border-right: 1px solid black;">201503664</td>
-      <td style="text-align: center; padding: 5px; border-right: 1px solid black;">Bryan Christian Sevilla</td>
-      <td style="text-align: center; padding: 5px;border-right: 1px solid black;">CCS</td>
-      <td style="text-align: center; padding: 5px;border-right: 1px solid black;">BSCS</td>
-      <td style="text-align: center; padding: 5px;border-right: 1px solid black;">3rd Year</td>
-      <td style="text-align: center; padding: 5px;border-right: 1px solid black;">CSV Fee</td>
-      <td style="text-align: center; padding: 5px;border-right: 1px solid black;">PHP 200</td>
-      <td style="text-align: center; padding: 5px;border-right: 1px solid black;">PHP 200</td>
-      <td style="text-align: center; padding: 5px;border-right: 1px solid black;">Eljen Augusto</td>
-  </tbody>
-</table>
-</table>
-</div>
-<br>
-<br>
-  <div class="row">
-    <div class="col-sm-6">
-      <div>
-        <span class="text-sm text-110 text-black align-middle">Payment Method:</span>
-        <span class="text-600 text-110 text-black align-middle">Cash</span>
-      </div>
-      <br>
-    </div>
-    <div class="col-sm-6 d-flex flex-column align-items-end align-content-stretch" style="flex: 0 0 48%;">
-    <div class="d-flex justify-content-end align-items-center">
-    <button class="btn bg-white btn-light mx-1px text-95" style="border: 1px solid black;" href="#" data-title="Print">
-      <i class="ml-auto fa fa-print text-primary-m1 text-120 w-2"></i> Print
-    </button>
-  </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+<!-- Filter buttons -->
+<div class="btn-group" role="group">
+    <a href="?studentID=<?php echo $studentId ?>&status=1" class="btn btn-primary">Paid</a>
+    <a href="?studentID=<?php echo $studentId ?>&status=0" class="btn btn-primary">Partial</a>
 </div>
 
 
-<div class="modal fade modal-fullscreen" id="#" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-  <div class="text-center">
-<h5 class="modal-title" id="exampleModalLabel" style="font-size: 30px; margin-top: 20px">College of Computing Studies(CCS)</h5>
-</div>
-        <div class="modal-body">
-        <div class="table-responsive">
-    <div class="row">
-                    <div class="col-sm-6">
-                        <div>
-                            <span class="text-sm text-grey-m2 align-middle">Name:</span>
-                            <span class="text-600 text-110 text-black align-middle">Bryan Christian Sevilla</span>
-                        </div>
-                        <div class="my-1">
-                            <span class="text-sm text-grey-m2 align-middle">Email:</span>
-                            <span class="text-sm text-grey text-black align-middle">sl201503664@wmsu.edu.ph</span>
-                         </div>
-                        <div class="my-1">
-                            <span class="text-sm text-grey-m2 align-middle">Date:</span>
-                            <span class="text-sm text-grey text-black align-middle">11-02-2022</span>
-                         </div>
-                    </div>
-                    <!-- /.col -->
+<script>
 
-                    <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
-                        <div class="text-grey-m2">
-                        <img src="../images/ccs.jpg" width ="100" alt="CCS COLLECTION FEE" style="margin-top: 0px; padding-bottom: 10px;">
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <div class="table-responsive" id="yati">
-                <table style="width: 100%; border: 1px solid black; border-collapse: collapse;">
-  <thead style="color: grey; background-color: black;">
-      <th style="text-align: center; padding: 5px; border-right: 2px;">Payment Details</th>
-      <th style="text-align: center; padding: 5px; border-right: 2px;">Receipt Number</th>
-      <th style="text-align: center; padding: 5px; border-right: 2px;">Student ID</th>
-      <th style="text-align: right; padding: 5px;">Student Name</th>
-      <th style="text-align: center; padding: 5px;">College</th>
-      <th style="text-align: center; padding: 5px;">Program</th>
-      <th style="text-align: center; padding: 5px;">Year Level</th>
-      <th style="text-align: center; padding: 5px;">Description</th>
-      <th style="text-align: center; padding: 5px;">Fee Amount</th>
-      <th style="text-align: center; padding: 5px;">Amount</th>
-      <th style="text-align: center; padding: 5px;">Collected By</th>
-  </thead>
-  <tbody>
-      <td style="text-align: center; padding: 5px; border-right: 1px solid black;">University Fee</td>
-      <td style="text-align: center; padding: 5px; border-right: 1px solid black;">111111</td>
-      <td style="text-align: center; padding: 5px; border-right: 1px solid black;">201503664</td>
-      <td style="text-align: right; padding: 5px; border-right: 1px solid black;">Bryan Christian Sevilla</td>
-      <td style="text-align: center; padding: 5px;border-right: 1px solid black;">CCS</td>
-      <td style="text-align: center; padding: 5px;border-right: 1px solid black;">BSCS</td>
-      <td style="text-align: center; padding: 5px;border-right: 1px solid black;">3rd Year</td>
-      <td style="text-align: center; padding: 5px;border-right: 1px solid black;">CSV Fee</td>
-      <td style="text-align: center; padding: 5px;border-right: 1px solid black;">PHP 200</td>
-      <td style="text-align: center; padding: 5px;border-right: 1px solid black;">PHP 200</td>
-      <td style="text-align: center; padding: 5px;border-right: 1px solid black;">Eljen Augusto</td>
-  </tbody>
-</table>
-</div>
-<br>
-<br>
-  <div class="row">
-    <div class="col-sm-6">
-      <div>
-        <span class="text-sm text-110 text-black align-middle">Payment Method:</span>
-        <span class="text-600 text-110 text-black align-middle">Cash</span>
-      </div>
-      <br>
-    </div>
-    <div class="col-sm-6 d-flex flex-column align-items-end align-content-stretch" style="flex: 0 0 48%;">
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+  $(document).ready(function() {
+    // Add click event listener to filter buttons
+    $('.filter-btn').click(function() {
+      var status = $(this).data('status');
+      var url = window.location.href.split('?')[0] + '?studentID=<?php echo $studentId ?>&status=' + status;
+      window.location.href = url;
+    });
+
+    // Check for status parameter in URL and set active filter button
+    var status = getUrlParameter('status');
+    if (status) {
+      $('.filter-btn').removeClass('active');
+      $('.filter-btn[data-status="' + status + '"]').addClass('active');
+    }
+  });
+
+  // Function to get URL parameters
+  function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  };
+</script>
+
 
    <!--Edit-->
    <div id="editDetails" class="modal fade">
