@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2023 at 11:47 PM
+-- Generation Time: Mar 29, 2023 at 03:15 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -156,13 +156,6 @@ CREATE TABLE `local_payment` (
   `payment_image` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `local_payment`
---
-
-INSERT INTO `local_payment` (`id`, `student_id`, `fee_schedule_id`, `payment_amount`, `collected_by`, `payment_date`, `payment_details`, `created_at`, `updated_at`, `receipt_number`, `payment_fee_amount`, `payment_status`, `payment_remaining`, `payment_add`, `payment_image`) VALUES
-(1, 202234212, 12, 300, 'Bryan COE', '2023-03-28 23:30:39', '{\"receipt\":\"WMSULocal202303282330392638\",\"student_id\":\"202234212\",\"name\":\"Gregory Yames\",\"college\":\"College of Engineering\",\"program\":\"Civil Engineering\",\"yearlevel\":\"2nd Year\",\"type\":\"Local\",\"feename\":\"CSC\",\"amount\":321,\"totalamount\":\"300\",\"collected_by\":\"Bryan COE\",\"payment_date\":\"2023-03-28 23:30:39\"}', '2023-03-28 21:30:39', '2023-03-28 21:30:39', 'WMSULocal202303282330392638', 321, 0, 21, 0, 'Gregory YamesWMSULocal202303282330392638.jpg');
-
 -- --------------------------------------------------------
 
 --
@@ -252,7 +245,7 @@ CREATE TABLE `students` (
 
 INSERT INTO `students` (`id`, `first_name`, `last_name`, `student_email`, `year_level`, `college_id`, `program_id`, `payment_status`, `outstanding_balance`) VALUES
 (201503664, 'Bryan Christian', 'Sevilla', 'sl201503664@wmsu.edu.ph', '3rd Year', 1, 8, NULL, 0),
-(202234212, 'Gregory', 'Yames', 'yames@wmsu.edu.ph', '2nd Year', 2, 5, NULL, -21);
+(202234212, 'Gregory', 'Yames', 'yames@wmsu.edu.ph', '2nd Year', 2, 5, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -331,13 +324,6 @@ CREATE TABLE `university_payment` (
   `payment_add` int(11) NOT NULL DEFAULT 0,
   `payment_image` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `university_payment`
---
-
-INSERT INTO `university_payment` (`id`, `student_id`, `fee_schedule_id`, `payment_amount`, `collected_by`, `payment_date`, `payment_details`, `created_at`, `updated_at`, `receipt_number`, `payment_fee_amount`, `payment_status`, `payment_remaining`, `payment_add`, `payment_image`) VALUES
-(21, 201503664, 3, 320, 'Bryan The Officer', '2023-03-28 23:26:36', '{\"receipt\":\"WMSU202303282326369226\",\"student_id\":\"201503664\",\"name\":\"Bryan Christian Sevilla\",\"college\":\"College of Computing Studies\",\"program\":\"Computer Science\",\"yearlevel\":\"3rd Year\",\"type\":\"University\",\"feename\":\"WMSU Palaro\",\"amount\":320,\"totalamount\":\"320\",\"collected_by\":\"Bryan The Officer\",\"payment_date\":\"2023-03-28 23:26:36\"}', '2023-03-28 21:26:36', '2023-03-28 21:26:36', 'WMSU202303282326369226', 320, 1, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
