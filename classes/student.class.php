@@ -112,7 +112,7 @@ class Student {
     // }
    
     function showAllDetailsBystudentId($student_id) {
-        $sql = "SELECT s.id, s.first_name, s.last_name, s.year_level, s.college_id, p.program_name, s.student_email, c.college_name, c.college_code
+        $sql = "SELECT s.id, s.first_name, s.last_name, s.year_level, s.college_id, s.outstanding_balance, p.program_name, s.student_email, c.college_name, c.college_code
         FROM students s
         INNER JOIN programs p ON s.program_id = p.id
         INNER JOIN colleges c ON s.college_id = c.id

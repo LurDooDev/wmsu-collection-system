@@ -104,16 +104,24 @@ require_once '../classes/student.class.php';
                             <span class="text-600 text-110 text-black align-middle"><?php echo $student['first_name'] . ' ' . $student['last_name']; ?></span>
                         </div>
                         <div class="my-1">
-                            <span class="text-sm text-grey-m2 align-middle">Email: </span>
-                            <span class="text-sm text-grey text-black align-middle"><?php echo $student['student_email']; ?></span>
+                            <span class="text-sm text-black text-black align-middle"><?php echo $student['college_name']; ?></span>
                          </div>
+                         <div class="my-1">
+                            <span class="text-sm text-grey-m2 align-middle">Course: </span>
+                            <span class="text-sm text-grey text-black align-middle"><?php echo $student['program_name']; ?></span>
+                         </div>
+                         <div class="my-1">
+                            <span class="text-sm text-grey-m2 align-middle">Year Level: </span>
+                            <span class="text-sm text-grey text-black align-middle"><?php echo $student['year_level']; ?></span>
+                         </div>
+                       
                          <div class="my-1">
                             <span class="text-sm text-grey-m2 align-middle">Email: </span>
                             <span class="text-sm text-grey text-black align-middle"><?php echo $student['student_email']; ?></span>
                          </div>
                          <div class="my-1">
-                            <span class="text-sm text-grey-m2 align-middle">Email: </span>
-                            <span class="text-sm text-grey text-black align-middle"><?php echo $student['student_email']; ?></span>
+                            <span class="text-sm text-grey-m2 align-middle">Balance: </span>
+                            <span class="text-sm text-grey text-black align-middle"><?php echo $student['outstanding_balance']; ?></span>
                          </div>
                     </div>
                     <!-- /.col -->
