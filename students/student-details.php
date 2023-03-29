@@ -13,6 +13,8 @@ if (!isset($_SESSION['logged_id'])) {
   }
 }
 
+require_once '../classes/student.class.php';
+
 ?>
 <!doctype html>
 <html lang="en" class="no-js">
@@ -22,19 +24,18 @@ if (!isset($_SESSION['logged_id'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!--- links for bootstrap and css  --->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Unicons CSS -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-  	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-	  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../css/payments.css" />
-    <link rel="stylesheet" href="../css/paymentlocal.css" />
-    <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <!--Jquery NEED-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!--Jquery NEED-->
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <title>Wmsu Collection System</title>
     </head>
     <body>
     <div class="d-flex" id="wrapper">
@@ -79,11 +80,20 @@ if (!isset($_SESSION['logged_id'])) {
             <h2 class="fs-2 m-0" style="color: black;">Student Details</h2>
         </div>
     </nav>
-<div class="container" id="kent">
+<div class="container" id="">
 <div class="table-responsive">
           <!-- content here -->
+          <?php
+    if (isset($_GET['studentID'])) {
+  $studentId = $_GET['studentID'];
+  $student = new Student();
+  $studentData = $student->showAllDetailsBystudentId($studentId);
+
+  foreach($studentData as $student) {  
+
+?>
     <div class="page-header text-blue-d2">
-        <h1 class="page-title text-secondary-d" style="font-size: 35px; font-weight: bold;">201503664</h1>
+        <h1 class="page-title text-secondary-d" style="font-size: 35px; font-weight: bold;">Student ID: <?php echo $student['id']; ?></h1>
         <a href="students.php" class="arrow-icon" ><i class="fas fa-arrow-left"></i></a>  
         </div>
     </div>
@@ -91,22 +101,20 @@ if (!isset($_SESSION['logged_id'])) {
                     <div class="col-sm-6">
                         <div>
                             <span class="text-sm text-grey-m2 align-middle">Name:</span>
-                            <span class="text-600 text-110 text-black align-middle">Bryan Christian Sevilla</span>
+                            <span class="text-600 text-110 text-black align-middle"><?php echo $student['first_name'] . ' ' . $student['last_name']; ?></span>
                         </div>
                         <div class="my-1">
-                            <span class="text-sm text-grey-m2 align-middle">Email:</span>
-                            <span class="text-sm text-grey text-black align-middle">sl201503664@wmsu.edu.ph</span>
-                         </div>
-                        <div class="my-1">
-                         </div>
-                        <div class="text-grey-m2">
-                            <div class="my-1">
-                               Status: Enrolled
+                            <span class="text-sm text-grey-m2 align-middle">Email: </span>
+                            <span class="text-sm text-grey text-black align-middle"><?php echo $student['student_email']; ?></span>
                          </div>
                          <div class="my-1">
-
+                            <span class="text-sm text-grey-m2 align-middle">Email: </span>
+                            <span class="text-sm text-grey text-black align-middle"><?php echo $student['student_email']; ?></span>
                          </div>
-                        </div>
+                         <div class="my-1">
+                            <span class="text-sm text-grey-m2 align-middle">Email: </span>
+                            <span class="text-sm text-grey text-black align-middle"><?php echo $student['student_email']; ?></span>
+                         </div>
                     </div>
                     <!-- /.col -->
 
@@ -117,6 +125,12 @@ if (!isset($_SESSION['logged_id'])) {
                     </div>
                     <!-- /.col -->
                 </div>
+                <?php
+  };
+} else {
+    echo "student ID: $studentId";
+}
+?>
                 <div class="table-responsive" id="yati">
   <table class="table">
     <thead style="background-color:#95BDFE ;" class="text-white">
