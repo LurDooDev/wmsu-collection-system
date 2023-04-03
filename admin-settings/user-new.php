@@ -34,6 +34,7 @@ require_once '../classes/role.class.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/dashboard.css" />
@@ -102,43 +103,97 @@ require_once '../classes/role.class.php';
               <tr>
                 <th scope="col" style = " color: #000000;" >ID</th>
                 <th scope="col" style = " color: #000000;" >Name</th>
-				<th scope="col" style = " color: #000000;" >College</th></th>
+				<th scope="col" style = " color: #000000; text-align:center;">College</th></th>
                 <th scope="col" style = " color: #000000;" >Role</th></th>
 				<th scope="col" style = " color: #000000;" >Position</th></th>
-                <th scope="col" style = " color: #000000;" >Start of Term</th></th>
-                <th scope="col" style = " color: #000000;" >End of Term</th></th>
+                <th scope="col" style = " color: #000000; text-align:center;" >Start of Term</th></th>
+                <th scope="col" style = " color: #000000; text-align:center;" >End of Term</th></th>
                 <th scope="col" style = " color: #000000;" >Action</th>
               </tr>
             </thead>
             <tbody>
-			<?php
-			$users = new Users();
-			$userData = $users->showAllDetails();
-    $i = 1;
-    foreach($userData as $users) {      
-?>
             <tr>
-			<td><?php echo $i; ?></td>
-                <td><?php echo $users['user_fullname']; ?></td>
-                <td><?php echo $users['college_code']; ?></td>
-				<td><?php echo $users['role_name']; ?></td>
-                <td><?php echo $users['user_position']; ?></td>
-                <td><?php echo $users['start_term']; ?></td>
-                <td><?php echo $users['end_term']; ?></td>
+			          <td>1</td>
+                <td>Dummy 1</td>
+                <td style="text-align: center;">College Of Computing Studies</td>
+			        	<td>Admin</td>
+                <td>President</td>
+                <td style="text-align: center;">August 06,2022</td>
+                <td style="text-align: center;">August 06,2023</td>
                 <td>
-                    <a href="#deleteFeesModal<?php echo $i; ?>" class="delete" data-toggle="modal">
+                <a href="#editFeesModal" class="edit" data-toggle="modal">
+										<i class="material-symbols-outlined" title="Edit">edit</i>
+									</a>
+                    <a href="#deleteFeesModal" class="delete" data-toggle="modal">
                         <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                     </a>
                 </td>
             </tr>
+            <!-- Edit Fees Modal -->
+            <div id="editFeesModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">						
+					<h4 class="modal-title">Edit User</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<div class="form-group">
+						<label>Name</label>
+						<input type="text" class="form-control" placeholder="Dummy 1" required>
+					</div>
+					<div class="form-group">
+						<label>College</label>
+						<input type="text" class="form-control" placeholder="College Of Computing Studies" required>
+					</div>
+          <div class="form-group">
+            <label>Role</label>
+          <select class="form-control" required>
+            <option value="" disabled selected>Admin</option>
+            <option value="Manager">Admin</option>
+            <option value="Supervisor">Officer</option>
+            <option value="Coordinator">Collector</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Position</label>
+        <select class="form-control" required>
+          <option value="" selected>President</option>
+          <option value="Manager">Vice-President</option>
+          <option value="Supervisor">Secretary</option>
+          <option value="Staff">Mayor</option>
+          <option value="Staff">Vice-Mayor</option>
+          <option value="Staff">Assistant</option>
+        </select>
+        </div>
+        <div class="form-group">
+          <label>Start of Term</label>
+          <input type="date" class="form-control" value="2022-08-06" required>
+         </div>
+         <div class="form-group">
+          <label>End of Term</label>
+          <input type="date" class="form-control" value="2023-08-06" required>
+         </div>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-info" value="Save">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
             <!-- Delete Fees Modal -->
-            <div id="deleteFeesModal<?php echo $i; ?>" class="modal fade">
+            <div id="deleteFeesModal" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <form action="deleteuser.php" method="POST">
                             <div class="modal-header">						
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Delete Fees</h4>
+                                    <h4 class="modal-title">Delete User</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                 </div>
                             </div>
@@ -149,17 +204,12 @@ require_once '../classes/role.class.php';
                             <div class="modal-footer">
                                 <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                                 <input type="hidden" name="action" value="delete">
-                                <input type="hidden" name="user_id" value="<?php echo $users['user_id']; ?>">
                                 <input type="submit" class="btn btn-danger" value="Delete">
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-<?php 
-            $i++;
-        }
-?>
 				</tbody>
 			</table>
 		</div>
@@ -252,37 +302,6 @@ require_once '../classes/role.class.php';
 		</div>
 					</div>
 	</div>
-<!-- Edit Modal HTML -->
-<div id="editUserModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form>
-				<div class="modal-header">						
-					<h4 class="modal-title">Edit Collector</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">					
-					<div class="form-group">
-						<label>College Code</label>
-						<input type="text" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Description</label>
-						<input type="email" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Mayor</label>
-						<input type="text" class="form-control" required>
-					</div>		
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-info" value="Save">
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
 
 </body>       
 
