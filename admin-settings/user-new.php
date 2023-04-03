@@ -105,6 +105,8 @@ require_once '../classes/role.class.php';
 				<th scope="col" style = " color: #000000;" >College</th></th>
                 <th scope="col" style = " color: #000000;" >Role</th></th>
 				<th scope="col" style = " color: #000000;" >Position</th></th>
+                <th scope="col" style = " color: #000000;" >Start of Term</th></th>
+                <th scope="col" style = " color: #000000;" >End of Term</th></th>
                 <th scope="col" style = " color: #000000;" >Action</th>
               </tr>
             </thead>
@@ -121,6 +123,8 @@ require_once '../classes/role.class.php';
                 <td><?php echo $users['college_code']; ?></td>
 				<td><?php echo $users['role_name']; ?></td>
                 <td><?php echo $users['user_position']; ?></td>
+                <td><?php echo $users['start_term']; ?></td>
+                <td><?php echo $users['end_term']; ?></td>
                 <td>
                     <a href="#deleteFeesModal<?php echo $i; ?>" class="delete" data-toggle="modal">
                         <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
