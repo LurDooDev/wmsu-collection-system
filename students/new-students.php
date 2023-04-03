@@ -16,8 +16,7 @@ if (!isset($_SESSION['logged_id'])) {
 require_once '../classes/student.class.php';
 require_once '../classes/college.class.php';
 require_once '../classes/program.class.php';
-require_once '../classes/academicyear.class.php';
-require_once "../classes/semester.class.php";
+
 
 
 
