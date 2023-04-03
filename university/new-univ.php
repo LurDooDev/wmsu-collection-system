@@ -72,7 +72,7 @@ require_once '../classes/universityfeeSched.class.php';
                     <a href="../local/localfees.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>
                     <?php
                     if($_SESSION['role'] == 'admin'){?>
-                    <a href="../admin-settings/user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">User Management</a></ul>
+                    <a href="../admin-settings/user-new.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">User Management</a></ul>
                     <?php } ?>
                     <!-- <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Colleges</a></ul> -->
                 </div>
@@ -93,7 +93,7 @@ require_once '../classes/universityfeeSched.class.php';
         			<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
        			 </div>
 					<div class="col-sm-8 " style="display: flex; align-items: center; justify-content: flex-end;">
-						<a href="#addCollectorModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add User</span></a>
+						<a href="#addCollectorModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a>
 					</div>
 				</div>
              <div class =" table-responsive" style="margin-top: 10px;">
