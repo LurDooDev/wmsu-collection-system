@@ -111,33 +111,47 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>CCS</td>
-                                <td>College of Computing Studies</td>
-                                <td>
-                                    <a href="" class="edit">
-                                        <i class="material-icons" title="Edit">&#xe147;</i>
-                                    </a>
-                                    <a href="" class="view-schedules">
-                                        <i class="material-icons" title="View Schedules">event_note</i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>CN</td>
-                                <td>College of Nursing</td>
-                                <td>
-                                    <a href="" class="edit">
-                                        <i class="material-icons" title="Edit">&#xe147;</i>
-                                    </a>
-                                    <a href="" class="view-schedules">
-                                        <i class="material-icons" title="View Schedules">event_note</i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
+                        <tbody>
+				<?php
+          $college = new College();
+					$data = $college->show();
+					
+					
+					foreach($data as $college) {
+						// Convert both values to lowercase and compare them
+						if(strtolower($UserCollege) == strtolower($college['college_name'])){ 
+							$i = 1;
+							?>
+							<tr>
+								<td><?php echo $i; ?></td>
+								<td><?php echo $college['college_code']; ?></td>
+								<td><?php echo $college['college_name']; ?></td>
+								<td>
+									<!-- Link to edit the Program -->
+									<a href="add_program.php?id=<?php echo $college['id']; ?>" class="edit">
+										<i class="material-icons" title="Edit">&#xe147;</i>
+									</a>
+									<?php 
+									// Check if there are any fee schedules associated with this fee
+									$Program = new Program();
+									$Programs = $Program->get($college['id']);
+									if ($Programs) {
+										// If there are Programs, display a link to view them
+										?>
+										<a href="view_program.php?college_id=<?php echo $college['id']; ?>" class="view-schedules">
+											<i class="material-icons" title="View Schedules">event_note</i>
+										</a>
+										<?php
+									}
+									?>
+								</td>
+							</tr>
+							<?php 
+							$i++;
+						}
+					}
+?>
+</tbody>
                     </table>
                 </div>
             </div>
