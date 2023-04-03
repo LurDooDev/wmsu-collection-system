@@ -86,60 +86,64 @@
             <h2 class="fs-2 m-0"  style="color:#000000; font-weight: 500;">Colleges</h2>
         </div>
     </nav>
-    <div class="my-container container-fluid"> 
-    <div class="col-sm-14" id="lakatan">
-    <div class="table-wrapper">
-    <div class="table-title" style = "padding-bottom:1px;">
-    <div class="d-flex">
-    <div class="col-sm-13 p-2 ml-auto mt-2 mr-3">
-              <a href="#addCollege" class="btn btn-success" id = "add-college" data-toggle="modal"> <i class="fa-sharp fa-solid fa-plus fa-sm" ></i> <span style = "font-size:16px;">Add New College</span></a>
-          </div>
-        </div>
+    <div class="container-fluid"> 
+    <div class="row">
+        <div class="col-12">
+            <div class="table-wrapper" id="kenteezy">
+                <div class="table-title" style="padding-bottom: 20px; padding-top: 10px">
+                    <div class="d-flex">
+                        <div class="col-12 p-2 text-right" style="float:left;">
+                            <a href="#addCollege" class="btn btn-success" id="add-college" data-toggle="modal">
+                                <i class="fa-sharp fa-solid fa-plus fa-sm"></i>
+                                <span>Add New College</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <table class="table ">
-                <caption> List of Colleges </caption>
-                <thead style="background-color:#95BDFE ;" class="text-black">
                 <div class="table-responsive">
-
-					<tr>
-						<th>#</th>
-						<th>Code</th>
-						<th>Name</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-              <tr>
-                <td>1</td>
-                <td>CCS</td>
-                <td>College of Computing Studies</td>
-<td>
-<a href="" class="edit">
-<i class="material-icons" title="Edit">&#xe147;</i>
-</a>
-<a href="" class="view-schedules">
-<i class="material-icons" title="View Schedules">event_note</i>
-</a>
-</td>
-</tr>
-              <td>2</td>
-                <td>CN</td>
-                <td>College of Nursing</td>
-                <td>
-									<a href="" class="edit">
-										<i class="material-icons" title="Edit">&#xe147;</i>
-									</a>
+                    <table class="table">
+                        <thead style="background-color:#95BDFE;" class="text-black">
+                            <tr>
+                                <th>#</th>
+                                <th>Code</th>
+                                <th>Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>CCS</td>
+                                <td>College of Computing Studies</td>
+                                <td>
+                                    <a href="" class="edit">
+                                        <i class="material-icons" title="Edit">&#xe147;</i>
+                                    </a>
                                     <a href="" class="view-schedules">
-											<i class="material-icons" title="View Schedules">event_note</i>
-										</a>
-                </td>
-              </tr>
-              
-          </table>
+                                        <i class="material-icons" title="View Schedules">event_note</i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>CN</td>
+                                <td>College of Nursing</td>
+                                <td>
+                                    <a href="" class="edit">
+                                        <i class="material-icons" title="Edit">&#xe147;</i>
+                                    </a>
+                                    <a href="" class="view-schedules">
+                                        <i class="material-icons" title="View Schedules">event_note</i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                </div>
-                </tbody>
-                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Create Fee Modal HTML -->
 <div id="addCollege" class="modal fade">
     <div class="modal-dialog">

@@ -42,7 +42,7 @@
     grid-template-columns: 1fr 1fr;
     border-radius: 4px;
 }
-.container{
+.container-fluid{
     background-color: #fff;
     max-width: 80%;
     border-radius: 20px;
@@ -108,12 +108,3 @@
         min-width: fit-content;
     }
 }
-.my-container {
-    background-color: #fff; /* set the background color */
-    max-width: 1300px; /* set the max-width of the container */
-    margin: 0 auto; /* center the container horizontally */
-    padding: 15px; /* add some padding inside the container */
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.265);
-    border-radius: 20px;
-    
-  }
