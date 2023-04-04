@@ -67,7 +67,7 @@ require_once '../classes/universityfeeSched.class.php';
                 <i class="fa fa-caret-down" style="margin-left: 37px;"></i>
                 </button>
                 <div class="dropdown-container">
-                    <a href="../admin-settings/overview_settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
+                   <a href="../admin-settings/new-overview.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
                     <a href="../university/new-univ.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
                     <a href="../local/new-local.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold active"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>
                     <?php
@@ -108,8 +108,7 @@ require_once '../classes/universityfeeSched.class.php';
             <thead style="background-color:#95BDFE ;" class="text-white">
               <tr>
                 <th scope="col" style = " color: #000000;" >#</th>
-                <th scope="col" style = " color: #000000;" >Name</th>
-			        	<th scope="col" style = " color: #000000; text-align:center;">Category</th></th>
+                <th scope="col" style = " color: #000000;" >Name</th>	
                 <th scope="col" style = " color: #000000; text-align:center;" >Amount</th></th>
 				        <th scope="col" style = " color: #000000; text-align:center;" >Semester</th></th>
                 <th scope="col" style = " color: #000000; text-align:center;" >School Year</th></th>
@@ -122,7 +121,7 @@ require_once '../classes/universityfeeSched.class.php';
             <tr>
 			          <td>1</td>
                 <td>Palaro Fee</td>
-                <td style="text-align: center;">Local</td>
+               
 			        	<td style="text-align:center;">200</td>
                 <td style="text-align:center;">1st Semester</td>
                 <td style="text-align:center;">2022-2023</td>
@@ -154,12 +153,7 @@ require_once '../classes/universityfeeSched.class.php';
 								<label for="feeName">Name</label>
 								<input type="text" name="feeName" id="feeName" class="form-control" placeholder="CSC Fee" required>
 							</div>
-							<div class="form-group">
-								<label for="category" class="form-label">Category</label>
-								<select class="form-control" id="category" name="category" placeholder="Local" required>
-									<option value="Local">Local</option>
-								</select>
-							</div>
+							
 							<div class="form-group">
 								<label for="amount" class="form-label" >Amount</label>
 								<div class="input-group">
@@ -255,12 +249,7 @@ require_once '../classes/universityfeeSched.class.php';
 								<label for="feeName">Name</label>
 								<input type="text" name="feeName" id="feeName" class="form-control" required>
 							</div>
-							<div class="form-group">
-								<label for="category" class="form-label">Category</label>
-								<select class="form-control" id="category" name="category" placeholder="University" required>
-									<option value="University">University</option>
-								</select>
-							</div>
+							
               <div class="form-group">
     <label for="paymentType" class="form-label">Payment Type</label>
     <div class="form-check">
