@@ -52,7 +52,7 @@
                 <a href="../new-payment/payment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active ">Payments</a>
                     <?php } ?>
                 <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Payment Records</a>
-                <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Students</a>
+                <a href="../students/new-students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Students</a>
                 <a href="../financial-report-user/financial-report-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
                 <a href="../audit-log-user/audit-log-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
                 <a href="../csc-management/csc-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">CSC Management</a>
