@@ -109,7 +109,7 @@ require_once '../classes/universityfeeSched.class.php';
               <tr>
                 <th scope="col" style = " color: #000000;" >#</th>
                 <th scope="col" style = " color: #000000;" >Name</th>
-			        	<th scope="col" style = " color: #000000; text-align:center;">Category</th></th>
+			        	
                 <th scope="col" style = " color: #000000; text-align:center;" >Amount</th></th>
 				        <th scope="col" style = " color: #000000; text-align:center;" >Semester</th></th>
                 <th scope="col" style = " color: #000000; text-align:center;" >School Year</th></th>
@@ -122,7 +122,7 @@ require_once '../classes/universityfeeSched.class.php';
             <tr>
 			          <td>1</td>
                 <td>CSC Fee</td>
-                <td style="text-align: center;">University</td>
+               
 			        	<td style="text-align:center;">200</td>
                 <td style="text-align:center;">1st Semester</td>
                 <td style="text-align:center;">2022-2023</td>
@@ -154,12 +154,7 @@ require_once '../classes/universityfeeSched.class.php';
 								<label for="feeName">Name</label>
 								<input type="text" name="feeName" id="feeName" class="form-control" placeholder="CSC Fee" required>
 							</div>
-							<div class="form-group">
-								<label for="category" class="form-label">Category</label>
-								<select class="form-control" id="category" name="category" placeholder="University" required>
-									<option value="University">University</option>
-								</select>
-							</div>
+							
 							<div class="form-group">
 								<label for="amount" class="form-label" >Amount</label>
 								<div class="input-group">
@@ -255,12 +250,7 @@ require_once '../classes/universityfeeSched.class.php';
 								<label for="feeName">Name</label>
 								<input type="text" name="feeName" id="feeName" class="form-control" required>
 							</div>
-							<div class="form-group">
-								<label for="category" class="form-label">Category</label>
-								<select class="form-control" id="category" name="category" placeholder="University" required>
-									<option value="University">University</option>
-								</select>
-							</div>
+							
               <div class="form-group">
     <label for="paymentType" class="form-label">Payment Type</label>
     <div class="form-check">
