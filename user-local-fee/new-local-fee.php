@@ -3,6 +3,10 @@
   session_start();
   require_once '../functions/session.function.php';
   
+  if (!isset($_SESSION['logged_id'])) {
+    header('location: ../user-local-fee/new-local-fee.php');
+} else if ($_SESSION['role'] != 'officer') {
+    if ($_SESSION['role'] == 'admin') {
         header('location: officer.php');
     } else if ($_SESSION['role'] == 'collector') {
         header('location: collector.php');
