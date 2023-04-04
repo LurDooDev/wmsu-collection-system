@@ -156,8 +156,8 @@ require_once '../classes/universityfeeSched.class.php';
 							</div>
 							<div class="form-group">
 								<label for="category" class="form-label">Category</label>
-								<select class="form-control" id="category" name="category" placeholder="University" required>
-									<option value="University">Local</option>
+								<select class="form-control" id="category" name="category" placeholder="Local" required>
+									<option value="Local">Local</option>
 								</select>
 							</div>
 							<div class="form-group">
