@@ -89,119 +89,129 @@ require_once '../classes/program.class.php';
         </div>
     </nav>
     <div class="container">
-    <div class="d-flex" style="padding-bottom: 20px;">
-        <div class="col-sm-4" style="border-color: #000000; margin-top: 20px;">
-        			<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
-       			 </div>
-                <div class=" ml-auto pl-auto" style="padding-top: 20px; margin-right:-20px;">
-                <a href="#addCSV" class="btn btn-success" id="add-student" data-toggle="modal">
-                   <i class="material-icons">&#xE147;</i> <span>Add CSV</span>
-                </a>
+    <div class="row">
+  <div class="col-sm-3 col-12" style="margin-top: 20px; padding-bottom: 20px;">
+    <input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
+  </div>
+  <div class="col-sm-3 col-12" style="margin-top: 20px; padding-bottom: 20px;">
+    <button class="btn btn-primary dropdown-toggle" id="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter Year</button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">1st Year</a>
+      <a class="dropdown-item" href="#">2nd Year</a>
+      <a class="dropdown-item" href="#">3rd Year</a>
+      <a class="dropdown-item" href="#">4th Year</a>
+    </div>
+  </div>
+  <div class="col-sm-6 col-12 d-flex align-items-center justify-content-end" style="margin-top: 20px; padding-bottom: 20px;">
+    <div class="mr-3">
+      <a href="#addCSV" class="btn btn-success" id="add-csv" data-toggle="modal">
+        <i class="material-icons">&#xE147;</i> <span>Add CSV</span>
+      </a>
+    </div>
+    <div>
+      <a href="#addStudentModal" class="btn btn-success" id="add-student" data-toggle="modal">
+        <i class="material-icons">&#xE147;</i> <span>Add Student</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+            <div class =" table-responsive">
+                  <table class="table" id="myTable">
+              <thead style="background-color:#95BDFE ;" class="text-white">
+                <tr>
+                  <th scope="col" style = " color: #000000;" >Student Name</th>
+                  <th scope="col" style = " color: #000000;" >Student ID</th>
+                  <th scope="col" style = " color: #000000; text-align:center;" >College</th></th>
+                  <th scope="col" style = " color: #000000;" >Course</th>
+                  <th scope="col" style = " color: #000000;" >Year Level</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+              <td>Yawa</td>
+          <td>200195</td>
+        <td style="text-align:center;">College Of Computing Studies</td>
+              <td>BSCS</td>
+              <td>1st Year</td>
+
+              <?php if(isset($_GET['error'])): ?>
+      <input type="hidden" name="error" value="true">
+  <?php endif; ?>
+
+
+  <div id="addStudentModal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      <form action="addstudent.php<?php if(isset($_GET['error'])) echo '?error=true'; ?>" method="POST">
+        <form action="addstudent.php" method="POST">
+          <div class="modal-header">						
+            <h4 class="modal-title">Add Student</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+                  <br>
+          <div class="modal-body">
+          <?php if(isset($_GET['error'])): ?>
+              <div class="alert alert-danger" role="alert">
+                  Error adding student. Please try again.
+              </div>
+          <?php endif; ?>
+          <div class="form-group">
+              <label for="studentID">Student ID</label>
+              <input type="number" name="studentID" id="studentID" class="form-control" required>
+            </div>					
+            <div class="form-group">
+              <label for="firstname">First name</label>
+              <input type="text" name="firstname" id="firstname" class="form-control" required>
             </div>
-<div class="d-flex" style="margin-left:30px">
-                <div class=" mr-auto pr-auto ml-4"  style="padding-top: 20px;">
-                <a href="#addStudentModal" class="btn btn-success" id="add-student" data-toggle="modal">
-                <i class="material-icons">&#xE147;</i> <span>Add Student</span>
-                </a>					
-        </div>
-</div>
-</div>
-          <div class =" table-responsive">
-                <table class="table">
-            <thead style="background-color:#95BDFE ;" class="text-white">
-              <tr>
-                <th scope="col" style = " color: #000000;" >Student Name</th>
-                <th scope="col" style = " color: #000000;" >Student ID</th>
-                <th scope="col" style = " color: #000000; text-align:center;" >College</th></th>
-                <th scope="col" style = " color: #000000;" >Course</th>
-                <th scope="col" style = " color: #000000;" >Year Level</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-            <td>Yawa</td>
-		    <td>200195</td>
-			<td style="text-align:center;">College Of Computing Studies</td>
-            <td>BSCS</td>
-            <td>1st Year</td>
+            <div class="form-group">
+              <label for="lastname">Last name</label>
+              <input type="text" name="lastname" id="lastname" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" name="email" id="email" class="form-control" required>
+            </div>
+      <div class="form-group">
+        <label for="college" class="form-label">Colleges</label>
+              <select class="form-control" id="college" name="college" required>
+                <option value="">Select your option</option>
+          <?php
+          $colleges = new College();
+          $collegeData = $colleges->show();
+                foreach ($collegeData as $colleges) {
+                  ?>
+                  <option value="<?php echo $colleges['id']; ?>"><?php echo $colleges['college_name']; ?></option>
+                <?php } ?>
+              </select>
 
-            <?php if(isset($_GET['error'])): ?>
-    <input type="hidden" name="error" value="true">
-<?php endif; ?>
+            </div>
 
+        <div class="form-group">
+        <label for="program" class="form-label">Programs</label>
+              <select class="form-control" id="program" name="program" required>
+                <option value="">Select your option</option>
+          <?php
+          $Program = new Program();
+          $ProgramData = $Program->show();
+                foreach ($ProgramData as $Program) {
+                  ?>
+                  <option value="<?php echo $Program['id']; ?>"><?php echo $Program['program_name']; ?></option>
+                <?php } ?>
+              </select>
 
-<div id="addStudentModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-    <form action="addstudent.php<?php if(isset($_GET['error'])) echo '?error=true'; ?>" method="POST">
-			<form action="addstudent.php" method="POST">
-				<div class="modal-header">						
-					<h4 class="modal-title">Add Student</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-                <br>
-				<div class="modal-body">
-        <?php if(isset($_GET['error'])): ?>
-				    <div class="alert alert-danger" role="alert">
-				        Error adding student. Please try again.
-				    </div>
-				<?php endif; ?>
-				<div class="form-group">
-						<label for="studentID">Student ID</label>
-						<input type="number" name="studentID" id="studentID" class="form-control" required>
-					</div>					
-					<div class="form-group">
-						<label for="firstname">First name</label>
-						<input type="text" name="firstname" id="firstname" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label for="lastname">Last name</label>
-						<input type="text" name="lastname" id="lastname" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label for="email">Email</label>
-						<input type="text" name="email" id="email" class="form-control" required>
-					</div>
-		<div class="form-group">
-		  <label for="college" class="form-label">Colleges</label>
-            <select class="form-control" id="college" name="college" required>
-              <option value="">Select your option</option>
-			  <?php
-			  $colleges = new College();
-			  $collegeData = $colleges->show();
-            	 foreach ($collegeData as $colleges) {
-                 ?>
-                <option value="<?php echo $colleges['id']; ?>"><?php echo $colleges['college_name']; ?></option>
-              <?php } ?>
-            </select>
-
+            </div>
+            <div class="form-group">
+                          <label for="yearlevel">Year Level</label>
+                          <select name="yearlevel" id="yearlevel" class="form-control" required>
+                              <option value="" disabled selected>Select your option</option>
+                              <option value="1st Year">1st Year</option>
+                              <option value="2nd Year">2nd Year</option>
+                              <option value="3rd Year">3rd Year</option>
+                              <option value="4rth Year">4rth Year</option>
+                          </select>
+                      </div>	 
           </div>
-
-		  <div class="form-group">
-		  <label for="program" class="form-label">Programs</label>
-            <select class="form-control" id="program" name="program" required>
-              <option value="">Select your option</option>
-			  <?php
-			  $Program = new Program();
-			  $ProgramData = $Program->show();
-            	 foreach ($ProgramData as $Program) {
-                 ?>
-                <option value="<?php echo $Program['id']; ?>"><?php echo $Program['program_name']; ?></option>
-              <?php } ?>
-            </select>
-
-          </div>
-					<div class="form-group">
-                        <label for="yearlevel">Year Level</label>
-                        <select name="yearlevel" id="yearlevel" class="form-control" required>
-                            <option value="" disabled selected>Select your option</option>
-                            <option value="1st Year">1st Year</option>
-                            <option value="2nd Year">2nd Year</option>
-							              <option value="3rd Year">3rd Year</option>
-                            <option value="4rth Year">4rth Year</option>
-                        </select>
-                    </div>	 
-				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 					<input type="hidden" name="action" value="add">
@@ -275,4 +285,29 @@ for (var i = 0; i < links.length; i++) {
     setActiveLink(this);
   });
 }</script>
+<script>
+function sortTable() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("myTable");
+  switching = true;
+  while (switching) {
+    switching = false;
+    rows = table.getElementsByTagName("tr");
+    for (i = 1; i < (rows.length - 1); i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("td")[0];
+      y = rows[i + 1].getElementsByTagName("td")[0];
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        shouldSwitch= true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+</script>
+
 </html>

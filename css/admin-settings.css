@@ -70,3 +70,9 @@
 #lakatan{
     display:grid;
 }
+
+@media (max-width: 885px) {
+    .col-sm-4 {
+      margin-top: 10px;
+    }
+  }
