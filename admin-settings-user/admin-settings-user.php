@@ -38,7 +38,7 @@ require_once '../classes/academicyear.class.php';
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/dashboard.css" />
     <link rel="stylesheet" href="../css/admin-settings.css" />
-    <link rel="icon" type="image/jpg" href="../images/usc.jpg"/>
+	<link rel="icon" type="image/jpg" href="../images/usc.png"/>
     <script src="../js/dropdown.js"></script>
     <script src="../js/active.js"></script>
     <script src="../js/toggle.js"></script>
