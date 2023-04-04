@@ -225,7 +225,7 @@ require_once '../classes/program.class.php';
         <div class="modal-body-md">
         <div class="drop-zone">
     <span class="drop-zone__prompt" style="margin-left: 20px;"> Drop file here or click to upload</span>
-    <input type="file" name="myFile" class="drop-zone__input" style="margin-left: 20px;">
+    <input  type="file" name="myFile" class="drop-zone__input" style="margin-left: 20px;">
   </div>
 
   <script src="./src/main.js"></script>
