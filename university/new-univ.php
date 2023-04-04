@@ -37,7 +37,7 @@ require_once '../classes/universityfeeSched.class.php';
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/dashboard.css" />
-    <link rel="stylesheet" href="../css/admin-settings.css" />
+    <link rel="stylesheet" href="../css/new-univ.css" />
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -92,7 +92,14 @@ require_once '../classes/universityfeeSched.class.php';
 				<div class="col-sm-4" style="border-color: #000000;">
         			<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
        			 </div>
-					<div class="col-sm-8 " style="display: flex; align-items: center; justify-content: flex-end;">
+        <div class="col-sm-4">
+        <button class="btn btn-primary dropdown-toggle" id ="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By </button>
+						<div class="dropdown-menu">
+    					<a class="dropdown-item" href="#">Ascending</a>
+    					<a class="dropdown-item" href="#">Descending</a>
+					  </div>
+          </div>
+					<div class="col-sm-4 " style="display: flex; align-items: center; justify-content: flex-end;">
 						<a href="#addCollectorModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a>
 					</div>
 				</div>
@@ -100,25 +107,27 @@ require_once '../classes/universityfeeSched.class.php';
                 <table class="table">
             <thead style="background-color:#95BDFE ;" class="text-white">
               <tr>
-                <th scope="col" style = " color: #000000;" >ID</th>
+                <th scope="col" style = " color: #000000;" >#</th>
                 <th scope="col" style = " color: #000000;" >Name</th>
-				<th scope="col" style = " color: #000000; text-align:center;">College</th></th>
-                <th scope="col" style = " color: #000000;" >Role</th></th>
-				<th scope="col" style = " color: #000000;" >Position</th></th>
-                <th scope="col" style = " color: #000000; text-align:center;" >Start of Term</th></th>
-                <th scope="col" style = " color: #000000; text-align:center;" >End of Term</th></th>
+			        	<th scope="col" style = " color: #000000; text-align:center;">Category</th></th>
+                <th scope="col" style = " color: #000000; text-align:center;" >Amount</th></th>
+				        <th scope="col" style = " color: #000000; text-align:center;" >Semester</th></th>
+                <th scope="col" style = " color: #000000; text-align:center;" >School Year</th></th>
+                <th scope="col" style = " color: #000000; text-align:center;" >Start Date</th></th>
+                <th scope="col" style = " color: #000000; text-align:center;" >End Date</th></th>
                 <th scope="col" style = " color: #000000;" >Action</th>
               </tr>
             </thead>
             <tbody>
             <tr>
 			          <td>1</td>
-                <td>Dummy 1</td>
-                <td style="text-align: center;">College Of Computing Studies</td>
-			        	<td>Admin</td>
-                <td>President</td>
-                <td style="text-align: center;">August 06,2022</td>
-                <td style="text-align: center;">August 06,2023</td>
+                <td>CSC Fee</td>
+                <td style="text-align: center;">University</td>
+			        	<td style="text-align:center;">200</td>
+                <td style="text-align:center;">1st Semester</td>
+                <td style="text-align:center;">2022-2023</td>
+                <td style="text-align: center;">May 06,2022</td>
+                <td style="text-align: center;">May 06,2023</td>
                 <td>
                 <a href="#editFeesModal" class="edit" data-toggle="modal">
 										<i class="material-symbols-outlined" title="Edit">edit</i>
@@ -130,54 +139,68 @@ require_once '../classes/universityfeeSched.class.php';
             </tr>
             <!-- Edit Fees Modal -->
             <div id="editFeesModal" class="modal fade">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<form>
+			<form action="adduser.php" method="POST">
 				<div class="modal-header">						
-					<h4 class="modal-title">Edit User</h4>
+					<h4 class="modal-title">Add Fees</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div class="modal-body">					
-					<div class="form-group">
-						<label>Name</label>
-						<input type="text" class="form-control" placeholder="Dummy 1" required>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<h5>Fee Details</h5>
+							<div class="form-group">
+								<label for="feeName">Name</label>
+								<input type="text" name="feeName" id="feeName" class="form-control" placeholder="CSC Fee" required>
+							</div>
+							<div class="form-group">
+								<label for="category" class="form-label">Category</label>
+								<select class="form-control" id="category" name="category" placeholder="University" required>
+									<option value="University">University</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="amount" class="form-label" >Amount</label>
+								<div class="input-group">
+									<input type="number" class="form-control" id="amount" name="amount" min="0" step="1" placeholder="200" required>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<h5>Fee Scheduling</h5>
+							<div class="form-group">
+								<label for="semester">Semester</label>
+								<select name="semester" id="semester" class="form-control" required>
+									<option value="" selected>1st Semester</option>
+									<option value="1st Semester">1st Semester</option>
+									<option value="2nd Semester">2nd Semester</option>
+									<option value="Summer">Summer</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="schoolyear">School Year</label>
+								<select name="schoolyear" id="schoolyear" class="form-control" required>
+									<option value="" selected>2022-2023</option>
+									<option value="2022-2023">2022-2023</option>
+									<option value="2023-2024">2023-204</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Start Date</label>
+								<input type="date" name="startdate" class="form-control" value="2022-05-06" required>
+							</div>
+							<div class="form-group">
+								<label>End Date</label>
+								<input type="date" name="enddate" class="form-control" value="2022-05-06" required>
+							</div>
+						</div>
 					</div>
-					<div class="form-group">
-						<label>College</label>
-						<input type="text" class="form-control" placeholder="College Of Computing Studies" required>
-					</div>
-          <div class="form-group">
-            <label>Role</label>
-          <select class="form-control" required>
-            <option value="" disabled selected>Admin</option>
-            <option value="Manager">Admin</option>
-            <option value="Supervisor">Officer</option>
-            <option value="Coordinator">Collector</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Position</label>
-        <select class="form-control" required>
-          <option value="" selected>President</option>
-          <option value="Manager">Vice-President</option>
-          <option value="Supervisor">Secretary</option>
-          <option value="Staff">Mayor</option>
-          <option value="Staff">Vice-Mayor</option>
-          <option value="Staff">Assistant</option>
-        </select>
-        </div>
-        <div class="form-group">
-          <label>Start of Term</label>
-          <input type="date" class="form-control" value="2022-08-06" required>
-         </div>
-         <div class="form-group">
-          <label>End of Term</label>
-          <input type="date" class="form-control" value="2023-08-06" required>
-         </div>
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-info" value="Save">
+					<input type="hidden" name="action" value="add">
+					<input type="submit" class="btn btn-success" value="Save">
 				</div>
 			</form>
 		</div>
@@ -217,65 +240,79 @@ require_once '../classes/universityfeeSched.class.php';
 </div>  
 <!-- Add Modal HTML -->
 <div id="addCollectorModal" class="modal fade">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<form action="adduser.php" method="POST">
 				<div class="modal-header">						
-					<h4 class="modal-title">Add Collector</h4>
+					<h4 class="modal-title">Add Fees</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
-                <div class="form-group">
-						<label for="userfullname">Name</label>
-						<input type="text" name="userfullname" id="userfullname" class="form-control" required>
+					<div class="row">
+						<div class="col-sm-6">
+							<h5>Fee Details</h5>
+							<div class="form-group">
+								<label for="feeName">Name</label>
+								<input type="text" name="feeName" id="feeName" class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label for="category" class="form-label">Category</label>
+								<select class="form-control" id="category" name="category" placeholder="University" required>
+									<option value="University">University</option>
+								</select>
+							</div>
+              <div class="form-group">
+    <label for="paymentType" class="form-label">Payment Type</label>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="paymentType" id="cashPayment" value="cash" >
+        <label class="form-check-label" for="cashPayment">
+            Required
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="paymentType" id="noPayment" value="">
+        <label class="form-check-label" for="noPayment">
+            Not required
+        </label>
+    </div>
+</div>
+							<div class="form-group">
+								<label for="amount" class="form-label">Amount</label>
+								<div class="input-group">
+									<input type="number" class="form-control" id="amount" name="amount" min="0" step="1" required>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<h5>Fee Scheduling</h5>
+							<div class="form-group">
+								<label for="semester">Semester</label>
+								<select name="semester" id="semester" class="form-control" required>
+									<option value="" disabled selected>Select your option</option>
+									<option value="1st Semester">1st Semester</option>
+									<option value="2nd Semester">2nd Semester</option>
+									<option value="Summer">Summer</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="schoolyear">School Year</label>
+								<select name="schoolyear" id="schoolyear" class="form-control" required>
+									<option value="" disabled selected>Select your option</option>
+									<option value="2022-2023">2022-2023</option>
+									<option value="2023-2024">2023-204</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Start Date</label>
+								<input type="date" name="startdate" class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label>End Date</label>
+								<input type="date" name="enddate" class="form-control" required>
+							</div>
+						</div>
 					</div>
-                <div class="form-group">
-		  <label for="college" class="form-label">Colleges</label>
-            <select class="form-control" id="college" name="college" required>
-              <option value="">Select your option</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-		  <label for="role" class="form-label">Roles</label>
-            <select class="form-control" id="role" name="role" required>
-              <option value="">Select your option</option>
-            </select>
-          </div>
-					<div class="form-group">
-                        <label for="userposition">Position</label>
-                        <select name="userposition" id="userposition" class="form-control" required>
-                            <option value="" disabled selected>Select your option</option>
-			
-                            <option value="President">President</option>
-                            <option value="Vice-President">Vice-President</option>
-							<option value="Secretary">Secretary</option>
-					
-							<option value="Mayor">Mayor</option>
-						
-							<option value="Vice-Mayor">Vice-Mayor</option>
-							<option value="Assistant">Assistant</option>
-						
-                        </select>
-                    </div>	
-                    <div class="form-group">
-						<label>Term Start</label>
-						<input type="date" name="startdate" class="form-control" required>
-					</div>
-          <div class="form-group">
-						<label>Term End</label>
-						<input type="date" name="enddate" class="form-control" required>
-					</div>					
-					<div class="form-group">
-						<label for="username">Username</label>
-						<input type="text" name="username" id="username" class="form-control" required>
-					</div>
-					<div class="form-group">
-          <label for="userpassword">Password</label>
-           <input type="password" name="userpassword" id="userpassword" class="form-control" required>
-          </div>
-	
-						
+				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 					<input type="hidden" name="action" value="add">
@@ -283,8 +320,9 @@ require_once '../classes/universityfeeSched.class.php';
 				</div>
 			</form>
 		</div>
-					</div>
 	</div>
+</div>
+
 
 </body>       
 
