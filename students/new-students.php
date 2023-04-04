@@ -90,6 +90,9 @@ require_once '../classes/program.class.php';
     </nav>
     <div class="container">
     <div class="d-flex" style="padding-bottom: 20px;">
+        <div class="col-sm-4" style="border-color: #000000; margin-top: 20px;">
+        			<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
+       			 </div>
                 <div class=" ml-auto pl-auto" style="padding-top: 20px; margin-right:-20px;">
                 <a href="#addCSV" class="btn btn-success" id="add-student" data-toggle="modal">
                    <i class="material-icons">&#xE147;</i> <span>Add CSV</span>
