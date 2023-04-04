@@ -29,10 +29,14 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/smartwizard/4.5.1/css/smart_wizard.min.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/payment-records.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="icon" type="image/jpg" href="../images/usc.jpg"/>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smartwizard/4.5.1/js/jquery.smartWizard.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
@@ -75,3 +79,21 @@
             <h2 class="fs-2 m-0">Payments</h2>
         </div>
     </nav>
+    <div id="smartwizard">`
+  <ul>
+    <li><a href="#step-1">Step 1</a></li>
+    <li><a href="#step-2">Step 2</a></li>
+    <li><a href="#step-3">Step 3</a></li>
+  </ul>
+  
+  <div>
+    <div id="step-1">Step 1 Content</div>
+    <div id="step-2">Step 2 Content</div>
+    <div id="step-3">Step 3 Content</div>
+  </div>
+</div>
+
+<script>$(document).ready(function(){
+  $('#smartwizard').smartWizard();
+});
+</script>
