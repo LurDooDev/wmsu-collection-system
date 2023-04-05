@@ -31,7 +31,8 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/smartwizard/4.5.1/css/smart_wizard.min.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/payment-records.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="../css/payments.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
 	<link rel="icon" type="image/jpg" href="../images/usc.png"/>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -79,21 +80,98 @@
             <h2 class="fs-2 m-0">Payments</h2>
         </div>
     </nav>
-    <div id="smartwizard">`
-  <ul>
-    <li><a href="#step-1">Step 1</a></li>
-    <li><a href="#step-2">Step 2</a></li>
-    <li><a href="#step-3">Step 3</a></li>
-  </ul>
-  
-  <div>
-    <div id="step-1">Step 1 Content</div>
-    <div id="step-2">Step 2 Content</div>
-    <div id="step-3">Step 3 Content</div>
-  </div>
-</div>
-
-<script>$(document).ready(function(){
-  $('#smartwizard').smartWizard();
-});
+    <div class="container">
+		<div class="row justify-content-center">
+			<div class="justify-content-center">
+				<div class="">
+			
+						<ul id="progressbar">
+							<li id="step1">
+								<strong>Search User</strong>
+							</li>
+							<li class="active" id="step2"><strong>Payments</strong></li>
+							<li id="step3"><strong>Local Payment Details</strong></li>
+							<li id="step4"><strong>Transaction Complete</strong></li>
+						</ul>
+						<div class="">
+							
+						</div> <br>
+						
+						<!-- <div class ="row justify-content-center"> -->
+						<fieldset>
+            <div class="row mt-5" id="idolo">
+    <div class="col-md-8 mx-auto">
+        </div>
+    </div>
+    <table class="table">
+  <thead style="background-color:#95BDFE;" class="text-white">
+    <tr>
+      <th scope="col" style="color:#000000;"><input type="checkbox" id="checkAll"></th>
+      <th scope="col" style="color:#000000;">#</th>
+      <th scope="col" style="color:#000000;text-align:center;">Name</th>
+      <th scope="col" style="color:#000000;">Type of Fees</th>
+      <th scope="col" style="color:#000000;text-align:center;">Amount</th>
+      <th scope="col" style="color:#000000;text-align:center;">Paid Amount</th>
+      <th scope="col" style="color:#000000;text-align:center;">Balance</th>
+      <th scope="col" style="color:#000000;text-align:center;">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><input type="checkbox"></td>
+      <td>1</td>
+      <td style="text-align:center;">CSB</td>
+      <td>University Fees</td>
+      <td style="text-align:center;">200</td>
+      <td style="text-align:center;">0</td>
+      <td style="text-align:center;">200</td>
+      <td style="text-align:center;">
+  <a href="" class="edit">
+  <span class="material-symbols-outlined" title ="Partial">
+order_approve
+</span>
+  </a>
+</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox"></td>
+      <td>2</td>
+      <td style="text-align:center;">PSIT</td>
+      <td>Local Fees</td>
+      <td style="text-align:center;">150</td>
+      <td style="text-align:center;">0</td>
+      <td style="text-align:center;">150</td>
+      <td style="text-align:center;">
+  <a href="" class="payment">
+  <span class="material-symbols-outlined" title ="Partial">
+order_approve
+</span>
+  </a>
+</td>
+    </tr>
+    
+  </tbody>
+</table>
+ 
+<script>
+  const checkAll = document.getElementById('checkAll');
+  const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+  checkAll.addEventListener('click', function() {
+    for (let i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].checked = this.checked;
+    }
+  });
 </script>
+
+</fieldset>
+  
+</body>
+<div>
+        <div class="d-flex">
+          <div class="ml-auto">
+            <a href="payment.php" class="btn btn-success" style="border-radius: 40px; padding: 5px 40px; font-size: 18px;">
+              <span>Next</span>
+            </a>
+          </div>
+        </div>
+      </div>
