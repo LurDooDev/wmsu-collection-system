@@ -67,66 +67,62 @@
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Logout</a>
             </div>
         </div>               
-		<div class="table-responsive">
+        <div class="table-responsive">
 	<div id="page-content-wrapper">
+<!-- Dashboard hamburger      -->
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0">Payment Records</h2>
+            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Remit Records</h2>
         </div>
     </nav>
-		<div class="table-wrapper">
-		<div class="table-title">
-				<div class="row">
-					<div class="col-sm-4">
-					<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
-					</div>
-					<div class="col-sm-8">
-					</div>
-				</div>
-			</div>
-			<table class="table table-striped table-hover">
-				<thead style="text-align: center;">
-					<tr>
-
-                        <th>ID</th>
-                        <th>Payment</th>
-                        <th>Student ID</th>
-                        <th>College Codes</th>
-                        <th>Date</th>
-                        <th>Semester</th>
-                        <th>Time</th>
-                        <th>School Year</th>
-                        <th>Status</th>
-					</tr>
-				</thead>
-				<tbody style="text-align: center;">
-                        <td>1</td> 
-                        <td>CSC FEE</td>
-                        <td>sl202203004</td>
-                        <td>CCS</td>
-                         <td>12/10/2022</td>
-                         <td>1</td>
-                         <td>12:30</td>
-                        <td>2022-2023</td>
-					<td style="color: green;">Paid</a>
-							</td>
-				</tr>
-                            <td>2</td>
-                            <td>CN FEE</td>
-                            <td>sl202203333</td>
-                            <td>CCS</td>
-                            <td>12/22/2022</td>
-                            <td>1</td>
-                            <td>1:30</td>
-                            <td>2022-2023</td>
-                            <td style="color: green;">Paid</a>
-					</tr>
-					</tbody>
-			</table>
-		</div>
-	</div>        
+    <div class="container">
+    <div class="row">
+  <div class="col-sm-3 col-12" style="margin-top: 20px; padding-bottom: 20px;">
+    <input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
+  </div>
+  <div class="col-sm-3 col-12" style="margin-top: 20px; padding-bottom: 20px;">
+    <button class="btn btn-primary dropdown-toggle" id="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter Status</button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Paid</a>
+      <a class="dropdown-item" href="#">Unpaid</a>
+      <a class="dropdown-item" href="#">Partial</a>
+    </div>
+  </div>
 </div>
+
+            <div class =" table-responsive">
+                  <table class="table" id="myTable">
+              <thead style="background-color:#95BDFE ;" class="text-white">
+                <tr>
+                  <th scope="col" style = " color: #000000;" >ID</th>
+                  <th scope="col" style = " color: #000000;text-align:center;" >Payment Description</th>
+                  <th scope="col" style = " color: #000000; text-align:center;" >College</th></th>
+                  <th scope="col" style = " color: #000000; text-align:center" >Date</th>
+                  <th scope="col" style = " color: #000000;" >Time</th>
+                  <th scope="col" style = " color: #000000;" >School Year</th>
+                  <th scope="col" style = " color: #000000;" >Semester</th>
+                  <th scope="col" style = " color: #000000;" >Amount</th>
+                  <th scope="col" style = " color: #000000;text-align:center" >Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+              <td>1</td>
+          <td style="text-align:center;">CSB Fee</td>
+        <td style="text-align:center;">CCS</td>
+              <td>01-01-2022</td>
+              <td>10:11</td>
+              <td>2022-2023</td>
+              <td>1st Semester</td>
+              <td>P 120,000</td>
+              <td style="text-align:center">Paid</td>
+
+      </div>
+    </div>
+</div>
+    </div>
+
 </body>       
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
             <script>
