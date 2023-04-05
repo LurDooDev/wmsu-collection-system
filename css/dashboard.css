@@ -31,11 +31,11 @@
   overflow-x: hidden;
   background-image: linear-gradient(
     to right,
-    #baf3d7,
-    #c2f5de,
-    #cbf7e4,
-    #d4f8ea,
-    #ddfaef
+    #e1e3e6,
+    #e1e3e6,
+    #e1e3e6,
+    #e1e3e6,
+    #e1e3e6
   );
 }
 
@@ -77,7 +77,7 @@
 }
 
 .list-group-item.active {
-  background-color: #04AA6D;
+  background-color: #990000;
   color: white;
 }
 .list-group-item:hover:not(.list-group-item.active){
@@ -154,3 +154,5 @@ td a:hover {
   height: 250px;
   width: 550px;
 }
+
+
