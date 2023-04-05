@@ -81,28 +81,27 @@
     margin-bottom: 0rem;
 }
 .modal-dialog {
-    width: 70%;
-    max-width: 1000px;
-    padding: 1px;
+    width: 60%;
+    max-width: 800px;
   }
   
   .modal-header h4 {
     font-size: 24px;
-    margin-bottom: 1px;
+    margin-bottom: 0px;
   }
   
   .modal-body .form-group {
-    margin-bottom: 1px;
+    margin-bottom: 0px;
   }
   
-  .modal-body .col-sm-6 {
-    margin-bottom: 1px;
+  .modal-body .col-md-6 {
+    margin-bottom: 0px;
   }
   
   .modal-footer .btn-default {
     background-color: grey;
     color: #fff;
-    margin-right: 3px;
+    margin-right: 0px;
   }
   
   .modal-footer .btn-success {
@@ -112,6 +111,6 @@
   
   label {
     font-weight: 600;
-    margin-bottom: 3px;
+    margin-bottom: 0px;
   }
   

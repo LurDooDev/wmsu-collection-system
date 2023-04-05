@@ -38,7 +38,7 @@ require_once '../classes/role.class.php';
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/dashboard.css" />
-    <link rel="stylesheet" href="../css/admin-settings.css" />
+    <link rel="stylesheet" href="../css/new-user.css" />
     <link rel="icon" type="image/jpg" href="../images/usc.png"/>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -139,26 +139,30 @@ require_once '../classes/role.class.php';
 					<h4 class="modal-title">Edit User</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div class="modal-body">					
-					<div class="form-group">
-						<label>Name</label>
-						<input type="text" class="form-control" placeholder="Dummy 1" required>
-					</div>
-					<div class="form-group">
-						<label>College</label>
-						<input type="text" class="form-control" placeholder="College Of Computing Studies" required>
-					</div>
-          <div class="form-group">
-            <label>Role</label>
-          <select class="form-control" required>
-            <option value="" disabled selected>Admin</option>
-            <option value="Manager">Admin</option>
-            <option value="Supervisor">Officer</option>
-            <option value="Coordinator">Collector</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Position</label>
+        <div class="modal-body">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" placeholder="Dummy 1" required>
+      </div>
+      <div class="form-group">
+        <label>College</label>
+        <input type="text" class="form-control" placeholder="College Of Computing Studies" required>
+      </div>
+      <div class="form-group">
+        <label>Role</label>
+        <select class="form-control" required>
+          <option value="" disabled selected>Admin</option>
+          <option value="Manager">Admin</option>
+          <option value="Supervisor">Officer</option>
+          <option value="Coordinator">Collector</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Position</label>
         <select class="form-control" required>
           <option value="" selected>President</option>
           <option value="Manager">Vice-President</option>
@@ -167,19 +171,21 @@ require_once '../classes/role.class.php';
           <option value="Staff">Vice-Mayor</option>
           <option value="Staff">Assistant</option>
         </select>
-        </div>
-        <div class="form-group">
-          <label>Start of Term</label>
-          <input type="date" class="form-control" value="2022-08-06" required>
-         </div>
-         <div class="form-group">
-          <label>End of Term</label>
-          <input type="date" class="form-control" value="2023-08-06" required>
-         </div>
-				</div>
+      </div>
+      <div class="form-group">
+        <label>Start of Term</label>
+        <input type="date" class="form-control" value="2022-08-06" required>
+      </div>
+      <div class="form-group">
+        <label>End of Term</label>
+        <input type="date" class="form-control" value="2023-08-06" required>
+      </div>
+    </div>
+  </div>
+</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-info" value="Save">
+					<input type="submit" class="btn btn-success" value="Save">
 				</div>
 			</form>
 		</div>
@@ -223,76 +229,75 @@ require_once '../classes/role.class.php';
 		<div class="modal-content">
 			<form action="adduser.php" method="POST">
 				<div class="modal-header">						
-					<h4 class="modal-title">Add Collector</h4>
+					<h4 class="modal-title">Add User</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div class="modal-body">
-                <div class="form-group">
-						<label for="userfullname">Name</label>
-						<input type="text" name="userfullname" id="userfullname" class="form-control" required>
-					</div>
-                <div class="form-group">
-		  <label for="college" class="form-label">Colleges</label>
-            <select class="form-control" id="college" name="college" required>
-				
-              <option value="">Select your option</option>
-			  <?php
-			  $college = new College ();
-			  $collegeData = $college->show();
-            	 foreach ($collegeData as $college) {
+        <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="userfullname">Name</label>
+              <input type="text" name="userfullname" id="userfullname" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="college" class="form-label">Colleges</label>
+              <select class="form-control" id="college" name="college" required>
+                <option value="">Select your option</option>
+                <?php
+                  $college = new College ();
+                  $collegeData = $college->show();
+                  foreach ($collegeData as $college) {
                 ?>
-                <option value="<?php echo $college['id']; ?>"><?php echo $college['college_name']; ?></option>
-              <?php }?>
-            </select>
-          </div>
-
-          <div class="form-group">
-		  <label for="role" class="form-label">Roles</label>
-            <select class="form-control" id="role" name="role" required>
-				
-              <option value="">Select your option</option>
-			  <?php
-			  $role = new Role ();
-			  $roleData = $role->show();
-            	 foreach ($roleData as $role) {
+                  <option value="<?php echo $college['id']; ?>"><?php echo $college['college_name']; ?></option>
+                <?php }?>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="role" class="form-label">Roles</label>
+              <select class="form-control" id="role" name="role" required>
+                <option value="">Select your option</option>
+                <?php
+                  $role = new Role ();
+                  $roleData = $role->show();
+                  foreach ($roleData as $role) {
                 ?>
-                <option value="<?php echo $role['id']; ?>"><?php echo $role['role_name']; ?></option>
-              <?php }?>
-            </select>
+                  <option value="<?php echo $role['id']; ?>"><?php echo $role['role_name']; ?></option>
+                <?php }?>
+              </select>
+            </div>
           </div>
-					<div class="form-group">
-                        <label for="userposition">Position</label>
-                        <select name="userposition" id="userposition" class="form-control" required>
-                            <option value="" disabled selected>Select your option</option>
-			
-                            <option value="President">President</option>
-                            <option value="Vice-President">Vice-President</option>
-							<option value="Secretary">Secretary</option>
-					
-							<option value="Mayor">Mayor</option>
-						
-							<option value="Vice-Mayor">Vice-Mayor</option>
-							<option value="Assistant">Assistant</option>
-						
-                        </select>
-                    </div>	
-                    <div class="form-group">
-						<label>Term Start</label>
-						<input type="date" name="startdate" class="form-control" required>
-					</div>
-          <div class="form-group">
-						<label>Term End</label>
-						<input type="date" name="enddate" class="form-control" required>
-					</div>					
-					<div class="form-group">
-						<label for="username">Username</label>
-						<input type="text" name="username" id="username" class="form-control" required>
-					</div>
-					<div class="form-group">
-          <label for="userpassword">Password</label>
-           <input type="password" name="userpassword" id="userpassword" class="form-control" required>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="userposition">Position</label>
+              <select name="userposition" id="userposition" class="form-control" required>
+                <option value="" disabled selected>Select your option</option>
+                <option value="President">President</option>
+                <option value="Vice-President">Vice-President</option>
+                <option value="Secretary">Secretary</option>
+                <option value="Mayor">Mayor</option>
+                <option value="Vice-Mayor">Vice-Mayor</option>
+                <option value="Assistant">Assistant</option>
+              </select>
+            </div>  
+            <div class="form-group">
+              <label>Term Start</label>
+              <input type="date" name="startdate" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Term End</label>
+              <input type="date" name="enddate" class="form-control" required>
+            </div>
+            </div>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" name="username" id="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="userpassword">Password</label>
+              <input type="password" name="userpassword" id="userpassword" class="form-control" required>
+            </div>
           </div>
-	
+        </div>
 						
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
