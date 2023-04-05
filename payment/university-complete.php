@@ -75,44 +75,38 @@ if (!isset($_SESSION['logged_id'])) {
             <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Payments</h2>
         </div>
     </nav>
-<div class="container">
-		<div class="row justify-content-center">
-			<div class="justify-content-center">
-				<div class="">
-						<ul id="progressbar">
-							<li class="" id="step1">
-								<strong>Search User</strong>
-							</li>
-							<li class ="" id="step2"><strong>University  Fees</strong></li>
-							<li class ="" id="step3"><strong>University Payment Details</strong></li>
-							<li class = "active" id="step4"><strong>Transaction Complete</strong></li>
-						</ul>
-						<div class="">
-</div>
-						</div> <br>
-                        <fieldset>
-                        <div class="container-fluid">
-  <div class="row">
+    <div class="container">
+  <div class="row justify-content-center">
     <div class="col-12">
-      <div class="text-center">
-        <h2 id="awo" style="color: black; font-weight: 300; font-size: 30px; margin-bottom: 30px; margin-left: 1px;"> PAYMENT COMPLETED SUCCESSFULLY! </h2>
-        <img src="../images/doggie.jpg" class="img-fluid" alt="Doggier" style="width: 90%;"> 
-      </div>
-    </div>
-    <div class="col-12 mt-3">
-      <div class="text-center">
-        <a href="../payment/universitypayment.php" class="btn btn-success btn-lg" id="backstreet" style="border-radius: 40px; padding: 10px 20px; font-size: 20px;">
-          <span>New Payment</span>
-        </a>
-      </div>
+      <ul id="progressbar" class="d-flex justify-content-around align-items-center mb-5">
+        <li class="text-center" id="step1"><strong>Search User</strong></li>
+        <li class="text-center" id="step2"><strong>University Fees</strong></li>
+        <li class="text-center" id="step3"><strong>University Payment Details</strong></li>
+        <li class="text-center" id="step4"><strong>Transaction Complete</strong></li>
+      </ul>
     </div>
   </div>
+  
+  <fieldset>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="text-center">
+            <h2 id="awo" style="color: black; font-weight: 300; font-size: 30px; margin-bottom: 30px; margin-left: 1px;"> PAYMENT COMPLETED SUCCESSFULLY! </h2>
+            <img src="../images/doggie.jpg" class="img-fluid" alt="Doggier" style="width: 90%;"> 
+          </div>
+        </div>
+        <div class="col-12 mt-3">
+          <div class="text-center">
+            <a href="../payment/universitypayment.php" class="btn btn-success btn-lg" id="backstreet" style="border-radius: 40px; padding: 10px 20px; font-size: 20px;">
+              <span>New Payment</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
 </div>
-</fieldset>
-</body>       
-</html>
-
-
 <script>
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
 var dropdown = document.getElementsByClassName("dropdown-btn");

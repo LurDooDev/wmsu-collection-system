@@ -67,6 +67,7 @@
 
 #menu-toggle {
   cursor: pointer;
+  color: black;
 }
 
 .list-group-item {

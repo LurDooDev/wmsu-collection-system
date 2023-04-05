@@ -91,7 +91,7 @@ html {
 }
 
 h2{
-  color: #2F8D46;
+  color: #000000;
 }
 #form {
   text-align: center;
@@ -696,7 +696,11 @@ hr {
   border-radius: 0;
   border: none; 
 }
-
+.modal-footer .btn-default {
+  background-color: grey;
+  color: #fff;
+  margin-right: 0px;
+}
 .modal.modal-fullscreen .modal-body {
   overflow-y: auto; 
 }

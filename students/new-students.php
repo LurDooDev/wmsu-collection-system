@@ -223,15 +223,15 @@ require_once '../classes/program.class.php';
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         </div>
         <div class="modal-body-md">
-        <div class="drop-zone">
-    <span class="drop-zone__prompt" style="margin-left: 20px;"> Drop file here or click to upload</span>
-    <input  type="file" name="myFile" class="drop-zone__input" style="margin-left: 20px;">
-  </div>
+        <div class="form-group" style="margin-left: 25px; margin-top: 20px;">
+            <label for="paymentImage"> Drop file here or click to upload</label>
+            <input type="file" class="form-control-file" id="paymentImage" name="paymentImage">
+       </div>
 
   <script src="./src/main.js"></script>
         </div>
         <div class="modal-footer">
-          <a href="#" data-dismiss="modal" class="btn">Close</a>
+          <a href="#" data-dismiss="modal" class="btn btn-default">Close</a>
           <a href="#" class="btn btn-primary">Upload This File</a>
         </div>
       </div>

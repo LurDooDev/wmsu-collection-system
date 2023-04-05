@@ -126,3 +126,9 @@
     text-align: center;
   }
 
+  .modal-footer .btn-default {
+    background-color: grey;
+    color: #fff;
+    margin-right: 0px;
+  }
+  
