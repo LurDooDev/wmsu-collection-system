@@ -106,6 +106,9 @@
                                Western Mindanao State University
                                <div class="d-flex" style="color:#000000;">
   <div class ="mr-auto p-auto">
+  <a href="#" class="btn btn-success" id="all-btn">
+      <span>All</span>
+    </a>
     <a href="#" class="btn btn-success" id="university-btn">
       <span>University</span>
     </a>
@@ -135,6 +138,55 @@
                   
     <div class="col-sm-12 col-lg-12 mx-auto">
       <div class="table-responsive">
+      <table id="all-table" class="table">
+          <thead style="background-color:#95BDFE;" class="text-white">
+            <tr>
+              <th scope="col" style="color:#000000;"><input type="checkbox" id="checkAll"></th>
+              <th scope="col" style="color:#000000;">#</th>
+              <th scope="col" style="color:#000000;text-align:center;">Name</th>
+              <th scope="col" style="color:#000000; text-align:center">Type of Fees</th>
+              <th scope="col" style="color:#000000;text-align:center;">Amount</th>
+              <th scope="col" style="color:#000000;text-align:center;">Paid Amount</th>
+              <th scope="col" style="color:#000000;text-align:center;">Balance</th>
+              <th scope="col" style="color:#000000;text-align:center;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td>1</td>
+              <td style="text-align:center;">CSB</td>
+              <td style="text-align: center;">University Fees</td>
+              <td style="text-align:center;">200</td>
+              <td style="text-align:center;">0</td>
+              <td style="text-align:center;">200</td>
+              <td style="text-align:center;">
+                <a href="#editFeesModal" class="edit" data-toggle="modal">
+                  <span class="material-symbols-outlined" title="Partial">
+                    order_approve
+                  </span>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td>2</td>
+              <td style="text-align:center;">PSIT</td>
+              <td style="text-align: center" >Local Fees</td>
+              <td style="text-align:center;">150</td>
+              <td style="text-align:center;">0</td>
+              <td style="text-align:center;">150</td>
+              <td style="text-align:center;">
+                <a href="#editFeesModal" class="edit" data-toggle="modal">
+                  <span class="material-symbols-outlined" title="Partial">
+                    order_approve
+                  </span>
+                </a>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
       <table id="university-table" class="table" style="display:none;">
           <thead style="background-color:#95BDFE;" class="text-white">
             <tr>
@@ -244,19 +296,29 @@
     </body>
 </html>
 <script>
+   $(document).ready(function() {
+    // Show both tables
+    $("#all-btn").click(function() {
+      $("#all-table").show();
+      $("#university-table").hide();
+      $("#local-table").hide();
+    });
   $(document).ready(function() {
     // Show university table and hide local table on university button click
     $("#university-btn").click(function() {
       $("#university-table").show();
       $("#local-table").hide();
+      $("#all-table").hide();
     });
 
     // Show local table and hide university table on local button click
     $("#local-btn").click(function() {
       $("#local-table").show();
       $("#university-table").hide();
+      $("#all-table").hide();
     });
   });
+});
 </script>
 
 <script>
