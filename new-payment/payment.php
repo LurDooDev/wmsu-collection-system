@@ -83,16 +83,59 @@
         </div>
     </nav>
     <div class="container">
-    <div class="col-sm-4 col-lg-4 ml-5 d-flex justify-content-end" style="padding-top: 21px; padding-bottom: 10px;">
-      <button class="btn btn-primary dropdown-toggle text-left" id="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">University</a>
-        <a class="dropdown-item" href="#">Local</a>
-      </div>
+          <!-- content here -->
+    <div class="page-header text-blue-d2">
+
+        <div class="page-tools">
+            <div class="action-buttons">
+            </div>
+        </div>
     </div>
+    <hr class="row brc-default-l1 mx-n1 mb-4" />
+    <div class="row">
+                    <div class="col-sm-6">
+                        <div class = "text-black-m5" style = "font-size :20px; margin-left:70px;">
+                            <h2 class="text-600 text-120 text-black align-middle "></h2>
+                            Bryan Christian Sevilla
+                        </div>
+                        <div class="text-black-m5">
+                            <div class="my-1" style = "font-size:20px; margin-left:70px;">
+                                University Fee Payment
+                            </div>
+                            <div class="my-1" style = "font-size:20px; margin-left:70px;">
+                               Western Mindanao State University
+                               <div class="d-flex" style="color:#000000;">
+  <div class ="mr-auto p-auto">
+    <a href="#" class="btn btn-success" id="university-btn">
+      <span>University</span>
+    </a>
+    <a href="#" class="btn btn-success" id="local-btn">
+      <span>Local</span>
+    </a>
+  </div>
+</div>
+                         </div>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+
+                    <div class="text-105 col-sm-6 align-self-start d-sm-flex justify-content-end">
+  <hr class="d-sm-none" />
+  <div class="text-black-m5" style = "margin-right:60px;">
+    <div class="my-2 text-bigger"> <span class="text-600 text-100">ID: 201503664</span> </div>
+    <div class="my-2 text-bigger"> <span class="text-600 text-100">College:College of Computing Studies</span> </div>
+    <div class="my-2 text-bigger"> <span class="text-600 text-100">Course:Computer Science</span> </div>
+
+</div>
+                  </div>
+
+                    <!-- /.col -->
+                </div>
+                <div>
+                  
     <div class="col-sm-12 col-lg-12 mx-auto">
       <div class="table-responsive">
-        <table class="table">
+      <table id="university-table" class="table" style="display:none;">
           <thead style="background-color:#95BDFE;" class="text-white">
             <tr>
               <th scope="col" style="color:#000000;"><input type="checkbox" id="checkAll"></th>
@@ -122,9 +165,28 @@
                 </a>
               </td>
             </tr>
+
+          </tbody>
+        </table>
+        <table id="local-table" class="table"  style="display:none;">
+          <thead style="background-color:#95BDFE;" class="text-white">
             <tr>
+              <th scope="col" style="color:#000000;"><input type="checkbox" id="checkAll"></th>
+              <th scope="col" style="color:#000000;">#</th>
+              <th scope="col" style="color:#000000;text-align:center;">Name</th>
+              <th scope="col" style="color:#000000; text-align:center">Type of Fees</th>
+              <th scope="col" style="color:#000000;text-align:center;">Amount</th>
+              <th scope="col" style="color:#000000;text-align:center;">Paid Amount</th>
+              <th scope="col" style="color:#000000;text-align:center;">Balance</th>
+              <th scope="col" style="color:#000000;text-align:center;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+  <tr>
               <td><input type="checkbox"></td>
-              <td>2</td>
+              <td>1</td>
               <td style="text-align:center;">PSIT</td>
               <td style="text-align: center" >Local Fees</td>
               <td style="text-align:center;">150</td>
@@ -138,20 +200,10 @@
                 </a>
               </td>
             </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+</table>
 
-  <div class="row mt-3">
-    <div class="col-sm-12">
-      <div class="d-flex justify-content-end">
-		<a href="payment.php" class="btn btn-success" style="border-radius: 40px; padding: 5px 40px; font-size: 18px;">
-			<span>Next</span>
-            </a>
-          </div>
-        </div>
-        </div>
+      </div>
+                  </div>
       </div>
 
  <!-- Edit Fees Modal -->
@@ -191,7 +243,21 @@
 
     </body>
 </html>
+<script>
+  $(document).ready(function() {
+    // Show university table and hide local table on university button click
+    $("#university-btn").click(function() {
+      $("#university-table").show();
+      $("#local-table").hide();
+    });
 
+    // Show local table and hide university table on local button click
+    $("#local-btn").click(function() {
+      $("#local-table").show();
+      $("#university-table").hide();
+    });
+  });
+</script>
 
 <script>
   const checkAll = document.getElementById('checkAll');
