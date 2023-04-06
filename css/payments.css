@@ -781,4 +781,24 @@ hr {
     .text-bigger {
       font-size: 19px;
     }
-    
+    @media (max-width: 576px) {
+      #sort-by {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 10px auto;
+        display: block;
+      }
+        .dropdown-toggle {
+          position: relative;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          margin-left: 0;
+          margin-right: 0;
+          text-align: center;
+
+        }
+
+        }
+      
+      

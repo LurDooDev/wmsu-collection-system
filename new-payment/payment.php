@@ -73,79 +73,84 @@
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Logout</a>
             </div>
         </div>               
-		<div class="table-responsive">
+        <div class="table-responsive">
 	<div id="page-content-wrapper">
+<!-- Dashboard hamburger      -->
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0">Payments</h2>
+            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Payments</h2>
         </div>
     </nav>
     <div class="container">
-		<div class="row justify-content-center">
-			<div class="justify-content-center">
-            <div class="row mt-5" id="idolo">
-    <div class="col-md-8 mx-auto">
-        </div>
+    <div class="col-sm-4 col-lg-4 ml-5 d-flex justify-content-end" style="padding-top: 21px; padding-bottom: 10px;">
+      <button class="btn btn-primary dropdown-toggle text-left" id="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">University</a>
+        <a class="dropdown-item" href="#">Local</a>
+      </div>
     </div>
-    <table class="table">
-  <thead style="background-color:#95BDFE;" class="text-white">
-    <tr>
-      <th scope="col" style="color:#000000;"><input type="checkbox" id="checkAll"></th>
-      <th scope="col" style="color:#000000;">#</th>
-      <th scope="col" style="color:#000000;text-align:center;">Name</th>
-      <th scope="col" style="color:#000000;">Type of Fees</th>
-      <th scope="col" style="color:#000000;text-align:center;">Amount</th>
-      <th scope="col" style="color:#000000;text-align:center;">Paid Amount</th>
-      <th scope="col" style="color:#000000;text-align:center;">Balance</th>
-      <th scope="col" style="color:#000000;text-align:center;">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><input type="checkbox"></td>
-      <td>1</td>
-      <td style="text-align:center;">CSB</td>
-      <td>University Fees</td>
-      <td style="text-align:center;">200</td>
-      <td style="text-align:center;">0</td>
-      <td style="text-align:center;">200</td>
-      <td style="text-align:center;">
-      <a href="#editFeesModal" class="edit" data-toggle="modal">
-  <span class="material-symbols-outlined" title ="Partial">
-order_approve
-</span>
-  </a>
-</td>
-    </tr>
-    <tr>
-      <td><input type="checkbox"></td>
-      <td>2</td>
-      <td style="text-align:center;">PSIT</td>
-      <td>Local Fees</td>
-      <td style="text-align:center;">150</td>
-      <td style="text-align:center;">0</td>
-      <td style="text-align:center;">150</td>
-      <td style="text-align:center;">
-      <a href="#editFeesModal" class="edit" data-toggle="modal">
-  <span class="material-symbols-outlined" title ="Partial">
-order_approve
-</span>
-  </a>
-</td>
-    </tr>
-    
-  </tbody>
-</table>
- 
-  
-<div>
-        <div class="d-flex">
-          <div class="ml-auto">
-            <a href="payment.php" class="btn btn-success" style="border-radius: 40px; padding: 5px 40px; font-size: 18px;">
-              <span>Next</span>
+    <div class="col-sm-12 col-lg-12 mx-auto">
+      <div class="table-responsive">
+        <table class="table">
+          <thead style="background-color:#95BDFE;" class="text-white">
+            <tr>
+              <th scope="col" style="color:#000000;"><input type="checkbox" id="checkAll"></th>
+              <th scope="col" style="color:#000000;">#</th>
+              <th scope="col" style="color:#000000;text-align:center;">Name</th>
+              <th scope="col" style="color:#000000; text-align:center">Type of Fees</th>
+              <th scope="col" style="color:#000000;text-align:center;">Amount</th>
+              <th scope="col" style="color:#000000;text-align:center;">Paid Amount</th>
+              <th scope="col" style="color:#000000;text-align:center;">Balance</th>
+              <th scope="col" style="color:#000000;text-align:center;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td>1</td>
+              <td style="text-align:center;">CSB</td>
+              <td style="text-align: center;">University Fees</td>
+              <td style="text-align:center;">200</td>
+              <td style="text-align:center;">0</td>
+              <td style="text-align:center;">200</td>
+              <td style="text-align:center;">
+                <a href="#editFeesModal" class="edit" data-toggle="modal">
+                  <span class="material-symbols-outlined" title="Partial">
+                    order_approve
+                  </span>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td>2</td>
+              <td style="text-align:center;">PSIT</td>
+              <td style="text-align: center" >Local Fees</td>
+              <td style="text-align:center;">150</td>
+              <td style="text-align:center;">0</td>
+              <td style="text-align:center;">150</td>
+              <td style="text-align:center;">
+                <a href="#editFeesModal" class="edit" data-toggle="modal">
+                  <span class="material-symbols-outlined" title="Partial">
+                    order_approve
+                  </span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  <div class="row mt-3">
+    <div class="col-sm-12">
+      <div class="d-flex justify-content-end">
+		<a href="payment.php" class="btn btn-success" style="border-radius: 40px; padding: 5px 40px; font-size: 18px;">
+			<span>Next</span>
             </a>
           </div>
+        </div>
         </div>
       </div>
 
