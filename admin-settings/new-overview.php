@@ -97,7 +97,7 @@ require_once "../classes/academicyear.class.php";
     <div class="col-sm-6 col-12 d-flex align-items-center justify-content-end" style="margin-top: 20px;">
     <div class="mr-3">
       <a href="#addDetailsModal" class="btn btn-success" id="add-csv" data-toggle="modal">
-        <i class="material-icons">&#xE147;</i> <span>Add New Details</span>
+        <i class="material-icons">&#xE147;</i> <span>Add New Schedule</span>
       </a>
     </div>
     <div>

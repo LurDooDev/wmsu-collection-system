@@ -54,7 +54,7 @@ require_once '../classes/universityfeeSched.class.php';
                 <!-- <a href="../fees-user/fees-user.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold ">Fees</a> -->
                   <?php
                   if($_SESSION['role'] == 'officer'){?>
-                <a href="../new-payment/payment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Payments</a>
+                <a href="../new-payment/search-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold  ">Payments</a>
                     <?php } ?>
                 <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>
                 <a href="../students/new-students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Students</a>

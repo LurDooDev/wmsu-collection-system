@@ -801,4 +801,6 @@ hr {
 
         }
       
-      
+      #a{
+        border-radius: 1.25rem;
+      }

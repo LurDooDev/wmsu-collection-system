@@ -55,7 +55,7 @@
                 <!-- <a href="../fees-user/fees-user.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold ">Fees</a> -->
                   <?php
                   if($_SESSION['role'] == 'officer'){?>
-                <a href="../new-payment/payment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active ">Payments</a>
+                <a href="../new-payment/search-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active ">Payments</a>
                     <?php } ?>
                 <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Payment Records</a>
                 <a href="../students/new-students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Students</a>
@@ -289,9 +289,14 @@
 	</div>
 </div>
 <div class = "d-flex">
-<div class ="ml-auto p-auto">
+<div class ="mr-auto p-auto" style="border-radius: 6px;">
+  <a href="../new-payment/search-user.php" class="btn btn-success" id="a">
+      <span>Back to Search</span>
+    </a>
+                  </div>
+<div class ="ml-auto p-auto" style="border-radius: 6px;">
   <a href="#" class="btn btn-success" id="a">
-      <span>Next</span>
+      <span>Pay Now!</span>
     </a>
                   </div>
                   </div>

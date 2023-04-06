@@ -60,7 +60,7 @@ require_once '../classes/academicyear.class.php';
                 <a href="../admin/dashboard-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Dashboard</a>
                 <?php } ?>
                 <!-- <a href="../fees-user/fees-user.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold ">Fees</a> -->
-                <a href="../new-payment/payment.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Payments</a>
+                <a href="../new-payment/search-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold  ">Payments</a>
                 <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>
                 <a href="../students/new-students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Students</a>
                 <a href="../financial-report-user/financial-report-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
@@ -93,7 +93,7 @@ require_once '../classes/academicyear.class.php';
     <div class="col-sm-6 col-12 d-flex align-items-center justify-content-end" style="margin-top: 20px;">
     <div class="mr-3">
       <a href="#addDetailsModal" class="btn btn-success" id="add-csv" data-toggle="modal">
-        <i class="material-icons">&#xE147;</i> <span>Add New Details</span>
+        <i class="material-icons">&#xE147;</i> <span>Add New Schedule</span>
       </a>
     </div>
     <div>
