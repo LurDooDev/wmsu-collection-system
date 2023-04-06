@@ -139,7 +139,7 @@
     <div class="col-sm-12 col-lg-12 mx-auto">
       <div class="table-responsive">
       <table id="all-table" class="table">
-          <thead style="background-color:#95BDFE;" class="text-white">
+          <thead style="background-color:#95BDFE;" class="text-white " >
             <tr>
               <th scope="col" style="color:#000000;"><input type="checkbox" id="checkAll"></th>
               <th scope="col" style="color:#000000;">#</th>
@@ -190,7 +190,7 @@
       <table id="university-table" class="table" style="display:none;">
           <thead style="background-color:#95BDFE;" class="text-white">
             <tr>
-              <th scope="col" style="color:#000000;"><input type="checkbox" id="checkAll"></th>
+              <th scope="col" style="color:#000000;"><input type="checkbox" id="checkAll1"></th>
               <th scope="col" style="color:#000000;">#</th>
               <th scope="col" style="color:#000000;text-align:center;">Name</th>
               <th scope="col" style="color:#000000; text-align:center">Type of Fees</th>
@@ -220,40 +220,38 @@
 
           </tbody>
         </table>
-        <table id="local-table" class="table"  style="display:none;">
-          <thead style="background-color:#95BDFE;" class="text-white">
-            <tr>
-              <th scope="col" style="color:#000000;"><input type="checkbox" id="checkAll"></th>
-              <th scope="col" style="color:#000000;">#</th>
-              <th scope="col" style="color:#000000;text-align:center;">Name</th>
-              <th scope="col" style="color:#000000; text-align:center">Type of Fees</th>
-              <th scope="col" style="color:#000000;text-align:center;">Amount</th>
-              <th scope="col" style="color:#000000;text-align:center;">Paid Amount</th>
-              <th scope="col" style="color:#000000;text-align:center;">Balance</th>
-              <th scope="col" style="color:#000000;text-align:center;">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-
-
-  <tr>
-              <td><input type="checkbox"></td>
-              <td>1</td>
-              <td style="text-align:center;">PSIT</td>
-              <td style="text-align: center" >Local Fees</td>
-              <td style="text-align:center;">150</td>
-              <td style="text-align:center;">0</td>
-              <td style="text-align:center;">150</td>
-              <td style="text-align:center;">
-                <a href="#editFeesModal" class="edit" data-toggle="modal">
-                  <span class="material-symbols-outlined" title="Partial">
-                    order_approve
-                  </span>
-                </a>
-              </td>
-            </tr>
+  <table id="local-table" class="table" style="display:none;">
+  <thead style="background-color:#95BDFE;" class="text-white">
+    <tr>
+      <th scope="col" style="color:#000000;"><input type="checkbox" id="checkAll2"></th>
+      <th scope="col" style="color:#000000;">#</th>
+      <th scope="col" style="color:#000000;text-align:center;">Name</th>
+      <th scope="col" style="color:#000000; text-align:center">Type of Fees</th>
+      <th scope="col" style="color:#000000;text-align:center;">Amount</th>
+      <th scope="col" style="color:#000000;text-align:center;">Paid Amount</th>
+      <th scope="col" style="color:#000000;text-align:center;">Balance</th>
+      <th scope="col" style="color:#000000;text-align:center;">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><input type="checkbox" class="row-checkbox"></td>
+      <td>1</td>
+      <td style="text-align:center;">PSIT</td>
+      <td style="text-align:center;">Local Fees</td>
+      <td style="text-align:center;">150</td>
+      <td style="text-align:center;">0</td>
+      <td style="text-align:center;">150</td>
+      <td style="text-align:center;">
+        <a href="#editFeesModal" class="edit" data-toggle="modal">
+          <span class="material-symbols-outlined" title="Partial">
+            order_approve
+          </span>
+        </a>
+      </td>
+    </tr>
+  </tbody>
 </table>
-
       </div>
                   </div>
       </div>
@@ -329,18 +327,61 @@
 </script>
 
 <script>
-  const checkAll = document.getElementById('checkAll');
-  const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
-  checkAll.addEventListener('click', function() {
-    for (let i = 0; i < checkboxes.length; i++) {
-      checkboxes[i].checked = this.checked;
+function validateCheckboxes() {
+  // Get all checkboxes
+  var checkboxes = $("input[type='checkbox']");
+
+  // Loop through checkboxes and check if at least one is checked
+  var atLeastOneChecked = false;
+  checkboxes.each(function(index) {
+    if (index === 0) {
+      // Skip the header checkbox
+      return true;
+    }
+    if ($(this).is(":checked")) {
+      atLeastOneChecked = true;
+
+      // Show action button for the checked row
+      $(this).closest("tr").find(".edit").show();
+    } else {
+      // Hide action button for the unchecked row
+      $(this).closest("tr").find(".edit").hide();
     }
   });
+
+  // Show/hide action buttons based on checkbox validation
+  if (atLeastOneChecked) {
+    $(".edit-all").show();
+  } else {
+    $(".edit-all").hide();
+  }
+}
+
+$("input[type='checkbox']").click(function() {
+  validateCheckboxes();
+});
+
+$(document).ready(function() {
+  validateCheckboxes();
+  
+  // Add click event handler for header checkbox
+  $("#checkAll").click(function() {
+    var isChecked = $(this).is(":checked");
+    $("input[type='checkbox']").prop("checked", isChecked);
+    validateCheckboxes();
+  });
+  $("#checkAll1").click(function() {
+    var isChecked = $(this).is(":checked");
+    $("input[type='checkbox']").prop("checked", isChecked);
+    validateCheckboxes();
+  });
+  $("#checkAll2").click(function() {
+    var isChecked = $(this).is(":checked");
+    $("input[type='checkbox']").prop("checked", isChecked);
+    validateCheckboxes();
+  });
+});
+
+
+
 </script>
-<script>
-		$(document).ready(function(){
-			$('#checkAll').click(function(){
-				$('input[type="checkbox"]').prop('checked', this.checked);
-			});
-		});
-	</script>
