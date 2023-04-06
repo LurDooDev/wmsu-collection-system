@@ -290,6 +290,13 @@
 			  </div>
 	</div>
 </div>
+<div class = "d-flex">
+<div class ="ml-auto p-auto">
+  <a href="#" class="btn btn-success" id="a">
+      <span>Next</span>
+    </a>
+                  </div>
+                  </div>
 
 
 
