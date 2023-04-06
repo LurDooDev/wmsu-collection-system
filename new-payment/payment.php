@@ -106,13 +106,13 @@
                                Western Mindanao State University
                                <div class="d-flex" style="color:#000000;">
   <div class ="mr-auto p-auto">
-  <a href="#" class="btn btn-success" id="all-btn">
+  <a href="#" class="btn btn-primary" id="all-btn">
       <span>All</span>
     </a>
-    <a href="#" class="btn btn-success" id="university-btn">
+    <a href="#" class="btn btn-primary" id="university-btn">
       <span>University</span>
     </a>
-    <a href="#" class="btn btn-success" id="local-btn">
+    <a href="#" class="btn btn-primary" id="local-btn">
       <span>Local</span>
     </a>
   </div>
