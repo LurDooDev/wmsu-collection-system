@@ -131,4 +131,8 @@
     color: #fff;
     margin-right: 0px;
   }
-  
+  @media (max-width: 1004px) {
+    #add-csv span, #add-student span {
+      font-size: 1rem;
+    }
+  }

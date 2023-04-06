@@ -94,28 +94,17 @@
     <hr class="row brc-default-l1 mx-n1 mb-4" />
     <div class="row">
                     <div class="col-sm-6">
-                        <div class = "text-black-m5" style = "font-size :20px; margin-left:70px;">
+                        <div class = "text-black-m5" style = "font-size :20px;">
                             <h2 class="text-600 text-120 text-black align-middle "></h2>
                             Bryan Christian Sevilla
                         </div>
                         <div class="text-black-m5">
-                            <div class="my-1" style = "font-size:20px; margin-left:70px;">
-                                University Fee Payment
+                            <div class="my-1" style = "font-size:20px;">
+                            Western Mindanao State University
                             </div>
-                            <div class="my-1" style = "font-size:20px; margin-left:70px;">
-                               Western Mindanao State University
+                            <div class="my-1" style = "font-size:20px;">
+                               Pending Fees
                                <div class="d-flex" style="color:#000000;">
-  <div class ="mr-auto p-auto">
-  <a href="#" class="btn btn-primary" id="all-btn">
-      <span>All</span>
-    </a>
-    <a href="#" class="btn btn-primary" id="university-btn">
-      <span>University</span>
-    </a>
-    <a href="#" class="btn btn-primary" id="local-btn">
-      <span>Local</span>
-    </a>
-  </div>
 </div>
                          </div>
                         </div>
@@ -134,6 +123,17 @@
 
                     <!-- /.col -->
                 </div>
+                <div class ="col-sm-12" style="padding-bottom: 10px;">
+  <a href="#" class="btn btn-primary" id="all-btn">
+      <span>All</span>
+    </a>
+    <a href="#" class="btn btn-primary" id="university-btn">
+      <span>University</span>
+    </a>
+    <a href="#" class="btn btn-primary" id="local-btn">
+      <span>Local</span>
+    </a>
+  </div>
                 <div>
                   
     <div class="col-sm-12 col-lg-12 mx-auto">
@@ -295,7 +295,7 @@
     </a>
                   </div>
 <div class ="ml-auto p-auto" style="border-radius: 6px;">
-  <a href="#" class="btn btn-success" id="a">
+  <a href="../new-payment/done.php" class="btn btn-success" id="a">
       <span>Pay Now!</span>
     </a>
                   </div>

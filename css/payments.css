@@ -804,3 +804,26 @@ hr {
       #a{
         border-radius: 1.25rem;
       }
+      @media screen and (max-width: 280px) {
+        #awo {
+            font-size: 20px;
+        }
+        img {
+            width: 97%;
+
+        }
+    }
+    @media screen and (max-width: 500px) {
+    .container {
+        width: 90%;
+        padding-right: var(--bs-gutter-x,.75rem);
+        padding-left: var(--bs-gutter-x,.75rem);
+        margin-right: auto;
+        margin-left: 14px;
+        margin-bottom: 350px;
+        border-radius: 6px;
+        
+    }
+  }
+
+    
