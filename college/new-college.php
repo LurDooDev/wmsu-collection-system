@@ -116,12 +116,12 @@
 				<?php
           $college = new College();
 					$data = $college->show();
+                    $i = 1;
 					
 					
 					foreach($data as $college) {
 						// Convert both values to lowercase and compare them
-						if(strtolower($UserCollege) == strtolower($college['college_name'])){ 
-							$i = 1;
+						// if(strtolower($UserCollege) == strtolower($college['college_name'])){ 
 							?>
 							<tr>
 								<td><?php echo $i; ?></td>
@@ -149,7 +149,7 @@
 							</tr>
 							<?php 
 							$i++;
-						}
+						// }
 					}
 ?>
 </tbody>

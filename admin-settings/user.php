@@ -109,53 +109,6 @@ require_once '../classes/role.class.php';
               </tr>
             </thead>
             <tbody>
-			<?php
-			$users = new Users();
-			$userData = $users->showAllDetails();
-    $i = 1;
-    foreach($userData as $users) {      
-?>
-            <tr>
-			<td><?php echo $i; ?></td>
-                <td><?php echo $users['user_fullname']; ?></td>
-                <td><?php echo $users['college_code']; ?></td>
-				<td><?php echo $users['role_name']; ?></td>
-                <td><?php echo $users['user_position']; ?></td>
-                <td>
-                    <a href="#deleteFeesModal<?php echo $i; ?>" class="delete" data-toggle="modal">
-                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-                    </a>
-                </td>
-            </tr>
-            <!-- Delete Fees Modal -->
-            <div id="deleteFeesModal<?php echo $i; ?>" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <form action="deleteuser.php" method="POST">
-                            <div class="modal-header">						
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Delete Fees</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                </div>
-                            </div>
-                            <div class="modal-body">					
-                                <p>Are you sure you want to delete this record?</p>
-                                <p class="text-warning"><small>This action cannot be undone.</small></p>
-                            </div>
-                            <div class="modal-footer">
-                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                <input type="hidden" name="action" value="delete">
-                                <input type="hidden" name="user_id" value="<?php echo $users['user_id']; ?>">
-                                <input type="submit" class="btn btn-danger" value="Delete">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-<?php 
-            $i++;
-        }
-?>
 				</tbody>
 			</table>
 		</div>

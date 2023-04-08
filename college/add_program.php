@@ -118,9 +118,6 @@
     <h3 style="text-align:left;">College Name: <span><?php echo $CollegeData['college_name']; ?></span></h3>
     <h3 style="text-align: left;">College Code: <span><?php echo $CollegeData['college_code']; ?></span></h3>
     </div>
-    <div class="col-6">
-      <img src="../images/ccs.jpg" style="width: 150px; height:auto; float:right;">
-    </div>
     <!--College-->
   </div>
 

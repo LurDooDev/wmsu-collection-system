@@ -104,32 +104,60 @@ require_once '../classes/role.class.php';
               <tr>
                 <th scope="col" style = " color: #000000;" >ID</th>
                 <th scope="col" style = " color: #000000;" >Name</th>
-				<th scope="col" style = " color: #000000; text-align:center;">College</th></th>
+				<th scope="col" style = " color: #000000; ">College</th></th>
                 <th scope="col" style = " color: #000000;" >Role</th></th>
 				<th scope="col" style = " color: #000000;" >Position</th></th>
-                <th scope="col" style = " color: #000000; text-align:center;" >Start of Term</th></th>
-                <th scope="col" style = " color: #000000; text-align:center;" >End of Term</th></th>
                 <th scope="col" style = " color: #000000;" >Action</th>
               </tr>
             </thead>
             <tbody>
+            <?php
+			$users = new Users();
+			$userData = $users->showAllDetails();
+    $i = 1;
+    foreach($userData as $users) {      
+?>
             <tr>
-			          <td>1</td>
-                <td>Dummy 1</td>
-                <td style="text-align: center;">College Of Computing Studies</td>
-			        	<td>Admin</td>
-                <td>President</td>
-                <td style="text-align: center;">August 06,2022</td>
-                <td style="text-align: center;">August 06,2023</td>
+			<td><?php echo $i; ?></td>
+                <td><?php echo $users['user_fullname']; ?></td>
+                <td><?php echo $users['college_code']; ?></td>
+				<td><?php echo $users['role_name']; ?></td>
+                <td><?php echo $users['user_position']; ?></td>
                 <td>
                 <a href="#editFeesModal" class="edit" data-toggle="modal">
 										<i class="material-symbols-outlined" title="Edit">edit</i>
 									</a>
-                    <a href="#deleteFeesModal" class="delete" data-toggle="modal">
+                    <a href="#deleteFeesModal<?php echo $i; ?>" class="delete" data-toggle="modal">
                         <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                     </a>
                 </td>
             </tr>
+            <!-- Delete Fees Modal -->
+            <div id="deleteFeesModal<?php echo $i; ?>" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="deleteuser.php" method="POST">
+                            <div class="modal-header">						
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Delete Fees</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                            </div>
+                            <div class="modal-body">					
+                                <p>Are you sure you want to delete this record?</p>
+                                <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <input type="hidden" name="action" value="delete">
+                                <input type="hidden" name="user_id" value="<?php echo $users['id']; ?>">
+                                <input type="submit" class="btn btn-danger" value="Delete">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             <!-- Edit Fees Modal -->
             <div id="editFeesModal" class="modal fade">
 	<div class="modal-dialog">
@@ -172,14 +200,6 @@ require_once '../classes/role.class.php';
           <option value="Staff">Assistant</option>
         </select>
       </div>
-      <div class="form-group">
-        <label>Start of Term</label>
-        <input type="date" class="form-control" value="2022-08-06" required>
-      </div>
-      <div class="form-group">
-        <label>End of Term</label>
-        <input type="date" class="form-control" value="2023-08-06" required>
-      </div>
     </div>
   </div>
 </div>
@@ -191,38 +211,12 @@ require_once '../classes/role.class.php';
 		</div>
 	</div>
 </div>
+<?php 
+            $i++;
+        }
+?>
 
 
-            <!-- Delete Fees Modal -->
-            <div id="deleteFeesModal" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <form action="deleteuser.php" method="POST">
-                            <div class="modal-header">						
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Delete User</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                </div>
-                            </div>
-                            <div class="modal-body">					
-                                <p>Are you sure you want to delete this record?</p>
-                                <p class="text-warning"><small>This action cannot be undone.</small></p>
-                            </div>
-                            <div class="modal-footer">
-                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                <input type="hidden" name="action" value="delete">
-                                <input type="submit" class="btn btn-danger" value="Delete">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-				</tbody>
-			</table>
-		</div>
-	</div>        
-</div>
-</div>  
 <!-- Add Modal HTML -->
 <div id="addCollectorModal" class="modal fade">
 	<div class="modal-dialog">
