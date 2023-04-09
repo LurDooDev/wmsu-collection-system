@@ -75,7 +75,7 @@ require_once "../classes/academicyear.class.php";
                 if($_SESSION['role'] == 'admin'){?>
                     <a href="../admin-settings/new-overview.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
                     <?php } ?>
-                    <a href="../university/univfees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
+                    <a href="../university/university.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
                     <a href="../local/localfees.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>
                     <a href="../admin-settings/user-new.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">User Management</a></ul>
                     <!-- <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Colleges</a></ul> -->
@@ -193,6 +193,8 @@ require_once "../classes/academicyear.class.php";
 ?>
     
         </tbody>
+
+        
 
 <!-- Add Details Modal  -->
 <div id="addDetailsModal" class="modal fade">
