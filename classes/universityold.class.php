@@ -2,7 +2,7 @@
 
 require_once 'database.class.php';
 
-class UniversityFeeSched {
+class UniversityFeeScheddaw {
     public $universityFeeID;
     public $semesterID;
     public $academicYearID;

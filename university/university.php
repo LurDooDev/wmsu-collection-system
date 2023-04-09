@@ -13,9 +13,9 @@ if (!isset($_SESSION['logged_id'])) {
     }
 }
 
-require_once '../classes/database.class.php';
+require_once '../classes/semester.class.php';
+require_once '../classes/academicyear.class.php';
 require_once '../classes/universityfees.class.php';
-require_once '../classes/universityfeeSched.class.php';
 
 ?>
 
@@ -109,35 +109,46 @@ require_once '../classes/universityfeeSched.class.php';
             <thead style="background-color:#95BDFE ;" class="text-white">
               <tr>
                 <th scope="col" style = " color: #000000;" >#</th>
-                <th scope="col" style = " color: #000000;" >Name</th>
+                <th scope="col" style = " color: #000000;" >Academic Year</th>
 			        	
-                <th scope="col" style = " color: #000000; text-align:center;" >Amount</th></th>
-				        <th scope="col" style = " color: #000000; text-align:center;" >Semester</th></th>
-                <th scope="col" style = " color: #000000; text-align:center;" >School Year</th></th>
-                <th scope="col" style = " color: #000000; text-align:center;" >Start Date</th></th>
-                <th scope="col" style = " color: #000000; text-align:center;" >End Date</th></th>
+                <th scope="col" style = " color: #000000;" >Name</th></th>
+				        <th scope="col" style = " color: #000000;" >Amount</th></th>
+                <th scope="col" style = " color: #000000;" >Start Date</th></th>
+                <th scope="col" style = " color: #000000;" >End Date</th></th>
+                <th scope="col" style = " color: #000000;" >Created By</th></th>
                 <th scope="col" style = " color: #000000;" >Action</th>
               </tr>
             </thead>
             <tbody>
-            <tr>
-			          <td>1</td>
-                <td>CSC Fee</td>
-               
-			        	<td style="text-align:center;">200</td>
-                <td style="text-align:center;">1st Semester</td>
-                <td style="text-align:center;">2022-2023</td>
-                <td style="text-align: center;">May 06,2022</td>
-                <td style="text-align: center;">May 06,2023</td>
-                <td>
-                <a href="#editFeesModal" class="edit" data-toggle="modal">
-										<i class="material-symbols-outlined" title="Edit">edit</i>
-									</a>
-                    <a href="#deleteFeesModal" class="delete" data-toggle="modal">
-                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-                    </a>
-                </td>
-            </tr>
+            <?php
+// Create an instance of the UniversityFee class
+$Fee = new UniversityFees();
+
+// Get all the fees from the database
+$FeeData = $Fee->showAllDetails();
+
+$i = 1;
+foreach($FeeData as $Fee) {        
+    ?>
+    <tr>
+        <td><?php echo $i; ?></td>
+        <td><?php echo $Fee['academic_name']; ?></td>
+        <td><?php echo $Fee['fee_name']; ?></td>
+        <td>Php <?php echo $Fee['fee_amount']; ?></td>
+        <td><?php echo date('F j, Y', strtotime($Fee['start_date'])); ?></td>
+                <td><?php echo date('F j, Y', strtotime($Fee['end_date'])); ?></td>
+        <td><?php echo $Fee['created_by']; ?></td>
+        <td>
+            <!-- Link to edit the fee -->
+            <a href="add_universityfeeSched.php?id=<?php echo $Fee['id']; ?>" class="edit">
+                <i class="material-icons" title="Edit">&#xe147;</i>
+            </a>
+        </td>
+    </tr>
+    <?php 
+    $i++;
+}
+?>
             <!-- Edit Fees Modal -->
 			<div id="editFeesModal" class="modal fade">
 	<div class="modal-dialog modal-lg">
@@ -232,12 +243,14 @@ require_once '../classes/universityfeeSched.class.php';
 		</div>
 	</div>        
 </div>
-</div>  
+</div> 
+
+
 <!-- Add Modal HTML -->
 <div id="addCollectorModal" class="modal fade">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<form action="adduser.php" method="POST">
+			<form action="adduniversityfees.php" method="POST">
 				<div class="modal-header">						
 					<h4 class="modal-title">Add Fees</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -247,25 +260,9 @@ require_once '../classes/universityfeeSched.class.php';
 						<div class="col-sm-6">
 							<h5>Fee Details</h5>
 							<div class="form-group">
-								<label for="feeName">Name</label>
-								<input type="text" name="feeName" id="feeName" class="form-control" required>
+								<label for="name">Name</label>
+								<input type="text" name="name" id="name" class="form-control" required>
 							</div>
-							
-              <div class="form-group">
-    <label for="paymentType" class="form-label">Payment Type</label>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="paymentType" id="cashPayment" value="cash" >
-        <label class="form-check-label" for="cashPayment">
-            Required
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="paymentType" id="noPayment" value="">
-        <label class="form-check-label" for="noPayment">
-            Not required
-        </label>
-    </div>
-</div>
 							<div class="form-group">
 								<label for="amount" class="form-label">Amount</label>
 								<div class="input-group">
@@ -276,22 +273,31 @@ require_once '../classes/universityfeeSched.class.php';
 						<div class="col-sm-6">
 							<h5>Fee Scheduling</h5>
 							<div class="form-group">
-								<label for="semester">Semester</label>
-								<select name="semester" id="semester" class="form-control" required>
-									<option value="" disabled selected>Select your option</option>
-									<option value="1st Semester">1st Semester</option>
-									<option value="2nd Semester">2nd Semester</option>
-									<option value="Summer">Summer</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="schoolyear">School Year</label>
-								<select name="schoolyear" id="schoolyear" class="form-control" required>
-									<option value="" disabled selected>Select your option</option>
-									<option value="2022-2023">2022-2023</option>
-									<option value="2023-2024">2023-204</option>
-								</select>
-							</div>
+		  <label for="academicYearID" class="form-label">Academic Year</label>
+            <select class="form-control" id="academicYearID" name="academicYearID" required>
+              <option value="">Select your option</option>
+			  <?php
+			  $AcademicYear = new AcademicYear();
+			  $AcademicYearData = $AcademicYear->show();
+            	 foreach ($AcademicYearData as $AcademicYear) {
+                 ?>
+                <option value="<?php echo $AcademicYear['id']; ?>"><?php echo $AcademicYear['academic_name']; ?></option>
+              <?php } ?>
+            </select>
+          </div>
+          <div class="form-group">
+		  <label for="semesterID" class="form-label">Semester</label>
+            <select class="form-control" id="semesterID" name="semesterID" required>
+              <option value="">Select your option</option>
+			  <?php
+			  $semester = new Semester();
+			  $semesterData = $semester->show();
+            	 foreach ($semesterData as $semester) {
+                 ?>
+                <option value="<?php echo $semester['id']; ?>"><?php echo $semester['semester_name']; ?></option>
+              <?php } ?>
+            </select>
+          </div>
 							<div class="form-group">
 								<label>Start Date</label>
 								<input type="date" name="startdate" class="form-control" required>
@@ -305,8 +311,9 @@ require_once '../classes/universityfeeSched.class.php';
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="hidden" name="action" value="add">
-					<input type="submit" class="btn btn-success" value="Add">
+					<input type="hidden" name="action" value="Save">
+          <input type="hidden" name="created_by" value="<?php echo $UserFullname; ?>">
+					<input type="submit" class="btn btn-success" value="Save">
 				</div>
 			</form>
 		</div>
