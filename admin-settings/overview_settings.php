@@ -36,11 +36,13 @@ require_once "../classes/academicyear.class.php";
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/dashboard.css" />
-    <link rel="stylesheet" href="../css/admin-settings.css" />
+    <link rel="stylesheet" href="../css/new-univ.css" />
+	<link rel="icon" type="image/jpg" href="../images/usc.png"/>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -71,10 +73,10 @@ require_once "../classes/academicyear.class.php";
                 <div class="">
                 <?php
                 if($_SESSION['role'] == 'admin'){?>
-                    <a href="../admin-settings/overview_settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
+                    <a href="../admin-settings/new-overview.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
                     <?php } ?>
-                    <a href="../university/new-univ.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
-                    <a href="../local/new-local.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>
+                    <a href="../university/univfees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
+                    <a href="../local/localfees.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>
                     <a href="../admin-settings/user-new.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">User Management</a></ul>
                     <!-- <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Colleges</a></ul> -->
                 </div>
@@ -91,257 +93,159 @@ require_once "../classes/academicyear.class.php";
         </div>
     </nav>
     <div class="container">
-    <div class="d-flex">
-                <div class=" ml-auto pl-auto" style="padding-top: 20px; margin-right:-20px;">
-                <a href="#addSemesterModal" class="btn btn-success"  style= "margin-right:-100px;" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Semester</span></a>
-</div>
-<div class="d-flex" style="margin-left:30px">
-                <div class=" mr-auto pr-auto ml-4"  style="padding-top: 20px;">
-						<a href="#addYearModal" class="btn btn-success" style= "margin-left:100px;" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add School Year</span></a>
-					</div>
-</div>
-</div>
-
-<h style="font-size: 20px;"><b>Semester</b></h>
+    <div class="row d-flex justify-content-end">
+    <div class="col-sm-6 col-12 d-flex align-items-center justify-content-end" style="margin-top: 20px;">
+    <div class="mr-3">
+      <a href="#addDetailsModal" class="btn btn-success" id="add-csv" data-toggle="modal">
+        <i class="material-icons">&#xE147;</i> <span>Add New Schedule</span>
+      </a>
+    </div>
+    <div>
+      <a class="btn btn-danger" id="add-student" style="color: white;">
+        <i class="material-symbols-outlined">restart_alt</i> <span>Reset</span>
+      </a>
+    </div>
+  </div>
+  </div>
+<h style="font-size: 20px; padding-bottom: 10px;"><b>School Year and Semester</b></h>
           <div class =" table-responsive">
                 <table class="table">
             <thead style="background-color:#95BDFE ;" class="text-white">
               <tr>
                 <th scope="col" style = " color: #000000;" >#</th>
-                <th scope="col" style = " color: #000000;" >Semester</th>
-                <th scope="col" style = " color: #000000;" >Duration</th></th>
-                <th scope="col" style = " color: #000000;" >Status</th>
-                <th scope="col" style = " color: #000000;" >Action</th>
-              </tr>
-            </thead>
-            <tbody>
-            <?php
-                    $Semester = new Semester();
-					$data = $Semester->show();
-					$i = 1;
-					
-					foreach($data as $Semester) {
-						// Convert both values to lowercase and compare them
-							?>
-              <tr>
-              <td><?php echo $i; ?></td>
-								<td><?php echo $Semester['semester_name']; ?></td>
-								<td><?php echo $Semester['semester_duration']; ?> months</td>
-                <td><?php echo ($Semester['is_active'] == 1) ? "Active" : "Not Active"; ?></td>
-                <td>
-                    <a href="#updateSemesterModal<?php echo $i; ?>" class="edit" data-toggle="modal">
-                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-                </a>
-</td>
-
-<!--Update-->
-<div id="updateSemesterModal<?php echo $i; ?>" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form action="updatesemester.php" method="POST">
-                    <div class="modal-header">
-                    <h4 class="modal-title"><?php echo $Semester['semester_name']; ?> Settings</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                    <div class="form-group">
-        <label>Semester Name</label>
-        <input type="text" class="form-control" name="name" value="<?php echo $Semester['semester_name']; ?>">
-    </div>
-    <div class="form-group">
-        <label>Semester Name</label>
-        <input type="number" class="form-control" name="duration" value="<?php echo $Semester['semester_duration']; ?>">
-    </div>
-    <div class="form-group">
-        <label>Status</label>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="status" id="activeRadio<?php echo $i; ?>" value="1"<?php if($Semester['is_active'] == 1) { echo ' checked'; } ?>>
-            <label class="form-check-label" for="activeRadio<?php echo $i; ?>">
-                Active
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="status" id="inactiveRadio<?php echo $i; ?>" value="0"<?php if($Semester['is_active'] == 0) { echo ' checked'; } ?>>
-            <label class="form-check-label" for="inactiveRadio<?php echo $i; ?>">
-                Inactive
-            </label>
-        </div>
-    </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="hidden" name="action" value="update">
-                        <input type="hidden" name="id" value="<?php echo $Semester['id']; ?>">
-                        <input type="submit" class="btn btn-info" value="Update">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-              </tr>
-              <?php 
-							$i++;
-						}
-?>
-    
-        </tbody>
-          </table>
-</div>
-
-
-
-<!--School Year-->
-
-<h style="font-size: 20px;"><b>Academic Year</b></h>
-          <div class =" table-responsive">
-                <table class="table">
-            <thead style="background-color:#95BDFE ;" class="text-white">
-              <tr>
-                <th scope="col" style = " color: #000000;" >#</th>
-                <th scope="col" style = " color: #000000;" >Academic Year</th>
-                <th scope="col" style = " color: #000000;" >Start Date</th></th>
+                <th scope="col" style = " color: #000000;text-align:center" >School Year</th>
+                <th scope="col" style = " color: #000000;" >Start Date</th>
                 <th scope="col" style = " color: #000000;" >End Date</th>
-                <th scope="col" style = " color: #000000;" >Status</th>
-                <th scope="col" style = " color: #000000;" >Action</th>
+                <th scope="col" style = " color: #000000; text-align:center;" >Semester</th></th>
+                <th scope="col" style = " color: #000000; text-align:center;" >Duration of Semester</th>
+                <th scope="col" style = " color: #000000; text-align:center;" >Action</th>
               </tr>
             </thead>
             <tbody>
-            <?php
-                    $AcademicYear = new AcademicYear();
-					$data = $AcademicYear->show();
-					$i = 1;
-					
-					foreach($data as $AcademicYear) {
-						// Convert both values to lowercase and compare them
-							?>
               <tr>
-              <td><?php echo $i; ?></td>
-								<td><?php echo $AcademicYear['academic_name']; ?></td>
-								<td><?php echo date('F j, Y', strtotime($AcademicYear['academic_start_date'])); ?></td>
-                <td><?php echo date('F j, Y', strtotime($AcademicYear['academic_end_date'])); ?></td>
-                <td><?php echo ($AcademicYear['is_active'] == 1) ? "Active" : "Not Active"; ?></td>
-                <td>
-                    <a href="#updateYearModal<?php echo $i; ?>" class="edit" data-toggle="modal">
+              <td>1</td>
+              <td style="text-align:center">2022-2023</td>
+              <td>June 01,2022</td>
+              <td >June 01,2023</td>
+		      <td style="text-align: center;"> 1st Semester</td>
+              <td style="text-align: center;">4 months</td>
+                <td style="text-align: center;">
+                    <a href="#editDetailsModal" class="edit" data-toggle="modal">
                 <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                 </a>
 </td>
+<tr>
 
-<!--Update-->
-<div id="updateYearModal<?php echo $i; ?>" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form action="updateacademicyear.php" method="POST">
-                    <div class="modal-header">
-                        <h4 class="modal-title"><?php echo $AcademicYear['academic_name']; ?> Year Settings</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">
-    <div class="form-group">
-        <label> Start Date</label>
-        <input type="date" class="form-control" name="startdate" value="<?php echo $AcademicYear['academic_start_date']; ?>">
-    </div>
-
-
-    <div class="form-group">
-        <label>End Date</label>
-        <input type="date" class="form-control" name="enddate" value="<?php echo $AcademicYear['academic_end_date']; ?>">
-    </div>
-    <div class="form-group">
-        <label>Status</label>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="status" id="activeRadio<?php echo $i; ?>" value="1"<?php if($AcademicYear['is_active'] == 1) { echo ' checked'; } ?>>
-            <label class="form-check-label" for="activeRadio<?php echo $i; ?>">
-                Active
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="status" id="inactiveRadio<?php echo $i; ?>" value="0"<?php if($AcademicYear['is_active'] == 0) { echo ' checked'; } ?>>
-            <label class="form-check-label" for="inactiveRadio<?php echo $i; ?>">
-                Inactive
-            </label>
-        </div>
-    </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="hidden" name="action" value="update">
-                        <input type="hidden" name="id" value="<?php echo $AcademicYear['id']; ?>">
-                        <input type="submit" class="btn btn-info" value="Update">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-              </tr>
-              <?php 
-							$i++;
-						}
-?>
-    
-        </tbody>
-          </table>
-</div>
-
-
-
-</div>
-<!--Semester add here  -->
-
-<div id="addSemesterModal" class="modal fade">
-	<div class="modal-dialog">
+<!-- Add Details Modal  -->
+<div id="addDetailsModal" class="modal fade">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<form action="addsemester.php" method="POST">
+			<form action="adduser.php" method="POST">
 				<div class="modal-header">						
-					<h4 class="modal-title">Add Semester</h4>
+					<h4 class="modal-title">Add New Details</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div class="modal-body">					
-					<div class="form-group">
-						<label>Semester Name</label>
-						<input type="text" name="name" class="form-control" required>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-6">
+                            <div class="form-group">
+								<label for="schoolyear">School Year</label>
+								<select name="schoolyear" id="schoolyear" class="form-control" required>
+									<option value="" selected>Select Options</option>
+									<option value="2022-2023">2022-2023</option>
+									<option value="2023-2024">2023-2024</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Start Date</label>
+								<input type="date" name="startdate" class="form-control"required>
+							</div>
+							<div class="form-group">
+								<label>End Date</label>
+								<input type="date" name="enddate" class="form-control" required>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="semester">Semester</label>
+								<select name="semester" id="semester" class="form-control" required>
+									<option value="" selected>Select Options</option>
+									<option value="1st Semester">1st Semester</option>
+									<option value="2nd Semester">2nd Semester</option>
+									<option value="Summer">Summer</option>
+								</select>
+							</div>
+                            <div class="form-group">
+								<label for="amount" class="form-label" >Duration Of Semester</label>
+								<div class="input-group">
+									<input type="number" class="form-control" id="amount" name="amount" min="0" step="1"required>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="form-group">
-						<label>Duration</label>
-						<input type="number" name="duration" class="form-control" required>
-					</div>	
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-          <input type="hidden" name="action" value="add">
-					<input type="submit" class="btn btn-info" value="Save">
+					<input type="hidden" name="action" value="add">
+					<input type="submit" class="btn btn-success" value="Save">
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
 
-<!--Year add here  -->
-<div id="addYearModal" class="modal fade">
-	<div class="modal-dialog">
+<!-- Edit Details Modal -->
+<div id="editDetailsModal" class="modal fade">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<form action="addacademicyear.php" method="POST">
+			<form action="adduser.php" method="POST">
 				<div class="modal-header">						
-					<h4 class="modal-title">add Academic Year</h4>
+					<h4 class="modal-title">Add New Details</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div class="modal-body">					
-					<div class="form-group">
-						<label>Academic Year</label>
-						<input type="text" name="name" class="form-control" required>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-6">
+                            <div class="form-group">
+								<label for="schoolyear">School Year</label>
+								<select name="schoolyear" id="schoolyear" class="form-control" required>
+									<option value="" selected>2022-2023</option>
+									<option value="2022-2023">2022-2023</option>
+									<option value="2023-2024">2023-2024</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Start Date</label>
+								<input type="date" name="startdate" class="form-control" value="2022-06-01" required>
+							</div>
+							<div class="form-group">
+								<label>End Date</label>
+								<input type="date" name="enddate" class="form-control" value="2023-06-01" required>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="semester">Semester</label>
+								<select name="semester" id="semester" class="form-control" required>
+									<option value="" selected>1st Semester</option>
+									<option value="1st Semester">1st Semester</option>
+									<option value="2nd Semester">2nd Semester</option>
+									<option value="Summer">Summer</option>
+								</select>
+							</div>
+                            <div class="form-group">
+								<label for="amount" class="form-label" >Duration Of Semester</label>
+								<div class="input-group">
+									<input type="number" class="form-control" id="amount" name="amount" min="0" step="1" placeholder="4" required>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="form-group">
-						<label>academic start at</label>
-						<input type="date" name="startdate" class="form-control" required>
-					</div>
-          <div class="form-group">
-						<label>academic end at</label>
-						<input type="date" name="enddate" class="form-control" required>
-					</div>	
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-          <input type="hidden" name="action" value="add">
-					<input type="submit" class="btn btn-info" value="Save">
+					<input type="hidden" name="action" value="add">
+					<input type="submit" class="btn btn-success" value="Save">
 				</div>
 			</form>
 		</div>

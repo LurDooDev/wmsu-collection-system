@@ -54,7 +54,7 @@ require_once '../classes/universityfeeSched.class.php';
                 <a href="../admin/dashboard-main.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Dashboard</a>
                 <!-- <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Fees</a> -->
                 <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Remit Records</a>
-                <a href="../college/new-college.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Colleges</a>
+                <a href="../college/college.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Colleges</a>
                 <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Funds</a>
                 <i class="fa fa-caret-down" style="margin-left: 115px;"></i>
                 </button>                
@@ -68,9 +68,9 @@ require_once '../classes/universityfeeSched.class.php';
                 <i class="fa fa-caret-down" style="margin-left: 37px;"></i>
                 </button>
                 <div class="dropdown-container">
-                   <a href="../admin-settings/new-overview.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
-                    <a href="../university/new-univ.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
-                    <a href="../local/new-local.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold active"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>
+                <a href="../admin-settings/overview_settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
+                    <a href="../university/univfees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
+                    <a href="../local/localfees.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>
                     <?php
                     if($_SESSION['role'] == 'admin'){?>
                     <a href="../admin-settings/user-new.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">User Management</a></ul>
@@ -85,7 +85,7 @@ require_once '../classes/universityfeeSched.class.php';
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Local Fee</h2>
+            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">University Fee</h2>
         </div>
     </nav>
     <div class="container">
@@ -109,7 +109,8 @@ require_once '../classes/universityfeeSched.class.php';
             <thead style="background-color:#95BDFE ;" class="text-white">
               <tr>
                 <th scope="col" style = " color: #000000;" >#</th>
-                <th scope="col" style = " color: #000000;" >Name</th>	
+                <th scope="col" style = " color: #000000;" >Name</th>
+			        	
                 <th scope="col" style = " color: #000000; text-align:center;" >Amount</th></th>
 				        <th scope="col" style = " color: #000000; text-align:center;" >Semester</th></th>
                 <th scope="col" style = " color: #000000; text-align:center;" >School Year</th></th>
@@ -121,7 +122,7 @@ require_once '../classes/universityfeeSched.class.php';
             <tbody>
             <tr>
 			          <td>1</td>
-                <td>Palaro Fee</td>
+                <td>CSC Fee</td>
                
 			        	<td style="text-align:center;">200</td>
                 <td style="text-align:center;">1st Semester</td>
@@ -138,7 +139,7 @@ require_once '../classes/universityfeeSched.class.php';
                 </td>
             </tr>
             <!-- Edit Fees Modal -->
-            <div id="editFeesModal" class="modal fade">
+			<div id="editFeesModal" class="modal fade">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<form action="adduser.php" method="POST">
@@ -201,8 +202,7 @@ require_once '../classes/universityfeeSched.class.php';
 		</div>
 	</div>
 </div>
-
-
+					
             <!-- Delete Fees Modal -->
             <div id="deleteFeesModal" class="modal fade">
                 <div class="modal-dialog">

@@ -1,25 +1,24 @@
 <?php
-
-    // resume session here to fetch session values
-    session_start();
-    require_once '../functions/session.function.php';
-    
-    if (!isset($_SESSION['logged_id'])) {
-        header('location: ../public/logout.php');
-    } else if ($_SESSION['role'] != 'admin') {
-        if ($_SESSION['role'] == 'officer') {
-            header('location: officer.php');
-        } else if ($_SESSION['role'] == 'collector') {
-            header('location: collector.php');
-        }
+  // resume session here to fetch session values
+  session_start();
+  require_once '../functions/session.function.php';
+  
+if (!isset($_SESSION['logged_id'])) {
+    header('location: ../university/new-univ.php');
+} else if ($_SESSION['role'] != 'admin') {
+    if ($_SESSION['role'] == 'officer') {
+        header('location: officer.php');
+    } else if ($_SESSION['role'] == 'collector') {
+        header('location: collector.php');
     }
-	require_once '../classes/database.class.php';
-	require_once '../classes/localfees.class.php';
-    require_once '../classes/localfeeSched.class.php';
+}
 
-
+require_once '../classes/database.class.php';
+require_once '../classes/universityfees.class.php';
+require_once '../classes/universityfeeSched.class.php';
 
 ?>
+
 <!doctype html>
 <html lang="en" class="no-js">
   <html>
@@ -28,21 +27,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!--- links for bootstrap and css  --->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Unicons CSS -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/fees.css" />
-    <link rel="stylesheet" href="../css/dashboard.css"/>
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/new-univ.css" />
+	<link rel="icon" type="image/jpg" href="../images/usc.png"/>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
-    <title>Local Fees</title>
+    <title>Wmsu Collection System</title>
     </head>
-
       <body>
       <div class="d-flex" id="wrapper">
         <!-- Sidebar with bootstrap -->
@@ -65,135 +67,255 @@
                 <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Admin Settings</a>
                 <i class="fa fa-caret-down" style="margin-left: 37px;"></i>
                 </button>
-                <div class="">
-                    <a href="../admin-settings/overview_settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
-                    <a href="../university/university.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
+                <div class="dropdown-container">
+                <a href="../admin-settings/overview_settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
+                    <a href="../university/univfees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
                     <a href="../local/localfees.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold active"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>
-                    <a href="../admin-settings/user-new.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">User Management</a></ul>
+                    <?php
+                    if($_SESSION['role'] == 'admin'){?>
+                    <a href="../admin-settings/user-new.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">User Management</a></ul>
+                    <?php } ?>
                     <!-- <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Colleges</a></ul> -->
                 </div>
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover fw-bold">Logout</a>
 </div>
         </div>
-		<div class="table-responsive">
 	<div id="page-content-wrapper">
 <!-- Dashboard hamburger      -->
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
         <div class="d-flex align-items-center">
             <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0">Local Fees</h2>
+            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Local Fee</h2>
         </div>
     </nav>
-		<div class="table-wrapper">
-		<div class="table-title">
-				<div class="row">
-					<div class="col-sm-4 pr-auto">
-					<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
-					<button class="btn btn-primary dropdown-toggle" id ="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By </button>
+    <div class="container">
+                <div class="row" style="padding-top:  21px;">
+				<div class="col-sm-4" style="border-color: #000000;">
+        			<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
+       			 </div>
+        <div class="col-sm-4">
+        <button class="btn btn-primary dropdown-toggle" id ="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By </button>
 						<div class="dropdown-menu">
     					<a class="dropdown-item" href="#">Ascending</a>
     					<a class="dropdown-item" href="#">Descending</a>
-					</div>
-					</div>
-          <div class="col-sm-8 p-auto mr-auto">
-						<a href="localSchedule.php" class="btn btn-success" style = " padding: 13px; margin-top: 19px; border-radius:6px;"> <span>View Fee Schedules</span></a>
-						<div class="col-sm-10 p-auto mb-auto">
-						<a href="#addFeesModal" class="btn btn-success" id = "add-fees" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a>
-						<!-- <a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>		
-									 -->
-					</div>
-						<!-- <a href="#deleteFeesModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						 -->
+					  </div>
+          </div>
+					<div class="col-sm-4 " style="display: flex; align-items: center; justify-content: flex-end;">
+						<a href="#addCollectorModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a>
 					</div>
 				</div>
-			</div>
-			<div class="table-title">
-				<div class="row">
-					<div class="col-sm-3">
+             <div class =" table-responsive" style="margin-top: 10px;">
+                <table class="table">
+            <thead style="background-color:#95BDFE ;" class="text-white">
+              <tr>
+                <th scope="col" style = " color: #000000;" >#</th>
+                <th scope="col" style = " color: #000000;" >Name</th>	
+                <th scope="col" style = " color: #000000; text-align:center;" >Amount</th></th>
+				        <th scope="col" style = " color: #000000; text-align:center;" >Semester</th></th>
+                <th scope="col" style = " color: #000000; text-align:center;" >School Year</th></th>
+                <th scope="col" style = " color: #000000; text-align:center;" >Start Date</th></th>
+                <th scope="col" style = " color: #000000; text-align:center;" >End Date</th></th>
+                <th scope="col" style = " color: #000000;" >Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+			          <td>1</td>
+                <td>Palaro Fee</td>
+               
+			        	<td style="text-align:center;">200</td>
+                <td style="text-align:center;">1st Semester</td>
+                <td style="text-align:center;">2022-2023</td>
+                <td style="text-align: center;">May 06,2022</td>
+                <td style="text-align: center;">May 06,2023</td>
+                <td>
+                <a href="#editFeesModal" class="edit" data-toggle="modal">
+										<i class="material-symbols-outlined" title="Edit">edit</i>
+									</a>
+                    <a href="#deleteFeesModal" class="delete" data-toggle="modal">
+                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                    </a>
+                </td>
+            </tr>
+            <!-- Edit Fees Modal -->
+            <div id="editFeesModal" class="modal fade">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<form action="adduser.php" method="POST">
+				<div class="modal-header">						
+					<h4 class="modal-title">Add Fees</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<h5>Fee Details</h5>
+							<div class="form-group">
+								<label for="feeName">Name</label>
+								<input type="text" name="feeName" id="feeName" class="form-control" placeholder="CSC Fee" required>
+							</div>
+							
+							<div class="form-group">
+								<label for="amount" class="form-label" >Amount</label>
+								<div class="input-group">
+									<input type="number" class="form-control" id="amount" name="amount" min="0" step="1" placeholder="200" required>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<h5>Fee Scheduling</h5>
+							<div class="form-group">
+								<label for="semester">Semester</label>
+								<select name="semester" id="semester" class="form-control" required>
+									<option value="" selected>1st Semester</option>
+									<option value="1st Semester">1st Semester</option>
+									<option value="2nd Semester">2nd Semester</option>
+									<option value="Summer">Summer</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="schoolyear">School Year</label>
+								<select name="schoolyear" id="schoolyear" class="form-control" required>
+									<option value="" selected>2022-2023</option>
+									<option value="2022-2023">2022-2023</option>
+									<option value="2023-2024">2023-204</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Start Date</label>
+								<input type="date" name="startdate" class="form-control" value="2022-05-06" required>
+							</div>
+							<div class="form-group">
+								<label>End Date</label>
+								<input type="date" name="enddate" class="form-control" value="2022-05-06" required>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<table class="table table-striped table-hover">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Name</th>
-						<th>Category</th>
-                        <th>College</th>
-                        <th>Created By</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-            <?php
-// Create an instance of the UniversityFee class
-$LocalFee = new LocalFee();
-
-// Get all the fees from the database
-$LocalFeeData = $LocalFee->showAllDetails();
-
-$i = 1;
-foreach($LocalFeeData as $LocalFee) {        
-    ?>
-    <tr>
-        <td><?php echo $i; ?></td>
-        <td><?php echo $LocalFee['local_name']; ?></td>
-        <td><?php echo $LocalFee['local_fee_type']; ?></td>
-        <td><?php echo $LocalFee['college_name']; ?></td>
-        <td><?php echo $LocalFee['created_by']; ?></td>
-        <td>
-            <!-- Link to edit the fee -->
-            <a href="add_localschedule.php?id=<?php echo $LocalFee['id']; ?>" class="edit">
-                <i class="material-icons" title="Edit">&#xe147;</i>
-            </a>
-            <?php 
-            // Check if there are any fee schedules associated with this fee
-            $Schedule = new LocalFeeSched();
-            $schedules = $Schedule->get($LocalFee['id']);
-            if ($schedules) {
-                // If there are fee schedules, display a link to view them
-                ?>
-                <a href="view_localschedule.php?fee_id=<?php echo $LocalFee['id']; ?>" class="view-schedules">
-                    <i class="material-icons" title="View Schedules">event_note</i>
-                </a>
-                <?php
-            }
-            ?>
-        </td>
-    </tr>
-    <?php 
-    $i++;
-}
-?>
-</tbody>
-</table>
-<!-- Create Fee Modal HTML -->
-<div id="addFeesModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form action="addlocal.php" method="POST" id="addlocalfees">
-                <div class="modal-header">
-                    <h4 class="modal-title">Create Local Fees</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" name="name" id="name" class="form-control" required>
-                    </div>
-                    <input type="hidden" name="collegeID" value="<?php echo $UserCollegeID; ?>">
-                    <input type="hidden" name="created_by" value="<?php echo $UserFullname; ?>">
-                </div>
-                <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="hidden" name="action" value="Add">
-                    <input type="submit" class="btn btn-success" value="Create">
-                </div>
-            </form>
-        </div>
-    </div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="hidden" name="action" value="add">
+					<input type="submit" class="btn btn-success" value="Save">
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
 
+
+            <!-- Delete Fees Modal -->
+            <div id="deleteFeesModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="deleteuser.php" method="POST">
+                            <div class="modal-header">						
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Delete User</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                            </div>
+                            <div class="modal-body">					
+                                <p>Are you sure you want to delete this record?</p>
+                                <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <input type="hidden" name="action" value="delete">
+                                <input type="submit" class="btn btn-danger" value="Delete">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+				</tbody>
+			</table>
+		</div>
+	</div>        
+</div>
+</div>  
+<!-- Add Modal HTML -->
+<div id="addCollectorModal" class="modal fade">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<form action="adduser.php" method="POST">
+				<div class="modal-header">						
+					<h4 class="modal-title">Add Fees</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<h5>Fee Details</h5>
+							<div class="form-group">
+								<label for="feeName">Name</label>
+								<input type="text" name="feeName" id="feeName" class="form-control" required>
+							</div>
+							
+              <div class="form-group">
+    <label for="paymentType" class="form-label">Payment Type</label>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="paymentType" id="cashPayment" value="cash" >
+        <label class="form-check-label" for="cashPayment">
+            Required
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="paymentType" id="noPayment" value="">
+        <label class="form-check-label" for="noPayment">
+            Not required
+        </label>
+    </div>
+</div>
+							<div class="form-group">
+								<label for="amount" class="form-label">Amount</label>
+								<div class="input-group">
+									<input type="number" class="form-control" id="amount" name="amount" min="0" step="1" required>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<h5>Fee Scheduling</h5>
+							<div class="form-group">
+								<label for="semester">Semester</label>
+								<select name="semester" id="semester" class="form-control" required>
+									<option value="" disabled selected>Select your option</option>
+									<option value="1st Semester">1st Semester</option>
+									<option value="2nd Semester">2nd Semester</option>
+									<option value="Summer">Summer</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="schoolyear">School Year</label>
+								<select name="schoolyear" id="schoolyear" class="form-control" required>
+									<option value="" disabled selected>Select your option</option>
+									<option value="2022-2023">2022-2023</option>
+									<option value="2023-2024">2023-204</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Start Date</label>
+								<input type="date" name="startdate" class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label>End Date</label>
+								<input type="date" name="enddate" class="form-control" required>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="hidden" name="action" value="add">
+					<input type="submit" class="btn btn-success" value="Add">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
 </body>       
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
             <script>
                 var el = document.getElementById("wrapper");
@@ -202,10 +324,12 @@ foreach($LocalFeeData as $LocalFee) {
                 toggleButton.onclick = function () {
                     el.classList.toggle("toggled");
                 };
-</script>
+            </script>
+
 <script>
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
 var dropdown = document.getElementsByClassName("dropdown-btn");
+var listgroup = document.getElementsByClassName("list-group-item")
 var i;
 
 for (i = 0; i < dropdown.length; i++) {
