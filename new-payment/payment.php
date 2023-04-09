@@ -255,6 +255,9 @@
       </div>
                   </div>
       </div>
+      <div class="text-105 col-sm-10 d-sm-flex justify-content-end">       
+         <h5>Total Amount:</h5>
+      </div>
 
  <!-- Edit Fees Modal -->
  <div id="editFeesModal" class="modal fade">
@@ -279,7 +282,6 @@
                         </div>
                     </div>
                 </div>
-
 <div class="modal-footer">
   <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"> 
   <input type="submit" class="btn btn-success" value="Submit">
