@@ -27,6 +27,7 @@ if (!isset($_SESSION['logged_id'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="../css/payments.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
     <link rel="icon" type="image/jpg" href="../images/usc.png"/>
@@ -74,24 +75,58 @@ if (!isset($_SESSION['logged_id'])) {
         </div>
     </nav>
     <div class="container">
-      <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="text-center">
-            <h2 id="awo" style="color: black; font-weight: 300; font-size: 30px;padding-top:50px; margin-left: -6px;"> PAYMENT COMPLETED SUCCESSFULLY! </h2>
-            <img src="../images/doggie.jpg" class="img-fluid" alt="Doggier" style="width: 90%;"> 
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div id="receipt" style="padding-top: 30px;">
+          <h3 class="text-center">Payment Successful</h3>
+          <hr>
+          <div class="row">
+          <div class="col-sm-6">
+          <h5 class="text-left" style="padding-top: 10px">Receipt #: 111-111</h5>
           </div>
+          <div class="col-sm-6">
+          <h5 class="text-right"><span class="material-symbols-outlined" style="font-size: 40px;">download</span></h5>
+          </div>
+          </div>
+          <div class="d-flex justify-content-between mb-2" style="padding-top: 20px;">
+            <span>Type Of Fee:</span>
+            <span>University Fee</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span>Name Of Fee</span>
+            <span>CSB Fee</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span>Transaction Date:</span>
+            <span>April 9, 2023</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span>Payment Method</span>
+            <span>Cash</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span>Amount:</span>
+            <span>₱ 200.00</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span>Total Amount Paid:</span>
+            <span>₱ 200.00</span>
+          </div>
+          <hr>
         </div>
-        <div class="col-12 mt-2">
-          <div class="text-center" style="border-radius: 6px; font-size: 2.5rem">
-            <a href="../new-payment/search-user.php" class="btn btn-success" id="a">
-              <span>New Payment</span>
-            </a>
-          </div>
+      </div>
+      <div class="col-12 mt-2">
+        <div class="text-center" style="border-radius: 6px; font-size: 2.5rem">
+          <a href="../new-payment/search-user.php" class="btn btn-success" id="a">
+            <span>New Payment</span>
+          </a>
         </div>
       </div>
     </div>
+  </div>
 </div>
+
 <script>
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
 var dropdown = document.getElementsByClassName("dropdown-btn");
