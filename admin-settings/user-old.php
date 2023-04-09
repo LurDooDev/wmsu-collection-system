@@ -34,12 +34,10 @@ require_once '../classes/role.class.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/dashboard.css" />
-    <link rel="stylesheet" href="../css/new-user.css" />
-    <link rel="icon" type="image/jpg" href="../images/usc.png"/>
+    <link rel="stylesheet" href="../css/admin-settings.css" />
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -55,7 +53,7 @@ require_once '../classes/role.class.php';
                 <a href="../admin/dashboard-main.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Dashboard</a>
                 <!-- <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Fees</a> -->
                 <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Remit Records</a>
-                <a href="../college/new-college.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Colleges</a>
+                <a href="../college/college.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Colleges</a>
                 <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Funds</a>
                 <i class="fa fa-caret-down" style="margin-left: 115px;"></i>
                 </button>                
@@ -69,12 +67,12 @@ require_once '../classes/role.class.php';
                 <i class="fa fa-caret-down" style="margin-left: 37px;"></i>
                 </button>
                 <div class="dropdown-container">
-                <a href="../admin-settings/new-overview.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
-                    <a href="../university/new-univ.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
-                    <a href="../local/new-local.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>
+                    <a href="../admin-settings/overview_settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
+                    <a href="../university/university.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
+                    <a href="../local/localfees.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>
                     <?php
                     if($_SESSION['role'] == 'admin'){?>
-                    <a href="../admin-settings/users.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="text-decoration:none; padding-left: 70px;">User Management</a></ul>
+                    <a href="../admin-settings/user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="text-decoration:none; padding-left: 70px;">User Management</a></ul>
                     <?php } ?>
                     <!-- <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Colleges</a></ul> -->
                 </div>
@@ -104,180 +102,87 @@ require_once '../classes/role.class.php';
               <tr>
                 <th scope="col" style = " color: #000000;" >ID</th>
                 <th scope="col" style = " color: #000000;" >Name</th>
-				<th scope="col" style = " color: #000000; ">College</th></th>
+				<th scope="col" style = " color: #000000;" >College</th></th>
                 <th scope="col" style = " color: #000000;" >Role</th></th>
 				<th scope="col" style = " color: #000000;" >Position</th></th>
                 <th scope="col" style = " color: #000000;" >Action</th>
               </tr>
             </thead>
             <tbody>
-            <?php
-			$users = new Users();
-			$userData = $users->showAllDetails();
-    $i = 1;
-    foreach($userData as $users) {      
-?>
-            <tr>
-			<td><?php echo $i; ?></td>
-                <td><?php echo $users['user_fullname']; ?></td>
-                <td><?php echo $users['college_code']; ?></td>
-				<td><?php echo $users['role_name']; ?></td>
-                <td><?php echo $users['user_position']; ?></td>
-                <td>
-                <!-- <a href="#editFeesModal" class="edit" data-toggle="modal">
-										<i class="material-symbols-outlined" title="Edit">edit</i>
-									</a> -->
-                    <a href="#deleteFeesModal<?php echo $i; ?>" class="delete" data-toggle="modal">
-                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-                    </a>
-                </td>
-            </tr>
-            <!-- Delete Fees Modal -->
-            <div id="deleteFeesModal<?php echo $i; ?>" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <form action="deleteuser.php" method="POST">
-                            <div class="modal-header">						
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Delete Fees</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                </div>
-                            </div>
-                            <div class="modal-body">					
-                                <p>Are you sure you want to delete this record?</p>
-                                <p class="text-warning"><small>This action cannot be undone.</small></p>
-                            </div>
-                            <div class="modal-footer">
-                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                <input type="hidden" name="action" value="delete">
-                                <input type="hidden" name="user_id" value="<?php echo $users['id']; ?>">
-                                <input type="submit" class="btn btn-danger" value="Delete">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Edit Fees Modal
-            <div id="editFeesModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form>
-				<div class="modal-header">						
-					<h4 class="modal-title">Edit User</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-        <div class="modal-body">
-  <div class="row">
-    <div class="col-md-6">
-    <div class="modal-body">					
-      <div class="form-group">
-        <label>Role</label>
-        <select class="form-control" >
-          <option value="" disabled selected>Admin</option>
-          <option value="Manager">Admin</option>
-          <option value="Supervisor">Officer</option>
-          <option value="Coordinator">Collector</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <label>Position</label>
-        <select class="form-control" >
-          <option value="" selected>President</option>
-          <option value="Manager">Vice-President</option>
-          <option value="Supervisor">Secretary</option>
-          <option value="Staff">Mayor</option>
-          <option value="Staff">Vice-Mayor</option>
-          <option value="Staff">Assistant</option>
-        </select>
-      </div>
-    </div>
-  </div>
-</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-success" value="Save">
-				</div>
-			</form>
+				</tbody>
+			</table>
 		</div>
-	</div>
-</div> -->
-<?php 
-            $i++;
-        }
-?>
-
-
+	</div>        
+</div>
+</div>  
 <!-- Add Modal HTML -->
 <div id="addCollectorModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form action="adduser.php" method="POST">
-				<div class="modal-header">
-					
-					<h4 class="modal-title">Add User</h4>
+				<div class="modal-header">						
+					<h4 class="modal-title">Add Collector</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-        <div class="modal-body">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="userfullname">Name</label>
-              <input type="text" name="userfullname" id="userfullname" class="form-control" required >
-            </div>
-            <div class="form-group">
-              <label for="college" class="form-label">Colleges</label>
-              <select class="form-control" id="college" name="college" required >
-                <option value="">Select your option</option>
-                <?php
-                  $college = new College ();
-                  $collegeData = $college->show();
-                  foreach ($collegeData as $college) {
+				<div class="modal-body">
+                <div class="form-group">
+						<label for="userfullname">Name</label>
+						<input type="text" name="userfullname" id="userfullname" class="form-control" required>
+					</div>
+                <div class="form-group">
+		  <label for="college" class="form-label">Colleges</label>
+            <select class="form-control" id="college" name="college" required>
+				
+              <option value="">Select your option</option>
+			  <?php
+			  $college = new College ();
+			  $collegeData = $college->show();
+            	 foreach ($collegeData as $college) {
                 ?>
-                  <option value="<?php echo $college['id']; ?>"><?php echo $college['college_name']; ?></option>
-                <?php }?>
-              </select>
-            </div>
+                <option value="<?php echo $college['id']; ?>"><?php echo $college['college_name']; ?></option>
+              <?php }?>
+            </select>
           </div>
-          <div class="col-md-6">
+
           <div class="form-group">
-              <label for="role" class="form-label">Roles</label>
-              <select class="form-control" id="role" name="role" required >
-                <option value="">Select your option</option>
-                <?php
-                  $role = new Role ();
-                  $roleData = $role->show();
-                  foreach ($roleData as $role) {
+		  <label for="role" class="form-label">Roles</label>
+            <select class="form-control" id="role" name="role" >
+				
+              <option value="">Select your option</option>
+			  <?php
+			  $role = new Role ();
+			  $roleData = $role->show();
+            	 foreach ($roleData as $role) {
                 ?>
-                  <option value="<?php echo $role['id']; ?>"><?php echo $role['role_name']; ?></option>
-                <?php }?>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="userposition">Position</label>
-              <select name="userposition" id="userposition" class="form-control" required>
-                <option value="" disabled selected>Select your option</option>
-                <option value="President">President</option>
-                <option value="Vice-President">Vice-President</option>
-                <option value="Secretary">Secretary</option>
-                <option value="Mayor">Mayor</option>
-                <option value="Vice-Mayor">Vice-Mayor</option>
-                <option value="Assistant">Assistant</option>
-              </select>
-            </div>
-            </div>
-            <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" name="username" id="username" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label for="userpassword">Password</label>
-              <input type="password" name="userpassword" id="userpassword" class="form-control" required>
-            </div>
+                <option value="<?php echo $role['id']; ?>"><?php echo $role['role_name']; ?></option>
+              <?php }?>
+            </select>
           </div>
-        </div>
+					<div class="form-group">
+                        <label for="userposition">Position</label>
+                        <select name="userposition" id="userposition" class="form-control">
+                            <option value="" disabled selected>Select your option</option>
+			
+                            <option value="President">President</option>
+                            <option value="Vice-President">Vice-President</option>
+							<option value="Secretary">Secretary</option>
+					
+							<option value="Mayor">Mayor</option>
+						
+							<option value="Vice-Mayor">Vice-Mayor</option>
+							<option value="Assistant">Assistant</option>
+						
+                        </select>
+                    </div>						
+					<div class="form-group">
+						<label for="username">Username</label>
+						<input type="text" name="username" id="username" class="form-control">
+					</div>
+					<div class="form-group">
+          <label for="userpassword">Password</label>
+           <input type="password" name="userpassword" id="userpassword" class="form-control">
+          </div>
+	
 						
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -288,6 +193,37 @@ require_once '../classes/role.class.php';
 		</div>
 					</div>
 	</div>
+<!-- Edit Modal HTML -->
+<div id="editUserModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">						
+					<h4 class="modal-title">Edit Collector</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<div class="form-group">
+						<label>College Code</label>
+						<input type="text" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label>Description</label>
+						<input type="email" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label>Mayor</label>
+						<input type="text" class="form-control" required>
+					</div>		
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-info" value="Save">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 
 </body>       
 
@@ -302,6 +238,14 @@ require_once '../classes/role.class.php';
             </script>
 
 <script>
+
+  // Show error message
+document.getElementById('error-message').innerHTML = 'Please fill in all required fields';
+
+// Remove error message after 3 seconds
+setTimeout(function() {
+  document.getElementById('error-message').innerHTML = '';
+}, 3000);
 
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
 var dropdown = document.getElementsByClassName("dropdown-btn");
