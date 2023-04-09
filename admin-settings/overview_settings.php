@@ -298,23 +298,7 @@ require_once "../classes/academicyear.class.php";
 						<label>Duration</label>
 						<input type="number" name="duration" class="form-control" required>
 					</div>	
-				</div>
-        <div class="form-group" style="margin-left: 20px; margin-bottom: 1rem">
-        <label>Status</label>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="status" id="activeRadio" value="1">
-            <label class="form-check-label" for="activeRadio">
-                Active
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="status" id="inactiveRadio>" value="0">
-            <label class="form-check-label" for="inactiveRadio">
-                Inactive
-            </label>
-        </div>
-    </div>
-          
+				</div>      
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
           <input type="hidden" name="action" value="add">
