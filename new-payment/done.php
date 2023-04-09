@@ -86,7 +86,7 @@ if (!isset($_SESSION['logged_id'])) {
           <h5 class="text-left" style="padding-top: 10px">Receipt #: 111-111</h5>
           </div>
           <div class="col-sm-6">
-          <h5 class="text-right"><span class="material-symbols-outlined" style="font-size: 40px;">download</span></h5>
+          <h5 class="text-right"><a href="#" class="material-symbols-outlined" style="font-size: 40px; color:grey">download</a></h5>
           </div>
           </div>
           <div class="d-flex justify-content-between mb-2" style="padding-top: 20px;">
@@ -126,6 +126,7 @@ if (!isset($_SESSION['logged_id'])) {
     </div>
   </div>
 </div>
+                  </body>
 
 <script>
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */

@@ -825,3 +825,6 @@ hr {
         
     }
   }
+  .material-symbols-outlined:hover {
+    color: red; /* change this to the desired color */
+  }

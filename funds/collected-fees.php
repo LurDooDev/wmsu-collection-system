@@ -85,32 +85,38 @@
             <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Funds</h2>
         </div>
     </nav>
-    <div class="container" style ="padding-top:  10px;">
-                <div class ="boxing">
-                <div class="box">
-                &nbsp; <h2>Total Fees to be Collected</h2>&nbsp;
-                    <h3>Php 13,000,000</h3>
-                    <hr style="color: red; height:5px;">
-                </div>
-                <div class="box">
-                &nbsp;<h4>Total Fees Collected</h4>&nbsp;
-                    <h5>Php 13,000,000</h5>
-                    <hr style="color: green; height: 5px;">
-                </div>
-                </div>
+    <div class="container" style="padding-top: 10px;">
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <div class="box">
+        &nbsp;
+        <h2>Total Fees to be Collected</h2>&nbsp;
+        <h3>Php 13,000,000</h3>
+        <hr style="color: red; height:5px; width:96%; margin-left: 8px;">
+      </div>
+    </div>
+    <div class="col-md-6 mb-4">
+      <div class="box">
+        &nbsp;
+        <h4>Total Fees Collected</h4>&nbsp;
+        <h5>Php 13,000,000</h5>
+        <hr style="color: green; height: 5px; width:96%; margin-left: 8px;">
+      </div>
+    </div>
+  </div>
                 <div class="table-responsive" id="lonely">
         <div class="row my-auto mx-auto">
         <div class="col-sm-auto">
         <input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
         </div>
-        <div class="col-sm-4" style="padding-bottom: 5px;">
+        <div class="col-sm-4" style="padding-bottom: 10px;">
         <button class="btn btn-primary dropdown-toggle" id ="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By </button>
 						<div class="dropdown-menu">
     					<a class="dropdown-item" href="#">Ascending</a>
     					<a class="dropdown-item" href="#">Descending</a>
 					</div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" style="padding-bottom: 10px;">
         <button class="btn btn-primary dropdown-toggle" id ="school-year" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">School Year </button>
 						<div class="dropdown-menu">
     					<a class="dropdown-item" href="#">2021-2022</a>
@@ -120,40 +126,40 @@
           <table class="table table-striped table-borderless">
             <thead style="background-color:#95BDFE ;" class="text-white">
               <tr>
-                <th scope="col" style = " color: #000000;" >ID</th>
-                <th scope="col" style = " color: #000000;" >College</th>
-                <th scope="col" style = " color: #000000;" >Total</th>
+                <th scope="col" style = " color: #000000; text-align:center" >ID</th>
+                <th scope="col" style = " color: #000000; text-align:center" >College</th>
+                <th scope="col" style = " color: #000000; text-align:center" >Total</th>
                 <th scope="col" style = " color: #000000;" >USC Share</th>
                 <th scope="col" style = " color: #000000;" >School Year</th>
-                <th scope="col" style = " color: #000000;" >Action</th>
+                <th scope="col" style = " color: #000000; text-align:center" >Action</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="row">1</th>
-                <td>CCS</td>
-                <td>Php 1,000,000</td>
+                <th scope="row" style="text-align:center">1</th>
+                <td style="text-align:center">CCS</td>
+                <td style="text-align:center">Php 1,000,000</td>
                 <td>Php 300,000</td>
                 <td>2022-2023</td>
-                <td><a href="#detailsModal" class="details" data-toggle="modal"><i class="fa-solid fa-circle-info fa-xl" style="color:gray;" data-toggle="tooltip" title="details"></i></a></td>
+                <td style="text-align:center"><a href="#detailsModal" class="details" data-toggle="modal"><i class="fa-solid fa-circle-info fa-xl" style="color:gray;" data-toggle="tooltip" title="details"></i></a></td>
               </tr>
 
               <tr>
-                <th scope="row">2</th>
-                <td>CCS</td>
-                <td>Php 1,500,000</td>
+                <th scope="row" style="text-align:center">2</th>
+                <td style="text-align:center">CCS</td>
+                <td style="text-align:center">Php 1,500,000</td>
                 <td>Php 600,000</td>
                 <td>2022-2023</td>
-                <td><a href="#detailsModal" class="details" data-toggle="modal"><i class="fa-solid fa-circle-info fa-xl" style="color:gray;" data-toggle="tooltip" title="details"></i></a></td>
+                <td style="text-align:center"><a href="#detailsModal" class="details" data-toggle="modal"><i class="fa-solid fa-circle-info fa-xl" style="color:gray;" data-toggle="tooltip" title="details"></i></a></td>
               </tr>
 
               <tr>
-                <th scope="row">3</th>
-                <td>CCS</td>
-                <td>Php 2,000,000</td>
+                <th scope="row" style="text-align:center">3</th>
+                <td style="text-align:center">CCS</td>
+                <td style="text-align:center">Php 2,000,000</td>
                 <td>Php 450,000</td>
                 <td>2022-2023</td>
-                <td><a href="#detailsModal" class="details" data-toggle="modal"><i class="fa-solid fa-circle-info fa-xl" style="color:gray;" data-toggle="tooltip" title="details"></i></a></td>
+                <td style="text-align:center;"><a href="#detailsModal" class="details" data-toggle="modal"><i class="fa-solid fa-circle-info fa-xl" style="color:gray;" data-toggle="tooltip" title="details"></i></a></td>
               </tr>
             </tbody>
           </table>

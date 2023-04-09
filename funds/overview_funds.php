@@ -99,7 +99,7 @@
                 <th scope="col" style = " color: #000000;" >Title</th>
                 <th scope="col" style = " color: #000000;" >Fund Size</th>
                 <th scope="col" style = " color: #000000;" >School Year</th>
-                <th scope="col" style = " color: #000000;" >Action</th>
+                <th scope="col" style = " color: #000000; text-align:center" >Action</th>
               </tr>
             </thead>
             <tbody>
@@ -107,7 +107,7 @@
                 <td>Boracay</td>
                 <td>Php 100,000</td>
                 <td>2022-2023</td>
-                <td><a href="#pendingModal" class="details" data-toggle="modal"><i class="fa-solid fa-circle-info fa-xl" style="color:gray;" data-toggle="tooltip" title="details"></i></a></td>
+                <td style="text-align:center"><a href="#pendingModal" class="details" data-toggle="modal"><i class="fa-solid fa-circle-info fa-xl" style="color:gray;" data-toggle="tooltip" title="details"></i></a></td>
               </tr>
           </table>
                 </div>
@@ -134,40 +134,40 @@
           <table class="table table-striped table-borderless">
             <thead style="background-color:#95BDFE ;" class="text-white">
               <tr>
-                <th scope="col" style = " color: #000000;" >ID</th>
-                <th scope="col" style = " color: #000000;" >College</th>
-                <th scope="col" style = " color: #000000;" >Total</th>
+                <th scope="col" style = " color: #000000; text-align:center" >ID</th>
+                <th scope="col" style = " color: #000000; text-align:center" >College</th>
+                <th scope="col" style = " color: #000000; text-align:center" >Total</th>
                 <th scope="col" style = " color: #000000;" >USC Share</th>
                 <th scope="col" style = " color: #000000;" >School Year</th>
-                <th scope="col" style = " color: #000000;" >Action</th>
+                <th scope="col" style = " color: #000000; text-align:center" >Action</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="row">1</th>
-                <td>CCS</td>
-                <td>Php 1,000,000</td>
+                <th scope="row" style="text-align:center">1</th>
+                <td style="text-align:center">CCS</td>
+                <td style="text-align:center">Php 1,000,000</td>
                 <td>Php 300,000</td>
                 <td>2022-2023</td>
-                <td><a href="#detailsModal" class="details" data-toggle="modal"><i class="fa-solid fa-circle-info fa-xl" style="color:gray;" data-toggle="tooltip" title="details"></i></a></td>
+                <td style="text-align:center"><a href="#detailsModal" class="details" data-toggle="modal"><i class="fa-solid fa-circle-info fa-xl" style="color:gray;" data-toggle="tooltip" title="details"></i></a></td>
               </tr>
 
               <tr>
-                <th scope="row">2</th>
-                <td>CCS</td>
-                <td>Php 1,500,000</td>
+                <th scope="row" style="text-align:center">2</th>
+                <td style="text-align:center">CCS</td>
+                <td style="text-align:center">Php 1,500,000</td>
                 <td>Php 600,000</td>
                 <td>2022-2023</td>
-                <td><a href="#detailsModal" class="details" data-toggle="modal"><i class="fa-solid fa-circle-info fa-xl" style="color:gray;" data-toggle="tooltip" title="details"></i></a></td>
+                <td style="text-align:center"><a href="#detailsModal" class="details" data-toggle="modal"><i class="fa-solid fa-circle-info fa-xl" style="color:gray;" data-toggle="tooltip" title="details"></i></a></td>
               </tr>
 
               <tr>
-                <th scope="row">3</th>
-                <td>CCS</td>
-                <td>Php 2,000,000</td>
+                <th scope="row" style="text-align:center">3</th>
+                <td style="text-align:center">CCS</td>
+                <td style="text-align:center">Php 2,000,000</td>
                 <td>Php 450,000</td>
                 <td>2022-2023</td>
-                <td><a href="#detailsModal" class="details" data-toggle="modal"><i class="fa-solid fa-circle-info fa-xl" style="color:gray;" data-toggle="tooltip" title="details"></i></a></td>
+                <td style="text-align:center"><a href="#detailsModal" class="details" data-toggle="modal"><i class="fa-solid fa-circle-info fa-xl" style="color:gray;" data-toggle="tooltip" title="details"></i></a></td>
               </tr>
             </tbody>
           </table>
