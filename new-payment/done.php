@@ -102,10 +102,6 @@ if (!isset($_SESSION['logged_id'])) {
             <span>April 9, 2023</span>
           </div>
           <div class="d-flex justify-content-between mb-2">
-            <span>Payment Method</span>
-            <span>Cash</span>
-          </div>
-          <div class="d-flex justify-content-between mb-2">
             <span>Amount:</span>
             <span>₱ 200.00</span>
           </div>
