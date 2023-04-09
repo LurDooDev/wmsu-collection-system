@@ -272,7 +272,7 @@ require_once '../classes/program.class.php';
                     document.getElementById("searchResults").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "searchstudent.php?searchValue=" + searchValue, true);
+            xhttp.open("GET", "searchstudent.ajax.php?searchValue=" + searchValue, true);
             xhttp.send();
         });
     });

@@ -56,7 +56,7 @@ class Student {
         return $stmt->fetchColumn();
     }
 
-
+    //this time order by id and limit the result by 10 for less query.
     public function searchStudents($searchValue, $collegeID) {
     
         if(is_numeric($searchValue)) {
@@ -64,13 +64,17 @@ class Student {
                     FROM students s
                     INNER JOIN programs p ON s.program_id = p.id
                     INNER JOIN colleges c ON s.college_id = c.id
-                    WHERE s.id = :searchValue AND s.college_id = $collegeID";
+                    WHERE s.id = :searchValue AND s.college_id = $collegeID
+                    ORDER BY s.id DESC
+                    LIMIT 10";
         } else {
             $sql = "SELECT s.id, s.first_name, s.last_name, s.year_level, s.college_id, p.program_name, s.student_email, c.college_name, c.college_code
                     FROM students s
                     INNER JOIN programs p ON s.program_id = p.id
                     INNER JOIN colleges c ON s.college_id = c.id
-                    WHERE CONCAT(s.first_name, ' ', s.last_name) LIKE :searchTerm AND s.college_id = $collegeID";
+                    WHERE CONCAT(s.first_name, ' ', s.last_name) LIKE :searchTerm AND s.college_id = $collegeID
+                    ORDER BY s.id DESC
+                    LIMIT 10";
             $searchTerm = "%{$searchValue}%";
         }
     
@@ -82,7 +86,36 @@ class Student {
         }
         $stmt->execute();
         return $stmt->fetchAll();
-    }
+}
+
+
+
+    // public function searchStudents($searchValue, $collegeID) {
+    
+    //     if(is_numeric($searchValue)) {
+    //         $sql = "SELECT s.id, s.first_name, s.last_name, s.year_level, s.payment_status, s.outstanding_balance, s.college_id, p.program_name, s.student_email, c.college_name, c.college_code
+    //                 FROM students s
+    //                 INNER JOIN programs p ON s.program_id = p.id
+    //                 INNER JOIN colleges c ON s.college_id = c.id
+    //                 WHERE s.id = :searchValue AND s.college_id = $collegeID LIMIT 10";
+    //     } else {
+    //         $sql = "SELECT s.id, s.first_name, s.last_name, s.year_level, s.college_id, p.program_name, s.student_email, c.college_name, c.college_code
+    //                 FROM students s
+    //                 INNER JOIN programs p ON s.program_id = p.id
+    //                 INNER JOIN colleges c ON s.college_id = c.id
+    //                 WHERE CONCAT(s.first_name, ' ', s.last_name) LIKE :searchTerm AND s.college_id = $collegeID LIMIT 10";
+    //         $searchTerm = "%{$searchValue}%";
+    //     }
+    
+    //     $stmt = $this->db->connect()->prepare($sql);
+    //     if(isset($searchTerm)) {
+    //         $stmt->bindParam(':searchTerm', $searchTerm);
+    //     } else {
+    //         $stmt->bindParam(':searchValue', $searchValue);
+    //     }
+    //     $stmt->execute();
+    //     return $stmt->fetchAll();
+    // }
 
     // public function searchStudents($searchValue, $collegeID) {
     

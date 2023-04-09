@@ -85,7 +85,7 @@ require_once '../classes/program.class.php';
     <div class="container">
     <div class="row">
   <div class="col-sm-3 col-12" style="margin-top: 20px; padding-bottom: 20px;">
-    <input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
+  <input class="form-control border" type="search"name="searchValue" id="searchValue" placeholder="Search Name">
   </div>
   <div class="col-sm-3 col-12" style="margin-top: 20px; padding-bottom: 20px;">
     <button class="btn btn-primary dropdown-toggle" id="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter Year</button>
@@ -116,18 +116,16 @@ require_once '../classes/program.class.php';
                 <tr>
                   <th scope="col" style = " color: #000000;" >Student Name</th>
                   <th scope="col" style = " color: #000000;" >Student ID</th>
-                  <th scope="col" style = " color: #000000; text-align:center;" >College</th></th>
+                  <th scope="col" style = " color: #000000;" >College</th></th>
                   <th scope="col" style = " color: #000000;" >Course</th>
                   <th scope="col" style = " color: #000000;" >Year Level</th>
+                  <th scope="col" style = " color: #000000;" >Action</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-              <td>Yawa</td>
-          <td>200195</td>
-        <td style="text-align:center;">College Of Computing Studies</td>
-              <td>BSCS</td>
-              <td>1st Year</td>
+              <tbody id="searchResults">
+                    <!-- Table rows  -->
+
+                </tbody>
 
               <?php if(isset($_GET['error'])): ?>
       <input type="hidden" name="error" value="true">
@@ -220,7 +218,7 @@ require_once '../classes/program.class.php';
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Upload Student CSV</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">a</button>
         </div>
         <div class="modal-body-md">
         <div class="form-group" style="margin-left: 25px; margin-top: 20px;">
@@ -238,7 +236,32 @@ require_once '../classes/program.class.php';
     </div>
 </div>
 <!-- Script for dashboard hamburger         -->
-        </body>       
+        </body>
+        <!--Search AJAX-->
+        <script>
+    // Wait for the document to be ready
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the input field element
+        var searchInput = document.getElementById("searchValue");
+
+        // Add an event listener for changes in the input field
+        searchInput.addEventListener("input", function() {
+            // Get the search value from the input field
+            var searchValue = searchInput.value;
+
+            // Make an AJAX request to searchstudent.php
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Update the search results table with the response from the server
+                    document.getElementById("searchResults").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "searchstudent.ajax.php?searchValue=" + searchValue, true);
+            xhttp.send();
+        });
+    });
+</script>     
         <script>
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
 var dropdown = document.getElementsByClassName("dropdown-btn");
