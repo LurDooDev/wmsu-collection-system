@@ -91,14 +91,14 @@ require_once '../classes/universityfees.class.php';
     <div class="container">
                 <div class="row" style="padding-top:  21px;">
 				<div class="col-sm-4" style="border-color: #000000;">
-        			<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
+        			<!-- <input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name"> -->
        			 </div>
         <div class="col-sm-4">
-        <button class="btn btn-primary dropdown-toggle" id ="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By </button>
+        <!-- <button class="btn btn-primary dropdown-toggle" id ="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By </button>
 						<div class="dropdown-menu">
     					<a class="dropdown-item" href="#">Ascending</a>
     					<a class="dropdown-item" href="#">Descending</a>
-					  </div>
+					  </div> -->
           </div>
 					<div class="col-sm-4 " style="display: flex; align-items: center; justify-content: flex-end;">
 						<a href="#addCollectorModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a>
@@ -139,8 +139,7 @@ foreach($FeeData as $Fee) {
                 <td><?php echo date('F j, Y', strtotime($Fee['end_date'])); ?></td>
         <td><?php echo $Fee['created_by']; ?></td>
         <td>
-            <!-- Link to edit the fee -->
-            <a href="add_universityfeeSched.php?id=<?php echo $Fee['id']; ?>" class="edit">
+            <!-- <a href=".php?id=<?php echo $Fee['id']; ?>" class="edit"> -->
                 <i class="material-icons" title="Edit">&#xe147;</i>
             </a>
         </td>
