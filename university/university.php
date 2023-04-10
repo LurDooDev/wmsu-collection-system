@@ -100,9 +100,12 @@ require_once '../classes/universityfees.class.php';
     					<a class="dropdown-item" href="#">Descending</a>
 					  </div> -->
           </div>
+          <?php
+                    if($_SESSION['role'] == 'admin'){?>
 					<div class="col-sm-4 " style="display: flex; align-items: center; justify-content: flex-end;">
 						<a href="#addCollectorModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a>
 					</div>
+          <?php } ?>
 				</div>
              <div class =" table-responsive" style="margin-top: 10px;">
                 <table class="table">
