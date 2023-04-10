@@ -15,33 +15,33 @@ class UniversityFees {
     public $isActive;
 
 
-    protected $db;
+    public $db;
 
     function __construct() {
         $this->db = new Database();
     }
+    
 
     function createUniversityFees() {
         try {
-    
-            // Get the ID of the semester with the given semester name
+            $dbConnection = $this->db->connect();
+
             $semesterSql = "SELECT id FROM semesters WHERE id = :semester_id";
-            $semesterStmt = $this->db->connect()->prepare($semesterSql);
+            $semesterStmt = $dbConnection->prepare($semesterSql);
             $semesterStmt->bindParam(':semester_id', $this->semesterID);
             $semesterStmt->execute();
             $semesterID = $semesterStmt->fetchColumn();
     
-            // Get the ID of the school year with the given school year name
-            $academicYearsql = "SELECT id FROM academic_year WHERE id = :academic_year_id";
-            $academicYearStmt = $this->db->connect()->prepare($academicYearsql);
+            $academicYearSql = "SELECT id FROM academic_year WHERE id = :academic_year_id";
+            $academicYearStmt = $dbConnection->prepare($academicYearSql);
             $academicYearStmt->bindParam(':academic_year_id', $this->academicYearID);
             $academicYearStmt->execute();
             $academicYearID = $academicYearStmt->fetchColumn();
     
-            // Insert a new row into the university_fee_schedule table
+          
             $insertSql = "INSERT INTO university_fees (academic_year_id, semester_id, fee_name, fee_amount, start_date, end_date, created_by)
                 VALUES (:academic_year_id, :semester_id, :fee_name, :fee_amount, :start_date, :end_date, :created_by)";
-            $insertStmt = $this->db->connect()->prepare($insertSql);
+            $insertStmt = $dbConnection->prepare($insertSql);
             $insertStmt->bindParam(':academic_year_id', $academicYearID);
             $insertStmt->bindParam(':semester_id', $semesterID);
             $insertStmt->bindParam(':fee_name', $this->universityName);
@@ -50,13 +50,63 @@ class UniversityFees {
             $insertStmt->bindParam(':end_date', $this->universityEndDate);
             $insertStmt->bindParam(':created_by',  $this->universitycreatedby);
             $insertStmt->execute();
+            $newlyInsertedId = $dbConnection->lastInsertId();
     
+        $insertPendingSql = "INSERT INTO university_pending (student_id, university_fee_id, pending_amount)
+        SELECT students.id, :university_fee_id, :amount
+        FROM students
+        WHERE students.academic_year_id = :academic_year_id";
+    $insertPendingStmt = $dbConnection->prepare($insertPendingSql);
+    $insertPendingStmt->bindParam(':university_fee_id', $newlyInsertedId);
+    $insertPendingStmt->bindParam(':amount', $this->universityAmount);
+    $insertPendingStmt->bindParam(':academic_year_id', $academicYearID); 
+    $insertPendingStmt->execute();
             return true;
         } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
             return false;
         }
     }
+    
+    
+    
+    
+
+    // function createUniversityFees() {
+    //     try {
+    
+    //         // Get the ID of the semester with the given semester name
+    //         $semesterSql = "SELECT id FROM semesters WHERE id = :semester_id";
+    //         $semesterStmt = $this->db->connect()->prepare($semesterSql);
+    //         $semesterStmt->bindParam(':semester_id', $this->semesterID);
+    //         $semesterStmt->execute();
+    //         $semesterID = $semesterStmt->fetchColumn();
+    
+    //         // Get the ID of the school year with the given school year name
+    //         $academicYearsql = "SELECT id FROM academic_year WHERE id = :academic_year_id";
+    //         $academicYearStmt = $this->db->connect()->prepare($academicYearsql);
+    //         $academicYearStmt->bindParam(':academic_year_id', $this->academicYearID);
+    //         $academicYearStmt->execute();
+    //         $academicYearID = $academicYearStmt->fetchColumn();
+    
+    //         // Insert a new row into the university_fee_schedule table
+    //         $insertSql = "INSERT INTO university_fees (academic_year_id, semester_id, fee_name, fee_amount, start_date, end_date, created_by)
+    //             VALUES (:academic_year_id, :semester_id, :fee_name, :fee_amount, :start_date, :end_date, :created_by)";
+    //         $insertStmt = $this->db->connect()->prepare($insertSql);
+    //         $insertStmt->bindParam(':academic_year_id', $academicYearID);
+    //         $insertStmt->bindParam(':semester_id', $semesterID);
+    //         $insertStmt->bindParam(':fee_name', $this->universityName);
+    //         $insertStmt->bindParam(':fee_amount', $this->universityAmount);
+    //         $insertStmt->bindParam(':start_date', $this->universityStartDate);
+    //         $insertStmt->bindParam(':end_date', $this->universityEndDate);
+    //         $insertStmt->bindParam(':created_by',  $this->universitycreatedby);
+    //         $insertStmt->execute();
+    
+    //         return true;
+    //     } catch (PDOException $e) {
+    //         echo "Error: " . $e->getMessage();
+    //         return false;
+    //     }
+    // }
 
     function showAllDetails() {
         $sql = "SELECT ufs.id, ufs.start_date, ufs.fee_amount, ufs.end_date, ufs.created_by, ufs.fee_name, ufs.fee_type, s.semester_name, sy.academic_name

@@ -17,6 +17,9 @@ require_once '../classes/semester.class.php';
 require_once '../classes/academicyear.class.php';
 require_once '../classes/universityfees.class.php';
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 ?>
 
 <!doctype html>
