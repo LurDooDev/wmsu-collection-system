@@ -14,8 +14,7 @@
 }
 
 require_once '../classes/database.class.php';
-require_once '../classes/universityfees.class.php';
-require_once '../classes/universityfeeSched.class.php';
+
 
 ?>
 
