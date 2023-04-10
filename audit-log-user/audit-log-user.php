@@ -41,6 +41,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
+
     <title>Wmsu Collection System</title>
     </head>
       <body>
@@ -83,55 +84,66 @@
         </div>
     </nav>
     <div class="container">
-    <div class="col-sm-14" id="lakatan">
-                <table class="table table-striped table-borderless">
-            <thead style="background-color:#95BDFE ;" class="text-white">
-              <tr>
-                <hr style="height: 6px; color: #FFF;">
-                <th scope="col" style = " color: #000000;" >ID</th>
-                <th scope="col" style = " color: #000000;" >Name</th>
-                <th scope="col" style = " color: #000000;" >Officer</th>
-                <th scope="col" style = " color: #000000;" >Date</th>
-                <th scope="col" style = " color: #000000;" >Time</th>
-                <th scope="col" style = " color: #000000;" >Action Made</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Joy Cubile</td>
-                <td>CCS Mayor</td>
-                <td>12/13/2022</td>
-                <td>14:20</td>
-                <td>Collected Payment CSC Fee of Arthur Nery</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Jerome Rabara</td>
-                <td>USC President</td>
-                <td>12/15/2022</td>
-                <td>17:20</td>
-                <td>Added User for CCS Treasurer name Aj Roblox</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Joy Cubile</td>
-                <td>CCS Mayor</td>
-                <td>12/14/2022</td>
-                <td>15:20</td>
-                <td>Collected Payment CSC Fee of Eminem Pinoy</td>
-              </tr>
-              <td>4</td>
-                <td>Joy Cubile</td>
-                <td>CCS Mayor</td>
-                <td>12/14/2022</td>
-                <td>15:20</td>
-                <td>Collected Payment CSC Fee of Lil Pumpskie</td>
-              </tr>
-              
-          </table>
-                </div>
-                </div>
+  <div class="col-sm-14" id="lakatan">
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="sort-by" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sort By
+      </button>
+      <div class="dropdown-menu" aria-labelledby="sort-by">
+        <a class="dropdown-item" href="#" id="sort-asc">Ascending</a>
+        <a class="dropdown-item" href="#" id="sort-desc">Descending</a>
+      </div>
+    </div>
+    <table class="table table-striped table-borderless">
+      <thead style="background-color:#95BDFE ;" class="text-white">
+        <tr>
+          <hr style="height: 6px; color: #FFF;">
+          <th scope="col" style="color: #000000;">ID</th>
+          <th scope="col" style="color: #000000;">Name</th>
+          <th scope="col" style="color: #000000;">Officer</th>
+          <th scope="col" style="color: #000000;">Date</th>
+          <th scope="col" style="color: #000000;">Time</th>
+          <th scope="col" style="color: #000000;">Action Made</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Joy Cubile</td>
+          <td>CCS Mayor</td>
+          <td>12/13/2022</td>
+          <td>14:20</td>
+          <td>Collected Payment CSC Fee of Arthur Nery</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Jerome Rabara</td>
+          <td>USC President</td>
+          <td>12/15/2022</td>
+          <td>17:20</td>
+          <td>Added User for CCS Treasurer name Aj Roblox</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Joy Cubile</td>
+          <td>CCS Mayor</td>
+          <td>12/14/2022</td>
+          <td>15:20</td>
+          <td>Collected Payment CSC Fee of Eminem Pinoy</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Joy Cubile</td>
+          <td>CCS Mayor</td>
+          <td>12/14/2022</td>
+          <td>15:20</td>
+          <td>Collected Payment CSC Fee of Lil Pumpskie</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 </body>       
 
 <!-- Script for dashboard hamburger         -->
@@ -177,3 +189,4 @@ for (var i = 0; i < links.length; i++) {
   });
 }</script>
 </html>
+
