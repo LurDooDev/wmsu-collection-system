@@ -81,9 +81,11 @@
 				<div class="col-sm-4" style="border-color: #000000;">
         			<input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
        			 </div>
+              <?php
+                    if($_SESSION['role'] == 'admin'){?>
 					<div class="col-sm-8 " style="display: flex; align-items: center; justify-content: flex-end;">
 						<a href="#addCollectorModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add User</span></a>
-					</div>
+            <?php } ?>
 				</div>
              <div class =" table-responsive" style="margin-top: 10px;">
                 <table class="table">
@@ -202,6 +204,7 @@
 			</form>
 			  </div>
 	</div>
+  
 </div>
 
 	<!-- Add Modal HTML -->
