@@ -93,12 +93,15 @@
             <div class="table-wrapper" id="kenteezy">
                 <div class="table-title" style="padding-bottom: 20px; padding-top: 10px">
                     <div class="d-flex">
+                       
                         <div class="col-12 p-2 text-right" style="float:left;">
                             <a href="#addCollege" class="btn btn-success" id="add-college" data-toggle="modal">
+
                                 <i class="fa-sharp fa-solid fa-plus fa-sm"></i>
                                 <span>Add New College</span>
                             </a>
                         </div>
+                     
                     </div>
                 </div>
                 <div class="table-responsive">

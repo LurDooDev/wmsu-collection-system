@@ -96,17 +96,23 @@ require_once '../classes/program.class.php';
       <a class="dropdown-item" href="#">4th Year</a>
     </div>
   </div>
+  <?php
+                    if($_SESSION['role'] == 'admin'){?>
   <div class="col-sm-6 col-12 d-flex align-items-center justify-content-end" style="margin-top: 20px; padding-bottom: 20px;">
     <div class="mr-3">
       <a href="#addCSV" class="btn btn-success" id="add-csv" data-toggle="modal">
         <i class="material-icons">&#xE147;</i> <span>Add CSV</span>
       </a>
     </div>
+    <?php } ?>
     <div>
+    <?php
+                    if($_SESSION['role'] == 'admin'){?>
       <a href="#addStudentModal" class="btn btn-success" id="add-student" data-toggle="modal">
         <i class="material-icons">&#xE147;</i> <span>Add Student</span>
       </a>
     </div>
+    <?php } ?>
   </div>
 </div>
 

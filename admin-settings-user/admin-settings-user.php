@@ -92,6 +92,8 @@ require_once '../classes/academicyear.class.php';
     <div class="row d-flex justify-content-end">
     <div class="col-sm-6 col-12 d-flex align-items-center justify-content-end" style="margin-top: 20px;">
     <div class="mr-3">
+	<?php
+                    if($_SESSION['role'] == 'admin'){?>
       <a href="#addDetailsModal" class="btn btn-success" id="add-csv" data-toggle="modal">
         <i class="material-icons">&#xE147;</i> <span>Add New Schedule</span>
       </a>
@@ -101,6 +103,7 @@ require_once '../classes/academicyear.class.php';
         <i class="material-symbols-outlined">restart_alt</i> <span>Reset</span>
       </a>
     </div>
+	<?php } ?>
   </div>
   </div>
 <h style="font-size: 20px; padding-bottom: 10px;"><b>School Year and Semester</b></h>

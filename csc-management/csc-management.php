@@ -85,8 +85,8 @@
                     if($_SESSION['role'] == 'admin'){?>
 					<div class="col-sm-8 " style="display: flex; align-items: center; justify-content: flex-end;">
 						<a href="#addCollectorModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add User</span></a>
-            <?php } ?>
 				</div>
+            <?php } ?>
              <div class =" table-responsive" style="margin-top: 10px;">
                 <table class="table">
             <thead style="background-color:#95BDFE ;" class="text-white">
