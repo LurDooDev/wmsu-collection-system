@@ -176,13 +176,11 @@
                         <label for="name" class="form-label">College Name</label>
                         <input type="text" name="name" id="name" class="form-control" required aria-describedby="name-help"  placeholder="College Of Computing Studies" required>
                         <div id="name-help" class="form-text">Enter the full name of the college.</div>
-                        <small class="form-text text-muted">Example: College of Computing Studies</small>
                     </div>
                     <div class="form-group">
                         <label for="code" class="form-label">College Code</label>
                         <input type="text" name="code" id="code" class="form-control" required aria-describedby="code-help"  placeholder="CCS" required>
                         <div id="code-help" class="form-text">Enter the code for the college.</div>
-                        <small class="form-text text-muted">Example: CCS</small>
                     </div>
                 </div>
                 <div class="modal-footer">
