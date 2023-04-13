@@ -124,9 +124,6 @@
                     <!-- /.col -->
                 </div>
                 <div class ="col-sm-12" style="padding-bottom: 10px;">
-  <a href="#" class="btn btn-primary" id="all-btn">
-      <span>All</span>
-    </a>
     <a href="#" class="btn btn-primary" id="university-btn">
       <span>University</span>
     </a>
@@ -138,7 +135,7 @@
                   
     <div class="col-sm-12 col-lg-12 mx-auto">
       <div class="table-responsive">
-      <table id="all-table" class="table">
+      <table id="all-table" class="table"  style="display:none;">
           <thead style="background-color:#95BDFE;" class="text-white " >
             <tr>
               <th scope="col" style="color:#000000;"><input type="checkbox" id="checkAll"></th>
@@ -187,7 +184,7 @@
 
           </tbody>
         </table>
-      <table id="university-table" class="table" style="display:none;">
+      <table id="university-table" class="table">
           <thead style="background-color:#95BDFE;" class="text-white">
             <tr>
               <th scope="col" style="color:#000000;"><input type="checkbox" id="checkAll1"></th>
