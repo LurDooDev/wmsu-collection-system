@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2023 at 03:15 AM
+-- Generation Time: Apr 11, 2023 at 03:09 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -42,7 +42,8 @@ CREATE TABLE `academic_year` (
 --
 
 INSERT INTO `academic_year` (`id`, `academic_name`, `academic_start_date`, `academic_end_date`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, '2022-2023', '2022-08-14', '2023-05-03', 1, '2023-03-14 12:30:59', '2023-03-14 14:06:06');
+(1, '2022-2023', '2022-08-14', '2023-05-03', 1, '2023-03-14 12:30:59', '2023-03-14 14:06:06'),
+(2, '2024-2025', '2024-08-15', '2025-04-30', 1, '2023-04-09 21:07:10', '2023-04-09 21:07:10');
 
 -- --------------------------------------------------------
 
@@ -64,7 +65,8 @@ INSERT INTO `colleges` (`id`, `college_name`, `college_code`) VALUES
 (1, 'College of Computing Studies', 'CCS'),
 (2, 'College of Engineering', 'COE'),
 (3, 'College of Nursing', 'CN'),
-(5, 'College of Liberal Arts', 'CLA');
+(5, 'College of Liberal Arts', 'CLA'),
+(6, 'College of Pogi', 'CP');
 
 -- --------------------------------------------------------
 
@@ -207,8 +209,6 @@ INSERT INTO `roles` (`id`, `role_name`) VALUES
 CREATE TABLE `semesters` (
   `id` int(11) NOT NULL,
   `semester_name` varchar(20) NOT NULL,
-  `semester_duration` int(11) NOT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -217,9 +217,9 @@ CREATE TABLE `semesters` (
 -- Dumping data for table `semesters`
 --
 
-INSERT INTO `semesters` (`id`, `semester_name`, `semester_duration`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, '1st Semester', 4, 1, '2023-03-14 11:19:07', '2023-03-14 14:05:18'),
-(2, '2nd Semester', 4, 1, '2023-03-14 11:20:23', '2023-03-14 14:05:18');
+INSERT INTO `semesters` (`id`, `semester_name`, `created_at`, `updated_at`) VALUES
+(1, '1st Semester', '2023-03-14 11:19:07', '2023-03-14 14:05:18'),
+(2, '2nd Semester', '2023-03-14 11:20:23', '2023-03-14 14:05:18');
 
 -- --------------------------------------------------------
 
@@ -236,110 +236,104 @@ CREATE TABLE `students` (
   `college_id` int(11) NOT NULL,
   `program_id` int(11) NOT NULL,
   `payment_status` varchar(10) DEFAULT NULL,
-  `outstanding_balance` int(11) NOT NULL DEFAULT 0
+  `outstanding_balance` int(11) NOT NULL DEFAULT 0,
+  `academic_year_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `first_name`, `last_name`, `student_email`, `year_level`, `college_id`, `program_id`, `payment_status`, `outstanding_balance`) VALUES
-(201503664, 'Bryan Christian', 'Sevilla', 'sl201503664@wmsu.edu.ph', '3rd Year', 1, 8, NULL, 0),
-(202234212, 'Gregory', 'Yames', 'yames@wmsu.edu.ph', '2nd Year', 2, 5, NULL, 0);
+INSERT INTO `students` (`id`, `first_name`, `last_name`, `student_email`, `year_level`, `college_id`, `program_id`, `payment_status`, `outstanding_balance`, `academic_year_id`) VALUES
+(201503664, 'Bryan Christian', 'Sevilla', 'sl201503664@wmsu.edu.ph', '3rd Year', 1, 8, NULL, 0, 2),
+(202234212, 'Gregory', 'Yames', 'yames@wmsu.edu.ph', '2nd Year', 2, 5, NULL, 0, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `university_fee`
+-- Table structure for table `university_fees`
 --
 
-CREATE TABLE `university_fee` (
+CREATE TABLE `university_fees` (
   `id` int(11) NOT NULL,
-  `university_fee_type` varchar(12) NOT NULL DEFAULT 'University',
-  `university_name` varchar(50) NOT NULL,
-  `created_by` varchar(50) NOT NULL,
+  `academic_year_id` int(11) NOT NULL,
+  `semester_id` int(11) NOT NULL,
+  `fee_type` varchar(20) NOT NULL DEFAULT 'University',
+  `fee_name` varchar(100) NOT NULL,
+  `fee_amount` int(11) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `created_by` varchar(100) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `university_fee`
+-- Dumping data for table `university_fees`
 --
 
-INSERT INTO `university_fee` (`id`, `university_fee_type`, `university_name`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'University', 'CSB', 'Bryan', '2023-03-15 04:11:11', '2023-03-15 04:11:11'),
-(2, 'University', 'WMSU Palaro', 'Bryan', '2023-03-15 06:59:04', '2023-03-15 06:59:04'),
-(3, 'University', 'WMSU Boracay', 'Bryan', '2023-03-17 19:28:28', '2023-03-17 19:28:28');
+INSERT INTO `university_fees` (`id`, `academic_year_id`, `semester_id`, `fee_type`, `fee_name`, `fee_amount`, `start_date`, `end_date`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 'University', 'WMSU Boracay', 320, '2023-04-25', '2025-07-10', 'Bryan', '2023-04-09 23:16:37', '2023-04-09 23:16:37'),
+(14, 2, 2, 'University', 'wdaw', 2133, '2023-04-01', '2023-04-29', 'Bryan', '2023-04-10 22:35:16', '2023-04-10 22:35:16'),
+(15, 2, 2, 'University', 'test1', 213, '2023-04-01', '2023-04-15', 'Bryan', '2023-04-10 22:39:38', '2023-04-10 22:39:38');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `university_fee_schedule`
+-- Table structure for table `university_paid`
 --
 
-CREATE TABLE `university_fee_schedule` (
-  `id` int(11) NOT NULL,
-  `university_fee_id` int(11) NOT NULL,
-  `academic_year_id` int(11) NOT NULL,
-  `semester_id` int(11) NOT NULL,
-  `university_start_date` date NOT NULL,
-  `university_end_date` date NOT NULL,
-  `university_amount` int(11) NOT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `created_by` varchar(50) DEFAULT NULL,
-  `is_current` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `university_fee_schedule`
---
-
-INSERT INTO `university_fee_schedule` (`id`, `university_fee_id`, `academic_year_id`, `semester_id`, `university_start_date`, `university_end_date`, `university_amount`, `is_active`, `created_at`, `updated_at`, `created_by`, `is_current`) VALUES
-(2, 1, 1, 2, '2022-01-01', '2022-05-01', 420, 1, '2023-03-15 06:57:49', '2023-03-15 06:57:49', 'Bryan', 1),
-(3, 2, 1, 2, '2022-01-01', '2022-05-01', 320, 1, '2023-03-15 06:59:34', '2023-03-15 06:59:34', 'Bryan', 1),
-(4, 3, 1, 2, '2023-01-01', '2023-05-01', 300, 1, '2023-03-27 00:08:23', '2023-03-27 00:08:23', 'Bryan COE', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `university_payment`
---
-
-CREATE TABLE `university_payment` (
+CREATE TABLE `university_paid` (
   `id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
-  `fee_schedule_id` int(11) NOT NULL,
-  `payment_amount` int(11) NOT NULL,
+  `university_fee_id` int(11) NOT NULL,
+  `paid_amount` int(11) NOT NULL,
+  `university_status` varchar(50) DEFAULT 'Paid',
+  `payment_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `collected_by` varchar(100) NOT NULL,
-  `payment_date` datetime NOT NULL,
-  `payment_details` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `receipt_number` varchar(50) NOT NULL,
-  `payment_fee_amount` int(11) NOT NULL,
-  `payment_status` tinyint(1) NOT NULL DEFAULT 1,
-  `payment_remaining` int(11) NOT NULL DEFAULT 0,
-  `payment_add` int(11) NOT NULL DEFAULT 0,
-  `payment_image` varchar(100) DEFAULT NULL
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `university_payment_history`
+-- Table structure for table `university_partial`
 --
 
-CREATE TABLE `university_payment_history` (
+CREATE TABLE `university_partial` (
   `id` int(11) NOT NULL,
-  `student_id` int(11) DEFAULT NULL,
-  `fee_schedule_id` int(11) DEFAULT NULL,
-  `payment_status` varchar(20) DEFAULT 'paid',
-  `payment_amount` int(11) DEFAULT NULL,
-  `payment_date` datetime DEFAULT NULL,
-  `process_by` varchar(50) DEFAULT NULL
+  `student_id` int(11) NOT NULL,
+  `university_fee_id` int(11) NOT NULL,
+  `partial_amount` int(11) NOT NULL,
+  `university_status` varchar(50) DEFAULT 'Partial',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `university_pending`
+--
+
+CREATE TABLE `university_pending` (
+  `id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `university_fee_id` int(11) NOT NULL,
+  `pending_amount` int(11) NOT NULL,
+  `university_status` varchar(20) DEFAULT 'Pending',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `university_pending`
+--
+
+INSERT INTO `university_pending` (`id`, `student_id`, `university_fee_id`, `pending_amount`, `university_status`, `created_at`, `updated_at`) VALUES
+(5, 201503664, 15, 213, 'Pending', '2023-04-10 22:39:38', '2023-04-10 22:39:38'),
+(6, 202234212, 15, 213, 'Pending', '2023-04-10 22:39:38', '2023-04-10 22:39:38');
 
 -- --------------------------------------------------------
 
@@ -366,7 +360,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `user_username`, `user_fullname`, `user_position`, `user_password`, `role_id`, `college_id`, `created_at`, `updated_at`) VALUES
 (1, 'adMin101', 'Bryan', 'President', '$2y$10$9lSPgrM/5rCbXrHZz1s6R.atAJGxcnq4ffRt5ecpCFYh6cj3HTeTK', 1, 1, '2023-03-14 14:08:20', '2023-03-14 14:16:04'),
 (2, 'offiCER101', 'Bryan The Officer', 'Mayor', '$2y$10$gRTuUjQvgmTOMaLlI4aljOEdGXsBNlW1F3mAmTFvVzKrK6PkJJx9G', 2, 1, '2023-03-14 14:08:20', '2023-03-14 14:16:04'),
-(3, 'offiCER102', 'Bryan COE', 'Mayor', '$2y$10$tg5vM966F/2G7Oiw223sfOAK9RJ0C86lXM2uXwKDdsnqxJbJAtJh.', 2, 2, '2023-03-14 14:08:20', '2023-03-14 14:16:04');
+(3, 'offiCER102', 'Bryan COE', 'Mayor', '$2y$10$tg5vM966F/2G7Oiw223sfOAK9RJ0C86lXM2uXwKDdsnqxJbJAtJh.', 2, 2, '2023-03-14 14:08:20', '2023-03-14 14:16:04'),
+(4, 'collector1', 'Barack Obama', 'Assistant', '$2y$10$/s3wBtRDnYSENuZHdgtgF.PpqmkcxqSvlnoSwj385ep8HgDVaXQbm', 3, 1, '2023-04-08 21:20:50', '2023-04-08 21:20:50');
 
 --
 -- Indexes for dumped tables
@@ -440,38 +435,40 @@ ALTER TABLE `semesters`
 ALTER TABLE `students`
   ADD PRIMARY KEY (`id`),
   ADD KEY `college_id` (`college_id`),
-  ADD KEY `program_id` (`program_id`);
+  ADD KEY `program_id` (`program_id`),
+  ADD KEY `fk_students_academic_year` (`academic_year_id`);
 
 --
--- Indexes for table `university_fee`
+-- Indexes for table `university_fees`
 --
-ALTER TABLE `university_fee`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `university_fee_schedule`
---
-ALTER TABLE `university_fee_schedule`
+ALTER TABLE `university_fees`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `university_fee_id` (`university_fee_id`),
   ADD KEY `academic_year_id` (`academic_year_id`),
   ADD KEY `semester_id` (`semester_id`);
 
 --
--- Indexes for table `university_payment`
+-- Indexes for table `university_paid`
 --
-ALTER TABLE `university_payment`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_payment_students` (`student_id`),
-  ADD KEY `fk_payment_university_fee_schedule` (`fee_schedule_id`);
-
---
--- Indexes for table `university_payment_history`
---
-ALTER TABLE `university_payment_history`
+ALTER TABLE `university_paid`
   ADD PRIMARY KEY (`id`),
   ADD KEY `student_id` (`student_id`),
-  ADD KEY `fee_schedule_id` (`fee_schedule_id`);
+  ADD KEY `university_fee_id` (`university_fee_id`);
+
+--
+-- Indexes for table `university_partial`
+--
+ALTER TABLE `university_partial`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`),
+  ADD KEY `university_fee_id` (`university_fee_id`);
+
+--
+-- Indexes for table `university_pending`
+--
+ALTER TABLE `university_pending`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`),
+  ADD KEY `university_fee_id` (`university_fee_id`);
 
 --
 -- Indexes for table `users`
@@ -489,13 +486,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `academic_year`
 --
 ALTER TABLE `academic_year`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `colleges`
 --
 ALTER TABLE `colleges`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `fee_options`
@@ -540,34 +537,34 @@ ALTER TABLE `semesters`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `university_fee`
+-- AUTO_INCREMENT for table `university_fees`
 --
-ALTER TABLE `university_fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `university_fees`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `university_fee_schedule`
+-- AUTO_INCREMENT for table `university_paid`
 --
-ALTER TABLE `university_fee_schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `university_payment`
---
-ALTER TABLE `university_payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
--- AUTO_INCREMENT for table `university_payment_history`
---
-ALTER TABLE `university_payment_history`
+ALTER TABLE `university_paid`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `university_partial`
+--
+ALTER TABLE `university_partial`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `university_pending`
+--
+ALTER TABLE `university_pending`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -605,30 +602,37 @@ ALTER TABLE `programs`
 -- Constraints for table `students`
 --
 ALTER TABLE `students`
+  ADD CONSTRAINT `fk_students_academic_year` FOREIGN KEY (`academic_year_id`) REFERENCES `academic_year` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`college_id`) REFERENCES `colleges` (`id`),
   ADD CONSTRAINT `students_ibfk_2` FOREIGN KEY (`program_id`) REFERENCES `programs` (`id`);
 
 --
--- Constraints for table `university_fee_schedule`
+-- Constraints for table `university_fees`
 --
-ALTER TABLE `university_fee_schedule`
-  ADD CONSTRAINT `university_fee_schedule_ibfk_1` FOREIGN KEY (`university_fee_id`) REFERENCES `university_fee` (`id`),
-  ADD CONSTRAINT `university_fee_schedule_ibfk_2` FOREIGN KEY (`academic_year_id`) REFERENCES `academic_year` (`id`),
-  ADD CONSTRAINT `university_fee_schedule_ibfk_3` FOREIGN KEY (`semester_id`) REFERENCES `semesters` (`id`);
+ALTER TABLE `university_fees`
+  ADD CONSTRAINT `university_fees_ibfk_1` FOREIGN KEY (`academic_year_id`) REFERENCES `academic_year` (`id`),
+  ADD CONSTRAINT `university_fees_ibfk_2` FOREIGN KEY (`semester_id`) REFERENCES `semesters` (`id`);
 
 --
--- Constraints for table `university_payment`
+-- Constraints for table `university_paid`
 --
-ALTER TABLE `university_payment`
-  ADD CONSTRAINT `fk_payment_students` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`),
-  ADD CONSTRAINT `fk_payment_university_fee_schedule` FOREIGN KEY (`fee_schedule_id`) REFERENCES `university_fee_schedule` (`id`);
+ALTER TABLE `university_paid`
+  ADD CONSTRAINT `university_paid_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `university_paid_ibfk_2` FOREIGN KEY (`university_fee_id`) REFERENCES `university_fees` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `university_payment_history`
+-- Constraints for table `university_partial`
 --
-ALTER TABLE `university_payment_history`
-  ADD CONSTRAINT `university_payment_history_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`),
-  ADD CONSTRAINT `university_payment_history_ibfk_2` FOREIGN KEY (`fee_schedule_id`) REFERENCES `university_fee_schedule` (`id`);
+ALTER TABLE `university_partial`
+  ADD CONSTRAINT `university_partial_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `university_partial_ibfk_2` FOREIGN KEY (`university_fee_id`) REFERENCES `university_fees` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `university_pending`
+--
+ALTER TABLE `university_pending`
+  ADD CONSTRAINT `university_pending_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `university_pending_ibfk_2` FOREIGN KEY (`university_fee_id`) REFERENCES `university_fees` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `users`
