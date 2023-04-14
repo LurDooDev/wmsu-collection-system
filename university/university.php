@@ -291,7 +291,7 @@ foreach($FeeData as $Fee) {
                         <option value="<?php echo $AcademicYear['id']; ?>"><?php echo $AcademicYear['academic_name']; ?></option>
                     <?php } ?>
                 </select>
-                <div id="academicYear-description" class="form-text">Select the academic year associated with the fee.</div>
+                <div id="academicYear-description" class="form-text">Select academic year associated with the fee.</div>
             </div>
             <div class="form-group">
                 <label for="semesterID" class="form-label">Semester</label>
@@ -305,7 +305,7 @@ foreach($FeeData as $Fee) {
                         <option value="<?php echo $semester['id']; ?>"><?php echo $semester['semester_name']; ?></option>
                     <?php } ?>
                 </select>
-                <div id="semester-description" class="form-text">Select the semester associated with the fee.</div>
+                <div id="semester-description" class="form-text">Select semester associated with the fee.</div>
             </div>
             <div class="form-group">
                 <label for="startdate">Start Date</label>
