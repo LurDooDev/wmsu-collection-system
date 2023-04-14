@@ -222,60 +222,66 @@ require_once '../classes/role.class.php';
 				</div>
         <div class="modal-body">
         <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="userfullname">Name</label>
-              <input type="text" name="userfullname" id="userfullname" class="form-control" required >
-            </div>
-            <div class="form-group">
-              <label for="college" class="form-label">Colleges</label>
-              <select class="form-control" id="college" name="college" required >
-                <option value="">Select your option</option>
-                <?php
-                  $college = new College ();
-                  $collegeData = $college->show();
-                  foreach ($collegeData as $college) {
-                ?>
-                  <option value="<?php echo $college['id']; ?>"><?php echo $college['college_name']; ?></option>
-                <?php }?>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-6">
-          <div class="form-group">
-              <label for="role" class="form-label">Roles</label>
-              <select class="form-control" id="role" name="role" required >
-                <option value="">Select your option</option>
-                <?php
-                  $role = new Role ();
-                  $roleData = $role->show();
-                  foreach ($roleData as $role) {
-                ?>
-                  <option value="<?php echo $role['id']; ?>"><?php echo $role['role_name']; ?></option>
-                <?php }?>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="userposition">Position</label>
-              <select name="userposition" id="userposition" class="form-control" required>
-                <option value="" disabled selected>Select your option</option>
-                <option value="President">President</option>
-                <option value="Vice-President">Vice-President</option>
-                <option value="Secretary">Secretary</option>
-                <option value="Mayor">Mayor</option>
-                <option value="Vice-Mayor">Vice-Mayor</option>
-                <option value="Assistant">Assistant</option>
-              </select>
-            </div>
-            </div>
-            <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" name="username" id="username" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label for="userpassword">Password</label>
-              <input type="password" name="userpassword" id="userpassword" class="form-control" required>
-            </div>
+        <div class="col-md-10">
+  <div class="form-group">
+    <label for="userfullname">Name</label>
+    <input type="text" name="userfullname" id="userfullname" class="form-control" required aria-describedby="name-help">
+    <div id="name-help" class="form-text">Enter the name of the user.</div>
+  </div>
+  <div class="form-group">
+    <label for="college" class="form-label">Colleges</label>
+    <select class="form-control" id="college" name="college" required aria-describedby="college-help">
+      <option value="">Select your option</option>
+      <?php
+        $college = new College ();
+        $collegeData = $college->show();
+        foreach ($collegeData as $college) {
+      ?>
+        <option value="<?php echo $college['id']; ?>"><?php echo $college['college_name']; ?></option>
+      <?php }?>
+    </select>
+    <div id="college-help" class="form-text">Select the college of the user.</div>
+  </div>
+</div>
+<div class="col-md-10">
+  <div class="form-group">
+    <label for="role" class="form-label">Roles</label>
+    <select class="form-control" id="role" name="role" required aria-describedby="role-help">
+      <option value="">Select your option</option>
+      <?php
+        $role = new Role ();
+        $roleData = $role->show();
+        foreach ($roleData as $role) {
+      ?>
+        <option value="<?php echo $role['id']; ?>"><?php echo $role['role_name']; ?></option>
+      <?php }?>
+    </select>
+    <div id="role-help" class="form-text">Select the role of the user.</div>
+  </div>
+</div>
+<div class="form-group">
+  <label for="userposition">Position</label>
+  <select name="userposition" id="userposition" class="form-control" required aria-describedby="userposition-description">
+    <option value="" disabled selected>Select your option</option>
+    <option value="President">President</option>
+    <option value="Vice-President">Vice-President</option>
+    <option value="Secretary">Secretary</option>
+    <option value="Mayor">Mayor</option>
+    <option value="Vice-Mayor">Vice-Mayor</option>
+    <option value="Assistant">Assistant</option>
+  </select>
+  <small id="userposition-description" class="form-text text-muted">Please select your position.</small>
+</div>
+<div class="form-group">
+  <label for="username">Username</label>
+  <input type="text" name="username" id="username" class="form-control" required aria-describedby="username-description">
+  <small id="username-description" class="form-text text-muted">Please enter your username.</small>
+</div>
+<div class="form-group">
+  <label for="userpassword">Password</label>
+  <input type="password" name="userpassword" id="userpassword" class="form-control" required aria-describedby="userpassword-description">
+  <small id="userpassword-description" class="form-text text-muted">Please enter your password.</small>
+</div>
           </div>
         </div>
 						
