@@ -225,7 +225,7 @@ require_once '../classes/role.class.php';
         <div class="col-md-10">
   <div class="form-group">
     <label for="userfullname">Name</label>
-    <input type="text" name="userfullname" id="userfullname" class="form-control" required aria-describedby="name-help">
+    <input type="text" name="userfullname" id="userfullname" class="form-control" required aria-describedby="name-help" placeholder = "Andres Bonifacio">
     <div id="name-help" class="form-text">Enter the name of the user.</div>
   </div>
   <div class="form-group">
@@ -270,17 +270,17 @@ require_once '../classes/role.class.php';
     <option value="Vice-Mayor">Vice-Mayor</option>
     <option value="Assistant">Assistant</option>
   </select>
-  <small id="userposition-description" class="form-text text-muted">Please select your position.</small>
+  <small id="userposition-description" class="form-text text-muted">Select the position of the user.</small>
 </div>
 <div class="form-group">
   <label for="username">Username</label>
   <input type="text" name="username" id="username" class="form-control" required aria-describedby="username-description">
-  <small id="username-description" class="form-text text-muted">Please enter your username.</small>
+  <small id="username-description" class="form-text text-muted">Enter the username of the user.</small>
 </div>
 <div class="form-group">
   <label for="userpassword">Password</label>
   <input type="password" name="userpassword" id="userpassword" class="form-control" required aria-describedby="userpassword-description">
-  <small id="userpassword-description" class="form-text text-muted">Please enter your password.</small>
+  <small id="userpassword-description" class="form-text text-muted">Enter the password of the user.</small>
 </div>
           </div>
         </div>

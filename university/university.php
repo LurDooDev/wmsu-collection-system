@@ -261,59 +261,64 @@ foreach($FeeData as $Fee) {
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
-					<div class="row">
-						<div class="col-sm-6">
-							<h5>Fee Details</h5>
-							<div class="form-group">
-								<label for="name">Name</label>
-								<input type="text" name="name" id="name" class="form-control" required>
-							</div>
-							<div class="form-group">
-								<label for="amount" class="form-label">Amount</label>
-								<div class="input-group">
-									<input type="number" class="form-control" id="amount" name="amount" min="0" step="1" required>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<h5>Fee Scheduling</h5>
-							<div class="form-group">
-		  <label for="academicYearID" class="form-label">Academic Year</label>
-            <select class="form-control" id="academicYearID" name="academicYearID" required>
-              <option value="">Select your option</option>
-			  <?php
-			  $AcademicYear = new AcademicYear();
-			  $AcademicYearData = $AcademicYear->show();
-            	 foreach ($AcademicYearData as $AcademicYear) {
-                 ?>
-                <option value="<?php echo $AcademicYear['id']; ?>"><?php echo $AcademicYear['academic_name']; ?></option>
-              <?php } ?>
-            </select>
-          </div>
-          <div class="form-group">
-		  <label for="semesterID" class="form-label">Semester</label>
-            <select class="form-control" id="semesterID" name="semesterID" required>
-              <option value="">Select your option</option>
-			  <?php
-			  $semester = new Semester();
-			  $semesterData = $semester->show();
-            	 foreach ($semesterData as $semester) {
-                 ?>
-                <option value="<?php echo $semester['id']; ?>"><?php echo $semester['semester_name']; ?></option>
-              <?php } ?>
-            </select>
-          </div>
-							<div class="form-group">
-								<label>Start Date</label>
-								<input type="date" name="startdate" class="form-control" required>
-							</div>
-							<div class="form-group">
-								<label>End Date</label>
-								<input type="date" name="enddate" class="form-control" required>
-							</div>
-						</div>
-					</div>
-				</div>
+    <div class="row">
+        <div class="col-sm-6">
+            <h5>Fee Details</h5>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" class="form-control sm" required aria-describedby="name-description" placeholder="CSB FEE">
+                <div id="name-description" class="form-text">Enter the name of the fee.</div>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <div class="input-group">
+                    <input type="number" class="form-control" id="amount" name="amount" min="0" step="1" required aria-describedby="amount-description" placeholder="PHP 200">
+                </div>
+                <div id="amount-description" class="form-text">Enter the amount of the fee.</div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h5>Fee Scheduling</h5>
+            <div class="form-group">
+                <label for="academicYearID" class="form-label">Academic Year</label>
+                <select class="form-control" id="academicYearID" name="academicYearID" required aria-describedby="academicYear-description">
+                    <option value="">Select your option</option>
+                    <?php
+                    $AcademicYear = new AcademicYear();
+                    $AcademicYearData = $AcademicYear->show();
+                    foreach ($AcademicYearData as $AcademicYear) {
+                    ?>
+                        <option value="<?php echo $AcademicYear['id']; ?>"><?php echo $AcademicYear['academic_name']; ?></option>
+                    <?php } ?>
+                </select>
+                <div id="academicYear-description" class="form-text">Select academic year associated with the fee.</div>
+            </div>
+            <div class="form-group">
+                <label for="semesterID" class="form-label">Semester</label>
+                <select class="form-control" id="semesterID" name="semesterID" required aria-describedby="semester-description">
+                    <option value="">Select your option</option>
+                    <?php
+                    $semester = new Semester();
+                    $semesterData = $semester->show();
+                    foreach ($semesterData as $semester) {
+                    ?>
+                        <option value="<?php echo $semester['id']; ?>"><?php echo $semester['semester_name']; ?></option>
+                    <?php } ?>
+                </select>
+                <div id="semester-description" class="form-text">Select semester associated with the fee.</div>
+            </div>
+            <div class="form-group">
+                <label for="startdate">Start Date</label>
+                <input type="date" name="startdate" id="startdate" class="form-control" required aria-describedby="startdate-description">
+                <div id="startdate-description" class="form-text">Enter the start date for the fee.</div>
+            </div>
+            <div class="form-group">
+                <label for="enddate">End Date</label>
+                <input type="date" name="enddate" id="enddate" class="form-control" required aria-describedby="enddate-description">
+                <div id="enddate-description" class="form-text">Enter the end date for the fee.</div>
+            </div>
+        </div>
+    </div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 					<input type="hidden" name="action" value="Save">
@@ -324,7 +329,7 @@ foreach($FeeData as $Fee) {
 		</div>
 	</div>
 </div>
-
+          
 
 </body>       
 
