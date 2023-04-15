@@ -18,17 +18,14 @@ if (isset($_POST['action']) && $_POST['action'] == 'add') {
     if (empty($users->username) || empty($users->userfullname) || empty($users->userposition) || empty($users->roleID) || empty($users->collegeID) || empty($users->userpassword)) {
         $errors['all'] = 'Please fill in all the required fields';
     } else {
-        if (strlen($users->username) > 50) {
+        if (strlen($users->username) > 25) {
             $errors['username'] = 'Field length exceeds the limit';
         }
-        if (strlen($users->userfullname) > 100) {
+        if (strlen($users->userfullname) > 50) {
             $errors['userfullname'] = 'Field length exceeds the limit';
         }
         if (strlen($users->userposition) > 50) {
             $errors['userposition'] = 'Field length exceeds the limit';
-        }
-        if (!ctype_alpha($users->userfullname)) {
-            $errors['userfullname'] = 'Name must not contain numerical values';
         }
         if (!is_numeric($users->roleID)) {
             $errors['role'] = 'Invalid input';
