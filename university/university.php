@@ -263,7 +263,7 @@ foreach($FeeData as $Fee) {
 				<div class="modal-body">
     <div class="row">
         <div class="col-sm-6">
-            <h5>Fee Details</h5>
+            <h5>Details</h5>
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" class="form-control sm" required aria-describedby="name-description" placeholder="CSB FEE">
@@ -278,10 +278,10 @@ foreach($FeeData as $Fee) {
             </div>
         </div>
         <div class="col-sm-6">
-            <h5>Fee Scheduling</h5>
+            <h5>Scheduling</h5>
             <div class="form-group">
                 <label for="academicYearID" class="form-label">Academic Year</label>
-                <select class="form-control" id="academicYearID" name="academicYearID" required aria-describedby="academicYear-description">
+                <select class="form-control" id="academicYearID" name="academicYearID" required>
                     <option value="">Select your option</option>
                     <?php
                     $AcademicYear = new AcademicYear();
@@ -291,11 +291,10 @@ foreach($FeeData as $Fee) {
                         <option value="<?php echo $AcademicYear['id']; ?>"><?php echo $AcademicYear['academic_name']; ?></option>
                     <?php } ?>
                 </select>
-                <div id="academicYear-description" class="form-text">Select academic year associated with the fee.</div>
             </div>
             <div class="form-group">
                 <label for="semesterID" class="form-label">Semester</label>
-                <select class="form-control" id="semesterID" name="semesterID" required aria-describedby="semester-description">
+                <select class="form-control" id="semesterID" name="semesterID" required>
                     <option value="">Select your option</option>
                     <?php
                     $semester = new Semester();
@@ -305,17 +304,14 @@ foreach($FeeData as $Fee) {
                         <option value="<?php echo $semester['id']; ?>"><?php echo $semester['semester_name']; ?></option>
                     <?php } ?>
                 </select>
-                <div id="semester-description" class="form-text">Select semester associated with the fee.</div>
             </div>
             <div class="form-group">
                 <label for="startdate">Start Date</label>
-                <input type="date" name="startdate" id="startdate" class="form-control" required aria-describedby="startdate-description">
-                <div id="startdate-description" class="form-text">Enter the start date for the fee.</div>
+                <input type="date" name="startdate" id="startdate" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="enddate">End Date</label>
-                <input type="date" name="enddate" id="enddate" class="form-control" required aria-describedby="enddate-description">
-                <div id="enddate-description" class="form-text">Enter the end date for the fee.</div>
+                <input type="date" name="enddate" id="enddate" class="form-control" required>
             </div>
         </div>
     </div>
