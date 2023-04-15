@@ -109,13 +109,13 @@
         <div class="col-sm-auto">
         <input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
         </div>
-        <div class="col-sm-4" style="padding-bottom: 10px;">
+       <div class="col-sm-4" style="padding-bottom: 10px;">
         <button class="btn btn-primary dropdown-toggle" id ="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By </button>
 						<div class="dropdown-menu">
     					<a class="dropdown-item" href="#">Ascending</a>
     					<a class="dropdown-item" href="#">Descending</a>
 					</div>
-        </div>
+        </div> 
         <div class="col-sm-4" style="padding-bottom: 10px;">
         <button class="btn btn-primary dropdown-toggle" id ="school-year" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">School Year </button>
 						<div class="dropdown-menu">

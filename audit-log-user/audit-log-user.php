@@ -85,20 +85,22 @@
         </div>
     </nav>
     <div class="container">
+    <div class="table-responsive">
   <div class="col-sm-14" id="lakatan">
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="sort-by" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Sort By
-      </button>
-      <div class="dropdown-menu" aria-labelledby="sort-by">
-        <a class="dropdown-item" href="#" id="sort-asc">Ascending</a>
-        <a class="dropdown-item" href="#" id="sort-desc">Descending</a>
-      </div>
-    </div>
+  <div class="row my-auto mx-auto">
+    <div class="col-sm-auto" style="padding-top: 10px; padding-bottom: 10px;">
+        <input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
+        </div>
+    <div class="col-sm-6" style="padding-top: 10px; padding-bottom: 10px;">
+        <button class="btn btn-primary dropdown-toggle" id ="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By </button>
+						<div class="dropdown-menu">
+    					<a class="dropdown-item" href="#">Ascending</a>
+    					<a class="dropdown-item" href="#">Descending</a>
+					</div>
+        </div>
     <table class="table table-striped table-borderless">
       <thead style="background-color:#95BDFE ;" class="text-white">
         <tr>
-          <hr style="height: 6px; color: #FFF;">
           <th scope="col" style="color: #000000;">ID</th>
           <th scope="col" style="color: #000000;">Name</th>
           <th scope="col" style="color: #000000;">Officer</th>
@@ -144,6 +146,7 @@
     </table>
   </div>
 </div>
+    </div>
 
 </body>       
 

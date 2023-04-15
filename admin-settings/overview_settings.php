@@ -112,11 +112,11 @@ require_once "../classes/academicyear.class.php";
                 <table class="table">
             <thead style="background-color:#95BDFE ;" class="text-white">
               <tr>
-                <th scope="col" style = " color: #000000;" >#</th>
-                <th scope="col" style = " color: #000000;" >School Year</th>
-                <th scope="col" style = " color: #000000;" >Start Date</th>
-                <th scope="col" style = " color: #000000;" >End Date</th>
-                <th scope="col" style = " color: #000000;" >Action</th>
+                <th scope="col" style = " color: #000000;text-align:center" >#</th>
+                <th scope="col" style = " color: #000000;text-align:center" >School Year</th>
+                <th scope="col" style = " color: #000000;text-align:center" >Start Date</th>
+                <th scope="col" style = " color: #000000;text-align:center" >End Date</th>
+                <th scope="col" style = " color: #000000; text-align:center" >Action</th>
               </tr>
             </thead>
             <tbody>
@@ -129,12 +129,12 @@ require_once "../classes/academicyear.class.php";
 						// Convert both values to lowercase and compare them
 							?>
               <tr>
-              <td><?php echo $i; ?></td>
-								<td><?php echo $AcademicYear['academic_name']; ?></td>
-								<td><?php echo date('F j, Y', strtotime($AcademicYear['academic_start_date'])); ?></td>
-                <td><?php echo date('F j, Y', strtotime($AcademicYear['academic_end_date'])); ?></td>
+              <td style="text-align:center"><?php echo $i; ?></td>
+								<td style="text-align:center"><?php echo $AcademicYear['academic_name']; ?></td>
+								<td style="text-align:center"><?php echo date('F j, Y', strtotime($AcademicYear['academic_start_date'])); ?></td>
+                <td style="text-align:center"><?php echo date('F j, Y', strtotime($AcademicYear['academic_end_date'])); ?></td>
                 <!-- <td><?php echo ($AcademicYear['is_active'] == 1) ? "Active" : "Not Active"; ?></td> -->
-                <td>
+                <td style="text-align:center">
                     <a href="#updateYearModal<?php echo $i; ?>" class="edit" data-toggle="modal">
                 <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                 </a>
@@ -180,7 +180,7 @@ require_once "../classes/academicyear.class.php";
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                         <input type="hidden" name="action" value="update">
                         <input type="hidden" name="id" value="<?php echo $AcademicYear['id']; ?>">
-                        <input type="submit" class="btn btn-info" value="Update">
+                        <input type="submit" class="btn btn-success" value="Update">
                     </div>
                 </form>
             </div>
@@ -293,10 +293,12 @@ require_once "../classes/academicyear.class.php";
 					<div class="form-group">
 						<label>Semester Name</label>
 						<input type="text" name="name" class="form-control" required>
+            <div id="code-help" class="form-text">Enter the Semester Name</div>
 					</div>
 					<div class="form-group">
 						<label>Duration</label>
 						<input type="number" name="duration" class="form-control" required>
+            <div id="code-help" class="form-text">Enter the Desired Duration</div>
 					</div>	
 				</div>      
 				<div class="modal-footer">
@@ -323,17 +325,18 @@ require_once "../classes/academicyear.class.php";
 					<div class="row">
 						<div class="col-sm-6">
             <div class="form-group">
-						<label>Academic Name</label>
+						<label>Academic Year</label>
 						<input type="text" name="name" class="form-control" placeholder="2022-2023" required>
+            <div id="code-help" class="form-text">Enter the Desired Academic Year:</div>
 					</div>	
 						</div>
 						<div class="col-sm-6">
             <div class="form-group">
-						<label>academic start at</label>
+						<label>Academic Start At</label>
 						<input type="date" name="startdate" class="form-control" required>
 					</div>
           <div class="form-group">
-						<label>academic end at</label>
+						<label>Academic End At</label>
 						<input type="date" name="enddate" class="form-control" required>
 					</div>
 						</div>

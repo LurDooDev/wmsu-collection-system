@@ -91,52 +91,266 @@ require_once '../classes/academicyear.class.php';
     <div class="container">
     <div class="row d-flex justify-content-end">
     <div class="col-sm-6 col-12 d-flex align-items-center justify-content-end" style="margin-top: 20px;">
-    <div class="mr-3">
 	<?php
                     if($_SESSION['role'] == 'admin'){?>
+    <div class="mr-3">
       <a href="#addDetailsModal" class="btn btn-success" id="add-csv" data-toggle="modal">
-        <i class="material-icons">&#xE147;</i> <span>Add New Schedule</span>
+        <i class="material-icons">&#xE147;</i> <span>Add Academic Year</span>
       </a>
     </div>
     <div>
-      <a class="btn btn-danger" id="add-student" style="color: white;">
-        <i class="material-symbols-outlined">restart_alt</i> <span>Reset</span>
+      <a href="#addSemesterModal" class="btn btn-success" id="add-csv" data-toggle="modal">
+       <i class="material-icons">&#xE147;</i> <span>Add Semester</span>
       </a>
     </div>
 	<?php } ?>
   </div>
   </div>
-<h style="font-size: 20px; padding-bottom: 10px;"><b>School Year and Semester</b></h>
+  <h style="font-size: 20px; padding-bottom: 10px;"><b>Academic Year</b></h>
           <div class =" table-responsive">
                 <table class="table">
             <thead style="background-color:#95BDFE ;" class="text-white">
               <tr>
-                <th scope="col" style = " color: #000000;" >#</th>
+                <th scope="col" style = " color: #000000;text-align:center" >#</th>
                 <th scope="col" style = " color: #000000;text-align:center" >School Year</th>
-                <th scope="col" style = " color: #000000;" >Start Date</th>
-                <th scope="col" style = " color: #000000;" >End Date</th>
-                <th scope="col" style = " color: #000000; text-align:center;" >Semester</th></th>
-                <th scope="col" style = " color: #000000; text-align:center;" >Duration of Semester</th>
-                <th scope="col" style = " color: #000000; text-align:center;" >Action</th>
+                <th scope="col" style = " color: #000000;text-align:center" >Start Date</th>
+                <th scope="col" style = " color: #000000;text-align:center" >End Date</th>
+                <th scope="col" style = " color: #000000; text-align:center" >Action</th>
               </tr>
             </thead>
             <tbody>
+            <?php
+                    $AcademicYear = new AcademicYear();
+					$data = $AcademicYear->show();
+					$i = 1;
+					
+					foreach($data as $AcademicYear) {
+						// Convert both values to lowercase and compare them
+							?>
               <tr>
-              <td>1</td>
-              <td style="text-align:center">2022-2023</td>
-              <td>June 01,2022</td>
-              <td >June 01,2023</td>
-		      <td style="text-align: center;"> 1st Semester</td>
-              <td style="text-align: center;">4 months</td>
+              <td style="text-align:center"><?php echo $i; ?></tds>
+								<td style="text-align:center"><?php echo $AcademicYear['academic_name']; ?></tds>
+								<td style="text-align:center"><?php echo date('F j, Y', strtotime($AcademicYear['academic_start_date'])); ?></td>
+                <td style="text-align:center"><?php echo date('F j, Y', strtotime($AcademicYear['academic_end_date'])); ?></td>
+                <!-- <td><?php echo ($AcademicYear['is_active'] == 1) ? "Active" : "Not Active"; ?></td> -->
                 <td style="text-align: center;">
-                    <a href="#editDetailsModal" class="edit" data-toggle="modal">
+                    <a href="#updateYearModal<?php echo $i; ?>" class="edit" data-toggle="modal">
                 <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                 </a>
 </td>
-<tr>
 
-<!-- Add Details Modal  -->
+<!--Update-->
+<div id="updateYearModal<?php echo $i; ?>" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="updateacademicyear.php" method="POST">
+                    <div class="modal-header">
+                        <h4 class="modal-title"><?php echo $AcademicYear['academic_name']; ?> Year Settings</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+    <div class="form-group">
+        <label> Start Date</label>
+        <input type="date" class="form-control" name="startdate" value="<?php echo $AcademicYear['academic_start_date']; ?>">
+    </div>
+
+
+    <div class="form-group">
+        <label>End Date</label>
+        <input type="date" class="form-control" name="enddate" value="<?php echo $AcademicYear['academic_end_date']; ?>">
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="status" id="activeRadio<?php echo $i; ?>" value="1"<?php if($AcademicYear['is_active'] == 1) { echo ' checked'; } ?>>
+            <label class="form-check-label" for="activeRadio<?php echo $i; ?>">
+                Active
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="status" id="inactiveRadio<?php echo $i; ?>" value="0"<?php if($AcademicYear['is_active'] == 0) { echo ' checked'; } ?>>
+            <label class="form-check-label" for="inactiveRadio<?php echo $i; ?>">
+                Inactive
+            </label>
+        </div>
+    </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="hidden" name="action" value="update">
+                        <input type="hidden" name="id" value="<?php echo $AcademicYear['id']; ?>">
+                        <input type="submit" class="btn btn-success" value="Update">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+              </tr>
+              <?php 
+							$i++;
+						}
+?>
+    
+        </tbody>
+                </table>
+          </div>
+  <h style="font-size: 20px;"><b>Semester</b></h>
+          <div class =" table-responsive">
+                <table class="table">
+            <thead style="background-color:#95BDFE ;" class="text-white">
+              <tr>
+                <th scope="col" style = " color: #000000; text-align:center" >#</th>
+                <th scope="col" style = " color: #000000; text-align:center" >Semester</th>
+                <th scope="col" style = " color: #000000; text-align:center" >Duration</th></th>
+                <th scope="col" style = " color: #000000; text-align:center" >Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php
+                    $Semester = new Semester();
+					$data = $Semester->show();
+					$i = 1;
+					
+					foreach($data as $Semester) {
+						// Convert both values to lowercase and compare them
+							?>
+              <tr>
+              <td style="text-align:center"><?php echo $i; ?></td>
+								<td style="text-align:center"><?php echo $Semester['semester_name']; ?></td>
+								<td style="text-align:center"><?php echo $Semester['semester_duration']; ?> months</td>
+                <td style="text-align:center">
+                    <a href="#updateSemesterModal<?php echo $i; ?>" class="edit" data-toggle="modal">
+                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                </a>
+</td>
+
+<!--Update-->
+<div id="updateSemesterModal<?php echo $i; ?>" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="updatesemester.php" method="POST">
+                    <div class="modal-header">
+                    <h4 class="modal-title"><?php echo $Semester['semester_name']; ?> Settings</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                    <div class="form-group">
+        <label>Semester Name</label>
+        <input type="text" class="form-control" name="name" value="<?php echo $Semester['semester_name']; ?>">
+    </div>
+    <div class="form-group">
+        <label>Semester Duration</label>
+        <input type="number" class="form-control" name="duration" value="<?php echo $Semester['semester_duration']; ?>">
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="status" id="activeRadio" value="1">
+            <label class="form-check-label" for="activeRadio">
+                Active
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="status" id="inactiveRadi" value="0">
+            <label class="form-check-label" for="inactiveRadio">
+                Inactive
+            </label>
+        </div>
+    </div>
+          
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="hidden" name="action" value="update">
+                        <input type="hidden" name="id" value="<?php echo $Semester['id']; ?>">
+                        <input type="submit" class="btn btn-success" value="Update">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+              </tr>
+              <?php 
+							$i++;
+						}
+?>
+    
+        </tbody>
+          </table>
+</div>
+<!--Semester add here  -->
+
+<div id="addSemesterModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form action="addsemester.php" method="POST">
+				<div class="modal-header">						
+					<h4 class="modal-title">Add Semester</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<div class="form-group">
+						<label>Semester Name</label>
+						<input type="text" name="name" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label>Duration</label>
+						<input type="number" name="duration" class="form-control" required>
+					</div>	
+				</div>      
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+          <input type="hidden" name="action" value="add">
+					<input type="submit" class="btn btn-success" value="Save">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+        
+
+<!-- Add Academic Year Modal  -->
 <div id="addDetailsModal" class="modal fade">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+    <form action="addacademicyear.php" method="POST">
+				<div class="modal-header">						
+					<h4 class="modal-title">Add New Details</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-6">
+            <div class="form-group">
+						<label>Academic Year</label>
+						<input type="text" name="name" class="form-control" placeholder="2022-2023" required>
+            <div id="code-help" class="form-text">Enter the Desired Academic Year:</div>
+					</div>	
+						</div>
+						<div class="col-sm-6">
+            <div class="form-group">
+						<label>Academic Start At</label>
+						<input type="date" name="startdate" class="form-control" required>
+					</div>
+          <div class="form-group">
+						<label>Academic End At</label>
+						<input type="date" name="enddate" class="form-control" required>
+					</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="hidden" name="action" value="add">
+					<input type="submit" class="btn btn-success" value="Save">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Edit Academic Year Modal -->
+<div id="editDetailsModal" class="modal fade">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<form action="adduser.php" method="POST">
@@ -150,25 +364,25 @@ require_once '../classes/academicyear.class.php';
                             <div class="form-group">
 								<label for="schoolyear">School Year</label>
 								<select name="schoolyear" id="schoolyear" class="form-control" required>
-									<option value="" selected>Select Options</option>
+									<option value="" selected>2022-2023</option>
 									<option value="2022-2023">2022-2023</option>
 									<option value="2023-2024">2023-2024</option>
 								</select>
 							</div>
 							<div class="form-group">
 								<label>Start Date</label>
-								<input type="date" name="startdate" class="form-control"required>
+								<input type="date" name="startdate" class="form-control" value="2022-06-01" required>
 							</div>
 							<div class="form-group">
 								<label>End Date</label>
-								<input type="date" name="enddate" class="form-control" required>
+								<input type="date" name="enddate" class="form-control" value="2023-06-01" required>
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label for="semester">Semester</label>
 								<select name="semester" id="semester" class="form-control" required>
-									<option value="" selected>Select Options</option>
+									<option value="" selected>1st Semester</option>
 									<option value="1st Semester">1st Semester</option>
 									<option value="2nd Semester">2nd Semester</option>
 									<option value="Summer">Summer</option>
@@ -177,7 +391,7 @@ require_once '../classes/academicyear.class.php';
                             <div class="form-group">
 								<label for="amount" class="form-label" >Duration Of Semester</label>
 								<div class="input-group">
-									<input type="number" class="form-control" id="amount" name="amount" min="0" step="1"required>
+									<input type="number" class="form-control" id="amount" name="amount" min="0" step="1" placeholder="4" required>
 								</div>
 							</div>
 						</div>
@@ -193,8 +407,47 @@ require_once '../classes/academicyear.class.php';
 	</div>
 </div>
 
-<!-- Edit Details Modal -->
-<div id="editDetailsModal" class="modal fade">
+<!-- Add Details Modal  -->
+<div id="addSemesterModal" class="modal fade">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+    <form action="addacademicyear.php" method="POST">
+				<div class="modal-header">						
+					<h4 class="modal-title">Add New Details</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-6">
+            <div class="form-group">
+						<label>Academic Name</label>
+						<input type="text" name="name" class="form-control" placeholder="2022-2023" required>
+					</div>	
+						</div>
+						<div class="col-sm-6">
+            <div class="form-group">
+						<label>academic start at</label>
+						<input type="date" name="startdate" class="form-control" required>
+					</div>
+          <div class="form-group">
+						<label>academic end at</label>
+						<input type="date" name="enddate" class="form-control" required>
+					</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="hidden" name="action" value="add">
+					<input type="submit" class="btn btn-success" value="Save">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Edit Semester Modal -->
+<div id="editSemesterModal" class="modal fade">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<form action="adduser.php" method="POST">
@@ -254,4 +507,47 @@ require_once '../classes/academicyear.class.php';
 
 
         </body>      
+</html>
+<!-- Script for dashboard hamburger         -->
+</body>       
+        <script>
+/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+    } else {
+      dropdownContent.style.display = "block";
+    }
+  });
+}
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+            <script>
+                var el = document.getElementById("wrapper");
+                var toggleButton = document.getElementById("menu-toggle");
+        
+                toggleButton.onclick = function () {
+                    el.classList.toggle("toggled");
+                };
+            </script>
+            <script>function setActiveLink(link) {
+  var links = document.querySelectorAll('.list-group-item');
+  for (var i = 0; i < links.length; i++) {
+    links[i].classList.remove('active');
+  }
+  link.classList.add('active');
+}
+
+var links = document.querySelectorAll('.list-group-item');
+for (var i = 0; i < links.length; i++) {
+  links[i].addEventListener('click', function() {
+    setActiveLink(this);
+  });
+}</script>
 </html>
