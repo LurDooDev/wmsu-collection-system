@@ -148,16 +148,18 @@ require_once '../classes/database.class.php';
 							<h5>Fee Details</h5>
 							<div class="form-group">
 								<label for="feeName">Name</label>
-								<input type="text" name="feeName" id="feeName" class="form-control" placeholder="CSC Fee" required>
+								<input type="text" name="feeName" id="feeName" class="form-control" required aria-describedby="name-description" placeholder="Palaro Fee">
+                <div id="name-description" class="form-text">Enter the name of the fee.</div>
 							</div>
 							
-							<div class="form-group">
-								<label for="amount" class="form-label" >Amount</label>
-								<div class="input-group">
-									<input type="number" class="form-control" id="amount" name="amount" min="0" step="1" placeholder="200" required>
-								</div>
-							</div>
-						</div>
+              <div class="form-group">
+                <label for="amount">Amount</label>
+                <div class="input-group">
+                    <input type="number" class="form-control" id="amount" name="amount" min="0" step="1" required aria-describedby="amount-description" placeholder="PHP 200">
+                </div>
+                <div id="amount-description" class="form-text">Enter the amount of the fee.</div>
+            </div>
+        </div>
 						<div class="col-sm-6">
 							<h5>Fee Scheduling</h5>
 							<div class="form-group">
