@@ -341,7 +341,7 @@ function validateForm() {
   }
   
   if (!/^[^0-9]+$/.test(userfullname.value)) {
-    showNotification("Full name must not contain numeric values.");
+    showNotification("Name must not contain numeric values.");
     userfullname.focus();
     return false;
   }
