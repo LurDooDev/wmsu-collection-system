@@ -211,6 +211,7 @@ require_once '../classes/role.class.php';
 
 
 <!-- Add Modal HTML -->
+
 <div id="addCollectorModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -224,10 +225,11 @@ require_once '../classes/role.class.php';
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
-        <label for="userfullname">Name</label>
-        <input type="text" name="userfullname" id="userfullname" class="form-control" required aria-describedby="name-help" placeholder="Andres Bonifacio">
-        <div id="name-help" class="form-text">Enter the name of the user.</div>
-      </div>
+      <label for="userfullname">Name</label>
+      <input type="text" name="userfullname" id="userfullname" class="form-control" required aria-describedby="name-help">
+      <div class="error"></div>
+     <div id="name-help" class="form-text">Enter the name of the user.</div>
+    </div>
       <div class="form-group">
         <label for="username">Username</label>
         <input type="text" name="username" id="username" class="form-control" required aria-describedby="username-description">
@@ -281,11 +283,138 @@ require_once '../classes/role.class.php';
     </div>
   </div>
 </div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="hidden" name="action" value="add">
-					<input type="submit" class="btn btn-success" value="Add">
-				</div>
+<div class="modal-footer">
+  <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+  <input type="hidden" name="action" value="add">
+  <input type="submit" class="btn btn-success" value="Add" onclick="return validateForm()">
+</div>
+
+<script>
+var existingUsernames = [];
+
+function showNotification(message) {
+  var notification = document.createElement("div");
+  notification.innerHTML = message;
+  notification.style.position = "fixed";
+  notification.style.top = "10px";
+  notification.style.right = "10px";
+  notification.style.backgroundColor = "#f44336";
+  notification.style.color = "#fff";
+  notification.style.padding = "12px";
+  notification.style.borderRadius = "4px";
+  notification.style.boxShadow = "0 2px 6px rgba(0, 0, 0, 0.3)";
+  notification.style.zIndex = "9999";
+  notification.style.fontSize = "16px";
+  notification.style.fontWeight = "bold";
+  document.body.appendChild(notification);
+  
+  // Fade out and remove the notification after 5 seconds
+  setTimeout(function() {
+    notification.style.opacity = "0";
+    setTimeout(function() {
+      notification.parentNode.removeChild(notification);
+    }, 1000);
+  }, 5000);
+}
+
+
+function validateForm() {
+  // Get the input fields
+  var userfullname = document.getElementById("userfullname");
+  var username = document.getElementById("username");
+  var userpassword = document.getElementById("userpassword");
+  var college = document.getElementById("college");
+  var role = document.getElementById("role");
+  var userposition = document.getElementById("userposition");
+
+  // Validate the fields
+  if (userfullname.value == "") {
+    showNotification("Please enter your name.");
+    userfullname.focus();
+    return false;
+  } 
+  
+  else if (userfullname.value.length > 50) {
+    showNotification("Name must not exceed 50 characters.");
+    userfullname.focus();
+    return false;
+  }
+  
+  if (!/^[^0-9]+$/.test(userfullname.value)) {
+    showNotification("Full name must not contain numeric values.");
+    userfullname.focus();
+    return false;
+  }
+
+  if (username.value == "") {
+    showNotification("Please enter a username.");
+    username.focus();
+    return false;
+  }
+  
+  else if (username.value.length > 50) {
+    showNotification("User Name must not exceed 50 characters.");
+    username.focus();
+    return false;
+  }
+
+  if (existingUsernames.includes(username.value)) {
+    showNotification("This username already exists. Please choose a different one.");
+    username.focus();
+    return false;
+  }
+
+  if (username.value.length < 2) {
+    showNotification("User Name must be at least 2 characters");
+    username.focus();
+    return false;
+  }
+
+  if (userpassword.value == "") {
+    showNotification("Please enter a password.");
+    userpassword.focus();
+    return false;
+  }
+
+  if (userpassword.value.length > 25) {
+    showNotification("User Password exceeded the maximum length.");
+    userpassword.focus();
+    return false;
+  }
+
+  if (userpassword.value.length < 8) {
+    showNotification("Password must be at least 8 characters long.");
+    userpassword.focus();
+    return false;
+  }
+
+
+  if (college.value == "") {
+    showNotification("Please select a college.");
+    college.focus();
+    return false;
+  }
+
+  if (role.value == "") {
+    showNotification("Please select a role.");
+    role.focus();
+    return false;
+  }
+
+  if (userposition.value == "") {
+    showNotification("Please select a position.");
+    userposition.focus();
+    return false;
+  }
+
+  // If all fields are valid, add username to existingUsernames array and submit the form
+  existingUsernames.push(username.value);
+  window.location.href = "../admin-settings/user.php";
+  return true;
+}
+</script>
+
+
 			</form>
 		</div>
 					</div>
