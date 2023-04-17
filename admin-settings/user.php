@@ -327,6 +327,9 @@ function validateForm() {
   var role = document.getElementById("role");
   var userposition = document.getElementById("userposition");
 
+  // Initialize the errors array
+  var errors = [];  
+  
   // Validate the fields
   if (userfullname.value == "") {
     showNotification("Please enter your name.");
@@ -334,6 +337,12 @@ function validateForm() {
     return false;
   } 
   
+else if (userfullname.value.length < 3) {
+    showNotification("Name must be at least 3 characters");
+    userfullname.focus();
+    return false;
+  }
+
   else if (userfullname.value.length > 50) {
     showNotification("Name must not exceed 50 characters.");
     userfullname.focus();
