@@ -14,6 +14,7 @@
 		}
 	}	
 	require_once '../classes/database.class.php';
+  require_once '../classes/universitypending.class.php';
 	require_once '../classes/student.class.php';
   
   $name = '';
@@ -125,11 +126,6 @@
                             <div class="my-1" style = "font-size:20px;">
                             Western Mindanao State University
                             </div>
-                            <div class="my-1" style = "font-size:20px;">
-                               Pending Fees
-                               <div class="d-flex" style="color:#000000;">
-</div>
-                         </div>
                         </div>
                     </div>
                     <!-- /.col -->
@@ -146,10 +142,21 @@
 
                     <!-- /.col -->
                 </div>
+                <div class="my-1" style = "font-size:20px;">
+                               Pending Fees
+                               <div class="d-flex" style="color:#000000;">
+</div>
+                         </div>
                 <div class ="col-sm-12" style="padding-bottom: 10px;">
-  <a href="#" class="btn btn-primary" id="all-btn">
+  <!-- <a href="#" class="btn btn-primary" id="all-btn">
       <span>All</span>
-    </a>
+    </a> -->
+  
+<!-- University and Local Buttons -->
+<div class="row mb-4">
+  <div class="col-sm-12">
+  </div>
+                <div class ="col-sm-12" style="padding-bottom: 10px;">
     <a href="#" class="btn btn-primary" id="university-btn">
       <span>University</span>
     </a>
@@ -157,228 +164,98 @@
       <span>Local</span>
     </a>
   </div>
-                <div>
-                  
-    <div class="col-sm-12 col-lg-12 mx-auto">
-      <div class="table-responsive">
-      <table id="all-table" class="table">
-          <thead style="background-color:#95BDFE;" class="text-white " >
-            <tr>
-              <th scope="col" style="color:#000000;"><input type="checkbox" id="checkAll"></th>
-              <th scope="col" style="color:#000000;">#</th>
-              <th scope="col" style="color:#000000;text-align:center;">Name</th>
-              <th scope="col" style="color:#000000; text-align:center">Type of Fees</th>
-              <th scope="col" style="color:#000000;text-align:center;">Amount</th>
-              <th scope="col" style="color:#000000;text-align:center;">Paid Amount</th>
-              <th scope="col" style="color:#000000;text-align:center;">Balance</th>
-              <th scope="col" style="color:#000000;text-align:center;">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>1</td>
-              <td style="text-align:center;">CSB</td>
-              <td style="text-align: center;">University Fees</td>
-              <td style="text-align:center;">200</td>
-              <td style="text-align:center;">0</td>
-              <td style="text-align:center;">200</td>
-              <td style="text-align:center;">
-                <a href="#editFeesModal" class="edit" data-toggle="modal">
-                  <span class="material-symbols-outlined" title="Partial">
-                    order_approve
-                  </span>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>2</td>
-              <td style="text-align:center;">PSIT</td>
-              <td style="text-align: center" >Local Fees</td>
-              <td style="text-align:center;">150</td>
-              <td style="text-align:center;">0</td>
-              <td style="text-align:center;">150</td>
-              <td style="text-align:center;">
-                <a href="#editFeesModal" class="edit" data-toggle="modal">
-                  <span class="material-symbols-outlined" title="Partial">
-                    order_approve
-                  </span>
-                </a>
-              </td>
-            </tr>
-
-          </tbody>
-        </table>
-  <table id="local-table" class="table" style="display:none;">
-  <thead style="background-color:#95BDFE;" class="text-white">
-    <tr>
-      <th scope="col" style="color:#000000;"><input type="checkbox" id="checkAll2"></th>
-      <th scope="col" style="color:#000000;">#</th>
-      <th scope="col" style="color:#000000;text-align:center;">Name</th>
-      <th scope="col" style="color:#000000; text-align:center">Type of Fees</th>
-      <th scope="col" style="color:#000000;text-align:center;">Amount</th>
-      <th scope="col" style="color:#000000;text-align:center;">Paid Amount</th>
-      <th scope="col" style="color:#000000;text-align:center;">Balance</th>
-      <th scope="col" style="color:#000000;text-align:center;">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><input type="checkbox" class="row-checkbox"></td>
-      <td>1</td>
-      <td style="text-align:center;">PSIT</td>
-      <td style="text-align:center;">Local Fees</td>
-      <td style="text-align:center;">150</td>
-      <td style="text-align:center;">0</td>
-      <td style="text-align:center;">150</td>
-      <td style="text-align:center;">
-        <a href="#editFeesModal" class="edit" data-toggle="modal">
-          <span class="material-symbols-outlined" title="Partial">
-            order_approve
-          </span>
-        </a>
-      </td>
-    </tr>
-  </tbody>
-</table>
-      </div>
-                  </div>
-      </div>
-      <div class="text-105 col-sm-10 d-sm-flex justify-content-end">       
-         <h5>Total Amount:</h5>
-      </div>
-
- <!-- Edit Fees Modal -->
- <div id="editFeesModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form>
-                <div class="modal-header">						
-                    <h4 class="modal-title">Enter Partial Amount</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label> Partial Amount:</label>
-                                <input type="number" class="form-control"required>
-                            </div>
-                            <div class="form-group">
-                               <label for="paymentImage">Upload Promisorry image:</label>
-                               <input type="file" class="form-control-file" id="paymentImage" name="paymentImage">
-                           </div>
-                        </div>
-                    </div>
-                </div>
-<div class="modal-footer">
-  <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"> 
-  <input type="submit" class="btn btn-success" value="Submit">
 </div>
-			</form>
-			  </div>
-	</div>
-</div>
-<div class = "d-flex">
-<div class ="mr-auto p-auto" style="border-radius: 6px;">
-  <a href="../new-payment/search-user.php" class="btn btn-success" id="a">
-      <span>Back to Search</span>
-    </a>
-                  </div>
-<div class ="ml-auto p-auto" style="border-radius: 6px;">
-  <a href="../new-payment/done.php" class="btn btn-success" id="a">
-      <span>Pay Now!</span>
-    </a>
-                  </div>
-                  </div>
+
+<form method="post" action="process_payment.php">
+<input type="hidden" name="student_id" value="<?php echo $studentId; ?>">
+  <table id="university-table" class="table">
+    <thead style="background-color:#95BDFE;" class="text-white">
+      <tr>
+        <th></th>
+        <th>Academic year</th>
+        <th>Semester</th>
+        <th>Title</th>
+        <th>Amount</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+        $Fees = new UniversityPending();
+        $FeesData = $Fees->showAllFeesBystudentId($studentId);
+
+        foreach ($FeesData as $Fees) {
+      ?>
+          <tr>
+            <td><input type="checkbox" name="fees[]" value="<?php echo $Fees['id']; ?>" class="fee-checkbox"></td>
+            <td><?php echo $Fees['academic_name']; ?></td>
+            <td><?php echo $Fees['semester_name']; ?></td>
+            <td><?php echo $Fees['fee_name']; ?></td>
+            <td><?php echo $Fees['pending_amount']; ?></td>
+            <td><?php echo $Fees['university_status']; ?></td>
+          </tr>
+      <?php
+          }
+      ?>
+    </tbody>
+  </table>
+  
+  <div class="d-flex">
+    <div class="mr-auto p-auto" style="border-radius: 6px;">
+      <a href="../new-payment/search-user.php" class="btn btn-success">
+        <span>Back to Search</span>
+      </a>
+    </div>
+
+    <div class="ml-auto p-auto" style="border-radius: 6px;">
+      <div>Total amount: <span id="total-amount">0</span></div>
+      <button type="submit" class="btn btn-success" id="pay-now-btn">
+        <span>Pay Now!</span>
+      </button>
+    </div>
+  </div>
+</form>
+
 
 
 
     </body>
 </html>
 <script>
-   $(document).ready(function() {
-    // Show both tables
-    $("#all-btn").click(function() {
-      $("#all-table").show();
-      $("#university-table").hide();
-      $("#local-table").hide();
-    });
-  $(document).ready(function() {
-    // Show university table and hide local table on university button click
-    $("#university-btn").click(function() {
-      $("#university-table").show();
-      $("#local-table").hide();
-      $("#all-table").hide();
-    });
-
-    // Show local table and hide university table on local button click
-    $("#local-btn").click(function() {
-      $("#local-table").show();
-      $("#university-table").hide();
-      $("#all-table").hide();
-    });
-  });
-});
-</script>
-
-<script>
-function validateCheckboxes() {
-  // Get all checkboxes
-  var checkboxes = $("input[type='checkbox']");
-
-  // Loop through checkboxes and check if at least one is checked
-  var atLeastOneChecked = false;
-  checkboxes.each(function(index) {
-    if (index === 0) {
-      // Skip the header checkbox
-      return true;
-    }
-    if ($(this).is(":checked")) {
-      atLeastOneChecked = true;
-
-      // Show action button for the checked row
-      $(this).closest("tr").find(".edit").show();
-    } else {
-      // Hide action button for the unchecked row
-      $(this).closest("tr").find(".edit").hide();
-    }
-  });
-
-  // Show/hide action buttons based on checkbox validation
-  if (atLeastOneChecked) {
-    $(".edit-all").show();
-  } else {
-    $(".edit-all").hide();
-  }
-}
-
-$("input[type='checkbox']").click(function() {
-  validateCheckboxes();
-});
-
 $(document).ready(function() {
-  validateCheckboxes();
+  // Show university table and hide local table on university button click
+  $("#university-btn").click(function() {
+    $("#university-table").show();
+    $("#local-table").hide();
+    $("#all-table").hide();
+  });
+
+  // Show local table and hide university table on local button click
+  $("#local-btn").click(function() {
+    $("#local-table").show();
+    $("#university-table").hide();
+    $("#all-table").hide();
+  });
+
+ // Calculate and display total amount on checkbox change
+$("input[type='checkbox']").change(function() {
+  var total = 0;
+  $("input[type='checkbox']:checked").each(function() {
+    var amount = parseFloat($(this).closest("tr").find("td:eq(4)").text());
+    total += amount;
+  });
+  $("#total-amount").text(total);
   
-  // Add click event handler for header checkbox
-  $("#checkAll").click(function() {
-    var isChecked = $(this).is(":checked");
-    $("input[type='checkbox']").prop("checked", isChecked);
-    validateCheckboxes();
-  });
-  $("#checkAll1").click(function() {
-    var isChecked = $(this).is(":checked");
-    $("input[type='checkbox']").prop("checked", isChecked);
-    validateCheckboxes();
-  });
-  $("#checkAll2").click(function() {
-    var isChecked = $(this).is(":checked");
-    $("input[type='checkbox']").prop("checked", isChecked);
-    validateCheckboxes();
+});
+
+
+  // Submit form on pay button click
+  $("#pay-btn").click(function() {
+    $("form").submit();
   });
 });
 
 
-
 </script>
+
+
