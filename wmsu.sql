@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2023 at 03:09 AM
+-- Generation Time: Apr 26, 2023 at 11:50 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -275,7 +275,8 @@ CREATE TABLE `university_fees` (
 INSERT INTO `university_fees` (`id`, `academic_year_id`, `semester_id`, `fee_type`, `fee_name`, `fee_amount`, `start_date`, `end_date`, `created_by`, `created_at`, `updated_at`) VALUES
 (1, 2, 1, 'University', 'WMSU Boracay', 320, '2023-04-25', '2025-07-10', 'Bryan', '2023-04-09 23:16:37', '2023-04-09 23:16:37'),
 (14, 2, 2, 'University', 'wdaw', 2133, '2023-04-01', '2023-04-29', 'Bryan', '2023-04-10 22:35:16', '2023-04-10 22:35:16'),
-(15, 2, 2, 'University', 'test1', 213, '2023-04-01', '2023-04-15', 'Bryan', '2023-04-10 22:39:38', '2023-04-10 22:39:38');
+(15, 2, 2, 'University', 'test1', 213, '2023-04-01', '2023-04-15', 'Bryan', '2023-04-10 22:39:38', '2023-04-10 22:39:38'),
+(16, 2, 1, 'University', 'Wmsu Boracay', 300, '2023-04-05', '2023-05-04', 'Bryan', '2023-04-26 13:02:47', '2023-04-26 13:02:47');
 
 -- --------------------------------------------------------
 
@@ -333,7 +334,8 @@ CREATE TABLE `university_pending` (
 
 INSERT INTO `university_pending` (`id`, `student_id`, `university_fee_id`, `pending_amount`, `university_status`, `created_at`, `updated_at`) VALUES
 (5, 201503664, 15, 213, 'Pending', '2023-04-10 22:39:38', '2023-04-10 22:39:38'),
-(6, 202234212, 15, 213, 'Pending', '2023-04-10 22:39:38', '2023-04-10 22:39:38');
+(7, 201503664, 16, 300, 'Pending', '2023-04-26 13:02:47', '2023-04-26 13:02:47'),
+(8, 202234212, 16, 300, 'Pending', '2023-04-26 13:02:47', '2023-04-26 13:02:47');
 
 -- --------------------------------------------------------
 
@@ -540,7 +542,7 @@ ALTER TABLE `semesters`
 -- AUTO_INCREMENT for table `university_fees`
 --
 ALTER TABLE `university_fees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `university_paid`
@@ -558,7 +560,7 @@ ALTER TABLE `university_partial`
 -- AUTO_INCREMENT for table `university_pending`
 --
 ALTER TABLE `university_pending`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
