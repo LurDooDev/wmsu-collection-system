@@ -101,7 +101,6 @@
 					</div>
 				</div>
 			</div>
-
             <thead style="background-color:#95BDFE ;" class="text-white">
             <table class="table table-striped table-hover">
 				<tbody>
@@ -109,24 +108,9 @@
       <td>WMSU PALARO</td>
       <td><a href="#detailsModal" class="details" data-toggle="modal" style="color:gray;" data-toggle="tooltip" title="details"></> VIEW</a></td>
               </tr>
-              <tr>
-      <td>Bahay Kubo</td>
-      <td><a href="#detailsModal1" class="details" data-toggle="modal" style="color:gray;" data-toggle="tooltip" title="details"></> VIEW</a></td>
-              </tr>
-              <tr>
-      <td>Project A</td>
-      <td><a href="#detailsModal2" class="details" data-toggle="modal" style="color:gray;" data-toggle="tooltip" title="details"></> VIEW</a></td>
-              </tr>
-              <tr>
-      <td>Project B</td>
-      <td><a href="#detailsModal3" class="details" data-toggle="modal" style="color:gray;" data-toggle="tooltip" title="details"></> VIEW</a></td>
-              </tr>
-              <tr>
-      <td>Project C</td>
-      <td><a href="#detailsModal4" class="details" data-toggle="modal" style="color:gray;" data-toggle="tooltip" title="details"></> VIEW</a></td>
-              </tr>
-
+                </table>
             </thead>
+            </tbody>
 <!-- New content here  -->
 <div id="detailsModal" class="modal fade">
 	<div class="modal-dialog">
@@ -171,45 +155,51 @@
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         </div>
         <div class="modal-body">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="expense">Expense Details:</label>
-                <input type="text" name="expense" id="expense" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <label for="funds">Funds:</label>
-                <input type="text" name="funds" id="funds" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <label for="cost">Total Cost:</label>
-                <input type="number" name="cost" id="cost" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <label for="date">Date:</label>
-                <input type="date" name="date" id="date" class="form-control" required>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="time">Time:</label>
-                <input type="time" name="time" id="time" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <label for="sem">Semester:</label>
-                <input type="text" name="sem" id="sem" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <label for="schoolYear">School Year:</label>
-                <input type="date" name="schoolYear" id="schoolYear" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <label for="comments">Summary Report:</label>
-                <textarea class="form-control" name="comments" id="comments" placeholder="Enter your comments here"></textarea>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="expense">Expense Details:</label>
+        <input type="text" name="expense" id="expense" class="form-control" required aria-describedby="expenseHelp">
+        <small id="expenseHelp" class="form-text text-muted">Enter a brief description of the expense.</small>
+      </div>
+      <div class="form-group">
+        <label for="funds">Funds:</label>
+        <input type="text" name="funds" id="funds" class="form-control" required aria-describedby="fundsHelp">
+        <small id="fundsHelp" class="form-text text-muted">Enter the source of funds for the expense.</small>
+      </div>
+      <div class="form-group">
+        <label for="cost">Total Cost:</label>
+        <input type="number" name="cost" id="cost" class="form-control" required aria-describedby="costHelp">
+        <small id="costHelp" class="form-text text-muted">Enter the total cost of the expense.</small>
+      </div>
+      <div class="form-group">
+        <label for="date">Date:</label>
+        <input type="date" name="date" id="date" class="form-control" required >
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="time">Time:</label>
+        <input type="time" name="time" id="time" class="form-control" required >
+
+      </div>
+      <div class="form-group">
+        <label for="sem">Semester:</label>
+        <input type="text" name="sem" id="sem" class="form-control" required aria-describedby="semHelp">
+        <small id="semHelp" class="form-text text-muted">Enter the semester in which the expense was incurred.</small>
+      </div>
+      <div class="form-group">
+        <label for="schoolYear">School Year:</label>
+        <input type="date" name="schoolYear" id="schoolYear" class="form-control" required >
+      </div>
+      <div class="form-group">
+        <label for="comments">Summary Report:</label>
+        <textarea class="form-control" name="comments" id="comments" placeholder="Enter your comments here" aria-describedby="commentsHelp"></textarea>
+        <small id="commentsHelp" class="form-text text-muted">Enter a summary report of the expense.</small>
+      </div>
+    </div>
+  </div>
+</div>
         <div class="modal-footer">
           <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
           <input type="hidden" name="action" value="Save">
