@@ -164,30 +164,82 @@
 </div>
 <!-- Create Fee Modal HTML -->
 <div id="addCollege" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form action="addcollege.php" method="POST" id="add-college">
-                <div class="modal-header">
-                    <h4 class="modal-title">Add College</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="name" class="form-label">College Name</label>
-                        <input type="text" name="name" id="name" class="form-control" required aria-describedby="name-help"  placeholder="College Of Computing Studies" required>
-                        <div id="name-help" class="form-text">Enter the full name of the college.</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="code" class="form-label">College Code</label>
-                        <input type="text" name="code" id="code" class="form-control" required aria-describedby="code-help"  placeholder="CCS" required>
-                        <div id="code-help" class="form-text">Enter the code for the college.</div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <input type="hidden" name="action" value="add">
-                    <button type="submit" class="btn btn-success">Create</button>
-                </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="../actions/addcollege.php" method="POST" id="add-college">
+        <div class="modal-header">
+          <h4 class="modal-title">Add College</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="name" class="form-label">College Name</label>
+            <input type="text" name="name" id="name" class="form-control" required aria-describedby="name-help" placeholder="College Of Computing Studies">
+            <div id="name-help" class="form-text">Enter the full name of the college.</div>
+          </div>
+          <div class="form-group">
+            <label for="code" class="form-label">College Code</label>
+            <input type="text" name="code" id="code" class="form-control" required aria-describedby="code-help" placeholder="CCS">
+            <div id="code-help" class="form-text">Enter the code for the college.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <input type="hidden" name="action" value="add">
+          <button type="submit" class="btn btn-success" onclick="return validateForm()">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showNotification(message) {
+    var notification = document.createElement("div");
+    notification.innerHTML = message;
+    notification.style.position = "fixed";
+    notification.style.top = "10px";
+    notification.style.right = "10px";
+    notification.style.backgroundColor = "#f44336";
+    notification.style.color = "#fff";
+    notification.style.padding = "12px";
+    notification.style.borderRadius = "4px";
+    notification.style.boxShadow = "0 2px 6px rgba(0, 0, 0, 0.3)";
+    notification.style.zIndex = "9999";
+    notification.style.fontSize = "16px";
+    notification.style.fontWeight = "bold";
+    document.body.appendChild(notification);
+
+    // Fade out and remove the notification after 5 seconds
+    setTimeout(function() {
+      notification.style.opacity = "0";
+      setTimeout(function() {
+        notification.parentNode.removeChild(notification);
+      }, 1000);
+    }, 5000);
+  }
+
+  function validateForm() {
+    // Get the input fields
+    var code = document.getElementById("code");
+    var name = document.getElementById("name");
+
+    // Validate the fields
+    if (code.value === "") {
+      showNotification("Please enter College Code.");
+      code.focus();
+      return false;
+    } else if (name.value.length < 3) {
+      showNotification("Name must be at least 3 characters");
+      name.focus();
+      return false;
+    }
+
+    return true;
+  }
+</script>
+
+
             </form>
         </div>
     </div>
