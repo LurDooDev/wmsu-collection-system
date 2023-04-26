@@ -101,7 +101,6 @@
 					</div>
 				</div>
 			</div>
-
             <thead style="background-color:#95BDFE ;" class="text-white">
             <table class="table table-striped table-hover">
 				<tbody>
@@ -109,24 +108,9 @@
       <td>WMSU PALARO</td>
       <td><a href="#detailsModal" class="details" data-toggle="modal" style="color:gray;" data-toggle="tooltip" title="details"></> VIEW</a></td>
               </tr>
-              <tr>
-      <td>Bahay Kubo</td>
-      <td><a href="#detailsModal1" class="details" data-toggle="modal" style="color:gray;" data-toggle="tooltip" title="details"></> VIEW</a></td>
-              </tr>
-              <tr>
-      <td>Project A</td>
-      <td><a href="#detailsModal2" class="details" data-toggle="modal" style="color:gray;" data-toggle="tooltip" title="details"></> VIEW</a></td>
-              </tr>
-              <tr>
-      <td>Project B</td>
-      <td><a href="#detailsModal3" class="details" data-toggle="modal" style="color:gray;" data-toggle="tooltip" title="details"></> VIEW</a></td>
-              </tr>
-              <tr>
-      <td>Project C</td>
-      <td><a href="#detailsModal4" class="details" data-toggle="modal" style="color:gray;" data-toggle="tooltip" title="details"></> VIEW</a></td>
-              </tr>
-
+                </table>
             </thead>
+            </tbody>
 <!-- New content here  -->
 <div id="detailsModal" class="modal fade">
 	<div class="modal-dialog">
