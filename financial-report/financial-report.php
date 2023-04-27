@@ -184,10 +184,14 @@
 
       </div>
       <div class="form-group">
-        <label for="sem">Semester:</label>
-        <input type="text" name="sem" id="sem" class="form-control" required aria-describedby="semHelp">
-        <small id="semHelp" class="form-text text-muted">Enter the semester in which the expense was incurred.</small>
-      </div>
+  <label for="sem">Semester:</label>
+  <select name="sem" id="sem" class="form-control" required>
+    <option value="">Select Semester</option>
+    <option value="1st Semester">1st Semester</option>
+    <option value="2nd Semester">2nd Semester</option>
+    <option value="Summer">Summer</option>
+  </select>
+</div>
       <div class="form-group">
         <label for="schoolYear">School Year:</label>
         <input type="date" name="schoolYear" id="schoolYear" class="form-control" required >
