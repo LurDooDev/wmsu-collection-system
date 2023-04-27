@@ -3,15 +3,22 @@
 require_once 'database.class.php';
 
 
-class LocalFee {
-    public $localID;
-    public $localType;
-    public $localName;
-    public $collegeID;
-    public $createdBy;
+class LocalFees {
+    public $localFeeID;
     public $semesterID;
+    public $academicYearID;
+    public $localAmount;
+    public $localName;
+    public $localStartDate;
+    public $localEndDate;
+    public $localcreatedby;
+    public $semesterDuration;
+    public $isActive;
+    public $collegeID;
 
-    protected $db;
+
+    public $db;
+
 
     function __construct() {
         $this->db = new Database();
@@ -19,21 +26,70 @@ class LocalFee {
 
     function createLocalFees() {
         try {
+            $dbConnection = $this->db->connect();
+
+            $semesterSql = "SELECT id FROM semesters WHERE id = :semester_id";
+            $semesterStmt = $dbConnection->prepare($semesterSql);
+            $semesterStmt->bindParam(':semester_id', $this->semesterID);
+            $semesterStmt->execute();
+            $semesterID = $semesterStmt->fetchColumn();
     
-            // Insert the new row into the fee_schedule table with the retrieved ID values
-            $insertSql = "INSERT INTO local_fee (local_name, created_by, college_id) VALUES (:local_name, :created_by, :college_id)";
-            $insertStmt = $this->db->connect()->prepare($insertSql);
-            $insertStmt->bindParam(':local_name', $this->localName);
-            $insertStmt->bindParam(':created_by', $this->createdBy);
-            $insertStmt->bindParam(':college_id', $this->collegeID);
+            $academicYearSql = "SELECT id FROM academic_year WHERE id = :academic_year_id";
+            $academicYearStmt = $dbConnection->prepare($academicYearSql);
+            $academicYearStmt->bindParam(':academic_year_id', $this->academicYearID);
+            $academicYearStmt->execute();
+            $academicYearID = $academicYearStmt->fetchColumn();
+
+            $collegeSql = "SELECT id FROM colleges WHERE id = :college_id";
+            $collegeStmt = $dbConnection->prepare($collegeSql);
+            $collegeStmt->bindParam(':college_id', $this->collegeID);
+            $collegeStmt->execute();
+            $collegeID = $collegeStmt->fetchColumn();
+    
+          
+            $insertSql = "INSERT INTO local_fees (academic_year_id, semester_id, college_id, fee_name, fee_amount, start_date, end_date, created_by)
+                VALUES (:academic_year_id, :semester_id, :college_id, :fee_name, :fee_amount, :start_date, :end_date, :created_by)";
+            $insertStmt = $dbConnection->prepare($insertSql);
+            $insertStmt->bindParam(':academic_year_id', $academicYearID);
+            $insertStmt->bindParam(':semester_id', $semesterID);
+            $insertStmt->bindParam(':college_id', $collegeID);
+            $insertStmt->bindParam(':fee_name', $this->localName);
+            $insertStmt->bindParam(':fee_amount', $this->localAmount);
+            $insertStmt->bindParam(':start_date', $this->localStartDate);
+            $insertStmt->bindParam(':end_date', $this->localEndDate);
+            $insertStmt->bindParam(':created_by',  $this->localcreatedby);
             $insertStmt->execute();
+            $newlyInsertedId = $dbConnection->lastInsertId();
     
+            $insertPendingSql = "INSERT INTO local_pending (student_id, local_fee_id, college_id, pending_amount)
+            SELECT students.id, :local_fee_id, :college_id, :amount
+            FROM students
+            WHERE students.college_id = :college_id";
+    $insertPendingStmt = $dbConnection->prepare($insertPendingSql);
+    $insertPendingStmt->bindParam(':local_fee_id', $newlyInsertedId);
+    $insertPendingStmt->bindParam(':amount', $this->localAmount);
+    $insertPendingStmt->bindParam(':college_id', $collegeID); 
+    $insertPendingStmt->execute();
             return true;
         } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
             return false;
         }
     }
+
+
+    function showAllDetailsByCollegeID($collegeid) {
+        $sql = "SELECT lf.id, lf.start_date, lf.fee_amount, lf.end_date, lf.created_by, lf.fee_name, lf.fee_type, s.semester_name, sy.academic_name, c.college_name
+                FROM local_fees lf
+                JOIN semesters s ON lf.semester_id = s.id
+                JOIN colleges c ON lf.college_id = c.id
+                JOIN academic_year sy ON lf.academic_year_id = sy.id
+                WHERE lf.college_id = :college_id";
+        $stmt = $this->db->connect()->prepare($sql);
+        $stmt->bindValue(':college_id', $collegeid, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
     function show(){
         $sql = "SELECT * FROM local_fee ORDER BY local_fee.id ASC";
@@ -60,20 +116,6 @@ class LocalFee {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    // function delete(){
-    //     $sql = "DELETE FROM fee WHERE fee_id=:fee_id";
-
-    //     $query=$this->db->connect()->prepare($sql);
-    //     $query->bindParam(':fee_id', $this->feeID);
-
-    //     if($query->execute()){
-    //         return true;
-    //     }
-    //     else{
-    //         return false;
-    //     }	
-    // }
 
    
 }

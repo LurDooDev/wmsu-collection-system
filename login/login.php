@@ -20,6 +20,7 @@ session_start();
           $_SESSION['position'] = $user_data['user_position'];
 		  $_SESSION['collegeID'] = $user_data['college_id'];
           $_SESSION['college'] = $user_data['college_name'];
+		  $_SESSION['collegeCode'] = $user_data['college_code'];
           $_SESSION['role'] = $user_data['role_name'];
   
           // Display the appropriate dashboard page for user
@@ -28,7 +29,7 @@ session_start();
           } else if ($user_data['role_name'] == 'officer') {
               header('location: ../admin/dashboard-user.php');
           } else if ($user_data['role_name'] == 'collector') {
-              header('location: ../collector/collector.php');
+              header('location: ../payment/.php');
           }
       } else {
           // Login failed - set an error message

@@ -66,8 +66,11 @@ require_once '../functions/session.function.php';
                 <i class="fa fa-caret-down" style="margin-left: 37px;"></i>
                 </button>
                 <div class="dropdown-container">
+                    <?php
+                if($_SESSION['role'] == 'officer'){?>
                     <a href="../admin-settings-user/admin-settings-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Overview</a>
                     <a href="../user-univ-fee/univer-fee.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">University Fee</a>
+                    <?php } ?>
                     <a href="../user-local-fee/local-fee.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fees</a>
                 </div>           
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Logout</a>
