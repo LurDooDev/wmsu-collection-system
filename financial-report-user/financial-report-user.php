@@ -101,36 +101,21 @@ require_once '../classes/college.class.php';
       <td>WMSU PALARO</td>
       <td><a href="#detailsModal" class="details" data-toggle="modal" style="color:gray;" data-toggle="tooltip" title="details"></> VIEW</a></td>
               </tr>
-              <tr>
-      <td>Bahay Kubo</td>
-      <td><a href="#detailsModal1" class="details" data-toggle="modal" style="color:gray;" data-toggle="tooltip" title="details"></> VIEW</a></td>
-              </tr>
-              <tr>
-      <td>Project A</td>
-      <td><a href="#detailsModal2" class="details" data-toggle="modal" style="color:gray;" data-toggle="tooltip" title="details"></> VIEW</a></td>
-              </tr>
-              <tr>
-      <td>Project B</td>
-      <td><a href="#detailsModal3" class="details" data-toggle="modal" style="color:gray;" data-toggle="tooltip" title="details"></> VIEW</a></td>
-              </tr>
-              <tr>
-      <td>Project C</td>
-      <td><a href="#detailsModal4" class="details" data-toggle="modal" style="color:gray;" data-toggle="tooltip" title="details"></> VIEW</a></td>
-              </tr>
-
+                    </table>
+                    </tbody>
             </thead>
 <!-- New content here  -->
 <div id="detailsModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form>
-				<div class="modal-header">						
-					<h4 class="modal-title">Details</h4>
-				</div>
-				<div class="modal-body">					
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">						
+          <h4 class="modal-title">Details</h4>
+        </div>
+        <div class="modal-body">					
           <ul style="list-style-type: none;">
-          <li><label>Expense Details: Wmsu Palaro</label></li>
-						<li><label>Fund: Php 500.00</label></li>
+            <li><label>Expense Details: Wmsu Palaro</label></li>
+            <li><label>Fund: Php 500.00</label></li>
             <li><label>Total Cost: 200.00</label></li>
             <li><label>Date: August 25,2020</label></li>
             <li><label>Time: 6:58AM</label></li>
@@ -139,19 +124,18 @@ require_once '../classes/college.class.php';
             &nbsp;</li>&nbsp;
             <li><label>Summary Report:</label></li>
             <form action="" method="post">
-<div>
-<textarea  class = "comment" name="comments" id="comments"  placeholder = "Enter your comments here">
-</textarea>
-</div>
-</form>
-        </ul>
-				</div>
-				<div class="modal-footer" style="justify-content: center">
-					<input type="button" class="btn btn-danger" style="width: 60%; border-radius: 25px;" data-dismiss="modal"value="Exit">
-				</div>
-			</form>
-		</div>
-	</div>
+              <div>
+                <textarea class="comment" name="comments" id="comments" readonly>Expenses for Wmsu Palaro were necessary to support student activities.</textarea>
+              </div>
+            </form>
+          </ul>
+        </div>
+        <div class="modal-footer" style="justify-content: center">
+          <input type="button" class="btn btn-danger" style="width: 60%; border-radius: 25px;" data-dismiss="modal" value="Exit">
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 
 <div id="addReport" class="modal fade">
