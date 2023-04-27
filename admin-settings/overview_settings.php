@@ -41,7 +41,7 @@ require_once "../classes/academicyear.class.php";
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/dashboard.css" />
-    <link rel="stylesheet" href="../css/new-univ.css" />
+    <link rel="stylesheet" href="../css/admin-settings.css" />
 	<link rel="icon" type="image/jpg" href="../images/usc.png"/>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -237,26 +237,6 @@ require_once "../classes/academicyear.class.php";
         <label>Semester Name</label>
         <input type="text" class="form-control" name="name" value="<?php echo $Semester['semester_name']; ?>">
     </div>
-    <div class="form-group">
-        <label>Semester Duration</label>
-        <input type="number" class="form-control" name="duration" value="<?php echo $Semester['semester_duration']; ?>">
-    </div>
-    <div class="form-group">
-        <label>Status</label>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="status" id="activeRadio" value="1">
-            <label class="form-check-label" for="activeRadio">
-                Active
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="status" id="inactiveRadi" value="0">
-            <label class="form-check-label" for="inactiveRadio">
-                Inactive
-            </label>
-        </div>
-    </div>
-          
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">

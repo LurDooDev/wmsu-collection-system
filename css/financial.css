@@ -521,6 +521,10 @@ table.table .avatar {
 	height: 250px;
 	width: 550px;
   }
-  
+  @media (max-width: 767px) {
+	.modal-dialog {
+	  max-width: 100%;
+	}
+  }
   
   
