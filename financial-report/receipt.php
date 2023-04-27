@@ -66,55 +66,60 @@ if (!isset($_SESSION['logged_id'])){
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover fw-bold">Logout</a>
 </div>
         </div>
+        <div class="table-responsive">
+	<div id="page-content-wrapper">
+<!-- Dashboard hamburger      -->
+<nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
+        <div class="d-flex align-items-center">
+            <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+            <h2 class="fs-2 m-0">Receipt</h2>
+        </div>
+    </nav>
         <div class="container">
     <div class="row">
-<div class ="table-responsive">
-                <table class="table">
-                <div class="col-xs-3 col-sm-3 col-md-3 text-left ml-auto">
-                    <p>
-                        <h5>Date: 08/25/2022</h5>
-                    </p>
+    <div class="receipt">
+  <div class="receipt-header">
+    <h5>Date: 08/25/2022</h5>
+    <h5>Receipt Number: 696969</h5>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Item Number</th>
+        <th>Description</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Bahay Kubo</td>
+        <td>PHP 100.00</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Palaro</td>
+        <td>PHP 200.00</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Others</td>
+        <td>PHP 500.00</td>
+      </tr>
+      <tr>
+        <td></td>
+        <th>Total:</th>
+        <td>PHP 800.00</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 text-left">
-                    <p>
-                        <h5>Receipt Number:696969</h5>
-                    </p>
-                </div>
-            </div>
-</div>
-            <thead>
-              <tr>
-                <th scope="col" style = " color: #000000;" >Item Number</th></th>
-                <th scope="col" style = " color: #000000;" >Description</th>
-                <th scope="col" style = " color: #000000;" >Amount</th>
-              </tr>
-            </thead>
-<tbody>
-<tr>
-						<td>1</td>
-						<td>Bahay Kubo</td>
-                        <td>PHP 100.00</td>
-					</tr>	
-                    <td>2</td>
-						<td>Palaro</td>
-                        <td>PHP 200.00</td>
-					</tr>	
-                    <td>3</td>
-						<td>Others</td>
-                        <td>PHP 500.00</td>
-					</tr>	
-                    <td></td>
-                    <th style = " color: #000000;" >Total:</th>
-                    <td></td>
-                    </tbody>
-			</table>
-</body>
       <div class="d-flex">
                 <div class="mr-auto p-auto mr-6">
-                <a href="report.php" class="btn btn-danger" style="padding:12px; margin-bottom:12px; border-radius:40px;"><span>Back to CCS Generated Report </span></a>
+                <a href="report.php" class="btn btn-danger" style="border-radius:18px;"><span>Back to Report</span></a>
 					</div>
         <div class="ml-auto p-auto ml-6" id="invoice">
-          <button class="btn btn-success" id="downloadPdf" style="padding:12px; margin-bottom:12px; margin-left: 10px; border-radius:40px;">Download Receipt</button>
+          <button class="btn btn-success" id="downloadPdf" style="border-radius:18px;">Download Receipt</button>
          <script>
         document
           .getElementById("downloadPdf")

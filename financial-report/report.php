@@ -78,71 +78,66 @@ if (!isset($_SESSION['logged_id'])){
     </nav>
     <div class="container" id="yati">
     <div class="row">
-    <div class =" table-responsive">
-                <table class="table">
-            <thead>
-              <tr>
-                <th scope="col" style = " color: #000000;" >Types of Expenses</th></th>
-                <th scope="col" style = " color: #000000;" >Total</th>
-              </tr>
-            </thead>
-            <tbody>
-            <tr>
-						<td>CCS Fest</td>
-						<td>PHP 100.00</td>
-					</tr>	
-                    <tr>
-						<td>Palaro</td>
-						<td>PHP 300.00</td>
-					</tr>	
-                    <tr>
-						<td>Others</td>
-						<td>PHP 400.00</td>
-					</tr>	
-                    <tr>
-                    <td></td>
-                    <td></td>
-</tr>
-<thead>
-              <tr>
-                <th></th></th>
-                <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr>
-						<td>Current Assets</td>
-                        <td>PHP 500.00</td>
-                        </tr>
-                        <tr>
-                    <td></td>
-                    <td></td>
-</tr>
-<thead>
-              <tr>
-                <th></th></th>
-                <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr>
-						<td>Remaining Assets</td>
-                        <td>PHP 500.00</td>
-                        </tr>
-                        <tr>
-                    <td></td>
-                    <td></td>
-</tr>
-</tbody>
-			</table>
-</body>
+    <div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Assets</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Liabilities</th>
+        <th scope="col">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Current Assets</td>
+        <td>PHP 500.00</td>
+        <td>Current Liabilities</td>
+        <td>PHP 0.00</td>
+      </tr>
+      <tr>
+        <td>CSS Fest</td>
+        <td>PHP 100.00</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Palaro</td>
+        <td>PHP 300.00</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Others</td>
+        <td>PHP 100.00</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Remaining Assets</td>
+        <td>PHP 500.00</td>
+        <td>Long-term Liabilities</td>
+        <td>PHP 0.00</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Total</th>
+        <th>PHP 1400.00</th>
+        <th>Total</th>
+        <th>PHP 0.00</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
 <div class="d-flex">
                 <div class="mr-auto p-auto ml-3">
-                <a href="financial-report.php" class="btn btn-danger" style="padding:12px; margin-bottom:12px; border-radius: 40px;"><span>Back To Financial Report </span></a>
+                <a href="financial-report.php" class="btn btn-danger" style=" border-radius: 18px;"><span>Back To Financial Report </span></a>
 					</div>
       <div class="d-flex">
                 <div class="ml-auto p-auto mr-3">
-                <a href="receipt.php" class="btn btn-success" style="padding:12px; margin-bottom:12px; border-radius: 40px;"><span>Proceed to Receipt </span></a>
+                <a href="receipt.php" class="btn btn-success" style=" border-radius: 18px;"   ><span>Proceed to Receipt </span></a>
 					</div>
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
             <script>
@@ -183,7 +178,7 @@ for (var i = 0; i < links.length; i++) {
   links[i].addEventListener('click', function() {
     setActiveLink(this);
   });
-}</script> -->
+}</script> 
 
 
 
