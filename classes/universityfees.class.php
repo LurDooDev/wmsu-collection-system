@@ -61,10 +61,16 @@ class UniversityFees {
     $insertPendingStmt->bindParam(':amount', $this->universityAmount);
     $insertPendingStmt->bindParam(':academic_year_id', $academicYearID); 
     $insertPendingStmt->execute();
-            return true;
-        } catch (PDOException $e) {
-            return false;
-        }
+            // close the database connection
+        $dbConnection = null;
+        
+        return true;
+    } catch (PDOException $e) {
+        // close the database connection
+        $dbConnection = null;
+        
+        return false;
+    }
     }
     
     
