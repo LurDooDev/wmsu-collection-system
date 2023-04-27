@@ -71,16 +71,13 @@ class LocalFees {
     $insertPendingStmt->bindParam(':academic_year_id', $academicYearID);
     $insertPendingStmt->bindParam(':college_id', $collegeID);  
     $insertPendingStmt->execute();
-            // close the database connection
-        $dbConnection = null;
+
         
-        return true;
-    } catch (PDOException $e) {
-        // close the database connection
-        $dbConnection = null;
-        
-        return false;
-    }
+      return true;
+  } catch (PDOException $e) {
+
+      return false;
+  }
     }
 
 

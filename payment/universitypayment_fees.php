@@ -168,7 +168,7 @@
   </div>
 </div>
 
-<form method="post" action="process_payment.php">
+<form method="post" action="process_payment.php" >
 <input type="hidden" name="student_id" value="<?php echo $studentId; ?>">
   <table id="university-table" class="table">
     <thead style="background-color:#95BDFE;" class="text-white">
@@ -216,6 +216,50 @@
       </button>
     </div>
   </div>
+</form>
+
+<!-- Local Table -->
+<form method="post" action="process_local_payment.php" id="local-form" style="display: none;">
+<input type="hidden" name="student_id" value="<?php echo $studentId; ?>">
+  <table id="local-table" class="table">
+    <thead style="background-color:#95BDFE;" class="text-white">
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Amount</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+        $LocalFees = new LocalPending();
+        $LocalFeesData = $LocalFees->showAllFeesBystudentId($studentId);
+        foreach ($LocalFeesData as $LocalFee) {
+          ?>
+              <tr>
+                <td><input type="checkbox" name="fees[]" value="<?php echo $LocalFee['id']; ?>" class="fee-checkbox"></td>
+                <td><?php echo $LocalFee['fee_name']; ?></td>
+                <td><?php echo $LocalFee['pending_amount']; ?></td>
+                <td><?php echo $LocalFee['local_status']; ?></td>
+              </tr>
+          <?php
+              }
+          ?>
+        </tbody>
+        </table>
+  <div class="d-flex">
+    <div class="mr-auto p-auto" style="border-radius: 6px;">
+      <a href="../new-payment/search-user.php" class="btn btn-success">
+        <span>Back to Search</span>
+      </a>
+    </div>
+    <div class="ml-auto p-auto" style="border-radius: 6px;">
+  <div>Total amount: <span id="local-total-amount">0</span></div>
+  <button type="submit" class="btn btn-success" id="local-pay-now-btn">
+    <span>Pay Now!</span>
+  </button>
+</div>
+</div>
 </form>
 
 
