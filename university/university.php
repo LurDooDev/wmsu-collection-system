@@ -143,8 +143,8 @@ foreach($FeeData as $Fee) {
         <td>Php <?php echo $Fee['fee_amount']; ?></td>
         <td><?php echo date('F j, Y', strtotime($Fee['start_date'])); ?></td>
         <td><?php echo date('F j, Y', strtotime($Fee['end_date'])); ?></td>
-        <td style="text-align: center;"><?php echo $Fee['created_by']; ?></td>
-        <td style="text-align: center;">
+        <td style="text-align:center"><?php echo $Fee['created_by']; ?></td>
+        <td>
             <!-- <a href=".php?id=<?php echo $Fee['id']; ?>" class="edit"> -->
                 <i class="material-icons" title="Edit">&#xe147;</i>
             </a>
