@@ -201,7 +201,6 @@ require_once '../classes/academicyear.class.php';
               <tr>
                 <th scope="col" style = " color: #000000; text-align:center" >#</th>
                 <th scope="col" style = " color: #000000; text-align:center" >Semester</th>
-                <th scope="col" style = " color: #000000; text-align:center" >Duration</th></th>
                 <th scope="col" style = " color: #000000; text-align:center" >Action</th>
               </tr>
             </thead>
@@ -216,9 +215,7 @@ require_once '../classes/academicyear.class.php';
 							?>
               <tr>
               <td style="text-align:center"><?php echo $i; ?></td>
-								<td style="text-align:center"><?php echo $Semester['semester_name']; ?></td>
-								<td style="text-align:center"><?php echo $Semester['semester_duration']; ?> months</td>
-                <td style="text-align:center">
+								<td style="text-align:center"><?php echo $Semester['semester_name']; ?></td>                <td style="text-align:center">
                     <a href="#updateSemesterModal<?php echo $i; ?>" class="edit" data-toggle="modal">
                 <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                 </a>
