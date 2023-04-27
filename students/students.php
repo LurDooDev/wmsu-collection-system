@@ -68,7 +68,7 @@ require_once '../classes/program.class.php';
                 </button>
                 <div class="dropdown-container">
                   <?php
-                if($_SESSION['role'] == 'admin'){?>
+                if($_SESSION['role'] == 'officer'){?>
                 <a href="../admin-settings-user/admin-settings-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
                     <a href="../user-univ-fee/new-univer-fee.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
                     <?php } ?>
