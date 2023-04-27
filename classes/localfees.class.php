@@ -62,13 +62,14 @@ class LocalFees {
             $newlyInsertedId = $dbConnection->lastInsertId();
     
             $insertPendingSql = "INSERT INTO local_pending (student_id, local_fee_id, college_id, pending_amount)
-            SELECT students.id, :local_fee_id, :college_id, :amount
-            FROM students
-            WHERE students.college_id = :college_id";
+        SELECT students.id, :local_fee_id, :college_id, :amount
+        FROM students
+        WHERE students.academic_year_id = :academic_year_id";
     $insertPendingStmt = $dbConnection->prepare($insertPendingSql);
     $insertPendingStmt->bindParam(':local_fee_id', $newlyInsertedId);
     $insertPendingStmt->bindParam(':amount', $this->localAmount);
-    $insertPendingStmt->bindParam(':college_id', $collegeID); 
+    $insertPendingStmt->bindParam(':academic_year_id', $academicYearID);
+    $insertPendingStmt->bindParam(':college_id', $collegeID);  
     $insertPendingStmt->execute();
             return true;
         } catch (PDOException $e) {
