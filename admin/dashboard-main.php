@@ -12,6 +12,18 @@
 	}
 
 	require_once '../classes/database.class.php';
+
+  $db = new Database();
+
+
+$sql = "SELECT SUM(paid_amount) as total_amount FROM university_paid";
+$stmt = $db->connect()->query($sql);
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$totalAmount = $result['total_amount'];
+
+$adminShare = $totalAmount * 0.3;
+
+$officerShare = $totalAmount - $adminShare;
   
 	?>
 
@@ -84,34 +96,23 @@
       <div class="overview-boxes">
         <div class="box">
           <div class="right-side">
-            <div class="box-topic">Total CSC Collected</div>
-            <div class="number">40,876</div>
-            <div class="indicator">
-              <i class='bx bx-up-arrow-alt'></i>
-              <span class="text">First Semester</span>
-            </div>
+            <div class="box-topic">Total USC Collected</div>
+            <div class="number">Php <?php echo $totalAmount ?>.00</div>
+  
           </div>
    
         </div>
         <div class="box">
           <div class="right-side">
-            <div class="box-topic">Remaining 70%</div>
-            <div class="number"> ₱ 38,876</div>
-            <div class="indicator">
-              <i class='bx bx-up-arrow-alt'></i>
-              <span class="text">First Semester</span>
-            </div>
+            <div class="box-topic"> USC 30%</div>
+            <div class="number">Php <?php echo $adminShare ?>.00</div>
           </div>
        
         </div>
         <div class="box">
           <div class="right-side">
-            <div class="box-topic">Remitted 30%</div>
-            <div class="number"> ₱ 12,876</div>
-            <div class="indicator">
-              <i class='bx bx-up-arrow-alt'></i>
-              <span class="text">First Semester</span>
-            </div>
+            <div class="box-topic"> CSC 70%</div>
+            <div class="number">Php <?php echo $officerShare ?>.00</div>
           </div>
        
         </div>

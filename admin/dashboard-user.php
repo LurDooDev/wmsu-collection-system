@@ -11,6 +11,15 @@ if (!isset($_SESSION['logged_id'])) {
 
 
 require_once '../classes/database.class.php';
+
+$sql = "SELECT SUM(paid_amount) as total_amount FROM local_paid";
+$stmt = $db->connect()->query($sql);
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$totalAmount = $result['total_amount'];
+
+$adminShare = $totalAmount * 0.3;
+
+$officerShare = $totalAmount - $adminShare;
 ?>
 <!doctype html>
 <html lang="en" class="no-js">
