@@ -165,7 +165,7 @@ $collegecode = $_SESSION['collegeCode'];
 					  </div> -->
           </div>
           <?php
-                    if($_SESSION['role'] == 'admin'){?>
+                    if($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'officer'){?>
 					<div class="col-sm-4 " style="display: flex; align-items: center; justify-content: flex-end;">
 						<a href="#addCollectorModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a>
 					</div>
