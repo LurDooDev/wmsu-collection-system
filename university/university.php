@@ -3,15 +3,12 @@
   session_start();
   require_once '../functions/session.function.php';
   
-if (!isset($_SESSION['logged_id'])) {
-    header('location: ../university/new-univ.php');
-} else if ($_SESSION['role'] != 'admin') {
-    if ($_SESSION['role'] == 'officer') {
-        header('location: officer.php');
-    } else if ($_SESSION['role'] == 'collector') {
-        header('location: collector.php');
-    }
+  if (!isset($_SESSION['logged_id'])) {
+    header('location: ../admin/dashboard-user.php');
+} else if ($_SESSION['role'] != 'officer' && $_SESSION['role'] != 'admin') {
+    header('location: dashboard-user.php');
 }
+
 
 require_once '../classes/semester.class.php';
 require_once '../classes/academicyear.class.php';
@@ -67,15 +64,19 @@ ini_set('display_errors', 1);
                 </div>
                 <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
                 <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
+                <?php
+                    if($_SESSION['role'] == 'admin'){?>
                 <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Admin Settings</a>
                 <i class="fa fa-caret-down" style="margin-left: 37px;"></i>
+                
                 </button>
+                <?php } ?>
                 <div class="dropdown-container">
                 <a href="../admin-settings/overview_settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
                 <a href="../university/university.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
                     <a href="../local/localfees.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>
                     <?php
-                    if($_SESSION['role'] == 'admin'){?>
+                    if($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'officer'){?>
                     <a href="../admin-settings/user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">User Management</a></ul>
                     <?php } ?>
                     <!-- <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Colleges</a></ul> -->
@@ -104,7 +105,7 @@ ini_set('display_errors', 1);
 					  </div> -->
           </div>
           <?php
-                    if($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'officer'){?>
+                    if($_SESSION['role'] == 'admin'){?>
 					<div class="col-sm-4 " style="display: flex; align-items: center; justify-content: flex-end;">
 						<a href="#addCollectorModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Fees</span></a>
 					</div>
