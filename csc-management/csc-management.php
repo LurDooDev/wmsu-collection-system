@@ -164,11 +164,13 @@
     <div class="col-md-6">
       <div class="form-group">
         <label>Name</label>
-        <input type="text" class="form-control" placeholder="Dummy 1" required>
+        <input type="text" class="form-control" placeholder="Bryan" required aria-describedby="name-description">
+        <div id="name-description" class="form-text">Enter the name of the User.</div>
       </div>
       <div class="form-group">
         <label>College</label>
-        <input type="text" class="form-control" placeholder="College Of Computing Studies" required>
+        <input type="text" class="form-control" placeholder="College Of Computing Studies" required aria-describedby="name-description">
+        <div id="name-description" class="form-text">Enter the college of the User.</div>
       </div>
       <div class="form-group">
         <label>Role</label>
@@ -223,7 +225,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="userfullname">Name</label>
-              <input type="text" name="userfullname" id="userfullname" class="form-control" required>
+              <input type="text" name="userfullname" id="userfullname" class="form-control" required >
             </div>
             <div class="form-group">
               <label for="college" class="form-label">Colleges</label>
