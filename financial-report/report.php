@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 // resume session here to fetch session values
 session_start();
 
@@ -183,7 +183,7 @@ for (var i = 0; i < links.length; i++) {
   links[i].addEventListener('click', function() {
     setActiveLink(this);
   });
-}</script>
+}</script> -->
 
 
 

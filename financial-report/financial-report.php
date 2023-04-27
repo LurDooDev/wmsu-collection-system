@@ -13,9 +13,8 @@
 		}
 	}
 
-	require_once '../classes/database.class.php';
-	require_once '../classes/college.class.php';
-	require_once '../classes/program.class.php';
+  require_once '../classes/database.class.php';
+  require_once "../classes/financialreport.class.php";
 ?>
 
 <!doctype html>
@@ -82,14 +81,13 @@
         <div class="table-responsive">
 	<div id="page-content-wrapper">
 <!-- Dashboard hamburger      -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
-        <div class="d-flex align-items-center">
-            <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0">Financial Report</h2>
-        </div>
-    </nav>
-	</nav>
-    <div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
+    <div class="d-flex align-items-center">
+        <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+        <h2 class="fs-2 m-0">Financial Report</h2>
+    </div>
+</nav>
+<div class="container">
 	<div class =" table-responsive" id="inner">
                 <table class="table">
 				<div class="row">
@@ -101,117 +99,105 @@
 					</div>
 				</div>
 			</div>
+
             <thead style="background-color:#95BDFE ;" class="text-white">
             <table class="table table-striped table-hover">
-				<tbody>
-                <tr>
-      <td>WMSU PALARO</td>
-      <td><a href="#detailsModal" class="details" data-toggle="modal" style="color:gray;" data-toggle="tooltip" title="details"></> VIEW</a></td>
-              </tr>
-                </table>
+            <?php
+$financialReport = new FinancialReportClass();
+$reports = $financialReport->getAllReports();
+
+foreach ($reports as $report) {
+?>
+<tr>
+  <td><?php echo $report->ExpenseDetail; ?></td>
+  <td><a href="#detailsModal" class="details" data-toggle="modal" style="color:gray;" data-toggle="tooltip" title="Details" data-expense-detail="<?php echo $report->ExpenseDetail; ?>" data-Fund="<?php echo $report->Fund; ?>" data-total-cost="<?php echo $report->TotalCost; ?>" data-date="<?php echo $report->Date; ?>" data-time="<?php echo $report->Time; ?>" data-sem="<?php echo $report->Sem; ?>" data-school-year="<?php echo $report->SchoolYear; ?>" data-summary-report="<?php echo $report->summary_report; ?>">View</a></td>
+</tr>
+<?php
+}
+?>
+  </tbody>
             </thead>
-            </tbody>
 <!-- New content here  -->
 <div id="detailsModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form>
-        <div class="modal-header">						
-          <h4 class="modal-title">Details</h4>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Details</h4>
+            </div>
+            <div class="modal-body">
+                <ul style="list-style-type: none;">
+                    <li><label for="expenseDetail">Expense Details:</label><span id="expenseDetail"><?php echo htmlspecialchars($report->ExpenseDetail); ?></span></li>
+                    <li><label for="Fund">Fund:</label><span id="Fund"><?php echo htmlspecialchars($report->Fund); ?></span></li>
+                    <li><label for="totalCost">Total Cost:</label><span id="totalCost"><?php echo htmlspecialchars($report->TotalCost); ?></span></li>
+                    <li><label for="date">Date:</label><span id="date"><?php echo htmlspecialchars($report->Date); ?></span></li>
+                    <li><label for="time">Time:</label><span id="time"><?php echo htmlspecialchars($report->Time); ?></span></li>
+                    <li><label for="semester">Semester:</label><span id="semester"><?php echo htmlspecialchars($report->Sem); ?></span></li>
+                    <li><label for="schoolYear">School Year:</label><span id="schoolYear"><?php echo htmlspecialchars($report->SchoolYear); ?></span></li>
+                    <li><label>Summary Report:</label></li>
+                    <li><textarea class="comment" name="comments" id="comments_val" disabled><?php echo htmlspecialchars($report->summary_report); ?></textarea></li>
+                </ul>
+            </div>
         </div>
-        <div class="modal-body">					
-          <ul style="list-style-type: none;">
-            <li><label>Expense Details: Wmsu Palaro</label></li>
-            <li><label>Fund: Php 500.00</label></li>
-            <li><label>Total Cost: 200.00</label></li>
-            <li><label>Date: August 25,2020</label></li>
-            <li><label>Time: 6:58AM</label></li>
-            <li><label>Semester: 1st Semester</label></li>
-            <li><label>School Year: 2020-2021</label></li>
-            &nbsp;</li>&nbsp;
-            <li><label>Summary Report:</label></li>
-            <form action="" method="post">
-              <div>
-                <textarea class="comment" name="comments" id="comments" readonly>Expenses for Wmsu Palaro were necessary to support student activities.</textarea>
-              </div>
+    </div>
+</div>
+
+<!-- Add Report Modal -->
+<div class="modal fade" id="addReport" tabindex="-1" role="dialog" aria-labelledby="addReportLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="POST" action="createfinancialreport.php">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addReportLabel">Add Report</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>   
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <!-- <label for="projectID">Project ID:</label> -->
+                        <input type="hidden" class="form-control" id="projectID" name="projectID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseDetail">Expense Detail:</label>
+                        <input type="text" class="form-control" id="expenseDetail" name="expenseDetail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fund">Fund:</label>
+                        <input type="text" class="form-control" id="Fund" name="Fund" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="totalCost">Total Cost:</label>
+                        <input type="text" class="form-control" id="totalCost" name="totalCost" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="date" class="form-control" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Time:</label>
+                        <input type="time" class="form-control" id="time" name="time" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="semester">Semester:</label>
+                        <input type="text" class="form-control" id="semester" name="semester" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="schoolYear">School Year:</label>
+                        <input type="text" class="form-control" id="schoolYear" name="schoolYear" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="summaryReport">Summary Report:</label>
+                        <textarea class="form-control" id="summaryReport" name="summaryReport" rows="3" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    					<input type="hidden" name="action" value="add">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
             </form>
-          </ul>
         </div>
-        <div class="modal-footer" style="justify-content: center">
-          <input type="button" class="btn btn-danger" style="width: 60%; border-radius: 25px;" data-dismiss="modal" value="Exit">
-        </div>
-      </form>
     </div>
-  </div>
-</div>
-
-
-<div id="addReport" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form action="createfees.php" method="POST">
-        <div class="modal-header">
-          <h4 class="modal-title">Financial Report </h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        </div>
-        <div class="modal-body">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="expense">Expense Details:</label>
-        <input type="text" name="expense" id="expense" class="form-control" required aria-describedby="expenseHelp">
-        <small id="expenseHelp" class="form-text text-muted">Enter a brief description of the expense.</small>
-      </div>
-      <div class="form-group">
-        <label for="funds">Funds:</label>
-        <input type="text" name="funds" id="funds" class="form-control" required aria-describedby="fundsHelp">
-        <small id="fundsHelp" class="form-text text-muted">Enter the source of funds for the expense.</small>
-      </div>
-      <div class="form-group">
-        <label for="cost">Total Cost:</label>
-        <input type="number" name="cost" id="cost" class="form-control" required aria-describedby="costHelp">
-        <small id="costHelp" class="form-text text-muted">Enter the total cost of the expense.</small>
-      </div>
-      <div class="form-group">
-        <label for="date">Date:</label>
-        <input type="date" name="date" id="date" class="form-control" required >
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="time">Time:</label>
-        <input type="time" name="time" id="time" class="form-control" required >
-
-      </div>
-      <div class="form-group">
-  <label for="sem">Semester:</label>
-  <select name="sem" id="sem" class="form-control" required>
-    <option value="">Select Semester</option>
-    <option value="1st Semester">1st Semester</option>
-    <option value="2nd Semester">2nd Semester</option>
-    <option value="Summer">Summer</option>
-  </select>
-</div>
-      <div class="form-group">
-        <label for="schoolYear">School Year:</label>
-        <input type="date" name="schoolYear" id="schoolYear" class="form-control" required >
-      </div>
-      <div class="form-group">
-        <label for="comments">Summary Report:</label>
-        <textarea class="form-control" name="comments" id="comments" placeholder="Enter your comments here" aria-describedby="commentsHelp"></textarea>
-        <small id="commentsHelp" class="form-text text-muted">Enter a summary report of the expense.</small>
-      </div>
-    </div>
-  </div>
-</div>
-        <div class="modal-footer">
-          <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-          <input type="hidden" name="action" value="Save">
-          <input type="submit" class="btn btn-success" value="Save">
-        </div>
-      </form>
-    </div>
-  </div>
 </div>
 
 <!-- Script for dashboard hamburger         -->
@@ -225,36 +211,3 @@
                     el.classList.toggle("toggled");
                 };
             </script>
-            <script>
-/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-var dropdown = document.getElementsByClassName("dropdown-btn");
-var i;
-
-for (i = 0; i < dropdown.length; i++) {
-  dropdown[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var dropdownContent = this.nextElementSibling;
-    if (dropdownContent.style.display === "block") {
-      dropdownContent.style.display = "none";
-    } else {
-      dropdownContent.style.display = "block";
-    }
-  });
-}
-</script>
-<script>function setActiveLink(link) {
-  var links = document.querySelectorAll('.list-group-item');
-  for (var i = 0; i < links.length; i++) {
-    links[i].classList.remove('active');
-  }
-  link.classList.add('active');
-}
-
-var links = document.querySelectorAll('.list-group-item');
-for (var i = 0; i < links.length; i++) {
-  links[i].addEventListener('click', function() {
-    setActiveLink(this);
-  });
-}</script>
-            
-

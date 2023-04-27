@@ -52,7 +52,7 @@ require_once '../classes/college.class.php';
                 <a href="../admin/dashboard-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Dashboard</a>
                 <?php } ?>
                 <!-- <a href="../fees-user/fees-user.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold ">Fees</a> -->
-                <a href="../payment/universitypayment_search.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold  ">Payments</a>
+                <a href="../new-payment/search-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold  ">Payments</a>
                 <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>
                 <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold  ">Students</a>
                 <a href="../financial-report-user/financial-report-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Financial Report</a>
@@ -82,12 +82,15 @@ require_once '../classes/college.class.php';
 	<div class =" table-responsive" id="inner">
                 <table class="table">
 				<div class="row">
+        <?php
+                    if($_SESSION['role'] == 'admin'){?>
                 <div class="ml-auto p-auto" style="display: flex; align-items: center; justify-content: flex-end; padding: 15px;">
                 <a href="report.php" class="btn btn-success"> <i class="material-icons">&#xE147;</i> <span>Generated Report</span></a>
                         <div class="ml-7 p-auto" style="display: flex; align-items: center; justify-content: flex-end; padding: 15px;">
 						<a href="#addReport" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Report</span></a>
 </div>
 					</div>
+          <?php } ?>
 				</div>
 			</div>
 

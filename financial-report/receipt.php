@@ -66,18 +66,7 @@ if (!isset($_SESSION['logged_id'])){
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover fw-bold">Logout</a>
 </div>
         </div>
-<div class="table-responsive" id="yezzir">
-	<div id="page-content-wrapper">
-<!-- Dashboard hamburger      -->
-<nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
-        <div class="d-flex align-items-center">
-            <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-    <div class="mx-auto">
-            <h3 style = "font-size:30px;">University Student Council</h3>
-        </div>
-</div>
-</nav>
-<div class="container">
+        <div class="container">
     <div class="row">
 <div class ="table-responsive">
                 <table class="table">
