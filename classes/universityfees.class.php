@@ -67,6 +67,8 @@ class UniversityFees {
         }
     }
     
+    
+    
 
     function showAllDetails() {
         $sql = "SELECT ufs.id, ufs.start_date, ufs.fee_amount, ufs.end_date, ufs.created_by, ufs.fee_name, ufs.fee_type, s.semester_name, sy.academic_name
