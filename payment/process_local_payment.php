@@ -16,14 +16,16 @@ if(isset($_POST['fees'])){
     $totalAmount = 0;
     foreach($selectedFees as $feeId){
   
-        $sql = "SELECT pending_amount FROM local_pending WHERE id = :feeId";
-        $stmt = $db->connect()->prepare($sql);
-        $stmt->bindParam(':feeId', $feeId);
-        $stmt->execute();
-        $fee = $stmt->fetch(PDO::FETCH_ASSOC);
-        $amount = $fee['pending_amount'];
-        
-        $totalAmount += $amount;
+        $sql = "SELECT pending_amount FROM local_pending WHERE id = :feeId AND student_id = :studentId";
+$stmt = $db->connect()->prepare($sql);
+$stmt->bindParam(':feeId', $feeId);
+$stmt->bindParam(':studentId', $studentId);
+$stmt->execute();
+$fee = $stmt->fetch(PDO::FETCH_ASSOC);
+if ($fee) {
+    $amount = $fee['pending_amount'];
+    $totalAmount += $amount;
+}
     }
 
     $paymentDateTime = date('Y-m-d H:i:s');
@@ -53,8 +55,6 @@ $fee = $stmt->fetch(PDO::FETCH_ASSOC);
         'paid_amount' => $fee['pending_amount']
     );
     
-
-    $totalAmount += $fee['pending_amount'];
 }
 
 

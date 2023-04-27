@@ -14,7 +14,7 @@ if (!isset($_SESSION['logged_id'])) {
 }
 
 require_once '../classes/student.class.php';
-require_once '../classes/localpayment.class.php';
+require_once '../classes/localpaid.class.php';
 
 ?>
 <!doctype html>
@@ -139,40 +139,25 @@ require_once '../classes/localpayment.class.php';
     <thead style="background-color:#95BDFE ;" class="text-white">
       <tr>
       <th scope="col" style="text-align:center;">Payment Type</th>
-        <th scope="col" style="text-align:center;">Title</th>
         <th scope="col" style="text-align:center;">Payment Status</th>
-        <th scope="col" style="text-align:center;">Fee Amount</th>
-        <th scope="col" style="text-align:center;">Amount Paid</th>
-        <th scope="col" style="text-align:center;">Collected By</th>
+        <th scope="col" style="text-align:center;">Title</th>
+        <th scope="col" style="text-align:center;">Amount</th>
         <th scope="col" style="text-align:center;">Date</th>
-        <th scope="col" style="text-align:center;">Action</th>
       </tr>
     </thead>
     <tbody>
     <?php
-        // Retrieve payment data from the database
-        $payment = new LocalPayment();
+        $Fees = new LocalPaid();
+        $FeesData = $Fees->showAllFeesBystudentId($studentId);
 
-        // Check if a filter button was clicked
-        if (isset($_GET['status'])) {
-            $status = $_GET['status'];
-            $paymentData = $payment->getPaymentsByStatusAndStudentId($status, $studentId);
-        } else {
-            $paymentData = $payment->getPaymentsByStudentId($studentId);
-        }
-
-        // Loop through each payment and display it in a row of the table
-        foreach ($paymentData as $payment) {
-    ?>
+        foreach ($FeesData as $Fees) {
+      ?>
     <tr>
-    <td class="text-center"><?php echo $payment['local_fee_type']; ?></td>
-<td class="text-center"><?php echo $payment['local_name']; ?></td>
-<td class="text-center"><?php echo $payment['payment_status'] ? 'Paid' : 'Partial'; ?></td>
-<td class="text-center"><?php echo $payment['payment_fee_amount']; ?></td>
-<td class="text-center"><?php echo $payment['payment_amount']; ?></td>
-<td class="text-center"><?php echo $payment['collected_by']; ?></td>
-<td class="text-center"><?php echo date('F j, Y g:i A', strtotime($payment['payment_date'])); ?></td>
-<td class="text-center">Coming Soon </td>
+    <td class="text-center"><?php echo $Fees['fee_type']; ?></td>
+    <td class="text-center"><?php echo $Fees['local_status']; ?></td>
+    <td class="text-center"><?php echo $Fees['fee_name']; ?></td>
+<td class="text-center"><?php echo $Fees['paid_amount']; ?></td>
+<td class="text-center"><?php echo date('F j, Y g:i A', strtotime($Fees['payment_date'])); ?></td>
     </tr>
     <?php
         }
@@ -181,11 +166,7 @@ require_once '../classes/localpayment.class.php';
   </table>
 </div>
 
-<!-- Filter buttons -->
-<div class="btn-group" role="group">
-    <a href="?studentID=<?php echo $studentId ?>&status=1" class="btn btn-primary">Paid</a>
-    <a href="?studentID=<?php echo $studentId ?>&status=0" class="btn btn-primary">Partial</a>
-</div>
+
 
 
 <script>
@@ -216,70 +197,6 @@ require_once '../classes/localpayment.class.php';
 </script>
 
 
-   <!--Edit-->
-   <div id="editDetails" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form action="student-details.php" method="POST">
-      <div class="modal-header">
-  <h4 class="modal-title">Edit Details</h4>
-  <a href="student-details.php" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> </a>
-</div>
-
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Payment Details</label>
-                <input type="text" class="form-control" name="name" value="">
-              </div>
-              <div class="form-group">
-                <label>Receipt Number</label>
-                <input type="text" class="form-control" name="name" value="">
-              </div>
-              <div class="form-group">
-                <label>Student ID</label>
-                <input type="text" class="form-control" name="name" value="">
-              </div>
-              <div class="form-group">
-                <label>Student Name</label>
-                <input type="text" class="form-control" name="name" value="">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>College</label>
-                <input type="text" class="form-control" name="name" value="">
-              </div>
-              <div class="form-group">
-                <label>Program</label>
-                <input type="text" class="form-control" name="name" value="">
-              </div>
-              <div class="form-group">
-                <label>Year Level</label>
-                <input type="text" class="form-control" name="name" value="">
-              </div>
-              <div class="form-group">
-                <label>Description</label>
-                <input type="text" class="form-control" name="name" value="">
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label>Fee Amount</label>
-                <input type="text" class="form-control" name="name" value="">
-              </div>
-              <div class="form-group">
-                <label>Amount</label>
-                <input type="text" class="form-control" name="name" value="">
-              </div>
-              <div class="form-group">
-                <label>Collected By:</label>
-                <input type="text" class="form-control" name="name" placeholder="Eljen Augusto" value="">
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="modal-footer">
         <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="btn btn-default" data-dismiss="modal">Cancel</a>
           <input type="hidden" name="action" value="edit">
