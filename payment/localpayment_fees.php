@@ -86,7 +86,7 @@
                 <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold  ">Students</a>
                 <a href="../financial-report-user/financial-report-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
                 <a href="../audit-log-user/audit-log-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
-                <!-- <a href="../csc-management/csc-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">CSC Management</a> -->
+                <a href="../csc-management/csc-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">CSC Management</a>
                 <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Admin Settings
                 <i class="fa fa-caret-down" style="margin-left: 37px;"></i>
                 </button>
@@ -160,15 +160,16 @@
   <div class="col-sm-12">
   </div>
   <div class="col-sm-12" style="padding-bottom: 10px;">
-    <button type="button" class="btn btn-primary active" id="university-btn">University</button>
-    <a href="../payment/localpayment_fees.php?studentID=<?php echo $studentId ?>" class="btn btn-primary" id="local-btn">Local</a>
+
+  <a href="../payment/universitypayment_fees.php?studentID=<?php echo $studentId ?>" class="btn btn-primary" id="university-btn">University</a>
+    <a href="../payment/localpayment_fees.php?studentID=<?php echo $studentId ?>" class="btn btn-primary active" id="local-btn">Local</a>
   </div>
 </div>
 
-<!-- University Table -->
-<form method="post" action="process_payment.php" >
+<!-- Local Table -->
+<form method="post" action="process_local_payment.php" id="local-form">
   <input type="hidden" name="student_id" value="<?php echo $studentId; ?>">
-  <table id="university-table" class="table">
+  <table id="local-table" class="table">
     <thead style="background-color:#95BDFE;" class="text-white">
       <tr>
         <th></th>
@@ -181,18 +182,18 @@
     </thead>
     <tbody>
       <?php
-        $Fees = new UniversityPending();
-        $FeesData = $Fees->showAllFeesBystudentId($studentId);
+        $LocalFees = new LocalPending();
+        $LocalFeesData = $LocalFees->showAllFeesBystudentId($studentId);
 
-        foreach ($FeesData as $Fees) {
+        foreach ($LocalFeesData as $LocalFee) {
       ?>
           <tr>
-            <td><input type="checkbox" name="fees[]" value="<?php echo $Fees['id']; ?>" class="fee-checkbox"></td>
-            <td><?php echo $Fees['academic_name']; ?></td>
-            <td><?php echo $Fees['semester_name']; ?></td>
-            <td><?php echo $Fees['fee_name']; ?></td>
-            <td><?php echo $Fees['pending_amount']; ?></td>
-            <td><?php echo $Fees['university_status']; ?></td>
+            <td><input type="checkbox" name="fees[]" value="<?php echo $LocalFee['id']; ?>" class="fee-checkbox"></td>
+            <td><?php echo $LocalFee['academic_name']; ?></td>
+            <td><?php echo $LocalFee['semester_name']; ?></td>
+            <td><?php echo $LocalFee['fee_name']; ?></td>
+            <td><?php echo $LocalFee['pending_amount']; ?></td>
+            <td><?php echo $LocalFee['pending_status']; ?></td>
           </tr>
       <?php
         }
@@ -207,8 +208,8 @@
       </a>
     </div>
     <div class="ml-auto p-auto" style="border-radius: 6px;">
-      <div>Total amount: <span id="university-total-amount">0</span></div>
-      <button type="submit" class="btn btn-success" id="university-pay-now-btn" disabled>
+      <div>Total amount: <span id="local-total-amount">0</span></div>
+      <button type="submit" class="btn btn-success" id="local-pay-now-btn" disabled>
         <span>Pay Now!</span>
       </button>
     </div>
@@ -256,7 +257,7 @@ $(document).ready(function() {
   $("#local-table input[type='checkbox']").change(function() {
     var total = 0;
     $("#local-table input[type='checkbox']:checked").each(function() {
-      var amount = parseFloat($(this).closest("tr").find("td:eq(2)").text());
+      var amount = parseFloat($(this).closest("tr").find("td:eq(4)").text());
       total += amount;
     });
     $("#local-total-amount").text(total);
