@@ -45,57 +45,125 @@ ini_set('display_errors', 1);
     <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
     <title>Wmsu Collection System</title>
     </head>
+    
       <body>
+        
       <div class="d-flex" id="wrapper">
         <!-- Sidebar with bootstrap -->
+        
+        
         <div class="bg-white" id="sidebar-wrapper">
+            
+            
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
             <div class="list-group list-group-flush my-3">
+                
+            <?php
+            
+              if($_SESSION['role'] == 'admin'){?>
                 <a href="../admin/dashboard-main.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Dashboard</a>
+                <?php } ?>
+                <?php
+              if($_SESSION['role'] == 'officer'){?>
+                <a href="../admin/dashboard-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Dashboard</a>
+                <?php } ?>
                 <!-- <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Fees</a> -->
+                <?php
+                if($_SESSION['role'] == 'admin'){?>
                 <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Remit Records</a>
+                <?php } ?>
+                <?php
+                if($_SESSION['role'] == 'officer'){?>
+                <a href="../payment/universitypayment_search.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold  ">Payments</a>
+                <?php } ?>
+                <?php
+                if($_SESSION['role'] == 'admin'){?>
                 <a href="../college/college.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Colleges</a>
+                <?php } ?>
+                <?php
+              if($_SESSION['role'] == 'officer'){?>
+                <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>
+                <?php } ?>
+                
+                <?php
+                if($_SESSION['role'] == 'admin'){?>
                 <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Funds</a>
-                <i class="fa fa-caret-down" style="margin-left: 115px;"></i>
-                </button>                
+                <?php } ?>
+                <?php
+              if($_SESSION['role'] == 'officer'){?>
+                <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold  ">Students</a>
+                <?php } ?>
+                
+                </button> 
+                <?php
+                if($_SESSION['role'] == 'admin'){?>
                 <div class="dropdown-container">
                     <a href="../funds/overview_funds.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Overview</a>
                     <a href="../funds/collected-fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Collected Fees</a>
                 </div>
-                <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
-                <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
+                <?php } ?>
                 <?php
-                    if($_SESSION['role'] == 'admin'){?>
+              if($_SESSION['role'] == 'officer'){?>
+                <a href="../financial-report-user/financial-report-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
+                <?php } ?>
+                <?php
+                if($_SESSION['role'] == 'admin'){?>
+                <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
+                <?php } ?>
+                <?php
+                if($_SESSION['role'] == 'officer'){?>
+                <a href="../audit-log-user/audit-log-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
+                <?php } ?>
+                <?php
+                if($_SESSION['role'] == 'admin'){?>
+                <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
+                <?php } ?>
+                <?php
+              if($_SESSION['role'] == 'officer'){?>
+                <a href="../csc-management/csc-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">CSC Management</a>
+                <?php }?>
+                <div class="dropdown-container">
+                
                 <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Admin Settings</a>
+                
+                
                 <i class="fa fa-caret-down" style="margin-left: 37px;"></i>
                 
                 </button>
-                <?php } ?>
-                <div class="dropdown-container">
+                
+                <?php
+                    if($_SESSION['role'] == 'admin'){?>
                 <a href="../admin-settings/overview_settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
                 <a href="../university/university.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active" style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
                     <a href="../local/localfees.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>
-                    <?php
-                    if($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'officer'){?>
+                <?php }?>
+                <?php
+              if($_SESSION['role'] == 'officer'){?>
+                <a href="../admin-settings/overview_settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
+                <a href="../university/university.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
+                    <a href="../local/localfees.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>
+                    <?php }?>
+                <?php
+                if($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'officer'){?>
                     <a href="../admin-settings/user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">User Management</a></ul>
                     <?php } ?>
+                
+                   
                     <!-- <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Colleges</a></ul> -->
                 </div>
+              
                 <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover fw-bold">Logout</a>
+                
+                
 </div>
+
         </div>
-	<div id="page-content-wrapper">
-<!-- Dashboard hamburger      -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
-        <div class="d-flex align-items-center">
-            <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">University Fee</h2>
-        </div>
-    </nav>
+	
     <div class="container">
                 <div class="row" style="padding-top:  21px;">
 				<div class="col-sm-4" style="border-color: #000000;">
         			<!-- <input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name"> -->
+                    
        			 </div>
         <div class="col-sm-4">
         <!-- <button class="btn btn-primary dropdown-toggle" id ="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By </button>

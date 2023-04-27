@@ -41,12 +41,14 @@ require_once '../classes/database.class.php';
       <div class="d-flex" id="wrapper">
     <!-- Sidebar with bootstrap -->
     <div class="bg-white" id="sidebar-wrapper">
+      
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
             <div class="list-group list-group-flush my-3">
               <?php
               if($_SESSION['role'] == 'officer'){?>
                 <a href="../admin/dashboard-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Dashboard</a>
                 <?php } ?>
+                
                 <!-- <a href="../fees-user/fees-user.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold ">Fees</a> -->
                 <a href="../payment/universitypayment_search.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold  ">Payments</a>
                 <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>
