@@ -1,12 +1,16 @@
 <?php
 require_once '../classes/database.class.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['fees'])) {
 // Retrieve student ID from the form submission
 $studentId = $_POST['student_id'];
 
-// Retrieve selected fees IDs from the form submission
-$feesIds = $_POST['fees'];
+if(isset($_POST['fees'])){
+    $selectedFees = $_POST['fees'];
+    foreach($selectedFees as $feeId){
+        // process each selected fee
+    }
+}
+
 
 // Insert a new row in the payment_details table to record the transaction details
 $stmt = $pdo->prepare("INSERT INTO payment_details (student_id, amount_paid, date_time) VALUES (:student_id, :amount_paid, NOW())");
@@ -18,5 +22,4 @@ $stmt->execute();
 header('Location: universitypayment_confirmation.php');
 exit();
 
-}
 ?>
