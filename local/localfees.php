@@ -122,8 +122,8 @@ $collegecode = $_SESSION['collegeCode'];
 				        <th scope="col" style = " color: #000000;" >Amount</th></th>
                 <th scope="col" style = " color: #000000;" >Start Date</th></th>
                 <th scope="col" style = " color: #000000;" >End Date</th></th>
-                <th scope="col" style = " color: #000000;" >Created By</th></th>
-                <th scope="col" style = " color: #000000;" >Action</th>
+                <th scope="col" style = " color: #000000; text-align:center" >Created By</th></th>
+                <th scope="col" style = " color: #000000; text-align:center" >Action</th>
               </tr>
             </thead>
             <tbody>
@@ -142,9 +142,9 @@ foreach($FeeData as $Fee) {
         <td><?php echo $Fee['fee_name']; ?></td>
         <td>Php <?php echo $Fee['fee_amount']; ?></td>
         <td><?php echo date('F j, Y', strtotime($Fee['start_date'])); ?></td>
-                <td><?php echo date('F j, Y', strtotime($Fee['end_date'])); ?></td>
-        <td><?php echo $Fee['created_by']; ?></td>
-        <td>
+        <td><?php echo date('F j, Y', strtotime($Fee['end_date'])); ?></td>
+        <td style="text-align: center;"><?php echo $Fee['created_by']; ?></td>
+        <td style="text-align: center;">
             <!-- <a href=".php?id=<?php echo $Fee['id']; ?>" class="edit"> -->
                 <i class="material-icons" title="Edit">&#xe147;</i>
             </a>
