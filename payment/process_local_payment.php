@@ -1,6 +1,6 @@
 <?php
 require_once '../classes/database.class.php';
-require_once '../classes/universitypaymentdetails.class.php';
+require_once '../classes/localpaymentdetails.class.php';
 
 // Retrieve student ID from the form submission
 $studentId = $_POST['student_id'];
@@ -16,7 +16,7 @@ if(isset($_POST['fees'])){
     $totalAmount = 0;
     foreach($selectedFees as $feeId){
   
-        $sql = "SELECT pending_amount FROM university_pending WHERE id = :feeId";
+        $sql = "SELECT pending_amount FROM local_pending WHERE id = :feeId";
         $stmt = $db->connect()->prepare($sql);
         $stmt->bindParam(':feeId', $feeId);
         $stmt->execute();
@@ -35,8 +35,8 @@ if(isset($_POST['fees'])){
 foreach($selectedFees as $feeId){
 
     $sql = "SELECT up.pending_amount, uf.fee_name, uf.fee_amount, uf.fee_type, ay.academic_name, s.semester_name
-        FROM university_pending up 
-        INNER JOIN university_fees uf ON up.university_fee_id = uf.id
+        FROM local_pending up 
+        INNER JOIN local_fees uf ON up.local_fee_id = uf.id
         INNER JOIN academic_year ay ON uf.academic_year_id = ay.id 
         INNER JOIN semesters s ON uf.semester_id = s.id 
         WHERE up.id = :feeId";
@@ -61,7 +61,7 @@ $fee = $stmt->fetch(PDO::FETCH_ASSOC);
 $paidItemsJson = json_encode($paidItems);
     
     
-    $paymentDetails = new UniversityPaymentDetails();
+    $paymentDetails = new LocalPaymentDetails();
     $paymentDetails->processPayment($studentId, $totalAmount, $paymentDateTime, $paymentReference, $paidItems, $collectedBy);
     $paymentDetails->moveFeesToPaid($studentId,$selectedFees);
 }
