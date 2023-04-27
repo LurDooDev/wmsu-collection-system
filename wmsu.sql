@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2023 at 11:50 PM
+-- Generation Time: Apr 27, 2023 at 02:58 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -83,79 +83,46 @@ CREATE TABLE `fee_options` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `local_fee`
+-- Table structure for table `local_fees`
 --
 
-CREATE TABLE `local_fee` (
+CREATE TABLE `local_fees` (
   `id` int(11) NOT NULL,
-  `local_fee_type` varchar(50) DEFAULT 'Local',
-  `local_name` varchar(50) NOT NULL,
-  `created_by` varchar(50) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `college_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `local_fee`
---
-
-INSERT INTO `local_fee` (`id`, `local_fee_type`, `local_name`, `created_by`, `created_at`, `updated_at`, `college_id`) VALUES
-(1, 'Local', 'CSC', 'Bryan COE', '2023-03-15 15:22:50', '2023-03-15 15:22:50', 2),
-(2, 'Local', 'Gender Club', 'Bryan COE', '2023-03-15 19:13:39', '2023-03-15 19:13:39', 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `local_fee_schedule`
---
-
-CREATE TABLE `local_fee_schedule` (
-  `id` int(11) NOT NULL,
-  `semester_id` int(11) NOT NULL,
   `academic_year_id` int(11) NOT NULL,
+  `semester_id` int(11) NOT NULL,
   `college_id` int(11) NOT NULL,
-  `local_fee_id` int(11) NOT NULL,
-  `local_amount` int(11) NOT NULL,
-  `is_active` tinyint(1) DEFAULT 1,
-  `local_start_date` date DEFAULT NULL,
-  `local_end_date` date DEFAULT NULL,
-  `created_by` varchar(50) DEFAULT NULL,
+  `fee_name` varchar(100) NOT NULL,
+  `fee_amount` int(11) NOT NULL,
+  `fee_type` varchar(50) DEFAULT 'Local',
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `is_current` tinyint(1) NOT NULL DEFAULT 1
+  `created_by` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `local_fee_schedule`
+-- Dumping data for table `local_fees`
 --
 
-INSERT INTO `local_fee_schedule` (`id`, `semester_id`, `academic_year_id`, `college_id`, `local_fee_id`, `local_amount`, `is_active`, `local_start_date`, `local_end_date`, `created_by`, `created_at`, `updated_at`, `is_current`) VALUES
-(11, 1, 1, 2, 1, 231, 1, '2022-08-01', '2022-12-01', 'Bryan COE', '2023-03-15 19:36:46', '2023-03-15 19:36:46', 1),
-(12, 2, 1, 2, 1, 321, 1, '2023-01-01', '2023-05-01', 'Bryan COE', '2023-03-15 19:36:54', '2023-03-15 19:36:54', 1);
+INSERT INTO `local_fees` (`id`, `academic_year_id`, `semester_id`, `college_id`, `fee_name`, `fee_amount`, `fee_type`, `start_date`, `end_date`, `created_at`, `updated_at`, `created_by`) VALUES
+(1, 2, 1, 1, 'CSC Boracay', 420, 'Local', '2023-04-14', '2023-04-30', '2023-04-27 10:51:50', '2023-04-27 10:51:50', 'Bryan');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `local_payment`
+-- Table structure for table `local_pending`
 --
 
-CREATE TABLE `local_payment` (
+CREATE TABLE `local_pending` (
   `id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
-  `fee_schedule_id` int(11) NOT NULL,
-  `payment_amount` int(11) NOT NULL,
-  `collected_by` varchar(100) NOT NULL,
-  `payment_date` datetime NOT NULL,
-  `payment_details` text NOT NULL,
+  `local_fee_id` int(11) NOT NULL,
+  `college_id` int(11) NOT NULL,
+  `pending_amount` int(11) NOT NULL,
+  `pending_status` varchar(50) DEFAULT 'Pending',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `receipt_number` varchar(50) NOT NULL,
-  `payment_fee_amount` int(11) NOT NULL,
-  `payment_status` tinyint(1) NOT NULL DEFAULT 1,
-  `payment_remaining` int(11) NOT NULL DEFAULT 0,
-  `payment_add` int(11) NOT NULL DEFAULT 0,
-  `payment_image` varchar(100) DEFAULT NULL
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -274,9 +241,7 @@ CREATE TABLE `university_fees` (
 
 INSERT INTO `university_fees` (`id`, `academic_year_id`, `semester_id`, `fee_type`, `fee_name`, `fee_amount`, `start_date`, `end_date`, `created_by`, `created_at`, `updated_at`) VALUES
 (1, 2, 1, 'University', 'WMSU Boracay', 320, '2023-04-25', '2025-07-10', 'Bryan', '2023-04-09 23:16:37', '2023-04-09 23:16:37'),
-(14, 2, 2, 'University', 'wdaw', 2133, '2023-04-01', '2023-04-29', 'Bryan', '2023-04-10 22:35:16', '2023-04-10 22:35:16'),
-(15, 2, 2, 'University', 'test1', 213, '2023-04-01', '2023-04-15', 'Bryan', '2023-04-10 22:39:38', '2023-04-10 22:39:38'),
-(16, 2, 1, 'University', 'Wmsu Boracay', 300, '2023-04-05', '2023-05-04', 'Bryan', '2023-04-26 13:02:47', '2023-04-26 13:02:47');
+(14, 2, 2, 'University', 'wdaw', 2133, '2023-04-01', '2023-04-29', 'Bryan', '2023-04-10 22:35:16', '2023-04-10 22:35:16');
 
 -- --------------------------------------------------------
 
@@ -327,15 +292,6 @@ CREATE TABLE `university_pending` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `university_pending`
---
-
-INSERT INTO `university_pending` (`id`, `student_id`, `university_fee_id`, `pending_amount`, `university_status`, `created_at`, `updated_at`) VALUES
-(5, 201503664, 15, 213, 'Pending', '2023-04-10 22:39:38', '2023-04-10 22:39:38'),
-(7, 201503664, 16, 300, 'Pending', '2023-04-26 13:02:47', '2023-04-26 13:02:47'),
-(8, 202234212, 16, 300, 'Pending', '2023-04-26 13:02:47', '2023-04-26 13:02:47');
 
 -- --------------------------------------------------------
 
@@ -388,29 +344,22 @@ ALTER TABLE `fee_options`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `local_fee`
+-- Indexes for table `local_fees`
 --
-ALTER TABLE `local_fee`
+ALTER TABLE `local_fees`
   ADD PRIMARY KEY (`id`),
+  ADD KEY `academic_year_id` (`academic_year_id`),
+  ADD KEY `semester_id` (`semester_id`),
   ADD KEY `college_id` (`college_id`);
 
 --
--- Indexes for table `local_fee_schedule`
+-- Indexes for table `local_pending`
 --
-ALTER TABLE `local_fee_schedule`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `semester_id` (`semester_id`),
-  ADD KEY `academic_year_id` (`academic_year_id`),
-  ADD KEY `college_id` (`college_id`),
-  ADD KEY `local_fee_id` (`local_fee_id`);
-
---
--- Indexes for table `local_payment`
---
-ALTER TABLE `local_payment`
+ALTER TABLE `local_pending`
   ADD PRIMARY KEY (`id`),
   ADD KEY `student_id` (`student_id`),
-  ADD KEY `fee_schedule_id` (`fee_schedule_id`);
+  ADD KEY `local_fee_id` (`local_fee_id`),
+  ADD KEY `college_id` (`college_id`);
 
 --
 -- Indexes for table `programs`
@@ -503,22 +452,16 @@ ALTER TABLE `fee_options`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `local_fee`
+-- AUTO_INCREMENT for table `local_fees`
 --
-ALTER TABLE `local_fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `local_fees`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `local_fee_schedule`
+-- AUTO_INCREMENT for table `local_pending`
 --
-ALTER TABLE `local_fee_schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `local_payment`
---
-ALTER TABLE `local_payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `local_pending`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `programs`
@@ -542,7 +485,7 @@ ALTER TABLE `semesters`
 -- AUTO_INCREMENT for table `university_fees`
 --
 ALTER TABLE `university_fees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `university_paid`
@@ -573,26 +516,20 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `local_fee`
+-- Constraints for table `local_fees`
 --
-ALTER TABLE `local_fee`
-  ADD CONSTRAINT `local_fee_ibfk_1` FOREIGN KEY (`college_id`) REFERENCES `colleges` (`id`);
+ALTER TABLE `local_fees`
+  ADD CONSTRAINT `local_fees_ibfk_1` FOREIGN KEY (`academic_year_id`) REFERENCES `academic_year` (`id`),
+  ADD CONSTRAINT `local_fees_ibfk_2` FOREIGN KEY (`semester_id`) REFERENCES `semesters` (`id`),
+  ADD CONSTRAINT `local_fees_ibfk_3` FOREIGN KEY (`college_id`) REFERENCES `colleges` (`id`);
 
 --
--- Constraints for table `local_fee_schedule`
+-- Constraints for table `local_pending`
 --
-ALTER TABLE `local_fee_schedule`
-  ADD CONSTRAINT `local_fee_schedule_ibfk_1` FOREIGN KEY (`semester_id`) REFERENCES `semesters` (`id`),
-  ADD CONSTRAINT `local_fee_schedule_ibfk_2` FOREIGN KEY (`academic_year_id`) REFERENCES `academic_year` (`id`),
-  ADD CONSTRAINT `local_fee_schedule_ibfk_3` FOREIGN KEY (`college_id`) REFERENCES `colleges` (`id`),
-  ADD CONSTRAINT `local_fee_schedule_ibfk_4` FOREIGN KEY (`local_fee_id`) REFERENCES `local_fee` (`id`);
-
---
--- Constraints for table `local_payment`
---
-ALTER TABLE `local_payment`
-  ADD CONSTRAINT `local_payment_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`),
-  ADD CONSTRAINT `local_payment_ibfk_2` FOREIGN KEY (`fee_schedule_id`) REFERENCES `local_fee_schedule` (`id`);
+ALTER TABLE `local_pending`
+  ADD CONSTRAINT `local_pending_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `local_pending_ibfk_2` FOREIGN KEY (`local_fee_id`) REFERENCES `local_fees` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `local_pending_ibfk_3` FOREIGN KEY (`college_id`) REFERENCES `colleges` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `programs`
