@@ -118,10 +118,6 @@ ini_set('display_errors', 1);
                 if($_SESSION['role'] == 'admin'){?>
                 <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
                 <?php } ?>
-                <?php
-              if($_SESSION['role'] == 'officer'){?>
-                <a href="../csc-management/csc-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">CSC Management</a>
-                <?php }?>
                 <div class="dropdown-container">
                 
                 <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Admin Settings</a>
@@ -158,6 +154,14 @@ ini_set('display_errors', 1);
 </div>
 
         </div>
+        <div id="page-content-wrapper">
+<!-- Dashboard hamburger      -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
+        <div class="d-flex align-items-center">
+            <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">University Fee</h2>
+        </div>
+    </nav>
 	
     <div class="container">
                 <div class="row" style="padding-top:  21px;">
@@ -191,7 +195,7 @@ ini_set('display_errors', 1);
                 <th scope="col" style = " color: #000000;" >Start Date</th></th>
                 <th scope="col" style = " color: #000000;" >End Date</th></th>
                 <th scope="col" style = " color: #000000; text-align:center" >Created By</th></th>
-                <th scope="col" style = " color: #000000;" >Action</th>
+                <th scope="col" style = " color: #000000; text-align:center" >Action</th>
               </tr>
             </thead>
             <tbody>
@@ -213,7 +217,7 @@ foreach($FeeData as $Fee) {
         <td><?php echo date('F j, Y', strtotime($Fee['start_date'])); ?></td>
         <td><?php echo date('F j, Y', strtotime($Fee['end_date'])); ?></td>
         <td style="text-align:center"><?php echo $Fee['created_by']; ?></td>
-        <td>
+        <td style="text-align:center">
             <!-- <a href=".php?id=<?php echo $Fee['id']; ?>" class="edit"> -->
                 <i class="material-icons" title="Edit">&#xe147;</i>
             </a>
