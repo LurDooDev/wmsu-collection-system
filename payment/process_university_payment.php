@@ -1,25 +1,72 @@
 <?php
 require_once '../classes/database.class.php';
+require_once '../classes/universitypaymentdetails.class.php';
 
 // Retrieve student ID from the form submission
 $studentId = $_POST['student_id'];
+$collectedBy = htmlspecialchars($_POST['collected_by']);
+
+
+$db = new Database();
 
 if(isset($_POST['fees'])){
     $selectedFees = $_POST['fees'];
+    
+  
+    $totalAmount = 0;
     foreach($selectedFees as $feeId){
-        // process each selected fee
+  
+        $sql = "SELECT pending_amount FROM university_pending WHERE id = :feeId";
+        $stmt = $db->connect()->prepare($sql);
+        $stmt->bindParam(':feeId', $feeId);
+        $stmt->execute();
+        $fee = $stmt->fetch(PDO::FETCH_ASSOC);
+        $amount = $fee['pending_amount'];
+        
+        $totalAmount += $amount;
     }
+
+    $paymentDateTime = date('Y-m-d H:i:s');
+    
+
+    $paymentReference = uniqid('USC');
+    
+    $paidItems = array();
+foreach($selectedFees as $feeId){
+
+    $sql = "SELECT up.pending_amount, uf.fee_name, uf.fee_amount, uf.fee_type, ay.academic_name, s.semester_name
+        FROM university_pending up 
+        INNER JOIN university_fees uf ON up.university_fee_id = uf.id
+        INNER JOIN academic_year ay ON uf.academic_year_id = ay.id 
+        INNER JOIN semesters s ON uf.semester_id = s.id 
+        WHERE up.id = :feeId";
+$stmt = $db->connect()->prepare($sql);
+$stmt->bindParam(':feeId', $feeId);
+$stmt->execute();
+$fee = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    
+    $paidItems[] = array(
+        'id' => $feeId,
+        'name' => $fee['fee_name'],
+        'amount' => $fee['fee_amount'],
+        'paid_amount' => $fee['pending_amount']
+    );
+    
+
+    $totalAmount += $fee['pending_amount'];
 }
 
 
-// Insert a new row in the payment_details table to record the transaction details
-$stmt = $pdo->prepare("INSERT INTO payment_details (student_id, amount_paid, date_time) VALUES (:student_id, :amount_paid, NOW())");
-$stmt->bindParam(':student_id', $studentId);
-$stmt->bindParam(':amount_paid', $totalAmount);
-$stmt->execute();
+$paidItemsJson = json_encode($paidItems);
+    
+    
+    $paymentDetails = new UniversityPaymentDetails();
+    $paymentDetails->processPayment($studentId, $totalAmount, $paymentDateTime, $paymentReference, $paidItems, $collectedBy);
+    $paymentDetails->moveFeesToPaid($studentId,$selectedFees);
+}
 
 // Redirect the user to a confirmation page
 header('Location: universitypayment_confirmation.php');
 exit();
-
 ?>

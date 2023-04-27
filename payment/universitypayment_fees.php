@@ -39,6 +39,7 @@
   echo "student ID: $studentId";
 }
 
+$fullname = $_SESSION['fullname'];
 
 ?>
 <!doctype html>
@@ -168,6 +169,7 @@
 
 <!-- University Table -->
 <form method="post" action="process_university_payment.php" >
+<input type="hidden" name="collected_by" value="<?php echo $fullname; ?>">
   <input type="hidden" name="student_id" value="<?php echo $studentId; ?>">
   <table id="university-table" class="table">
     <thead style="background-color:#95BDFE;" class="text-white">
