@@ -204,7 +204,7 @@
   
   <div class="d-flex">
     <div class="mr-auto p-auto" style="border-radius: 6px;">
-      <a href="../new-payment/search-user.php" class="btn btn-success">
+      <a href="../payment/universitypayment_search.php" class="btn btn-success">
         <span>Back to Search</span>
       </a>
     </div>
@@ -249,7 +249,7 @@
         </table>
   <div class="d-flex">
     <div class="mr-auto p-auto" style="border-radius: 6px;">
-      <a href="../new-payment/search-user.php" class="btn btn-success">
+      <a href="../payment/universitypayment_search.php" class="btn btn-success">
         <span>Back to Search</span>
       </a>
     </div>
