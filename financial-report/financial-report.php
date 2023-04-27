@@ -153,37 +153,50 @@ foreach ($reports as $report) {
                     </button>   
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <!-- <label for="projectID">Project ID:</label> -->
-                        <input type="hidden" class="form-control" id="projectID" name="projectID" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="expenseDetail">Expense Detail:</label>
-                        <input type="text" class="form-control" id="expenseDetail" name="expenseDetail" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="fund">Fund:</label>
-                        <input type="text" class="form-control" id="Fund" name="Fund" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="totalCost">Total Cost:</label>
-                        <input type="text" class="form-control" id="totalCost" name="totalCost" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Date:</label>
-                        <input type="date" class="form-control" id="date" name="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="time">Time:</label>
-                        <input type="time" class="form-control" id="time" name="time" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="semester">Semester:</label>
-                        <input type="text" class="form-control" id="semester" name="semester" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="schoolYear">School Year:</label>
-                        <input type="text" class="form-control" id="schoolYear" name="schoolYear" required>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <!-- <label for="projectID">Project ID:</label> -->
+                                <input type="hidden" class="form-control" id="projectID" name="projectID" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="expenseDetail">Expense Detail:</label>
+                                <input type="text" class="form-control" id="expenseDetail" name="expenseDetail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="fund">Fund:</label>
+                                <input type="number" class="form-control" id="Fund" name="Fund" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="totalCost">Total Cost:</label>
+                                <input type="number" class="form-control" id="totalCost" name="totalCost" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Date:</label>
+                                <input type="date" class="form-control" id="date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="time">Time:</label>
+                                <input type="time" class="form-control" id="time" name="time" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="semester">Semester:</label>
+                              <select class="form-control" id="semester" name="semester" required>
+                                   <?php
+                                     $semesters = array("Select Semester","1st Semester", "2nd Semester", "Summer");
+                                      foreach ($semesters as $semester) {
+                                          echo "<option value=\"$semester\">$semester</option>";
+                                         }
+                                     ?>
+                                    </select>
+                                </div>
+                            <div class="form-group">
+                                <label for="schoolYear">School Year:</label>
+                                <input type="text" class="form-control" id="schoolYear" name="schoolYear" required>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="summaryReport">Summary Report:</label>
@@ -192,13 +205,14 @@ foreach ($reports as $report) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    					<input type="hidden" name="action" value="add">
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <input type="hidden" name="action" value="add">
+                    <button type="submit" class="btn btn-success">Save changes</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
 
 <!-- Script for dashboard hamburger         -->
         </body>       

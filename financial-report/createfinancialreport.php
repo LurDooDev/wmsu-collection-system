@@ -1,9 +1,6 @@
 
 <?php
-require_once 'database.class.php';
-
-$report = new FinancialReportClass();
-$report->deleteReport(1); // deletes the record with FinancialReportID = 1
+  require_once '../classes/database.class.php'; 
 
 class FinancialReportClass {
     //attributes
@@ -52,22 +49,6 @@ class FinancialReportClass {
             return false;
         }
     }
-    function deleteReport($FinancialReportID) {
-        $query = "DELETE FROM financialreport WHERE FinancialReportID = :FinancialReportID";
-        $stmt = $this->db->connect()->prepare($query);
-        $stmt->bindParam(':FinancialReportID', $FinancialReportID);
-    
-        try {
-            if($stmt->execute()){
-                return true;
-            } else {
-                return false;
-            }
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-            return false;
-        }
-    }    
 
     function getAllReports() {  
         $query = "SELECT * FROM financialreport";

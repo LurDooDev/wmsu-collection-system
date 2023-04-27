@@ -28,6 +28,7 @@ if (!isset($_SESSION['logged_id'])){
     <link rel="stylesheet" href="../css/dashboard.css"/>
     <link rel="stylesheet" href="../css/report.css" />
     <link rel="icon" type="image/jpg" href="../images/usc.png"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -75,59 +76,88 @@ if (!isset($_SESSION['logged_id'])){
             <h2 class="fs-2 m-0">Receipt</h2>
         </div>
     </nav>
-        <div class="container">
-    <div class="row">
+    <div class="container">
+  <div class="row">
     <div class="receipt">
-  <div class="receipt-header">
-    <h5>Date: 08/25/2022</h5>
-    <h5>Receipt Number: 696969</h5>
+      <div class="receipt-header">
+        <h5>Date: 08/25/2022</h5>
+        <h5>Receipt Number: 696969</h5>
+      </div>
+      <table class="table" id="receiptTable">
+        <thead>
+          <tr>
+            <th>Item Number</th>
+            <th>Description</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>CSS Fest</td>
+            <td>PHP 100.00</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Palaro</td>
+            <td>PHP 300.00</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Bahay Kubo</td>
+            <td>PHP 500.00</td>
+        </tr>
+          <tr>
+            <td>4</td>
+            <td>Others</td>
+            <td>PHP 500.00</td>
+          </tr>
+          <tr>
+            <td></td>
+            <th>Total:</th>
+            <td>PHP 1400.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="d-flex">
+      <div class="mr-auto p-auto mr-6">
+        <a href="report.php" class="btn btn-danger" style="border-radius:18px;"><span>Back To Report</span></a>
+      </div>
+      <div class="ml-auto p-auto ml-6" id="invoice">
+        <button class="btn btn-success" style="border-radius:18px;" onclick="printTable()">Download Receipt</button>
+      </div>
+    </div>
   </div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Item Number</th>
-        <th>Description</th>
-        <th>Amount</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td>Bahay Kubo</td>
-        <td>PHP 100.00</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Palaro</td>
-        <td>PHP 200.00</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Others</td>
-        <td>PHP 500.00</td>
-      </tr>
-      <tr>
-        <td></td>
-        <th>Total:</th>
-        <td>PHP 800.00</td>
-      </tr>
-    </tbody>
-  </table>
 </div>
-      <div class="d-flex">
-                <div class="mr-auto p-auto mr-6">
-                <a href="report.php" class="btn btn-danger" style="border-radius:18px;"><span>Back to Report</span></a>
-					</div>
-        <div class="ml-auto p-auto ml-6" id="invoice">
-          <button class="btn btn-success" id="downloadPdf" style="border-radius:18px;">Download Receipt</button>
-         <script>
-        document
-          .getElementById("downloadPdf")
-          .addEventListener("click", function () {
-           const element = document.getElementById("invoice");
-           html2pdf().from(element).save();
-           });
-         </script>
+
+<script>
+  function printTable() {
+    const table = document.getElementById("receiptTable");
+    const tableHTML = table.outerHTML;
+    const printWindow = window.open('', '', 'height=500,width=800');
+    printWindow.document.write('<html><head><title>Receipt Table</title>');
+    printWindow.document.write('</head><body>');
+    printWindow.document.write(tableHTML);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.print();
+  }
+
+  document.getElementById("downloadPdf").addEventListener("click", function () {
+    const element = document.getElementById("invoice");
+    html2pdf().from(element).save();
+  });
+</script>
+
+<!-- 
+<script>
+  document.getElementById("downloadPdf").addEventListener("click", function () {
+    const element = document.getElementById("invoice");
+    html2pdf().from(element).save();
+  });
+</script> -->
+
       </div>
 
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>

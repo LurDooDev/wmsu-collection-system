@@ -237,25 +237,6 @@ require_once '../classes/academicyear.class.php';
         <label>Semester Name</label>
         <input type="text" class="form-control" name="name" value="<?php echo $Semester['semester_name']; ?>">
     </div>
-    <div class="form-group">
-        <label>Semester Duration</label>
-        <input type="number" class="form-control" name="duration" value="<?php echo $Semester['semester_duration']; ?>">
-    </div>
-    <div class="form-group">
-        <label>Status</label>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="status" id="activeRadio" value="1">
-            <label class="form-check-label" for="activeRadio">
-                Active
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="status" id="inactiveRadi" value="0">
-            <label class="form-check-label" for="inactiveRadio">
-                Inactive
-            </label>
-        </div>
-    </div>
           
                     </div>
                     <div class="modal-footer">
