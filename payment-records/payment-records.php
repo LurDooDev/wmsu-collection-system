@@ -116,14 +116,10 @@
             $stmt->execute();
             $payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Display the payment details in a table
-echo '<table>';
-echo '<thead><tr><th>Student ID</th><th>Total Amount</th><th>Payment DateTime</th><th>Payment Reference</th><th>Collected By</th><th>Action</th></tr></thead>';
-echo '<tbody>';
 foreach ($payments as $payment) {
     echo '<tr>';
     echo '<td>' . $payment['student_id'] . '</td>';
-    echo '<td>' . $payment['total_amount'] . '</td>';
+    echo '<td>' . $payment['payment_amount'] . '</td>';
     echo '<td>' . $payment['payment_datetime'] . '</td>';
     echo '<td>' . $payment['payment_reference'] . '</td>';
     echo '<td>' . $payment['collected_by'] . '</td>';
