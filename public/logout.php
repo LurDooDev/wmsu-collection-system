@@ -2,6 +2,9 @@
 
     //resume session
     session_start();
+    require_once '../classes/database.class.php';
+
+  $db = new Database();
 
     // Retrieve the login time for the current session from the audit trail table
 $fullName = $_SESSION['fullname'];

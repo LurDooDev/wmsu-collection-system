@@ -3,6 +3,8 @@ session_start();
   require_once '../classes/database.class.php';
   require_once '../classes/users.class.php';
 
+  $db = new Database();
+
   if (isset($_POST['username']) && isset($_POST['password'])) {
       $username = $_POST['username'];
       $password = $_POST['password'];
