@@ -12,14 +12,12 @@ if (!isset($_SESSION['logged_id'])) {
 
 require_once '../classes/database.class.php';
 
+$db = new Database();
 $sql = "SELECT SUM(paid_amount) as total_amount FROM local_paid";
 $stmt = $db->connect()->query($sql);
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $totalAmount = $result['total_amount'];
 
-$adminShare = $totalAmount * 0.3;
-
-$officerShare = $totalAmount - $adminShare;
 ?>
 <!doctype html>
 <html lang="en" class="no-js">
@@ -95,7 +93,7 @@ $officerShare = $totalAmount - $adminShare;
         <div class="box">
           <div class="right-side">
             <div class="box-topic">Total Collected</div>
-            <div class="number"> ₱ 40,876</div>
+            <div class="number">Php <?php echo $totalAmount ?>.00</div>
             <div class="indicator">
               <i class='bx bx-up-arrow-alt'></i>
               <span class="text">First Semester</span>

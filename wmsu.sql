@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2023 at 08:22 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Apr 28, 2023 at 02:10 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,7 +35,7 @@ CREATE TABLE `academic_year` (
   `is_active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `academic_year`
@@ -55,7 +55,7 @@ CREATE TABLE `colleges` (
   `id` int(11) NOT NULL,
   `college_name` varchar(50) NOT NULL,
   `college_code` varchar(8) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `colleges`
@@ -67,52 +67,6 @@ INSERT INTO `colleges` (`id`, `college_name`, `college_code`) VALUES
 (3, 'College of Nursing', 'CN'),
 (5, 'College of Liberal Arts', 'CLA'),
 (6, 'College of Pogi', 'CP');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fee_options`
---
-
-CREATE TABLE `fee_options` (
-  `id` int(11) NOT NULL,
-  `option_name` varchar(50) NOT NULL,
-  `option_value` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `financialreport`
---
-
-CREATE TABLE `financialreport` (
-  `FinancialReportID` int(11) NOT NULL,
-  `Project_id` int(11) DEFAULT NULL,
-  `ExpenseDetail` varchar(255) DEFAULT NULL,
-  `Fund` varchar(255) DEFAULT NULL,
-  `TotalCost` decimal(10,2) DEFAULT NULL,
-  `Date` date DEFAULT NULL,
-  `Time` time DEFAULT NULL,
-  `Sem` varchar(255) DEFAULT NULL,
-  `SchoolYear` varchar(255) DEFAULT NULL,
-  `summary_report` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `funds`
---
-
-CREATE TABLE `funds` (
-  `fund_id` int(11) NOT NULL,
-  `college_id` int(11) DEFAULT NULL,
-  `total` decimal(10,2) DEFAULT NULL,
-  `usc_share` decimal(10,2) DEFAULT NULL,
-  `academic_year_id` int(11) DEFAULT NULL,
-  `status` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -133,14 +87,43 @@ CREATE TABLE `local_fees` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `created_by` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `local_fees`
+-- Table structure for table `local_paid`
 --
 
-INSERT INTO `local_fees` (`id`, `academic_year_id`, `semester_id`, `college_id`, `fee_name`, `fee_amount`, `fee_type`, `start_date`, `end_date`, `created_at`, `updated_at`, `created_by`) VALUES
-(1, 2, 1, 1, 'CSC Boracay', 420, 'Local', '2023-04-14', '2023-04-30', '2023-04-27 10:51:50', '2023-04-27 10:51:50', 'Bryan');
+CREATE TABLE `local_paid` (
+  `id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `local_fee_id` int(11) NOT NULL,
+  `paid_amount` int(11) NOT NULL,
+  `local_status` varchar(50) DEFAULT 'Paid',
+  `payment_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `local_payment_details`
+--
+
+CREATE TABLE `local_payment_details` (
+  `id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `payment_datetime` datetime NOT NULL,
+  `payment_amount` int(11) NOT NULL,
+  `payment_reference` varchar(50) NOT NULL,
+  `payment_total_amount` int(11) NOT NULL,
+  `paid_items` text NOT NULL,
+  `collected_by` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -157,7 +140,7 @@ CREATE TABLE `local_pending` (
   `pending_status` varchar(50) DEFAULT 'Pending',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -169,7 +152,7 @@ CREATE TABLE `programs` (
   `id` int(11) NOT NULL,
   `program_name` varchar(50) NOT NULL,
   `college_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `programs`
@@ -184,44 +167,13 @@ INSERT INTO `programs` (`id`, `program_name`, `college_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `project`
---
-
-CREATE TABLE `project` (
-  `project_id` int(11) NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `fund_size` decimal(10,2) DEFAULT NULL,
-  `id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `remitrecords`
---
-
-CREATE TABLE `remitrecords` (
-  `remit_id` int(11) NOT NULL,
-  `payment_desc` varchar(255) DEFAULT NULL,
-  `college_id` int(11) DEFAULT NULL,
-  `remit_date` date DEFAULT NULL,
-  `remit_time` time DEFAULT NULL,
-  `academic_year_id` int(11) DEFAULT NULL,
-  `semester_id` int(11) DEFAULT NULL,
-  `amount` decimal(10,2) DEFAULT NULL,
-  `status` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `roles`
 --
 
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
   `role_name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `roles`
@@ -243,7 +195,7 @@ CREATE TABLE `semesters` (
   `semester_name` varchar(20) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `semesters`
@@ -270,7 +222,7 @@ CREATE TABLE `students` (
   `payment_status` varchar(10) DEFAULT NULL,
   `outstanding_balance` int(11) NOT NULL DEFAULT 0,
   `academic_year_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `students`
@@ -298,15 +250,7 @@ CREATE TABLE `university_fees` (
   `created_by` varchar(100) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `university_fees`
---
-
-INSERT INTO `university_fees` (`id`, `academic_year_id`, `semester_id`, `fee_type`, `fee_name`, `fee_amount`, `start_date`, `end_date`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 'University', 'WMSU Boracay', 320, '2023-04-25', '2025-07-10', 'Bryan', '2023-04-09 23:16:37', '2023-04-09 23:16:37'),
-(14, 2, 2, 'University', 'wdaw', 2133, '2023-04-01', '2023-04-29', 'Bryan', '2023-04-10 22:35:16', '2023-04-10 22:35:16');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -321,10 +265,9 @@ CREATE TABLE `university_paid` (
   `paid_amount` int(11) NOT NULL,
   `university_status` varchar(50) DEFAULT 'Paid',
   `payment_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `collected_by` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -340,7 +283,25 @@ CREATE TABLE `university_partial` (
   `university_status` varchar(50) DEFAULT 'Partial',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `university_payment_details`
+--
+
+CREATE TABLE `university_payment_details` (
+  `id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `payment_datetime` datetime NOT NULL,
+  `payment_amount` int(11) NOT NULL,
+  `payment_reference` varchar(50) NOT NULL,
+  `paid_items` text NOT NULL,
+  `collected_by` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -356,7 +317,7 @@ CREATE TABLE `university_pending` (
   `university_status` varchar(20) DEFAULT 'Pending',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -374,7 +335,7 @@ CREATE TABLE `users` (
   `college_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -403,12 +364,6 @@ ALTER TABLE `colleges`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `fee_options`
---
-ALTER TABLE `fee_options`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `local_fees`
 --
 ALTER TABLE `local_fees`
@@ -416,6 +371,21 @@ ALTER TABLE `local_fees`
   ADD KEY `academic_year_id` (`academic_year_id`),
   ADD KEY `semester_id` (`semester_id`),
   ADD KEY `college_id` (`college_id`);
+
+--
+-- Indexes for table `local_paid`
+--
+ALTER TABLE `local_paid`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`),
+  ADD KEY `local_fee_id` (`local_fee_id`);
+
+--
+-- Indexes for table `local_payment_details`
+--
+ALTER TABLE `local_payment_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`);
 
 --
 -- Indexes for table `local_pending`
@@ -479,6 +449,13 @@ ALTER TABLE `university_partial`
   ADD KEY `university_fee_id` (`university_fee_id`);
 
 --
+-- Indexes for table `university_payment_details`
+--
+ALTER TABLE `university_payment_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
 -- Indexes for table `university_pending`
 --
 ALTER TABLE `university_pending`
@@ -511,22 +488,28 @@ ALTER TABLE `colleges`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `fee_options`
---
-ALTER TABLE `fee_options`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `local_fees`
 --
 ALTER TABLE `local_fees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `local_paid`
+--
+ALTER TABLE `local_paid`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `local_payment_details`
+--
+ALTER TABLE `local_payment_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `local_pending`
 --
 ALTER TABLE `local_pending`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `programs`
@@ -550,13 +533,13 @@ ALTER TABLE `semesters`
 -- AUTO_INCREMENT for table `university_fees`
 --
 ALTER TABLE `university_fees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `university_paid`
 --
 ALTER TABLE `university_paid`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `university_partial`
@@ -565,10 +548,16 @@ ALTER TABLE `university_partial`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `university_payment_details`
+--
+ALTER TABLE `university_payment_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `university_pending`
 --
 ALTER TABLE `university_pending`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -587,6 +576,19 @@ ALTER TABLE `local_fees`
   ADD CONSTRAINT `local_fees_ibfk_1` FOREIGN KEY (`academic_year_id`) REFERENCES `academic_year` (`id`),
   ADD CONSTRAINT `local_fees_ibfk_2` FOREIGN KEY (`semester_id`) REFERENCES `semesters` (`id`),
   ADD CONSTRAINT `local_fees_ibfk_3` FOREIGN KEY (`college_id`) REFERENCES `colleges` (`id`);
+
+--
+-- Constraints for table `local_paid`
+--
+ALTER TABLE `local_paid`
+  ADD CONSTRAINT `local_paid_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `local_paid_ibfk_2` FOREIGN KEY (`local_fee_id`) REFERENCES `local_fees` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `local_payment_details`
+--
+ALTER TABLE `local_payment_details`
+  ADD CONSTRAINT `local_payment_details_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`);
 
 --
 -- Constraints for table `local_pending`
@@ -630,6 +632,12 @@ ALTER TABLE `university_paid`
 ALTER TABLE `university_partial`
   ADD CONSTRAINT `university_partial_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `university_partial_ibfk_2` FOREIGN KEY (`university_fee_id`) REFERENCES `university_fees` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `university_payment_details`
+--
+ALTER TABLE `university_payment_details`
+  ADD CONSTRAINT `university_payment_details_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`);
 
 --
 -- Constraints for table `university_pending`

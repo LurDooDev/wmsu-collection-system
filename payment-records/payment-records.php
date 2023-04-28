@@ -95,48 +95,26 @@
 
 <?php
 
-// Create a new database connection
 $db = new Database();
 
 // Retrieve all university payment details
 $sql = "SELECT * FROM university_payment_details";
 $stmt = $db->connect()->prepare($sql);
 $stmt->execute();
-$universityPayments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Display the university payment details in a table
-echo '<h2>University Payment Details</h2>';
+// Display the payment details in a table
 echo '<table>';
-echo '<thead><tr><th>Student ID</th><th>Total Amount</th><th>Payment DateTime</th><th>Payment Reference</th></tr></thead>';
+echo '<thead><tr><th>Student ID</th><th>Total Amount</th><th>Payment DateTime</th><th>Payment Reference</th><th>Collected By</th><th>Action</th></tr></thead>';
 echo '<tbody>';
-foreach ($universityPayments as $payment) {
+foreach ($payments as $payment) {
     echo '<tr>';
     echo '<td>' . $payment['student_id'] . '</td>';
-    echo '<td>' . $payment['payment_amount'] . '</td>';
-    echo '<td>' . date('F j, Y g:i A', strtotime($payment['payment_datetime'])). '</td>';
+    echo '<td>' . $payment['total_amount'] . '</td>';
+    echo '<td>' . $payment['payment_datetime'] . '</td>';
     echo '<td>' . $payment['payment_reference'] . '</td>';
-    echo '</tr>';
-}
-echo '</tbody>';
-echo '</table>';
-
-// Retrieve all local payment details
-$sql = "SELECT * FROM local_payment_details";
-$stmt = $db->connect()->prepare($sql);
-$stmt->execute();
-$localPayments = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Display the local payment details in a table
-echo '<h2>Local Payment Details</h2>';
-echo '<table>';
-echo '<thead><tr><th>Student ID</th><th>Amount</th><th>Payment DateTime</th><th>Payment Reference</th></tr></thead>';
-echo '<tbody>';
-foreach ($localPayments as $payment) {
-    echo '<tr>';
-    echo '<td>' . $payment['student_id'] . '</td>';
-    echo '<td>' . $payment['payment_amount'] . '</td>';
-    echo '<td>' . date('F j, Y g:i A', strtotime($payment['payment_datetime'])) . '</td>';
-    echo '<td>' . $payment['payment_reference'] . '</td>';
+    echo '<td>' . $payment['collected_by'] . '</td>';
+    echo '<td><a href="download_receipt.php?payment_id=' . $payment['id'] . '">Download Receipt</a></td>';
     echo '</tr>';
 }
 echo '</tbody>';
