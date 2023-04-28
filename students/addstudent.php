@@ -18,37 +18,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'add') {
     $students->programID = $_POST['program'];
     $students->studentCollege = $_POST['college'];
 
-    // Validate studentFname to contain only letters and not exceed 20 characters
-    if (!ctype_alpha($students->studentFname) || strlen($students->studentFname) > 20) {
-        $error = true; // Set the flag variable to true
-        echo '<script>alert("Invalid studentFname. Please enter only letters and maximum of 20 characters");</script>';
-        echo '<script>window.location.href = "students.php";</script>';
-        return;
-} 
-// Validate studentLname to contain only letters and not exceed 20 characters
-    else if (!ctype_alpha($students->studentLname) || strlen($students->studentLname) > 20) {
-        $error = true; // Set the flag variable to true
-        echo '<script>alert("Invalid studentLname. Please enter only letters and maximum of 20 characters");</script>';
-        echo '<script>window.location.href = "students.php";</script>';
-        return;
-}
-   
-    // Validate studentFname to contain only letters
-    if (!ctype_alpha($students->studentFname)) {
-        $error = true; // Set the flag variable to true
-        echo '<script>alert("Invalid studentFname. Please enter only letters");</script>';
-        echo '<script>window.location.href = "students.php";</script>';
-        return;
-    } 
-    // Validate studentLname to contain only letters
-    else if (!ctype_alpha($students->studentLname)) {
-        $error = true; // Set the flag variable to true
-        echo '<script>alert("Invalid studentLname. Please enter only letters");</script>';
-        echo '<script>window.location.href = "students.php";</script>';
-        return;
-    } 
     // Validate studentEmail to contain only "@wmsu.edu.ph"
-    else if (substr($students->studentEmail, -12) !== "@wmsu.edu.ph") {
+    if (substr($students->studentEmail, -12) !== "@wmsu.edu.ph") {
         $error = true; // Set the flag variable to true
         echo '<script>alert("Invalid studentEmail. Please enter an email address that ends with @wmsu.edu.ph");</script>';
         echo '<script>window.location.href = "students.php";</script>'; // Redirect to students.php after displaying the error message
