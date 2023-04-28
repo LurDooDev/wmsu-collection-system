@@ -95,59 +95,35 @@
     <div class="col-sm-6" style="padding-top: 10px; padding-bottom: 10px;">
         <button class="btn btn-primary dropdown-toggle" id ="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By </button>
 						<div class="dropdown-menu">
-    					<a class="dropdown-item" href="#">Ascending</a>
-    					<a class="dropdown-item" href="#">Descending</a>
 					</div>
         </div>
     <table class="table table-striped table-borderless">
       <thead style="background-color:#95BDFE ;" class="text-white">
         <tr>
-          <th scope="col" style="color: #000000;">ID</th>
           <th scope="col" style="color: #000000;">Name</th>
-          <th scope="col" style="color: #000000;">Officer</th>
-          <th scope="col" style="color: #000000;">Date</th>
-          <th scope="col" style="color: #000000;">Time</th>
-          <th scope="col" style="color: #000000;">Action Made</th>
+          <th scope="col" style="color: #000000;">Login</th>
+          <th scope="col" style="color: #000000;">Logout</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Joy Cubile</td>
-          <td>CCS Mayor</td>
-          <td>12/13/2022</td>
-          <td>14:20</td>
-          <td>Collected Payment CSC Fee of Arthur Nery</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jerome Rabara</td>
-          <td>USC President</td>
-          <td>12/15/2022</td>
-          <td>17:20</td>
-          <td>Added User for CCS Treasurer name Aj Roblox</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Joy Cubile</td>
-          <td>CCS Mayor</td>
-          <td>12/14/2022</td>
-          <td>15:20</td>
-          <td>Collected Payment CSC Fee of Eminem Pinoy</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>Joy Cubile</td>
-          <td>CCS Mayor</td>
-          <td>12/14/2022</td>
-          <td>15:20</td>
-          <td>Collected Payment CSC Fee of Lil Pumpskie</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-    </div>
+      <?php
+    // Create a new database connection
+    $db = new Database();
+
+    // Retrieve all audit trails
+    $sql = "SELECT * FROM audit_trail";
+    $stmt = $db->connect()->query($sql);
+?>
+    <tbody>
+        <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
+            <tr>
+                <td><?php echo $row['full_name']; ?></td>
+                <td><?php echo $row['login_time']; ?></td>
+                <td><?php echo $row['logout_time']; ?></td>
+            </tr>
+        <?php endwhile; ?>
+    </tbody>
+</table>
+
 
 </body>       
 

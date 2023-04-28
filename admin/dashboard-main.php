@@ -9,7 +9,7 @@
 	} else if ($_SESSION['role'] != 'admin' && $_SESSION['role'] != 'officer') {
 		header('location: ../admin/dashboard-main.php');
 		exit(); // stop execution after redirect
-	}
+  }
 
 	require_once '../classes/database.class.php';
 
@@ -29,7 +29,7 @@ $officerShare = $totalAmount - $adminShare;
 
 <!doctype html>
 <html lang="en" class="no-js">
-  <html>
+
     <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -62,13 +62,13 @@ $officerShare = $totalAmount - $adminShare;
                 <!-- <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Fees</a> -->
                 <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Remit Records</a>
                 <a href="../college/new-college.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Colleges</a>
-                <!-- <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Funds
+                <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Funds
                 <i class="fa fa-caret-down" style="margin-left: 115px;"></i>
                 </button>                
                 <div class="dropdown-container">
                     <a href="../funds/overview_funds.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Overview</a>
                     <a href="../funds/collected-fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Collected Fees</a>
-                </div> -->
+                </div>
                 <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
                 <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Audit Log</a>
                 <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Admin Settings
@@ -239,7 +239,7 @@ $officerShare = $totalAmount - $adminShare;
       </div>
     </div>
 <!-- New content here  -->
-
+<body>
 
 
 <!-- Script for dashboard hamburger         -->
@@ -283,7 +283,6 @@ for (var i = 0; i < links.length; i++) {
     setActiveLink(this);
   });
 }</script>
+  
 
-        </body>       
-
-
+</html>
