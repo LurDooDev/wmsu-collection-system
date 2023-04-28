@@ -4,7 +4,7 @@
 
 	//prevent unauthorized access
 	if (!isset($_SESSION['logged_id'])) {
-		header('location: ../audit-log-user/audit-log-user.php');
+		header('location: ../audit-log/audit-log.php');
 	} else if ($_SESSION['role'] != 'officer') {
 		if ($_SESSION['role'] == 'admin') {
 			header('location: admin.php');
@@ -41,7 +41,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/6023332cf2.js" crossorigin="anonymous"></script>
-
     <title>Wmsu Collection System</title>
     </head>
       <body>
@@ -50,31 +49,34 @@
         <div class="bg-white" id="sidebar-wrapper">
             <img src="../images/logo.jpg" width ="200" alt="CCS COLLECTION FEE">
             <div class="list-group list-group-flush my-3">
-              <?php
-              if($_SESSION['role'] == 'officer'){?>
-                <a href="../admin/dashboard-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Dashboard</a>
-                <?php } ?>
-                <!-- <a href="../fees-user/fees-user.php" class="list-group-item list-group-item-action bg-hover first-text  fw-bold ">Fees</a> -->
-                <a href="../payment/universitypayment_search.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold  ">Payments</a>
-                <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>
-                <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold  ">Students</a>
-                <a href="../financial-report-user/financial-report-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
-                <a href="../audit-log-user/audit-log-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Audit Log</a>
-                 <!-- <a href="../csc-management/csc-management.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">CSC Management</a> -->
-                <?php
-                if($_SESSION['role'] == 'officer'){?>
-                  <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Admin Settings
-                  <i class="fa fa-caret-down" style="margin-left: 37px;"></i>
-                  </button>
+                <a href="../admin/dashboard-main.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Dashboard</a>
+                <!-- <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Fees</a> -->
+                <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Remit Records</a>
+                <a href="../college/new-college.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Colleges</a>
+                <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Funds</a>
+                <i class="fa fa-caret-down" style="margin-left: 115px;"></i>
+                </button>                
                 <div class="dropdown-container">
-                <a href="../admin-settings-user/admin-settings-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
-                    <a href="../user-univ-fee/new-univer-fee.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
-                    <a href="../user-local-fee/new-local-fee.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>   
-                    <a href="../admin-settings/user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">User Management</a></ul>                 
-                  </div>            
-                  <?php } ?>
-                <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Logout</a>
-            </div>
+                    <a href="../funds/overview_funds.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Overview</a>
+                    <a href="../funds/collected-fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Collected Fees</a>
+                </div>
+                <a href="../financial-report/financial-report.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
+                <?php
+                if($_SESSION['role'] == 'admin'){?>
+                <a href="../audit-log/audit-log.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold active">Audit Log</a>
+                <?php } ?>
+                <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Admin Settings</a>
+                <i class="fa fa-caret-down" style="margin-left: 37px;"></i>
+                </button>
+                <div class="">
+                <a href="../admin-settings/overview_settings.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Overview</a></ul>
+                <a href="../university/university.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">University Fee</a></ul>
+                    <a href="../local/localfees.php"class="list-group-item list-group-item-action bg-hover first-text fw-bold"  style="text-decoration:none; padding-left: 70px;">Local Fee</a></ul>
+                    <a href="../admin-settings/user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">User Management</a></ul>
+                    <!-- <a href="../admin-settings/Colleges.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Colleges</a></ul> -->
+                </div>
+                <a href="../public/logout.php" class="list-group-item list-group-item-action bg-hover fw-bold">Logout</a>
+</div>
         </div>
         <div class="table-responsive">
 	<div id="page-content-wrapper">
@@ -87,8 +89,7 @@
     </nav>
     <div class="container">
     <div class="table-responsive">
-  <div class="col-sm-14" id="lakatan">
-  <div class="row my-auto mx-auto">
+    <div class="row my-auto mx-auto">
     <div class="col-sm-auto" style="padding-top: 10px; padding-bottom: 10px;">
         <input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
         </div>
@@ -99,60 +100,41 @@
     					<a class="dropdown-item" href="#">Descending</a>
 					</div>
         </div>
-    <table class="table table-striped table-borderless">
-      <thead style="background-color:#95BDFE ;" class="text-white">
-        <tr>
-          <th scope="col" style="color: #000000;">ID</th>
-          <th scope="col" style="color: #000000;">Name</th>
-          <th scope="col" style="color: #000000;">Officer</th>
-          <th scope="col" style="color: #000000;">Date</th>
-          <th scope="col" style="color: #000000;">Time</th>
-          <th scope="col" style="color: #000000;">Action Made</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Joy Cubile</td>
-          <td>CCS Mayor</td>
-          <td>12/13/2022</td>
-          <td>14:20</td>
-          <td>Collected Payment CSC Fee of Arthur Nery</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jerome Rabara</td>
-          <td>USC President</td>
-          <td>12/15/2022</td>
-          <td>17:20</td>
-          <td>Added User for CCS Treasurer name Aj Roblox</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Joy Cubile</td>
-          <td>CCS Mayor</td>
-          <td>12/14/2022</td>
-          <td>15:20</td>
-          <td>Collected Payment CSC Fee of Eminem Pinoy</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>Joy Cubile</td>
-          <td>CCS Mayor</td>
-          <td>12/14/2022</td>
-          <td>15:20</td>
-          <td>Collected Payment CSC Fee of Lil Pumpskie</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-    </div>
+    <div class="col-sm-14" id="lakatan">
+                <table class="table table-striped table-borderless">
+            <thead style="background-color:#95BDFE ;" class="text-white">
+              <tr>
+                <th scope="col" style = " color: #000000;" >Name</th>
+                <th scope="col" style = " color: #000000;" >Login</th>
+                <th scope="col" style = " color: #000000;" >Logout</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php
+    // Create a new database connection
+    $db = new Database();
 
+    // Retrieve all audit trails
+    $sql = "SELECT * FROM audit_trail";
+    $stmt = $db->connect()->query($sql);
+?>
+<?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
+            <tr>
+                <td><?php echo $row['full_name']; ?></td>
+                <td><?php echo $row['login_time']; ?></td>
+                <td><?php echo $row['logout_time']; ?></td>
+            </tr>
+        <?php endwhile; ?>
+            </tbody>
+              
+          </table>
+                </div>
+                </div>
+    </div>
 </body>       
 
 <!-- Script for dashboard hamburger         -->
-        </body>       
+      
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
             <script>
                 var el = document.getElementById("wrapper");
@@ -194,4 +176,3 @@ for (var i = 0; i < links.length; i++) {
   });
 }</script>
 </html>
-

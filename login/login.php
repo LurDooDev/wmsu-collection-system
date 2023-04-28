@@ -3,6 +3,7 @@ session_start();
   require_once '../classes/database.class.php';
   require_once '../classes/users.class.php';
 
+    $db = new Database();
   if (isset($_POST['username']) && isset($_POST['password'])) {
       $username = $_POST['username'];
       $password = $_POST['password'];
@@ -22,6 +23,15 @@ session_start();
           $_SESSION['college'] = $user_data['college_name'];
 		  $_SESSION['collegeCode'] = $user_data['college_code'];
           $_SESSION['role'] = $user_data['role_name'];
+
+		  // Store the login time and user's full name in the audit trail table
+		$fullName = $_SESSION['fullname'];
+		$loginTime = date('Y-m-d H:i:s');
+		$sql = "INSERT INTO audit_trail (full_name, login_time) VALUES (:fullName, :loginTime)";
+		$stmt = $db->connect()->prepare($sql);
+		$stmt->bindParam(':fullName', $fullName);
+		$stmt->bindParam(':loginTime', $loginTime);
+		$stmt->execute();
   
           // Display the appropriate dashboard page for user
           if ($user_data['role_name'] == 'admin') {

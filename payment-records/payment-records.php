@@ -116,24 +116,27 @@
             $stmt->execute();
             $payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            // Display the payment details in a table
-            foreach ($payments as $payment) {
-              echo '<tr>';
-              echo '<td>' . $payment['student_id'] . '</td>';
-              echo '<td>' . $payment['total_amount'] . '</td>';
-              echo '<td>' . $payment['payment_datetime'] . '</td>';
-              echo '<td>' . $payment['payment_reference'] . '</td>';
-              echo '<td>' . $payment['collected_by'] . '</td>';
-              echo '<td><a href="download_receipt.php?payment_id=' . $payment['id'] . '">Download Receipt</a></td>';
-              echo '</tr>';
-            }
-            ?>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+// Display the payment details in a table
+echo '<table>';
+echo '<thead><tr><th>Student ID</th><th>Total Amount</th><th>Payment DateTime</th><th>Payment Reference</th><th>Collected By</th><th>Action</th></tr></thead>';
+echo '<tbody>';
+foreach ($payments as $payment) {
+    echo '<tr>';
+    echo '<td>' . $payment['student_id'] . '</td>';
+    echo '<td>' . $payment['total_amount'] . '</td>';
+    echo '<td>' . $payment['payment_datetime'] . '</td>';
+    echo '<td>' . $payment['payment_reference'] . '</td>';
+    echo '<td>' . $payment['collected_by'] . '</td>';
+    echo '<td><a href="download_receipt.php?payment_id=' . $payment['id'] . '">Download Receipt</a></td>';
+    echo '</tr>';
+}
+echo '</tbody>';
+echo '</table>';
+
+?>
+
+
+</body>       
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
             <script>
                 var el = document.getElementById("wrapper");

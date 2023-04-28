@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2023 at 02:10 AM
+-- Generation Time: Apr 28, 2023 at 03:55 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -48,6 +48,27 @@ INSERT INTO `academic_year` (`id`, `academic_name`, `academic_start_date`, `acad
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `audit_trail`
+--
+
+CREATE TABLE `audit_trail` (
+  `id` int(11) NOT NULL,
+  `full_name` varchar(100) NOT NULL,
+  `login_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `logout_time` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `audit_trail`
+--
+
+INSERT INTO `audit_trail` (`id`, `full_name`, `login_time`, `logout_time`) VALUES
+(1, 'Bryan', '2023-04-27 19:38:22', '2023-04-27 19:38:33'),
+(2, 'Bryan The Officer', '2023-04-27 19:45:00', '2023-04-27 19:54:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `colleges`
 --
 
@@ -67,23 +88,6 @@ INSERT INTO `colleges` (`id`, `college_name`, `college_code`) VALUES
 (3, 'College of Nursing', 'CN'),
 (5, 'College of Liberal Arts', 'CLA'),
 (6, 'College of Pogi', 'CP');
-
--- --------------------------------------------------------
--- Table structure for table `financialreport`
---
-
-CREATE TABLE `financialreport` (
-  `FinancialReportID` int(11) NOT NULL,
-  `Project_id` int(11) DEFAULT NULL,
-  `ExpenseDetail` varchar(255) DEFAULT NULL,
-  `Fund` varchar(255) DEFAULT NULL,
-  `TotalCost` decimal(10,2) DEFAULT NULL,
-  `Date` date DEFAULT NULL,
-  `Time` time DEFAULT NULL,
-  `Sem` varchar(255) DEFAULT NULL,
-  `SchoolYear` varchar(255) DEFAULT NULL,
-  `summary_report` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -269,6 +273,14 @@ CREATE TABLE `university_fees` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `university_fees`
+--
+
+INSERT INTO `university_fees` (`id`, `academic_year_id`, `semester_id`, `fee_type`, `fee_name`, `fee_amount`, `start_date`, `end_date`, `created_by`, `created_at`, `updated_at`) VALUES
+(25, 2, 1, 'University', 'USC 1', 400, '2023-04-01', '2023-04-30', 'Bryan', '2023-04-28 00:54:07', '2023-04-28 00:54:07'),
+(26, 2, 2, 'University', 'USC 2', 250, '2023-04-01', '2023-04-30', 'Bryan', '2023-04-28 00:55:21', '2023-04-28 00:55:21');
+
 -- --------------------------------------------------------
 
 --
@@ -285,6 +297,14 @@ CREATE TABLE `university_paid` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `university_paid`
+--
+
+INSERT INTO `university_paid` (`id`, `student_id`, `university_fee_id`, `paid_amount`, `university_status`, `payment_date`, `created_at`, `updated_at`) VALUES
+(7, 201503664, 25, 400, 'Paid', '2023-04-28 00:58:27', '2023-04-28 00:58:27', '2023-04-28 00:58:27'),
+(8, 201503664, 26, 250, 'Paid', '2023-04-28 00:58:27', '2023-04-28 00:58:27', '2023-04-28 00:58:27');
 
 -- --------------------------------------------------------
 
@@ -320,6 +340,13 @@ CREATE TABLE `university_payment_details` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `university_payment_details`
+--
+
+INSERT INTO `university_payment_details` (`id`, `student_id`, `payment_datetime`, `payment_amount`, `payment_reference`, `paid_items`, `collected_by`, `created_at`, `updated_at`) VALUES
+(13, 201503664, '2023-04-28 02:58:27', 650, 'USC644b1a3358b43', 'Array', 'Bryan The Officer', '2023-04-28 00:58:27', '2023-04-28 00:58:27');
+
 -- --------------------------------------------------------
 
 --
@@ -335,6 +362,14 @@ CREATE TABLE `university_pending` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `university_pending`
+--
+
+INSERT INTO `university_pending` (`id`, `student_id`, `university_fee_id`, `pending_amount`, `university_status`, `created_at`, `updated_at`) VALUES
+(28, 202234212, 25, 400, 'Pending', '2023-04-28 00:54:07', '2023-04-28 00:54:07'),
+(31, 202234212, 26, 250, 'Pending', '2023-04-28 00:55:21', '2023-04-28 00:55:21');
 
 -- --------------------------------------------------------
 
@@ -375,11 +410,12 @@ ALTER TABLE `academic_year`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `financialreport`
+-- Indexes for table `audit_trail`
 --
-ALTER TABLE `financialreport`
-  ADD PRIMARY KEY (`FinancialReportID`);
+ALTER TABLE `audit_trail`
+  ADD PRIMARY KEY (`id`);
 
+--
 -- Indexes for table `colleges`
 --
 ALTER TABLE `colleges`
@@ -504,11 +540,12 @@ ALTER TABLE `academic_year`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `financialreport`
+-- AUTO_INCREMENT for table `audit_trail`
 --
-ALTER TABLE `financialreport`
-  MODIFY `FinancialReportID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+ALTER TABLE `audit_trail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
+--
 -- AUTO_INCREMENT for table `colleges`
 --
 ALTER TABLE `colleges`
@@ -560,13 +597,13 @@ ALTER TABLE `semesters`
 -- AUTO_INCREMENT for table `university_fees`
 --
 ALTER TABLE `university_fees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `university_paid`
 --
 ALTER TABLE `university_paid`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `university_partial`
@@ -578,13 +615,13 @@ ALTER TABLE `university_partial`
 -- AUTO_INCREMENT for table `university_payment_details`
 --
 ALTER TABLE `university_payment_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `university_pending`
 --
 ALTER TABLE `university_pending`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `users`
