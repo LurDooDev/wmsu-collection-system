@@ -30,8 +30,8 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/dashboard.css" />
     <link rel="stylesheet" href="../css/payment-records.css" />
-    <link rel="stylesheet" href="../css/dashboard.css" />
     <link rel="icon" type="image/jpg" href="../images/usc.png"/>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -96,14 +96,14 @@
       </div>
       <div class="table-responsive">
         <table class="table">
-          <thead>
+          <thead style="background-color: #007bff;">
             <tr>
-              <th style="background-color: #dee2e6">Student ID</th>
-              <th style="background-color: #dee2e6">Total Amount</th>
-              <th style="background-color: #dee2e6">Payment DateTime</th>
-              <th style="background-color: #dee2e6">Payment Reference</th>
-              <th style="background-color: #dee2e6">Collected By</th>
-              <th style="background-color: #dee2e6">Action</th>
+              <th >Student ID</th>
+              <th>Total Amount</th>
+              <th>Payment DateTime</th>
+              <th>Payment Reference</th>
+              <th>Collected By</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
