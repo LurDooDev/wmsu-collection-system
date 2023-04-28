@@ -70,60 +70,70 @@
             </div>
         </div>               
         <div class="table-responsive">
-	<div id="page-content-wrapper">
-<!-- Dashboard hamburger      -->
+  <div id="page-content-wrapper">
+    <!-- Dashboard hamburger      -->
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
-        <div class="d-flex align-items-center">
-            <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Payment Records</h2>
-        </div>
+      <div class="d-flex align-items-center">
+        <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+        <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Payment Records</h2>
+      </div>
     </nav>
     <div class="container">
-    <div class="row">
-  <div class="col-sm-3 col-12" style="margin-top: 20px; padding-bottom: 20px;">
-    <input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
-  </div>
-  <div class="col-sm-3 col-12" style="margin-top: 20px; padding-bottom: 20px;">
-    <button class="btn btn-primary dropdown-toggle" id="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter Status</button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Paid</a>
-      <a class="dropdown-item" href="#">Unpaid</a>
-      <a class="dropdown-item" href="#">Partial</a>
+      <div class="row">
+        <div class="col-sm-6 col-md-3 my-2">
+          <input class="form-control border" type="search" name="search" id="search-input" placeholder="Search Name">
+        </div>
+        <div class="col-sm-6 col-md-3 my-2">
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" id="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter Status</button>
+            <div class="dropdown-menu" aria-labelledby="sort-by">
+              <a class="dropdown-item" href="#">Paid</a>
+              <a class="dropdown-item" href="#">Unpaid</a>
+              <a class="dropdown-item" href="#">Partial</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="background-color: #dee2e6">Student ID</th>
+              <th style="background-color: #dee2e6">Total Amount</th>
+              <th style="background-color: #dee2e6">Payment DateTime</th>
+              <th style="background-color: #dee2e6">Payment Reference</th>
+              <th style="background-color: #dee2e6">Collected By</th>
+              <th style="background-color: #dee2e6">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            $db = new Database();
+
+            // Retrieve all university payment details
+            $sql = "SELECT * FROM university_payment_details";
+            $stmt = $db->connect()->prepare($sql);
+            $stmt->execute();
+            $payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Display the payment details in a table
+            foreach ($payments as $payment) {
+              echo '<tr>';
+              echo '<td>' . $payment['student_id'] . '</td>';
+              echo '<td>' . $payment['total_amount'] . '</td>';
+              echo '<td>' . $payment['payment_datetime'] . '</td>';
+              echo '<td>' . $payment['payment_reference'] . '</td>';
+              echo '<td>' . $payment['collected_by'] . '</td>';
+              echo '<td><a href="download_receipt.php?payment_id=' . $payment['id'] . '">Download Receipt</a></td>';
+              echo '</tr>';
+            }
+            ?>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
-
-<?php
-
-$db = new Database();
-
-// Retrieve all university payment details
-$sql = "SELECT * FROM university_payment_details";
-$stmt = $db->connect()->prepare($sql);
-$stmt->execute();
-$payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Display the payment details in a table
-echo '<table>';
-echo '<thead><tr><th>Student ID</th><th>Total Amount</th><th>Payment DateTime</th><th>Payment Reference</th><th>Collected By</th><th>Action</th></tr></thead>';
-echo '<tbody>';
-foreach ($payments as $payment) {
-    echo '<tr>';
-    echo '<td>' . $payment['student_id'] . '</td>';
-    echo '<td>' . $payment['total_amount'] . '</td>';
-    echo '<td>' . $payment['payment_datetime'] . '</td>';
-    echo '<td>' . $payment['payment_reference'] . '</td>';
-    echo '<td>' . $payment['collected_by'] . '</td>';
-    echo '<td><a href="download_receipt.php?payment_id=' . $payment['id'] . '">Download Receipt</a></td>';
-    echo '</tr>';
-}
-echo '</tbody>';
-echo '</table>';
-
-?>
-
-
-</body>       
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
             <script>
                 var el = document.getElementById("wrapper");
