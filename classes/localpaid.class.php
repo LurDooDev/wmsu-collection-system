@@ -17,7 +17,7 @@ class LocalPaid {
     }
 
     function showAllFeesBystudentId($student_id) {
-        $sql = "SELECT up.id, up.paid_amount, up.local_status, up.payment_date, uf.fee_type, s.first_name, s.last_name, uf.fee_name, ay.academic_name, ss.semester_name
+        $sql = "SELECT up.id, up.paid_amount, up.local_status, up.payment_date, uf.fee_type, uf.fee_name, ay.academic_name, ss.semester_name
         FROM local_paid up
         INNER JOIN students s ON up.student_id = s.id
         INNER JOIN local_fees uf ON up.local_fee_id = uf.id

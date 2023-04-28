@@ -15,11 +15,12 @@ if (!isset($_SESSION['logged_id'])) {
 
 require_once '../classes/student.class.php';
 require_once '../classes/localpaid.class.php';
+require_once '../classes/universitypaid.class.php';
+
 
 ?>
 <!doctype html>
 <html lang="en" class="no-js">
-  <html>
     <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -162,12 +163,27 @@ require_once '../classes/localpaid.class.php';
     <?php
         }
     ?>
+    <?php
+        $Fees = new UniversityPaid();
+        $FeesData = $Fees->showAllPaidBystudentId($studentId);
+
+        foreach ($FeesData as $Fees) {
+      ?>
+    <tr>
+    <td class="text-center"><?php echo $Fees['fee_type']; ?></td>
+    <td class="text-center"><?php echo $Fees['university_status']; ?></td>
+    <td class="text-center"><?php echo $Fees['fee_name']; ?></td>
+<td class="text-center"><?php echo $Fees['paid_amount']; ?></td>
+<td class="text-center"><?php echo date('F j, Y g:i A', strtotime($Fees['payment_date'])); ?></td>
+    </tr>
+    <?php
+        }
+    ?>
     </tbody>
   </table>
 </div>
-
-
-
+    
+</html>
 
 <script>
 
@@ -194,18 +210,5 @@ require_once '../classes/localpaid.class.php';
     var results = regex.exec(location.search);
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
   };
+
 </script>
-
-
-        <div class="modal-footer">
-          <input type="hidden" name="action" value="edit">
-          <input type="hidden" name="id" value="edit">
-          <input type="submit" class="btn btn-info" id="save" value="Save">
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
