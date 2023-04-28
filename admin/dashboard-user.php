@@ -94,16 +94,12 @@ $totalAmount = $result['total_amount'];
           <div class="right-side">
             <div class="box-topic">Total Collected</div>
             <div class="number">Php <?php echo $totalAmount ?>.00</div>
-            <div class="indicator">
-              <i class='bx bx-up-arrow-alt'></i>
-              <span class="text">First Semester</span>
-            </div>
           </div>
    
         </div>
         <div class="box">
           <div class="right-side">
-            <div class="box-topic">Total Collected</div>
+            <div class="box-topic">Estimate</div>
             <div class="number"> ₱38,876</div>
             <div class="indicator">
               <span class="text">CCS Fee</span>
@@ -113,7 +109,7 @@ $totalAmount = $result['total_amount'];
         </div>
         <div class="box">
           <div class="right-side">
-            <div class="box-topic">Total Collected</div>
+            <div class="box-topic">Collect</div>
             <div class="number"> ₱ 12,876</div>
             <div class="indicator">
               <span class="text">CSC Fee</span>
