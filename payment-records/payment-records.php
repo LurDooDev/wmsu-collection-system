@@ -93,37 +93,57 @@
   </div>
 </div>
 
-            <div class =" table-responsive">
-                  <table class="table" id="myTable">
-              <thead style="background-color:#95BDFE ;" class="text-white">
-                <tr>
-                  <th scope="col" style = " color: #000000;" >ID</th>
-                  <th scope="col" style = " color: #000000;text-align:center;" >Payment Description</th>
-                  <th scope="col" style = " color: #000000; text-align:center;" >College</th></th>
-                  <th scope="col" style = " color: #000000; text-align:center" >Date</th>
-                  <th scope="col" style = " color: #000000;" >Time</th>
-                  <th scope="col" style = " color: #000000;" >School Year</th>
-                  <th scope="col" style = " color: #000000;" >Semester</th>
-                  <th scope="col" style = " color: #000000;" >Amount</th>
-                  <th scope="col" style = " color: #000000;text-align:center" >Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-              <td>1</td>
-          <td style="text-align:center;">CSB Fee</td>
-        <td style="text-align:center;">CCS</td>
-              <td>01-01-2022</td>
-              <td>10:11</td>
-              <td>2022-2023</td>
-              <td>1st Semester</td>
-              <td>P 120,000</td>
-              <td style="text-align:center">Paid</td>
+<?php
 
-      </div>
-    </div>
-</div>
-    </div>
+// Create a new database connection
+$db = new Database();
+
+// Retrieve all university payment details
+$sql = "SELECT * FROM university_payment_details";
+$stmt = $db->connect()->prepare($sql);
+$stmt->execute();
+$universityPayments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Display the university payment details in a table
+echo '<h2>University Payment Details</h2>';
+echo '<table>';
+echo '<thead><tr><th>Student ID</th><th>Total Amount</th><th>Payment DateTime</th><th>Payment Reference</th></tr></thead>';
+echo '<tbody>';
+foreach ($universityPayments as $payment) {
+    echo '<tr>';
+    echo '<td>' . $payment['student_id'] . '</td>';
+    echo '<td>' . $payment['payment_amount'] . '</td>';
+    echo '<td>' . date('F j, Y g:i A', strtotime($payment['payment_datetime'])). '</td>';
+    echo '<td>' . $payment['payment_reference'] . '</td>';
+    echo '</tr>';
+}
+echo '</tbody>';
+echo '</table>';
+
+// Retrieve all local payment details
+$sql = "SELECT * FROM local_payment_details";
+$stmt = $db->connect()->prepare($sql);
+$stmt->execute();
+$localPayments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Display the local payment details in a table
+echo '<h2>Local Payment Details</h2>';
+echo '<table>';
+echo '<thead><tr><th>Student ID</th><th>Amount</th><th>Payment DateTime</th><th>Payment Reference</th></tr></thead>';
+echo '<tbody>';
+foreach ($localPayments as $payment) {
+    echo '<tr>';
+    echo '<td>' . $payment['student_id'] . '</td>';
+    echo '<td>' . $payment['payment_amount'] . '</td>';
+    echo '<td>' . date('F j, Y g:i A', strtotime($payment['payment_datetime'])) . '</td>';
+    echo '<td>' . $payment['payment_reference'] . '</td>';
+    echo '</tr>';
+}
+echo '</tbody>';
+echo '</table>';
+
+?>
+
 
 </body>       
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>

@@ -198,7 +198,6 @@ require_once '../classes/localpaid.class.php';
 
 
         <div class="modal-footer">
-        <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="btn btn-default" data-dismiss="modal">Cancel</a>
           <input type="hidden" name="action" value="edit">
           <input type="hidden" name="id" value="edit">
           <input type="submit" class="btn btn-info" id="save" value="Save">
