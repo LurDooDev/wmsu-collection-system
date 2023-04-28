@@ -84,7 +84,7 @@ if (!isset($_SESSION['logged_id'])) {
         </div>
       <div class="col-12 mt-2">
         <div class="text-center" style="border-radius: 6px; font-size: 2.5rem">
-          <a href="../new-payment/search-user.php" class="btn btn-success" id="a">
+          <a href="../payment/universitypayment_search.php" class="btn btn-success" id="a">
             <span>New Payment</span>
           </a>
         </div>
