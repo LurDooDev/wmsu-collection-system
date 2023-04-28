@@ -69,6 +69,23 @@ INSERT INTO `colleges` (`id`, `college_name`, `college_code`) VALUES
 (6, 'College of Pogi', 'CP');
 
 -- --------------------------------------------------------
+-- Table structure for table `financialreport`
+--
+
+CREATE TABLE `financialreport` (
+  `FinancialReportID` int(11) NOT NULL,
+  `Project_id` int(11) DEFAULT NULL,
+  `ExpenseDetail` varchar(255) DEFAULT NULL,
+  `Fund` varchar(255) DEFAULT NULL,
+  `TotalCost` decimal(10,2) DEFAULT NULL,
+  `Date` date DEFAULT NULL,
+  `Time` time DEFAULT NULL,
+  `Sem` varchar(255) DEFAULT NULL,
+  `SchoolYear` varchar(255) DEFAULT NULL,
+  `summary_report` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `local_fees`
@@ -358,6 +375,11 @@ ALTER TABLE `academic_year`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `financialreport`
+--
+ALTER TABLE `financialreport`
+  ADD PRIMARY KEY (`FinancialReportID`);
+
 -- Indexes for table `colleges`
 --
 ALTER TABLE `colleges`
@@ -482,6 +504,11 @@ ALTER TABLE `academic_year`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `financialreport`
+--
+ALTER TABLE `financialreport`
+  MODIFY `FinancialReportID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
 -- AUTO_INCREMENT for table `colleges`
 --
 ALTER TABLE `colleges`

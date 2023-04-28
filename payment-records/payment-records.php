@@ -30,8 +30,8 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/dashboard.css" />
     <link rel="stylesheet" href="../css/payment-records.css" />
-    <link rel="stylesheet" href="../css/dashboard.css" />
     <link rel="icon" type="image/jpg" href="../images/usc.png"/>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -70,47 +70,60 @@
             </div>
         </div>               
         <div class="table-responsive">
-	<div id="page-content-wrapper">
-<!-- Dashboard hamburger      -->
+  <div id="page-content-wrapper">
+    <!-- Dashboard hamburger      -->
     <nav class="navbar navbar-expand-lg navbar-light bg-active py-4 px-4">
-        <div class="d-flex align-items-center">
-            <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-            <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Payment Records</h2>
-        </div>
+      <div class="d-flex align-items-center">
+        <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+        <h2 class="fs-2 m-0" style="color:#000000; font-weight: 400;">Payment Records</h2>
+      </div>
     </nav>
     <div class="container">
-    <div class="row">
-  <div class="col-sm-3 col-12" style="margin-top: 20px; padding-bottom: 20px;">
-    <input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name">
-  </div>
-  <div class="col-sm-3 col-12" style="margin-top: 20px; padding-bottom: 20px;">
-    <button class="btn btn-primary dropdown-toggle" id="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter Status</button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Paid</a>
-      <a class="dropdown-item" href="#">Unpaid</a>
-      <a class="dropdown-item" href="#">Partial</a>
-    </div>
-  </div>
-</div>
+      <div class="row">
+        <div class="col-sm-6 col-md-3 my-2">
+          <input class="form-control border" type="search" name="search" id="search-input" placeholder="Search Name">
+        </div>
+        <div class="col-sm-6 col-md-3 my-2">
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" id="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter Status</button>
+            <div class="dropdown-menu" aria-labelledby="sort-by">
+              <a class="dropdown-item" href="#">Paid</a>
+              <a class="dropdown-item" href="#">Unpaid</a>
+              <a class="dropdown-item" href="#">Partial</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead style="background-color: #007bff;">
+            <tr>
+              <th >Student ID</th>
+              <th>Total Amount</th>
+              <th>Payment DateTime</th>
+              <th>Payment Reference</th>
+              <th>Collected By</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            $db = new Database();
 
-<?php
-
-$db = new Database();
-
-// Retrieve all university payment details
-$sql = "SELECT * FROM university_payment_details";
-$stmt = $db->connect()->prepare($sql);
-$stmt->execute();
-$payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // Retrieve all university payment details
+            $sql = "SELECT * FROM university_payment_details";
+            $stmt = $db->connect()->prepare($sql);
+            $stmt->execute();
+            $payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Display the payment details in a table
 echo '<table>';
-echo '<thead><tr><th>Student ID</th><th>Amount</th><th>Payment DateTime</th><th>Payment Reference</th><th>Collected By</th><th>Action</th></tr></thead>';
+echo '<thead><tr><th>Student ID</th><th>Total Amount</th><th>Payment DateTime</th><th>Payment Reference</th><th>Collected By</th><th>Action</th></tr></thead>';
 echo '<tbody>';
 foreach ($payments as $payment) {
     echo '<tr>';
     echo '<td>' . $payment['student_id'] . '</td>';
-    echo '<td>' . $payment['payment_amount'] . '</td>';
+    echo '<td>' . $payment['total_amount'] . '</td>';
     echo '<td>' . $payment['payment_datetime'] . '</td>';
     echo '<td>' . $payment['payment_reference'] . '</td>';
     echo '<td>' . $payment['collected_by'] . '</td>';
