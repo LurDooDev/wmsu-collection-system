@@ -229,7 +229,7 @@ require_once '../classes/program.class.php';
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Upload Student CSV</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">a</button>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
         </div>
         <div class="modal-body-md">
         <div class="form-group" style="margin-left: 25px; margin-top: 20px;">
