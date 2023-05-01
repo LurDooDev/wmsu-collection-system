@@ -246,11 +246,12 @@ foreach($FeeData as $Fee) {
 							</div>
 							
 							<div class="form-group">
-								<label for="amount" class="form-label" >Amount</label>
-								<div class="input-group">
-									<input type="number" class="form-control" id="amount" name="amount" min="0" step="1" placeholder="200" required>
-								</div>
-							</div>
+    <label for="amount" class="form-label">Amount</label>
+    <div class="input-group">
+        <input type="number" class="form-control" id="amount" name="amount" min="0" step="any" placeholder="200" required pattern="\d+(\.\d{1,2})?">
+    </div>
+</div>
+
 						</div>
 						<div class="col-sm-6">
 							<h5>Fee Scheduling</h5>
@@ -345,7 +346,7 @@ foreach($FeeData as $Fee) {
             <div class="form-group">
                 <label for="amount">Amount</label>
                 <div class="input-group">
-                    <input type="number" class="form-control" id="amount" name="amount" min="0" step="1" required aria-describedby="amount-description" placeholder="PHP 200">
+                    <input type="number" class="form-control" id="amount" name="amount" min="0" step="0.01" required aria-describedby="amount-description" placeholder="PHP 200">
                 </div>
                 <div id="amount-description" class="form-text">Enter the amount of the fee.</div>
             </div>
