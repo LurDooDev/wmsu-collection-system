@@ -13,15 +13,15 @@ if (isset($_POST['action']) && $_POST['action'] == 'Save') {
     $academicYearID = htmlspecialchars($_POST['academicYearID']);
     $collegeID = htmlspecialchars($_POST['college_id']);
 
-$localFee = new LocalFees();
-$localFee->localName = $localName;
-$localFee->localAmount = $localAmount;
-$localFee->semesterID = $localSemesterID;
-$localFee->academicYearID = $academicYearID;
-$localFee->localStartDate = $localStartDate;
-$localFee->localEndDate = $localEndDate;
-$localFee->localcreatedby = $localcreatedby;
-$localFee->collegeID = $collegeID;
+    $localFee = new LocalFees();
+    $localFee->localName = $localName;
+    $localFee->localAmount = $localAmount;
+    $localFee->semesterID = $localSemesterID;
+    $localFee->academicYearID = $academicYearID;
+    $localFee->localStartDate = $localStartDate;
+    $localFee->localEndDate = $localEndDate;
+    $localFee->localcreatedby = $localcreatedby;
+    $localFee->collegeID = $collegeID;
 
     
     if ($localFee->createLocalFees()) {
@@ -29,7 +29,12 @@ $localFee->collegeID = $collegeID;
     } else {
         echo 'Failed to add fee.';
     }
+    if (!preg_match('/^\d+(\.\d{1,2})?$/', $localAmount)) {
+        echo 'Invalid amount. Please enter a valid number.';
+        exit;
+    }
     
 }
+
 
 ?>

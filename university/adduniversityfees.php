@@ -28,7 +28,7 @@ $universityFee->universitycreatedby = $universitycreatedby;
         echo 'Failed to add fee.';
     }
     if (!preg_match('/^\d+(\.\d{1,2})?$/', $universityAmount)) {
-        echo 'Invalid amount. Please enter a valid decimal number.';
+        echo 'Invalid amount. Please enter a valid number.';
         exit;
     }
     

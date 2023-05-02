@@ -235,8 +235,9 @@ foreach($FeeData as $Fee) {
 							<div class="form-group">
 								<label for="amount" class="form-label" >Amount</label>
 								<div class="input-group">
-									<input type="number" class="form-control" id="amount" name="amount" min="0" step="1" placeholder="200" required>
+									<input type="number" class="form-control" id="amount" name="amount" min="0" step="0.01" placeholder="200" required>
 								</div>
+                <div id="amount-description" class="form-text">Enter the amount of the fee.</div>
 							</div>
 						</div>
 						<div class="col-sm-6">
