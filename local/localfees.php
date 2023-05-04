@@ -60,7 +60,7 @@ $collegecode = $_SESSION['collegeCode'];
             if($_SESSION['role'] == 'officer'){?>
               <a href="../admin/dashboard-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Dashboard</a>
               <?php } ?>
-              <!-- <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Fees</a> -->
+               <a href="../fees/fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Fees</a> 
               <?php
               if($_SESSION['role'] == 'admin'){?>
               <a href="../remit-records/remit-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold ">Remit Records</a>
@@ -77,24 +77,24 @@ $collegecode = $_SESSION['collegeCode'];
             if($_SESSION['role'] == 'officer'){?>
               <a href="../payment-records/payment-records.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Payment Records</a>
               <?php } ?>
-<!--               
+              
               <?php
               if($_SESSION['role'] == 'admin'){?>
               <button class="list-group-item list-group-item-action bg-hover second-text dropdown-btn fw-bold">Funds</a>
-              <?php } ?> -->
+              <?php } ?> 
               <?php
             if($_SESSION['role'] == 'officer'){?>
               <a href="../students/students.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold  ">Students</a>
               <?php } ?>
               
-              <!-- </button> 
+               </button> 
               <?php
               if($_SESSION['role'] == 'admin'){?>
               <div class="dropdown-container">
                   <a href="../funds/overview_funds.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold" style="text-decoration:none; padding-left: 70px;">Overview</a>
                   <a href="../funds/collected-fees.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold " style="text-decoration:none; padding-left: 70px;">Collected Fees</a>
               </div>
-              <?php } ?> -->
+              <?php } ?> 
               <?php
             if($_SESSION['role'] == 'officer'){?>
               <a href="../financial-report-user/financial-report-user.php" class="list-group-item list-group-item-action bg-hover first-text fw-bold">Financial Report</a>
