@@ -155,14 +155,14 @@ $collegecode = $_SESSION['collegeCode'];
     <div class="container">
                 <div class="row" style="padding-top:  21px;">
 				<div class="col-sm-4" style="border-color: #000000;">
-        			<!-- <input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name"> -->
+        			 <input class="form-control border" type="search" name= "search" id="search-input" placeholder="Search Name"> 
        			 </div>
         <div class="col-sm-4">
-        <!-- <button class="btn btn-primary dropdown-toggle" id ="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By </button>
+         <button class="btn btn-primary dropdown-toggle" id ="sort-by" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By </button>
 						<div class="dropdown-menu">
     					<a class="dropdown-item" href="#">Ascending</a>
     					<a class="dropdown-item" href="#">Descending</a>
-					  </div> -->
+					  </div> 
           </div>
           <?php
                     if($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'officer'){?>
