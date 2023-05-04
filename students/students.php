@@ -104,11 +104,11 @@ require_once '../classes/program.class.php';
   <?php
                     if($_SESSION['role'] == 'officer'){?>
   <div class="col-sm-6 col-12 d-flex align-items-center justify-content-end" style="margin-top: 20px; padding-bottom: 20px;">
-    <!-- <div class="mr-3">
+    <div class="mr-3">
       <a href="#addCSV" class="btn btn-success" id="add-csv" data-toggle="modal">
         <i class="material-icons">&#xE147;</i> <span>Add CSV</span>
       </a>
-    </div> -->
+    </div>
     <?php } ?>
     <div>
     <?php
