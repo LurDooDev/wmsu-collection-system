@@ -162,19 +162,19 @@ $fullname = $_SESSION['fullname'];
   <div class="col-sm-12">
   </div>
   <div class="col-sm-12" style="padding-bottom: 10px;">
-  <!--   <button type="button" class="btn btn-primary active" id="university-btn">University</button>
-     <a href="../payment/localpayment_fees.php?studentID=<?php echo $studentId ?>" class="btn btn-primary" id="local-btn">Local</a>
+    <button type="button" class="btn btn-primary active" id="university-btn">University</button>
+    <a href="../payment/localpayment_fees.php?studentID=<?php echo $studentId ?>" class="btn btn-primary" id="local-btn">Local</a>
   </div>
 </div>
--->
-<form method="post" action="process_payment.php">
-  <input type="hidden" name="collected_by" value="<?php echo $fullname; ?>">
+
+<!-- University Table -->
+<form method="post" action="process_university_payment.php" >
+<input type="hidden" name="collected_by" value="<?php echo $fullname; ?>">
   <input type="hidden" name="student_id" value="<?php echo $studentId; ?>">
-  <table id="combined-table" class="table">
+  <table id="university-table" class="table">
     <thead style="background-color:#95BDFE;" class="text-white">
       <tr>
         <th></th>
-        <th>Type</th>
         <th>Academic year</th>
         <th>Semester</th>
         <th>Title</th>
@@ -184,43 +184,25 @@ $fullname = $_SESSION['fullname'];
     </thead>
     <tbody>
       <?php
-        $UniversityFees = new UniversityPending();
-        $UniversityFeesData = $UniversityFees->showAllFeesBystudentId($studentId);
+        $Fees = new UniversityPending();
+        $FeesData = $Fees->showAllFeesBystudentId($studentId);
 
-        $LocalFees = new LocalPending();
-        $LocalFeesData = $LocalFees->showAllFeesBystudentId($studentId);
-
-        $i = 1;
-
-        foreach ($UniversityFeesData as $UniversityFee) {
-          echo '<tr>';
-          echo '<td><input type="checkbox" name="fees[]" value="' . $UniversityFee['id'] . '" class="fee-checkbox"></td>';
-          echo '<td>University</td>';
-          echo '<td>' . $UniversityFee['academic_name'] . '</td>';
-          echo '<td>' . $UniversityFee['semester_name'] . '</td>';
-          echo '<td>' . $UniversityFee['fee_name'] . '</td>';
-          echo '<td>' . $UniversityFee['pending_amount'] . '</td>';
-          echo '<td>' . $UniversityFee['university_status'] . '</td>';
-          echo '</tr>';
-          $i++;
-        }
-
-        foreach ($LocalFeesData as $LocalFee) {
-          echo '<tr>';
-          echo '<td><input type="checkbox" name="fees[]" value="' . $LocalFee['id'] . '" class="fee-checkbox"></td>';
-          echo '<td>Local</td>';
-          echo '<td>' . $LocalFee['academic_name'] . '</td>';
-          echo '<td>' . $LocalFee['semester_name'] . '</td>';
-          echo '<td>' . $LocalFee['fee_name'] . '</td>';
-          echo '<td>' . $LocalFee['pending_amount'] . '</td>';
-          echo '<td>' . $LocalFee['pending_status'] . '</td>';
-          echo '</tr>';
-          $i++;
+        foreach ($FeesData as $Fees) {
+      ?>
+          <tr>
+            <td><input type="checkbox" name="fees[]" value="<?php echo $Fees['id']; ?>" class="fee-checkbox"></td>
+            <td><?php echo $Fees['academic_name']; ?></td>
+            <td><?php echo $Fees['semester_name']; ?></td>
+            <td><?php echo $Fees['fee_name']; ?></td>
+            <td><?php echo $Fees['pending_amount']; ?></td>
+            <td><?php echo $Fees['university_status']; ?></td>
+          </tr>
+      <?php
         }
       ?>
     </tbody>
   </table>
-</form>
+  
   <div class="d-flex">
     <div class="mr-auto p-auto" style="border-radius: 6px;">
       <a href="../payment/universitypayment_search.php" class="btn btn-success">
