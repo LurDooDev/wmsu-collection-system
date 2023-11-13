@@ -9,3 +9,5 @@ updated fees scheduling (back to fees button) updated colleges (changed the fees
 fixed the admin settings, the actives are not well placed.. changed the funds table to middle
 
 added audit and fixed the financial comment box 
+
+buhay pa kayo??
